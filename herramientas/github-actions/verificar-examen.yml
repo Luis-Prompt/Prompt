@@ -1,0 +1,36 @@
+name: Verificar generador de examen
+
+on:
+  push:
+    paths: ['prompts/examen-tipo-saber/**']
+  pull_request:
+    paths: ['prompts/examen-tipo-saber/**']
+
+jobs:
+  generar-ejemplo:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prompts/examen-tipo-saber
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar LibreOffice y poppler
+        run: sudo apt-get update && sudo apt-get install -y libreoffice-writer poppler-utils
+      - name: Instalar dependencias
+        run: npm install
+      - name: Generar el examen de ejemplo
+        run: npm run ejemplo
+      - name: Comprobar que salieron los dos Word y el resumen
+        run: |
+          ls salida
+          test -f salida/*_ESTUDIANTE.docx
+          test -f salida/*_DOCENTE_CLAVES.docx
+          test -f salida/resumen.json
+      - name: Guardar los Word generados
+        uses: actions/upload-artifact@v4
+        with:
+          name: examen-ejemplo
+          path: prompts/examen-tipo-saber/salida/*.docx
