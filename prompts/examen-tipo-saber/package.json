@@ -1,0 +1,13 @@
+{
+  "name": "generador-examen-tipo-saber",
+  "version": "2.1.0",
+  "description": "Genera pruebas tipo SABER en Word (estudiante + docente con claves) a partir de un JSON.",
+  "private": true,
+  "scripts": {
+    "ejemplo": "node scripts/build_exam.js examples/exam_ejemplo.json --out salida"
+  },
+  "dependencies": {
+    "docx": "^9.15.3",
+    "sharp": "^0.35.5"
+  }
+}
