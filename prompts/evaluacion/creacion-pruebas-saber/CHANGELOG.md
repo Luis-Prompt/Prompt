@@ -1,5 +1,12 @@
 # Historial de cambios — Creación de pruebas tipo SABER
 
+## 2.3.0 — versiones A y B
+- Nueva opción `"versiones": 2` en `config` (o `--versiones 2`): genera la prueba en **versión A y B**, con otro orden de preguntas y otras letras de clave. Cuatro Word: estudiante y docente de cada versión.
+- Cada versión pasa por su propia verificación de maquetación (huecos al pie de columna).
+- El título del documento indica "VERSIÓN A" o "VERSIÓN B"; el resumen (`resumen.json`) incluye las claves de la versión B.
+- Se elimina el `|| true` que armaba el documento final dos veces sin necesidad.
+- Nota: las preguntas con opciones numéricas mantienen las opciones ordenadas de menor a mayor, por lo que su letra puede coincidir entre versiones.
+
 ## 2.2.0 — estructura pedagógica
 - Cada pregunta admite `competencia`, `componente`, `nivel` (1–4) y `dba`.
 - El Word del docente incluye la **matriz de especificaciones** (competencias × niveles de desempeño) y la clasificación bajo cada clave.
