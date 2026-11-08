@@ -2,16 +2,16 @@ name: Verificar generador de examen
 
 on:
   push:
-    paths: ['prompts/examen-tipo-saber/**']
+    paths: ['prompts/evaluacion/creacion-pruebas-saber/**']
   pull_request:
-    paths: ['prompts/examen-tipo-saber/**']
+    paths: ['prompts/evaluacion/creacion-pruebas-saber/**']
 
 jobs:
   generar-ejemplo:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: prompts/examen-tipo-saber
+        working-directory: prompts/evaluacion/creacion-pruebas-saber
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: examen-ejemplo
-          path: prompts/examen-tipo-saber/salida/*.docx
+          path: prompts/evaluacion/creacion-pruebas-saber/salida/*.docx

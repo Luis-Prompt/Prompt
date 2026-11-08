@@ -3,7 +3,7 @@ name: generador-examen-tipo-saber
 description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER.
 ---
 
-# GENERADOR DE EXAMEN TIPO SABER — v2.1
+# GENERADOR DE EXAMEN TIPO SABER — v2.2
 **Colegio Integrado Simón Bolívar · Cúcuta · Mg. Luis Alberto Avellaneda C.**
 
 ## QUÉ ENTREGA (SIEMPRE DOS ARCHIVOS .docx)
@@ -14,17 +14,26 @@ Entrega ambos con `present_files` y un mensaje corto (claves, nº de preguntas, 
 
 ---
 
-## PASO 0: PREGUNTAS INICIALES (todas en UN solo mensaje, numeradas; espera la respuesta)
-1. **Tema(s)** de la prueba.
-2. **Grado y área/asignatura** (ej. 5.° Matemáticas).
-3. **¿Cuántas preguntas de selección múltiple?** (recomendado 10, 15 o 20).
-4. **¿Quieres incluir preguntas abiertas?** (el estudiante responde a mano en líneas, sin opciones). Si **sí**: **¿cuántas?** (recomendado 1 a 4). Si **no**: no se incluye la PARTE II.
-5. **Dificultad:** básica / media / alta / mixta.
-6. **Longitud de enunciados:** corto (80–180 caracteres) / medio (250–420) / largo (550–800).
-7. **Apoyos visuales:** ¿cuántas preguntas llevan imagen, tabla, gráfico o cuadro?
-8. **Opcional** para el encabezado: nombre del docente y período (si no los da, quedan en blanco para llenar a mano).
+## PASO 0: ENTREVISTA INICIAL POR ETAPAS (tutorial)
+Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numeradas y las opciones ya escritas (el docente responde con números o letras). Si el docente ya dio algún dato, no lo repitas. Al terminar, muestra un **resumen de confirmación** y espera el "sí" antes de generar.
 
-Si el docente ya respondió algunas en su mensaje, no las repitas.
+**Etapa 1 — ¿Qué vamos a evaluar?**
+1. **Área o prueba:** (a) Matemáticas · (b) Lectura crítica · (c) Ciencias naturales · (d) Sociales y ciudadanas · (e) Inglés · (f) Otra.
+2. **Grado** (3.°, 5.°, 7.°, 9.°, 11.° u otro) y **tema(s)** concretos.
+3. **Competencia(s) a evaluar** (si no sabe, propón las de la prueba SABER del área y deja que elija).
+
+**Etapa 2 — ¿Cómo quieres la prueba?**
+4. **¿Cuántas preguntas de selección múltiple?** (recomendado 10, 15 o 20).
+5. **¿Preguntas abiertas?** Si **sí**, ¿cuántas? (1 a 4); si **no**, no se incluye la PARTE II.
+6. **Dificultad:** básica / media / alta / mixta (si es mixta, reparte entre los niveles de desempeño 1 a 4).
+7. **Longitud de enunciados:** corto (80–180 caracteres) / medio (250–420) / largo (550–800).
+8. **Apoyos visuales:** ¿cuántas preguntas llevan imagen, tabla, gráfico o cuadro?
+
+**Etapa 3 — Detalles finales (opcionales)**
+9. Nombre del docente y período (si no los da, quedan en blanco para llenar a mano).
+10. Tiempo disponible y si hay estudiantes que necesiten adaptaciones (letra más grande, menos texto).
+
+**Resumen de confirmación:** área, grado, tema, competencias, nº de preguntas, dificultad, apoyos visuales. Pregunta: "¿Lo genero así o cambias algo?".
 
 ---
 
@@ -33,7 +42,7 @@ Si el docente ya respondió algunas en su mensaje, no las repitas.
 2. Si **no** existe, descarga el script oficial del repositorio (no lo reescribas ni lo modifiques):
    ```bash
    mkdir -p /home/claude/examen/scripts /home/claude/examen/assets && cd /home/claude/examen
-   B=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/examen-tipo-saber
+   B=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber
    curl -sL -o scripts/build_exam.js $B/scripts/build_exam.js
    curl -sL -o assets/escudo_header.png $B/assets/escudo_header.png
    ```
@@ -59,7 +68,7 @@ El script mide cada pregunta con LibreOffice, **reordena ventanas de hasta 6 pre
 ---
 
 ## PASO 2: DISEÑO DE CADA PREGUNTA (de atrás hacia adelante)
-1. **Evidencia y competencia** a evaluar (razonamiento y argumentación, comunicación/representación, resolución de problemas).
+1. **Evidencia y competencia** a evaluar (razonamiento y argumentación, comunicación/representación, resolución de problemas). **Clasifica cada pregunta** con `competencia`, `componente`, `nivel` (nivel de desempeño SABER, 1 a 4) y `dba` (DBA o evidencia de aprendizaje). Con esos campos el Word del docente trae la **matriz de especificaciones** (competencias × niveles) y la línea de clasificación bajo cada clave. Reparte las competencias y los niveles de forma equilibrada; no concentres todo en un solo nivel.
 2. **Resuelve primero**: fija la respuesta correcta y escribe `calculo`, una expresión numérica que el script evalúa con fracciones exactas (ej. `"(8-3)/8"`). Si no es numérica, omítelo.
 3. **Distractores = errores conceptuales reales** (invertir la fracción, sumar numeradores y denominadores, ignorar una condición…). Registra cada uno en `errores` (mismo orden que `distractores`).
 4. **Enunciado** con contexto cercano al estudiante (colegio, Cúcuta, familia, deporte, tecnología), sin pistas y sin datos que generen ambigüedad. La **pregunta** va aparte, en positivo (evita “NO”, “EXCEPTO”).
@@ -71,7 +80,13 @@ El script mide cada pregunta con LibreOffice, **reordena ventanas de hasta 6 pre
    - Opciones del mismo formato y longitud parecida (la correcta no debe ser la más larga).
    - Distractores plausibles, nunca absurdos.
    - El script **ordena** las opciones numéricas de menor a mayor y **baraja** el resto con distribución balanceada A–D (máx. 2 iguales seguidas). **No asignes tú las letras.**
-6. **Autoverificación ciega**: resuelve cada pregunta como estudiante, sin mirar la clave. Si dudas entre dos opciones, reescríbela.
+6. **Autoverificación ciega con rúbrica** (obligatoria, sobre todo en áreas no numéricas, donde el script no puede comprobar la respuesta): resuelve cada pregunta como estudiante, sin mirar la clave, y responde para cada una:
+   - ¿Una sola opción es defendible? Si dudas entre dos, reescríbela.
+   - ¿Se puede acertar solo con el texto de la opción (la más larga, la más específica, la única con palabras del enunciado)? Si sí, reescríbela.
+   - ¿Hay datos o hechos que el estudiante de ese grado no pueda deducir del enunciado o de lo visto en clase?
+   - ¿El contexto es real, respetuoso y sin sesgos de género, región o condición social?
+   - En Lectura crítica: ¿la respuesta se sostiene con el texto y no con conocimiento previo?
+   Corrige lo que falle antes de generar. En el mensaje final di en una línea qué preguntas reescribiste.
 7. Alterna dificultad; reparte los apoyos visuales **espaciados** (evita dos consecutivos).
 
 ### Apoyos visuales (campo `visual`)
@@ -106,12 +121,13 @@ El script mide cada pregunta con LibreOffice, **reordena ventanas de hasta 6 pre
   "preguntas": [
     {"enunciado":"…","pregunta":"¿…?","correcta":"5/8","distractores":["3/8","3/5","8/5"],
      "calculo":"(8-3)/8","justificacion":"…","errores":["error 1","error 2","error 3"],
+     "competencia":"Planteamiento y resolución de problemas","componente":"Numérico-variacional","nivel":2,"dba":"…",
      "visual":{"tipo":1,"plantilla":"pizza","params":{"partes":8,"marcadas":3,"etiquetaMarcadas":"Porciones comidas"},"leyenda":"…"}},
     {"tipo":"abierta","enunciado":"…","pregunta":"…","lineas":4,"puntos":2,"respuestaModelo":"…","criterios":["…"]}
   ]
 }
 ```
-`areaClave`: matematicas, ciencias, lenguaje, sociales, tecnologia o general (solo cambia la frase final). `ordenar:false` desactiva el orden numérico en una pregunta. Ejemplo completo en `examples/exam_ejemplo.json`. Todo en español con tildes y ñ.
+`competencia`, `componente`, `nivel` (1–4) y `dba` son opcionales pero **recomendados**: sin ellos no hay matriz de especificaciones (el script avisa). `areaClave`: matematicas, ciencias, lenguaje, sociales, tecnologia o general (solo cambia la frase final). `ordenar:false` desactiva el orden numérico en una pregunta. Ejemplo completo en `examples/exam_ejemplo.json`. Todo en español con tildes y ñ.
 
 ## PASO 4: GENERAR Y CORREGIR
 ```bash

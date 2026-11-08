@@ -127,6 +127,10 @@ function validar(ex) {
   });
   ab.forEach((p, k) => { if (!p.enunciado) E.push(`A${k + 1}: falta enunciado`); if (!p.respuestaModelo) W.push(`A${k + 1}: falta "respuestaModelo"`); });
   mc.forEach((p, k) => { if (k && p.visual && mc[k - 1].visual) W.push(`P${k + 1}: dos preguntas con elemento visual consecutivas (P${k} y P${k + 1}); espaciarlas`); });
+  mc.forEach((p, k) => { if (p.nivel !== undefined && ![1, 2, 3, 4].includes(Number(p.nivel))) E.push(`P${k + 1}: "nivel" debe ser 1, 2, 3 o 4 (nivel de desempeño SABER)`); });
+  const conComp = mc.filter(p => p.competencia).length;
+  if (!conComp) W.push('Ninguna pregunta tiene "competencia": no se generará la matriz de especificaciones');
+  else if (conComp < mc.length) W.push(`Solo ${conComp} de ${mc.length} preguntas tienen "competencia"; el resto saldrá como "Sin clasificar" en la matriz`);
   if (!mc.length) E.push('No hay preguntas de selección múltiple');
   return { E, W };
 }
@@ -510,6 +514,36 @@ async function analizarLayout(pdf, claveUlt) {
 }
 
 // ═══ 8. PROGRAMA PRINCIPAL ═══════════════════════════════════════════════════
+// Clasificación pedagógica de cada pregunta (competencia · componente · nivel · DBA)
+function metaPregunta(p) {
+  const t = [p.competencia && `Competencia: ${p.competencia}`, p.componente && `Componente: ${p.componente}`, p.nivel && `Nivel ${p.nivel}`, p.dba && `DBA/evidencia: ${p.dba}`].filter(Boolean);
+  return t.length ? [para([run(t.join('  ·  '), { size: SZ_XS, italics: true, color: '1F4E79' })], { spacing: { after: 30 } })] : [];
+}
+// Matriz de especificaciones: competencias × niveles de desempeño (solo documento docente)
+function matrizEspecificaciones(mc) {
+  if (!mc.some(p => p.competencia)) return [];
+  const grupos = new Map();
+  mc.forEach(p => {
+    const c = p.competencia || 'Sin clasificar';
+    if (!grupos.has(c)) grupos.set(c, { comps: new Set(), nums: [], niv: { 1: 0, 2: 0, 3: 0, 4: 0, s: 0 } });
+    const g = grupos.get(c); if (p.componente) g.comps.add(p.componente); g.nums.push(p.num); g.niv[p.nivel ? Number(p.nivel) : 's']++;
+  });
+  const wN = 600, wT = 700, wP = 2000, wComp = 2400, wC = TEXT_W - wComp - wP - wT - 4 * wN;
+  const h = (t, w) => celda([para([run(t, { bold: true, size: SZ_XS })], { alignment: AlignmentType.CENTER })], w, { borders: bAll('000000', 6), shading: { type: ShadingType.CLEAR, fill: 'D9D9D9', color: 'auto' }, verticalAlign: VerticalAlign.CENTER });
+  const c = (t, w, o = {}) => celda([para([run(String(t), { size: SZ_XS, ...(o.bold ? { bold: true } : {}) })], { alignment: o.left ? AlignmentType.LEFT : AlignmentType.CENTER })], w, { borders: bAll(), verticalAlign: VerticalAlign.CENTER });
+  const tot = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  const filas = [new TableRow({ tableHeader: true, children: [h('Competencia', wC), h('Componente(s)', wComp), h('Preguntas', wP), h('Total', wT), h('N1', wN), h('N2', wN), h('N3', wN), h('N4', wN)] })];
+  grupos.forEach((g, nombre) => {
+    [1, 2, 3, 4].forEach(k => tot[k] += g.niv[k]);
+    filas.push(new TableRow({ cantSplit: true, children: [c(nombre, wC, { left: true, bold: true }), c([...g.comps].join('; ') || '—', wComp, { left: true }), c(g.nums.join(', '), wP), c(g.nums.length, wT, { bold: true }), ...[1, 2, 3, 4].map(k => c(g.niv[k] || '·', wN))] }));
+  });
+  filas.push(new TableRow({ cantSplit: true, children: [celda([para([run('TOTAL', { size: SZ_XS, bold: true })], { alignment: AlignmentType.CENTER })], wC + wComp + wP, { columnSpan: 3, borders: bAll(), verticalAlign: VerticalAlign.CENTER }), c(mc.length, wT, { bold: true }), ...[1, 2, 3, 4].map(k => c(tot[k], wN, { bold: true }))] }));
+  return [
+    para([run('MATRIZ DE ESPECIFICACIONES', { bold: true })], { alignment: AlignmentType.CENTER, spacing: { before: 240, after: 60 }, keepNext: true }),
+    para([run('N1–N4 = nivel de desempeño SABER de cada pregunta de selección múltiple. Úsala para comprobar que la prueba cubre todas las competencias y no concentra la dificultad en un solo nivel.', { size: SZ_XS, italics: true })], { alignment: AlignmentType.JUSTIFIED, spacing: { after: 80 }, keepNext: true }),
+    tabla(filas, [wC, wComp, wP, wT, wN, wN, wN, wN])
+  ];
+}
 async function armar(ctx, nivel, hojaPropia) {
   const { ex, imgs, bubs, escudo, outDir } = ctx, st = NIVELES[nivel], m = ex.meta;
   const mc = ctx.mc.slice(), ab = ctx.ab.slice();
@@ -566,7 +600,7 @@ async function armar(ctx, nivel, hojaPropia) {
     ...mc.map(p => new TableRow({ cantSplit: true, children: [
       celda([para([run(String(p.num), { bold: true, size: SZ_S })], { alignment: AlignmentType.CENTER })], 700, { borders: bAll(), verticalAlign: VerticalAlign.CENTER }),
       celda([para([run(p._clave, { bold: true, size: 24 })], { alignment: AlignmentType.CENTER })], 950, { borders: bAll(), verticalAlign: VerticalAlign.CENTER, shading: { type: ShadingType.CLEAR, fill: 'CDEFD0', color: 'auto' } }),
-      celda([para([run('Correcta: ', { size: SZ_S, bold: true }), run(p.justificacion || '', { size: SZ_S })]), ...p._ops.filter(o => !o.ok).map(o => para([run(`${o.letra}) `, { bold: true, size: SZ_XS }), run(o.error || '', { size: SZ_XS, color: '444444' })]))], colW2, { borders: bAll() })] })),
+      celda([...metaPregunta(p), para([run('Correcta: ', { size: SZ_S, bold: true }), run(p.justificacion || '', { size: SZ_S })]), ...p._ops.filter(o => !o.ok).map(o => para([run(`${o.letra}) `, { bold: true, size: SZ_XS }), run(o.error || '', { size: SZ_XS, color: '444444' })]))], colW2, { borders: bAll() })] })),
     ...ab.map(p => new TableRow({ cantSplit: true, children: [
       celda([para([run(String(p.num), { bold: true, size: SZ_S })], { alignment: AlignmentType.CENTER })], 700, { borders: bAll(), verticalAlign: VerticalAlign.CENTER }),
       celda([para([run('ABIERTA', { bold: true, size: SZ_XS })], { alignment: AlignmentType.CENTER })], 950, { borders: bAll(), verticalAlign: VerticalAlign.CENTER, shading: { type: ShadingType.CLEAR, fill: 'FFF3CD', color: 'auto' } }),
@@ -578,7 +612,8 @@ async function armar(ctx, nivel, hojaPropia) {
       para([run('PLANTILLA DE CALIFICACIÓN (CLAVE) — óvalos llenos = respuesta correcta', { bold: true })], { alignment: AlignmentType.CENTER, spacing: { before: 80, after: 80 }, keepNext: true }),
       hojaRespuestas(mc.length, bubs, claves),
       para([run('CLAVE DE RESPUESTAS Y JUSTIFICACIÓN', { bold: true })], { alignment: AlignmentType.CENTER, spacing: { before: 200, after: 80 }, keepNext: true }),
-      tabla(filasClave, [700, 950, colW2])], tipoHoja)
+      tabla(filasClave, [700, 950, colW2]),
+      ...matrizEspecificaciones(mc)], tipoHoja)
   ]);
   const base = (m.archivo || `Examen_${(m.area || 'Area')}_${(m.tema || 'Tema')}_Grado${m.grado}`).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9_\-]+/g, '_').replace(/_+/g, '_');
   const fE = path.join(outDir, base + '_ESTUDIANTE.docx'), fD = path.join(outDir, base + '_DOCENTE_CLAVES.docx');

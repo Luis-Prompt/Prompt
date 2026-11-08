@@ -4,7 +4,7 @@ about: Anota una mejora para que no se pierda
 labels: mejora
 ---
 
-**¿Qué prompt?** (ej. examen-tipo-saber)
+**¿Qué prompt?** (ej. creacion-pruebas-saber)
 
 **¿Qué quieres mejorar o agregar?**
 

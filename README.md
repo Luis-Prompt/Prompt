@@ -6,14 +6,16 @@ Repositorio central para **crear, ordenar y mejorar día a día** los prompts (s
 
 | Prompt | Para qué sirve | Versión | Carpeta |
 |---|---|---|---|
-| **Generador de examen tipo SABER** | Crea la prueba del estudiante y la del docente (con claves) en Word, con preguntas de selección múltiple verificadas, gráficos y hoja de respuestas. | 2.1 | [`prompts/examen-tipo-saber`](prompts/examen-tipo-saber) |
-| *(próximos)* | Guías de clase, rúbricas, planeadores, talleres… | — | [`prompts/_plantilla`](prompts/_plantilla) |
+| **Creación de pruebas tipo SABER** | Crea la prueba del estudiante y la del docente (con claves) en Word, con preguntas de selección múltiple verificadas, gráficos y hoja de respuestas. | 2.2 | [`prompts/evaluacion/creacion-pruebas-saber`](prompts/evaluacion/creacion-pruebas-saber) |
+| *(próximo)* Planes de clase | Planeación de clases, planeadores, guías y talleres. | — | [`prompts/planeacion`](prompts/planeacion) |
 
 ## Cómo está organizado
 
 ```
 Prompt/
-├─ prompts/            Un prompt por carpeta (SKILL.md + scripts + ejemplos + CHANGELOG)
+├─ prompts/            Los prompts, agrupados por categoría
+│  ├─ evaluacion/      Pruebas, exámenes, rúbricas  →  creacion-pruebas-saber/
+│  ├─ planeacion/      Planes de clase, planeadores, guías (próximamente)
 │  └─ _plantilla/      Molde para crear un prompt nuevo con el mismo orden
 ├─ banco-imagenes/     Escudos, plantillas gráficas y recursos visuales reutilizables
 ├─ banco-preguntas/    Preguntas aprobadas por área y grado (se reutilizan y mejoran)
@@ -38,7 +40,8 @@ Prompt/
 
 ## Reglas de orden
 
-- Nombres de carpeta en minúsculas y con guiones: `examen-tipo-saber`.
+- Cada prompt va en su propia carpeta, dentro de una categoría: `prompts/<categoria>/<nombre-del-prompt>`.
+- Nombres de carpeta en minúsculas, sin tildes ni espacios, con guiones: `creacion-pruebas-saber`.
 - Un `SKILL.md` **corto y claro**; el código va en `scripts/`, nunca pegado dentro del prompt.
 - Cada prompt trae un ejemplo funcional en `examples/`.
 - No subir claves, tokens ni datos personales de estudiantes.
