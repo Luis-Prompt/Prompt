@@ -1,4 +1,12 @@
-# Historial de cambios — Generador de examen tipo SABER
+# Historial de cambios — Creación de pruebas tipo SABER
+
+## 2.2.0 — estructura pedagógica
+- Cada pregunta admite `competencia`, `componente`, `nivel` (1–4) y `dba`.
+- El Word del docente incluye la **matriz de especificaciones** (competencias × niveles de desempeño) y la clasificación bajo cada clave.
+- El script valida `nivel` y avisa si faltan competencias.
+- Entrevista inicial **por etapas** (tutorial) con resumen de confirmación.
+- Autoverificación ciega con rúbrica de 5 puntos, obligatoria en áreas no numéricas.
+- La carpeta pasa a `prompts/evaluacion/creacion-pruebas-saber`.
 
 ## 2.1.0 — reorganización
 - El repositorio pasa de un `.zip` a carpetas versionables.

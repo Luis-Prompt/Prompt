@@ -1,9 +1,9 @@
-# Generador de examen tipo SABER (v2.1)
+# Creación de pruebas tipo SABER (v2.2)
 
 Genera **dos documentos Word** a partir de las respuestas del docente:
 
 - `…_ESTUDIANTE.docx`: encabezado con escudo, datos del estudiante, preguntas a dos columnas y hoja de respuestas con óvalos.
-- `…_DOCENTE_CLAVES.docx`: la misma prueba con la clave resaltada, plantilla de calificación, justificación de cada respuesta y error que representa cada distractor.
+- `…_DOCENTE_CLAVES.docx`: la misma prueba con la clave resaltada, plantilla de calificación, justificación de cada respuesta, error que representa cada distractor y **matriz de especificaciones** (competencias × niveles).
 
 ## Contenido de la carpeta
 
@@ -22,7 +22,7 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 Requisitos: Node 18+, LibreOffice y `poppler-utils` (para medir la maquetación).
 
 ```bash
-cd prompts/examen-tipo-saber
+cd prompts/evaluacion/creacion-pruebas-saber
 npm install
 npm run ejemplo          # genera los Word en ./salida
 ```
