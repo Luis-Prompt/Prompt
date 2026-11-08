@@ -3,14 +3,14 @@ name: generador-examen-tipo-saber
 description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER.
 ---
 
-# GENERADOR DE EXAMEN TIPO SABER — v2.2
+# GENERADOR DE EXAMEN TIPO SABER — v2.3
 **Colegio Integrado Simón Bolívar · Cúcuta · Mg. Luis Alberto Avellaneda C.**
 
-## QUÉ ENTREGA (SIEMPRE DOS ARCHIVOS .docx)
+## QUÉ ENTREGA (DOS ARCHIVOS .docx; CUATRO si pide versiones A y B)
 1. `…_ESTUDIANTE.docx`: encabezado con escudo, datos del estudiante, preguntas a 2 columnas, hoja de respuestas con óvalos grandes.
 2. `…_DOCENTE_CLAVES.docx`: la misma prueba con la respuesta correcta resaltada en verde, plantilla de calificación (óvalos llenos), justificación de cada clave y el error que representa cada distractor, y respuesta modelo + criterios de las preguntas abiertas.
 
-Entrega ambos con `present_files` y un mensaje corto (claves, nº de preguntas, imágenes). No pegues el código en la respuesta.
+Si el docente pide **versiones A y B** (misma prueba con otro orden de preguntas y otras letras de clave, para evitar copia), se generan además `…_VersionA_…` y `…_VersionB_…`, cada una con su propio documento del estudiante y del docente con claves. Entrega todos con `present_files` y un mensaje corto (claves, nº de preguntas, imágenes). No pegues el código en la respuesta.
 
 ---
 
@@ -32,6 +32,7 @@ Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numerad
 **Etapa 3 — Detalles finales (opcionales)**
 9. Nombre del docente y período (si no los da, quedan en blanco para llenar a mano).
 10. Tiempo disponible y si hay estudiantes que necesiten adaptaciones (letra más grande, menos texto).
+11. **¿Quieres dos versiones (A y B)** para evitar que se copien? (recomendado en grupos grandes o con pupitres juntos).
 
 **Resumen de confirmación:** área, grado, tema, competencias, nº de preguntas, dificultad, apoyos visuales. Pregunta: "¿Lo genero así o cambias algo?".
 
@@ -117,7 +118,7 @@ El script mide cada pregunta con LibreOffice, **reordena ventanas de hasta 6 pre
 ```json
 {
   "meta":   {"area":"Aritmética","areaClave":"matematicas","asignatura":"Aritmética","tema":"Fracciones","grado":"5","docente":""},
-  "config": {"longitud":"medio"},
+  "config": {"longitud":"medio","versiones":1},
   "preguntas": [
     {"enunciado":"…","pregunta":"¿…?","correcta":"5/8","distractores":["3/8","3/5","8/5"],
      "calculo":"(8-3)/8","justificacion":"…","errores":["error 1","error 2","error 3"],
@@ -127,7 +128,7 @@ El script mide cada pregunta con LibreOffice, **reordena ventanas de hasta 6 pre
   ]
 }
 ```
-`competencia`, `componente`, `nivel` (1–4) y `dba` son opcionales pero **recomendados**: sin ellos no hay matriz de especificaciones (el script avisa). `areaClave`: matematicas, ciencias, lenguaje, sociales, tecnologia o general (solo cambia la frase final). `ordenar:false` desactiva el orden numérico en una pregunta. Ejemplo completo en `examples/exam_ejemplo.json`. Todo en español con tildes y ñ.
+`versiones` en `config` (1 o 2) también se puede dar con `--versiones 2` al ejecutar. `competencia`, `componente`, `nivel` (1–4) y `dba` son opcionales pero **recomendados**: sin ellos no hay matriz de especificaciones (el script avisa). `areaClave`: matematicas, ciencias, lenguaje, sociales, tecnologia o general (solo cambia la frase final). `ordenar:false` desactiva el orden numérico en una pregunta. Ejemplo completo en `examples/exam_ejemplo.json`. Todo en español con tildes y ñ.
 
 ## PASO 4: GENERAR Y CORREGIR
 ```bash
@@ -139,7 +140,7 @@ cd /home/claude/examen && node build_exam.js exam.json --out /mnt/user-data/outp
 1. Convierte el docx del estudiante a PDF y mira las páginas como imagen: escudo alineado al margen, sin huecos grandes, hoja de respuestas completa, imágenes legibles.
 2. Ejecuta el comando de la GARANTÍA DEL ESCUDO.
 3. Revisa `resumen.json` (claves, distribución, hueco máximo, escudo usado) y borra de `/mnt/user-data/outputs` la carpeta `img`, `resumen.json` y archivos temporales.
-4. Entrega con `present_files`: primero el del estudiante, luego el del docente, con un mensaje de 3 a 5 líneas.
+4. Entrega con `present_files`: primero el del estudiante, luego el del docente (con versiones: A estudiante, A docente, B estudiante, B docente), con un mensaje de 3 a 5 líneas. Con dos versiones, recuerda al docente que las **claves son distintas** en cada una y que no deben mezclarse las hojas de respuestas.
 
 ## REGLAS FIJAS
 - Los contextos pueden ser ficticios, pero coherentes; no presentes datos inventados como reales.

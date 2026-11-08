@@ -1,9 +1,11 @@
-# Creación de pruebas tipo SABER (v2.2)
+# Creación de pruebas tipo SABER (v2.3)
 
 Genera **dos documentos Word** a partir de las respuestas del docente:
 
 - `…_ESTUDIANTE.docx`: encabezado con escudo, datos del estudiante, preguntas a dos columnas y hoja de respuestas con óvalos.
 - `…_DOCENTE_CLAVES.docx`: la misma prueba con la clave resaltada, plantilla de calificación, justificación de cada respuesta, error que representa cada distractor y **matriz de especificaciones** (competencias × niveles).
+
+**Versiones A y B (opcional):** con `"versiones": 2` en el `config` del JSON, o `--versiones 2` al ejecutar, se generan cuatro Word: estudiante y docente de la versión A y de la versión B (otro orden de preguntas y otras letras de clave) para evitar la copia.
 
 ## Contenido de la carpeta
 
@@ -25,6 +27,7 @@ Requisitos: Node 18+, LibreOffice y `poppler-utils` (para medir la maquetación)
 cd prompts/evaluacion/creacion-pruebas-saber
 npm install
 npm run ejemplo          # genera los Word en ./salida
+node scripts/build_exam.js examples/exam_ejemplo.json --out salida --versiones 2   # versiones A y B
 ```
 
 ## Uso con Claude

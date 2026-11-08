@@ -549,7 +549,7 @@ async function armar(ctx, nivel, hojaPropia) {
   const mc = ctx.mc.slice(), ab = ctx.ab.slice();
   mc.forEach(p => p._ops = [p.correcta, ...p.distractores].map((t, i) => ({ letra: 'ABCD'[i], texto: String(t), ok: i === 0, error: '' })));
   const hdrCfg = Object.assign({ tituloMembrete: ['GESTION ACADEMICA', 'SEGUIMIENTO ACADEMICO', 'EVALUACION DE COMPRENSION'], codFormato: 'GA-F16', codVersion: 'Versión 1.0', codFecha: '04-04-2016' }, ex.config.membrete || {});
-  const TITULO = m.titulo || `EVALUACIÓN ESCRITA — ${(m.area || '').toUpperCase()}: ${(m.tema || '').toUpperCase()} — GRADO ${m.grado}°`;
+  const TITULO = (m.titulo || `EVALUACIÓN ESCRITA — ${(m.area || '').toUpperCase()}: ${(m.tema || '').toUpperCase()} — GRADO ${m.grado}°`) + (ctx.etiquetaVersion ? ` — VERSIÓN ${ctx.etiquetaVersion}` : '');
   const sizeOf = (a) => ({ page: { size: { width: PAGE_W, height: PAGE_H }, margin: MARG }, ...a });
   const instr = 'INSTRUCCIONES: Lee con atención cada pregunta. ' + (ab.length ? 'En la PARTE I selecciona la única respuesta correcta y márcala en la HOJA DE RESPUESTAS rellenando por completo el óvalo de la letra (A, B, C o D). En la PARTE II responde con tus propias palabras en las líneas dispuestas. ' : 'Selecciona la única respuesta correcta y márcala en la HOJA DE RESPUESTAS rellenando por completo el óvalo de la letra (A, B, C o D). ') + 'No se admiten tachones ni enmendaduras.';
   const tituloP = (t) => para([run(t, { bold: true, size: 24 })], { alignment: AlignmentType.CENTER, spacing: { before: 140, after: 80 } });
@@ -574,7 +574,7 @@ async function armar(ctx, nivel, hojaPropia) {
   }
   mc.forEach((p, i) => p.num = i + 1); ab.forEach((p, i) => p.num = mc.length + i + 1);
 
-  const seed = [...(m.tema || 'examen')].reduce((a, c) => a * 31 + c.charCodeAt(0) >>> 0, 7);
+  const seed = ([...(m.tema || 'examen')].reduce((a, c) => a * 31 + c.charCodeAt(0) >>> 0, 7) + (ctx.seedExtra || 0)) >>> 0;
   const dist = asignarLetras(mc, seed), claves = mc.map(p => p._clave);
   const pc = (l) => Math.round(100 * dist[l] / mc.length);
   const FRASES = { matematicas: '¡Cada problema tiene solución! Confía en ti.', ciencias: '¡El conocimiento es tu superpoder! Da lo mejor.', lenguaje: '¡Las palabras son tu fuerza! Lee, piensa y triunfa.', sociales: '¡Conocer el mundo comienza contigo! Éxito.', tecnologia: '¡La tecnología está en tus manos! Demuéstralo.', general: '¡Tú puedes! Respira, enfócate y demuestra todo lo que sabes.' };
@@ -616,7 +616,8 @@ async function armar(ctx, nivel, hojaPropia) {
       ...matrizEspecificaciones(mc)], tipoHoja)
   ]);
   const base = (m.archivo || `Examen_${(m.area || 'Area')}_${(m.tema || 'Tema')}_Grado${m.grado}`).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9_\-]+/g, '_').replace(/_+/g, '_');
-  const fE = path.join(outDir, base + '_ESTUDIANTE.docx'), fD = path.join(outDir, base + '_DOCENTE_CLAVES.docx');
+  const sfx = ctx.sufijo || '';
+  const fE = path.join(outDir, base + sfx + '_ESTUDIANTE.docx'), fD = path.join(outDir, base + sfx + '_DOCENTE_CLAVES.docx');
   fs.writeFileSync(fE, await Packer.toBuffer(dEst)); fs.writeFileSync(fD, await Packer.toBuffer(dDoc));
   const ult = mc.length && !ab.length ? mc[mc.length - 1].enunciado : (ab.length ? ab[ab.length - 1].enunciado : '');
   return { fE, fD, claves, dist, pc, movidas, medido, claveUlt: ult.replace(/\s+/g, ' ').split(' ').slice(0, 4).join(' ') };
@@ -650,12 +651,13 @@ async function armar(ctx, nivel, hojaPropia) {
 
   const ctx = { ex, mc, ab, imgs: imgsProxy, bubs, escudo, outDir, empaquetar: !args.includes('--sin-ajuste') };
   const niveles = nivelFijo !== null ? [nivelFijo] : [0, 1, 2];
-  let mejor = null;
+  const optimizar = async (cx) => {
+    let mejor = null;
   for (const nv of niveles) {
     for (const hojaPropia of [false, true]) {
       if (hojaPropia && mejor && mejor.an && mejor.an.hojaMismaPagina) continue;
       console.log(`🧩 Maquetando (nivel de compactación ${nv}${hojaPropia ? ', hoja de respuestas en página propia' : ''})…`);
-      const r = await armar(ctx, nv, hojaPropia); const pdf = aPDF(r.fE, outDir);
+      const r = await armar(cx, nv, hojaPropia); const pdf = aPDF(r.fE, outDir);
       r.nivel = nv; r.hojaPropia = hojaPropia;
       if (pdf) { r.an = await analizarLayout(pdf, r.claveUlt); try { fs.unlinkSync(pdf); } catch (e) {} console.log(`   páginas: ${r.an.paginas} · hueco máx. al pie de columna: ${r.an.maxGap} pt · hoja en la misma página que las preguntas: ${r.an.hojaMismaPagina ? 'sí' : 'no'}`); }
       const score = r.an ? r.an.maxGap + (r.an.hojaMismaPagina || hojaPropia ? 0 : 200) : 999;
@@ -664,12 +666,25 @@ async function armar(ctx, nivel, hojaPropia) {
     }
     if (mejor && mejor.an && mejor.an.maxGap <= 55) break;
   }
-  if (mejor.nivel !== nv_last(niveles) || true) { await armar(ctx, mejor.nivel, mejor.hojaPropia); }   // deja en disco la mejor versión
+    await armar(cx, mejor.nivel, mejor.hojaPropia);   // deja en disco la mejor versión
+    return mejor;
+  };
+  const versiones = args.includes('--versiones') ? Number(args[args.indexOf('--versiones') + 1]) : Number(ex.config.versiones || 1);
+  if (versiones >= 2) { ctx.sufijo = '_VersionA'; ctx.etiquetaVersion = 'A'; }
+  const mejor = await optimizar(ctx);
+  let mejorB = null;
+  if (versiones >= 2) {                                // VERSIÓN B: otro orden de preguntas y otras letras
+    const rnd = mulberry(20260508), barajar = (a) => { const x = a.slice(); for (let q = x.length - 1; q > 0; q--) { const r = Math.floor(rnd() * (q + 1)); [x[q], x[r]] = [x[r], x[q]]; } return x; };
+    console.log('🔀 Armando la VERSIÓN B (otro orden de preguntas y otras letras)…');
+    mejorB = await optimizar({ ...ctx, mc: barajar(ctx.mc), ab: barajar(ctx.ab), sufijo: '_VersionB', etiquetaVersion: 'B', seedExtra: 7919 });
+    const igual = mejor.claves.filter((l, q) => l === mejorB.claves[q]).length;
+    console.log(`🎯 Versión B claves: ${mejorB.claves.join('')} (misma letra que A en la misma posición: ${igual} de ${mc.length})`);
+  }
   console.log(`🎯 Claves: A:${mejor.pc('A')}% B:${mejor.pc('B')}% C:${mejor.pc('C')}% D:${mejor.pc('D')}%  → ${mejor.claves.join('')}`);
   if (mc.length >= 8 && Math.max(...Object.values(mejor.dist)) / mc.length > .4) console.warn('⚠  Distribución de claves desbalanceada');
   const resumen = { estudiante: mejor.fE, docente: mejor.fD, preguntasMC: mc.length, abiertas: ab.length, imagenes: nImg, claves: mejor.claves.join(''), distribucion: mejor.dist, escudo: escudo.origen, nivelCompactacion: mejor.nivel, hojaEnPaginaPropia: mejor.hojaPropia, preguntasReubicadas: mejor.movidas, layout: mejor.an || 'sin verificar (LibreOffice no disponible)' };
+  if (mejorB) resumen.versionB = { estudiante: mejorB.fE, docente: mejorB.fD, claves: mejorB.claves.join(''), distribucion: mejorB.dist, layout: mejorB.an || 'sin verificar' };
   fs.writeFileSync(path.join(outDir, 'resumen.json'), JSON.stringify(resumen, null, 2));
-  console.log('📄 ' + mejor.fE + '\n📄 ' + mejor.fD + '\n' + JSON.stringify(resumen));
+  console.log('📄 ' + mejor.fE + '\n📄 ' + mejor.fD + (mejorB ? '\n📄 ' + mejorB.fE + '\n📄 ' + mejorB.fD : '') + '\n' + JSON.stringify(resumen));
   if (mejor.an && mejor.an.maxGap > 55) console.warn(`⚠  Queda un hueco de ${mejor.an.maxGap} pt al pie de una columna; revisa y, si es necesario, ejecuta con --nivel 3.`);
 })().catch(e => { console.error('❌ ' + (e.stack || e)); process.exit(1); });
-function nv_last(a) { return a[a.length - 1]; }
