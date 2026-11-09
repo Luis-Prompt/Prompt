@@ -3,7 +3,7 @@ name: generador-examen-tipo-saber
 description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER.
 ---
 
-# GENERADOR DE EXAMEN TIPO SABER — v2.3
+# GENERADOR DE EXAMEN TIPO SABER — v2.4
 **Colegio Integrado Simón Bolívar · Cúcuta · Mg. Luis Alberto Avellaneda C.**
 
 ## QUÉ ENTREGA (DOS ARCHIVOS .docx; CUATRO si pide versiones A y B)
@@ -42,18 +42,20 @@ Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numerad
 1. Busca `/mnt/skills/user/generador-examen-tipo-saber/scripts/build_exam.js`. Si existe, úsalo.
 2. Si **no** existe, descarga el script oficial del repositorio (no lo reescribas ni lo modifiques):
    ```bash
-   mkdir -p /home/claude/examen/scripts /home/claude/examen/assets && cd /home/claude/examen
-   B=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber
+   mkdir -p /home/claude/examen/scripts /home/claude/examen/assets /home/claude/examen/config && cd /home/claude/examen
+   R=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main
+   B=$R/prompts/evaluacion/creacion-pruebas-saber
    curl -sL -o scripts/build_exam.js $B/scripts/build_exam.js
    curl -sL -o assets/escudo_header.png $B/assets/escudo_header.png
+   curl -sL -o config/institucion.json $R/config/institucion.json
    ```
    Si no hay red, pide al docente que suba `build_exam.js` y el escudo.
 3. `node` y `sharp` ya están disponibles. Si `require('docx')` falla: `npm install -g docx sharp`.
 
 ## GARANTÍA DEL ESCUDO (siempre sale en el encabezado)
 El script busca el escudo en este orden y **aborta con error si no lo encuentra** (nunca entrega un examen sin logo):
-1. variable `ESCUDO_PATH`; 2. `assets/escudo_header.png` junto al script; 3. cualquier `escudo*.png` subido a `/mnt/user-data/uploads/`; 4. **copia base64 incrustada en el propio script** (PNG 200×242 px, ≈9 KB, fondo blanco).
-Valida que sea un PNG real y lo normaliza (fondo blanco, ≤300 px). Se inserta **solo en el encabezado** de Word (celda izquierda del membrete, 76 px de alto, proporción original): aparece en **todas las páginas** de **los dos documentos**.
+1. variable `ESCUDO_PATH`; 2. el escudo indicado en `config/institucion.json`; 3. `assets/escudo_header.png` junto al script; 4. cualquier `escudo*.png/jpg/webp` subido a `/mnt/user-data/uploads/`; 5. **copia base64 incrustada en el propio script** (escudo 2025, 240×290 px, fondo blanco).
+Acepta PNG, JPG o WebP (decide por el contenido real, no por la extensión), le recorta los márgenes blancos y lo normaliza (fondo blanco, ≤300 px). Se inserta **solo en el encabezado** de Word (celda izquierda del membrete, 76 px de alto, proporción original): aparece en **todas las páginas** de **los dos documentos**.
 Tras generar, comprueba que cada encabezado tiene la imagen:
 ```bash
 cd /mnt/user-data/outputs && for f in *.docx; do rm -rf /tmp/chk && mkdir /tmp/chk && unzip -q "$f" -d /tmp/chk && echo "$f -> encabezados con escudo: $(grep -l '<w:drawing>' /tmp/chk/word/header*.xml | wc -l)"; done
@@ -140,7 +142,7 @@ cd /home/claude/examen && node build_exam.js exam.json --out /mnt/user-data/outp
 1. Convierte el docx del estudiante a PDF y mira las páginas como imagen: escudo alineado al margen, sin huecos grandes, hoja de respuestas completa, imágenes legibles.
 2. Ejecuta el comando de la GARANTÍA DEL ESCUDO.
 3. Revisa `resumen.json` (claves, distribución, hueco máximo, escudo usado) y borra de `/mnt/user-data/outputs` la carpeta `img`, `resumen.json` y archivos temporales.
-4. Entrega con `present_files`: primero el del estudiante, luego el del docente (con versiones: A estudiante, A docente, B estudiante, B docente), con un mensaje de 3 a 5 líneas. Con dos versiones, recuerda al docente que las **claves son distintas** en cada una y que no deben mezclarse las hojas de respuestas.
+4. Si el docente quiere **guardar las preguntas en el banco** para reutilizarlas, entrégale también el `exam.json` (el docente lo guarda con `herramientas/guardar-en-banco.js`). Entrega con `present_files`: primero el del estudiante, luego el del docente (con versiones: A estudiante, A docente, B estudiante, B docente), con un mensaje de 3 a 5 líneas. Con dos versiones, recuerda al docente que las **claves son distintas** en cada una y que no deben mezclarse las hojas de respuestas.
 
 ## REGLAS FIJAS
 - Los contextos pueden ser ficticios, pero coherentes; no presentes datos inventados como reales.

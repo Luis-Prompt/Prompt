@@ -1,5 +1,12 @@
 # Historial de cambios — Creación de pruebas tipo SABER
 
+## 2.4.0 — escudo 2025 y configuración institucional
+- Nuevo escudo del colegio (2025) en el encabezado; el respaldo incrustado en el script también se actualizó.
+- Nuevo `config/institucion.json` (nombre, escudo y membrete) compartido por todos los prompts; el script lo lee solo.
+- **Corrección:** el escudo ya no se rechaza si es un JPG o WebP con extensión `.png` (caso real de la imagen subida por el docente). Además se recortan automáticamente los márgenes blancos.
+- Los escudos de los documentos se guardan con paleta de colores: el mismo peso aproximado con mucha mejor calidad.
+- Nuevas herramientas: `herramientas/preparar-escudo.py` y `herramientas/guardar-en-banco.js` (banco de preguntas sin duplicados).
+
 ## 2.3.0 — versiones A y B
 - Nueva opción `"versiones": 2` en `config` (o `--versiones 2`): genera la prueba en **versión A y B**, con otro orden de preguntas y otras letras de clave. Cuatro Word: estudiante y docente de cada versión.
 - Cada versión pasa por su propia verificación de maquetación (huecos al pie de columna).

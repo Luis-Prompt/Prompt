@@ -1,4 +1,4 @@
-# Creación de pruebas tipo SABER (v2.3)
+# Creación de pruebas tipo SABER (v2.4)
 
 Genera **dos documentos Word** a partir de las respuestas del docente:
 
@@ -13,7 +13,7 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 |---|---|
 | `SKILL.md` | El prompt: preguntas iniciales, reglas de diseño de preguntas y pasos de entrega. |
 | `scripts/build_exam.js` | Construye los Word, valida las preguntas y verifica la maquetación. |
-| `assets/escudo_header.png` | Escudo institucional del encabezado. |
+| `assets/escudo_header.png` | Escudo 2025 del encabezado (copia del banco de imágenes). |
 | `examples/exam_ejemplo.json` | Ejemplo completo (14 preguntas de selección múltiple + 2 abiertas, 6 gráficos). |
 | `package.json` | Dependencias (`docx`, `sharp`). |
 | `CHANGELOG.md` | Historial de versiones. |
@@ -36,10 +36,8 @@ Entrega a Claude el enlace de `SKILL.md`. Él hará las preguntas iniciales (tem
 
 ## Datos de la institución
 
-El membrete (título, código, versión y fecha del formato) se puede cambiar en el `exam.json`:
+El nombre, el escudo y el membrete (título, código de formato, versión y fecha) viven en [`config/institucion.json`](../../../config/institucion.json), compartido con los demás prompts. El script lo encuentra solo, o se indica con `--institucion archivo.json`. Para una sola prueba con otro membrete, se puede poner `config.membrete` dentro del `exam.json`.
 
-```json
-"config": { "membrete": { "tituloMembrete": ["…"], "codFormato": "GA-F16", "codVersion": "Versión 1.0", "codFecha": "04-04-2016" } }
-```
+**Escudo:** acepta PNG, JPG o WebP (aunque la extensión no coincida) y recorta los márgenes blancos. Para cambiarlo, usa `herramientas/preparar-escudo.py` (ver `banco-imagenes/README.md`).
 
-El escudo se reemplaza cambiando `assets/escudo_header.png` (PNG con proporción similar a 200×242 px).
+**Banco de preguntas:** `node ../../../herramientas/guardar-en-banco.js exam.json` guarda las preguntas de una prueba en `banco-preguntas/`.
