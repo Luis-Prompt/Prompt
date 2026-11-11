@@ -1,0 +1,85 @@
+{
+  "clave": "biologia",
+  "nombre": "Biología",
+  "grupo": "Asignaturas",
+  "grados": "6-11",
+  "descripcion": "La célula, genética, ecosistemas, evolución, fisiología y salud.",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) (componente biológico) y Estándares Básicos de Competencias en Ciencias Naturales (MEN, 2006): entorno vivo.",
+  "marcos": [
+    {
+      "nombre": "Biología (competencias de ciencias naturales)",
+      "grados": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Uso comprensivo del conocimiento científico",
+          "descripcion": "Comprende y usa conceptos, teorías y modelos de las ciencias naturales para solucionar problemas."
+        },
+        {
+          "nombre": "Explicación de fenómenos",
+          "descripcion": "Analiza y construye explicaciones, argumentos y modelos sobre fenómenos naturales."
+        },
+        {
+          "nombre": "Indagación",
+          "descripcion": "Reconoce preguntas y procedimientos adecuados; busca, selecciona e interpreta información y datos de una investigación."
+        }
+      ],
+      "componentes": [
+        "Biológico",
+        "Entorno vivo",
+        "Ciencia, tecnología y sociedad"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Esquema de proceso o cadena trófica",
+    "Experimento con datos",
+    "Cuadro de Punnett (tabla)",
+    "Caso ambiental o de salud",
+    "Gráfica poblacional"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "flujo",
+    "lineas",
+    "barras",
+    "circular",
+    "histograma"
+  ],
+  "reglas_de_calidad": [
+    "Temas típicos: célula, genética mendeliana, ecosistemas y cadenas tróficas, evolución, sistemas del cuerpo, reproducción, biotecnología.",
+    "Cadenas tróficas y ciclos: usa `flujo` (un nodo `oculto` para «¿qué falta?»).",
+    "Genética: da proporciones como fracciones y escribe `calculo`.",
+    "Evita memorización de nombres; pide aplicar el concepto a una situación."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Invertir el sentido de la flecha en una cadena trófica",
+    "Confundir genotipo con fenotipo",
+    "Confundir mitosis con meiosis",
+    "Atribuir la evolución a la «necesidad» del organismo",
+    "Confundir célula procariota con eucariota"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: célula, genética, ecosistemas, evolución, cuerpo humano o salud?",
+    "¿Qué grado y qué profundidad (reconocer, explicar o analizar datos)?",
+    "¿Incluimos un esquema (cadena trófica, ciclo) o una gráfica de datos?"
+  ],
+  "frase_final": "¡La vida está llena de respuestas! Observa con atención.",
+  "verificacion": "Automática para proporciones y cálculos (`calculo`); revisión ciega para conceptos.",
+  "ejemplo": "examples/areas/biologia.json"
+}

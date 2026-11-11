@@ -1,0 +1,113 @@
+{
+  "clave": "estadistica",
+  "nombre": "Estadística y probabilidad",
+  "grupo": "Asignaturas",
+  "grados": "1-11",
+  "descripcion": "Tablas, gráficos, medidas de tendencia central, probabilidad y conteo.",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) (contenidos de estadística) y Estándares Básicos de Competencias en Matemáticas (MEN, 2006): pensamiento aleatorio y sistemas de datos.",
+  "marcos": [
+    {
+      "nombre": "Saber 11.° (estadística)",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Interpretación y representación",
+          "descripcion": "Comprende y transforma información cuantitativa y esquemática presentada en tablas, gráficas, diagramas o esquemas."
+        },
+        {
+          "nombre": "Formulación y ejecución",
+          "descripcion": "Plantea e implementa estrategias que llevan a soluciones adecuadas de problemas con información cuantitativa."
+        },
+        {
+          "nombre": "Argumentación",
+          "descripcion": "Valida o refuta procedimientos, estrategias, conclusiones y representaciones matemáticas, dando razones."
+        }
+      ],
+      "componentes": [
+        "Estadística"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    },
+    {
+      "nombre": "Saber 3.°, 5.° y 9.°",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "competencias": [
+        {
+          "nombre": "Comunicación, representación y modelación",
+          "descripcion": "Usa e interpreta distintos registros (tablas, gráficas, símbolos, lenguaje natural) y modela situaciones."
+        },
+        {
+          "nombre": "Razonamiento y argumentación",
+          "descripcion": "Justifica, conjetura, valida o refuta afirmaciones y procedimientos matemáticos."
+        },
+        {
+          "nombre": "Planteamiento y resolución de problemas",
+          "descripcion": "Formula problemas, diseña estrategias, las ejecuta y verifica la solución."
+        }
+      ],
+      "componentes": [
+        "Aleatorio"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Gráfico de barras, circular, de líneas o histograma",
+    "Tabla de frecuencias",
+    "Conjunto de datos",
+    "Experimento aleatorio",
+    "Afirmación sobre unos datos para validar"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "barras",
+    "circular",
+    "lineas",
+    "histograma",
+    "plano"
+  ],
+  "reglas_de_calidad": [
+    "Un mismo gráfico o tabla puede servir a 2–3 preguntas: usa `estimulos` con `visual`.",
+    "Con `oculto:true` se esconde un dato sin revelarlo; en el gráfico circular el tamaño del sector sí muestra la proporción.",
+    "Pregunta por interpretar, comparar y decidir con los datos, no solo por calcular el promedio.",
+    "Con opciones numéricas, escribe `calculo` (promedio, porcentaje, probabilidad como fracción)."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir media, mediana y moda",
+    "Leer la barra equivocada o ignorar la escala del eje",
+    "Dividir entre el número de categorías y no entre el total de datos",
+    "Dar la probabilidad como casos favorables sobre casos desfavorables",
+    "Sumar porcentajes de bases distintas"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: tablas y gráficos, medidas de tendencia central, probabilidad o conteo?",
+    "¿Qué tipo de gráfico quieres como apoyo: barras, circular, líneas o histograma?",
+    "¿Pregunto una sola cosa por gráfico o varias preguntas sobre el mismo gráfico?"
+  ],
+  "frase_final": "¡Los datos hablan: escúchalos con calma!",
+  "verificacion": "Automática para opciones numéricas (campo `calculo`).",
+  "ejemplo": "examples/areas/estadistica.json"
+}

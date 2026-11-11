@@ -1,0 +1,121 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Ciencias naturales",
+    "areaClave": "ciencias-naturales",
+    "asignatura": "Ciencias naturales",
+    "tema": "Indagación y fenómenos naturales",
+    "grado": "9",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "e1",
+      "texto": "Un grupo de estudiantes quiere saber si la cantidad de luz afecta a las plantas de frijol. Sembraron tres macetas iguales con la misma tierra y el mismo riego: A (luz solar directa), B (luz parcial) y C (oscuridad). A los 10 días contaron las hojas verdes de cada planta.",
+      "instruccion": "Responde {preguntas} de acuerdo con el siguiente experimento.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "barras",
+        "params": {
+          "titulo": "Hojas verdes a los 10 días",
+          "categorias": [
+            {
+              "nombre": "A",
+              "valor": 8
+            },
+            {
+              "nombre": "B",
+              "valor": 5
+            },
+            {
+              "nombre": "C",
+              "valor": 0
+            }
+          ],
+          "max": 10,
+          "ejeY": "Hojas verdes"
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "e1",
+      "pregunta": "¿Cuál es la variable independiente en este experimento?",
+      "correcta": "La cantidad de luz que recibe cada maceta.",
+      "distractores": [
+        "El número de hojas verdes.",
+        "El tipo de tierra.",
+        "La cantidad de agua."
+      ],
+      "errores": [
+        "Confunde la variable independiente con la que se mide (dependiente).",
+        "La tierra es igual en las tres macetas: es una variable controlada.",
+        "El riego es igual en las tres macetas: es una variable controlada."
+      ],
+      "justificacion": "La variable independiente es la que el investigador cambia a propósito: la luz.",
+      "competencia": "Indagación",
+      "componente": "Entorno vivo",
+      "nivel": 2
+    },
+    {
+      "estimulo": "e1",
+      "pregunta": "¿Qué conclusión sustentan los datos?",
+      "correcta": "A mayor cantidad de luz, mayor número de hojas verdes.",
+      "distractores": [
+        "Las plantas no necesitan luz para formar hojas verdes.",
+        "El agua es el factor que más afecta a las hojas.",
+        "Las plantas en la oscuridad crecen más rápido."
+      ],
+      "errores": [
+        "Contradice los datos: sin luz no hubo hojas verdes.",
+        "El agua fue igual en las tres macetas; no se evaluó.",
+        "El experimento no midió la rapidez de crecimiento."
+      ],
+      "justificacion": "Los datos muestran 8, 5 y 0 hojas verdes a medida que disminuye la luz.",
+      "competencia": "Indagación",
+      "componente": "Entorno vivo",
+      "nivel": 3
+    },
+    {
+      "enunciado": "Un carro recorre 120 km en 2 horas a velocidad constante.",
+      "pregunta": "¿Cuál es su velocidad?",
+      "correcta": "60 km/h",
+      "distractores": [
+        "240 km/h",
+        "122 km/h",
+        "118 km/h"
+      ],
+      "errores": [
+        "Multiplicó la distancia por el tiempo.",
+        "Sumó la distancia y el tiempo.",
+        "Restó el tiempo de la distancia."
+      ],
+      "justificacion": "Velocidad = distancia ÷ tiempo = 120 ÷ 2 = 60 km/h.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno físico",
+      "nivel": 2,
+      "calculo": "120/2"
+    },
+    {
+      "enunciado": "Al disolver sal en agua se obtiene una mezcla homogénea.",
+      "pregunta": "¿Por qué la mezcla es homogénea?",
+      "correcta": "Porque la sal se distribuye de manera uniforme y no se distinguen sus componentes.",
+      "distractores": [
+        "Porque la sal se transforma en una sustancia nueva.",
+        "Porque el agua desaparece al mezclarse con la sal.",
+        "Porque la sal flota en la superficie del agua."
+      ],
+      "errores": [
+        "Confunde disolución (cambio físico) con reacción química.",
+        "El agua no desaparece: sigue siendo el disolvente.",
+        "Describiría una mezcla heterogénea."
+      ],
+      "justificacion": "En una mezcla homogénea los componentes forman una sola fase visible.",
+      "competencia": "Explicación de fenómenos",
+      "componente": "Entorno físico",
+      "nivel": 2
+    }
+  ]
+}

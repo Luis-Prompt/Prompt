@@ -6,7 +6,7 @@ Repositorio central para **crear, ordenar y mejorar día a día** los prompts (s
 
 | Prompt | Para qué sirve | Versión | Carpeta |
 |---|---|---|---|
-| **Creación de pruebas tipo SABER** | Crea la prueba del estudiante y la del docente (con claves) en Word, con preguntas de selección múltiple verificadas, gráficos y hoja de respuestas. | 2.4 | [`prompts/evaluacion/creacion-pruebas-saber`](prompts/evaluacion/creacion-pruebas-saber) |
+| **Creación de pruebas tipo SABER** | Crea la prueba del estudiante y la del docente (con claves) en Word para **20 áreas y asignaturas**, con textos compartidos, gráficos, ilustraciones creadas con ChatGPT y hoja de respuestas. | 2.6 | [`prompts/evaluacion/creacion-pruebas-saber`](prompts/evaluacion/creacion-pruebas-saber) |
 | *(próximo)* Planes de clase | Planeación de clases, planeadores, guías y talleres. | — | [`prompts/planeacion`](prompts/planeacion) |
 
 ## Cómo está organizado

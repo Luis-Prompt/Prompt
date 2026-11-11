@@ -1,0 +1,92 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Química",
+    "areaClave": "quimica",
+    "asignatura": "Química",
+    "tema": "Materia, reacciones y soluciones",
+    "grado": "10",
+    "docente": ""
+  },
+  "config": {},
+  "preguntas": [
+    {
+      "enunciado": "El ácido sulfúrico tiene la fórmula H2SO4.",
+      "pregunta": "¿Cuántos átomos de oxígeno hay en una molécula de H2SO4?",
+      "correcta": "4 átomos",
+      "distractores": [
+        "1 átomo",
+        "2 átomos",
+        "7 átomos"
+      ],
+      "errores": [
+        "Contó solo el azufre (S).",
+        "Contó los hidrógenos como si fueran oxígenos.",
+        "Sumó todos los átomos de la molécula (2 + 1 + 4)."
+      ],
+      "justificacion": "El subíndice 4 después de la O indica 4 átomos de oxígeno.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Químico",
+      "nivel": 1,
+      "calculo": "4"
+    },
+    {
+      "enunciado": "El hidrógeno reacciona con el oxígeno para formar agua.",
+      "pregunta": "¿Cuál es la ecuación química balanceada?",
+      "correcta": "2H2 + O2 → 2H2O",
+      "distractores": [
+        "H2 + O2 → H2O",
+        "2H2 + 2O2 → 2H2O",
+        "H2 + O2 → 2H2O"
+      ],
+      "errores": [
+        "No está balanceada: hay 2 oxígenos a la izquierda y 1 a la derecha.",
+        "Tiene 4 oxígenos a la izquierda y 2 a la derecha.",
+        "Tiene 2 hidrógenos a la izquierda y 4 a la derecha."
+      ],
+      "justificacion": "Con 2H2 + O2 hay 4 H y 2 O a cada lado.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Químico",
+      "nivel": 3
+    },
+    {
+      "enunciado": "Una solución tiene un pH igual a 3.",
+      "pregunta": "¿Qué se puede afirmar de la solución?",
+      "correcta": "Es ácida.",
+      "distractores": [
+        "Es básica.",
+        "Es neutra.",
+        "Es una base fuerte."
+      ],
+      "errores": [
+        "Los valores de pH menores que 7 son ácidos.",
+        "La neutralidad corresponde a pH 7.",
+        "Las bases tienen pH mayor que 7."
+      ],
+      "justificacion": "Un pH de 3 es menor que 7, por lo tanto la solución es ácida.",
+      "competencia": "Explicación de fenómenos",
+      "componente": "Químico",
+      "nivel": 1
+    },
+    {
+      "enunciado": "Se disuelven 20 g de sal en agua hasta completar 500 mL de solución.",
+      "pregunta": "¿Cuál es la concentración de la solución en g/L?",
+      "correcta": "40 g/L",
+      "distractores": [
+        "0,04 g/L",
+        "10 g/L",
+        "25 g/L"
+      ],
+      "errores": [
+        "Dividió entre 500 sin convertir mL a L.",
+        "Multiplicó 20 g por 0,5 L.",
+        "Invirtió la división: 500 ÷ 20."
+      ],
+      "justificacion": "500 mL = 0,5 L; concentración = 20 g ÷ 0,5 L = 40 g/L.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Químico",
+      "nivel": 3,
+      "calculo": "20/0.5"
+    }
+  ]
+}

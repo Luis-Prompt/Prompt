@@ -1,0 +1,78 @@
+{
+  "clave": "quimica",
+  "nombre": "Química",
+  "grupo": "Asignaturas",
+  "grados": "9-11",
+  "descripcion": "Materia, tabla periódica, enlaces, reacciones, soluciones y química orgánica.",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) (componente químico) y Estándares Básicos de Competencias en Ciencias Naturales (MEN, 2006).",
+  "marcos": [
+    {
+      "nombre": "Química (competencias de ciencias naturales)",
+      "grados": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Uso comprensivo del conocimiento científico",
+          "descripcion": "Comprende y usa conceptos, teorías y modelos de las ciencias naturales para solucionar problemas."
+        },
+        {
+          "nombre": "Explicación de fenómenos",
+          "descripcion": "Analiza y construye explicaciones, argumentos y modelos sobre fenómenos naturales."
+        },
+        {
+          "nombre": "Indagación",
+          "descripcion": "Reconoce preguntas y procedimientos adecuados; busca, selecciona e interpreta información y datos de una investigación."
+        }
+      ],
+      "componentes": [
+        "Químico",
+        "Entorno físico"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Fragmento de tabla periódica o tabla de propiedades",
+    "Ecuación química",
+    "Descripción de un experimento",
+    "Tabla de solubilidad o de pH",
+    "Situación cotidiana (cocina, limpieza, ambiente)"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "flujo",
+    "barras",
+    "lineas",
+    "circular"
+  ],
+  "reglas_de_calidad": [
+    "Entrega en el enunciado las masas atómicas o datos necesarios.",
+    "Con cálculos (concentración, moles, estequiometría) escribe `calculo` con aritmética exacta.",
+    "Usa notación química clara (H2O, CO2) y ecuaciones balanceadas.",
+    "Pide explicar fenómenos (por qué se oxida, por qué se disuelve) y no solo nombrar compuestos."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir elemento, compuesto y mezcla",
+    "Confundir número atómico con masa atómica",
+    "No balancear la ecuación",
+    "Confundir cambio físico con cambio químico",
+    "Confundir ácido con base según el pH"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: materia y mezclas, tabla periódica, enlaces, reacciones, soluciones, ácidos y bases o química orgánica?",
+    "¿Incluimos cálculos (moles, concentración, balanceo)?",
+    "¿Entregamos una tabla periódica parcial o datos en el enunciado?"
+  ],
+  "frase_final": "¡La materia se transforma y tú también! Ánimo.",
+  "verificacion": "Automática (campo `calculo`) para cálculos; revisión ciega para conceptos y balanceo.",
+  "ejemplo": "examples/areas/quimica.json"
+}

@@ -1,0 +1,78 @@
+{
+  "clave": "fisica",
+  "nombre": "Física",
+  "grupo": "Asignaturas",
+  "grados": "9-11",
+  "descripcion": "Cinemática, dinámica, energía, ondas, calor y electricidad.",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) (componente físico: cinemática, dinámica, energía mecánica, ondas, energía térmica, electromagnetismo, campo gravitacional) y Estándares Básicos de Competencias en Ciencias Naturales (MEN, 2006).",
+  "marcos": [
+    {
+      "nombre": "Física (competencias de ciencias naturales)",
+      "grados": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Uso comprensivo del conocimiento científico",
+          "descripcion": "Comprende y usa conceptos, teorías y modelos de las ciencias naturales para solucionar problemas."
+        },
+        {
+          "nombre": "Explicación de fenómenos",
+          "descripcion": "Analiza y construye explicaciones, argumentos y modelos sobre fenómenos naturales."
+        },
+        {
+          "nombre": "Indagación",
+          "descripcion": "Reconoce preguntas y procedimientos adecuados; busca, selecciona e interpreta información y datos de una investigación."
+        }
+      ],
+      "componentes": [
+        "Físico",
+        "Entorno físico"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Gráfica posición-tiempo o velocidad-tiempo",
+    "Situación cotidiana (transporte, deporte)",
+    "Esquema de fuerzas o circuito",
+    "Tabla de datos experimentales"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "lineas",
+    "plano",
+    "flujo",
+    "barras",
+    "figura"
+  ],
+  "reglas_de_calidad": [
+    "Siempre con unidades del Sistema Internacional y coherentes.",
+    "Con opciones numéricas escribe `calculo` (v = d/t, F = m·a, E = ½mv²…).",
+    "Evita fórmulas que exijan memorizar constantes no dadas: entrégalas en el enunciado.",
+    "Pide interpretar gráficas (pendiente, área) y razonar cualitativamente, no solo sustituir."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir velocidad con aceleración",
+    "Confundir masa con peso",
+    "Olvidar convertir unidades (km/h a m/s)",
+    "Sumar magnitudes vectoriales como escalares",
+    "Creer que a mayor velocidad hay mayor fuerza neta"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: cinemática, dinámica, energía, ondas, calor o electricidad?",
+    "¿Entregamos las fórmulas necesarias en el enunciado o el estudiante debe recordarlas?",
+    "¿Con gráficas (posición-tiempo, velocidad-tiempo) o con situaciones cotidianas?"
+  ],
+  "frase_final": "¡Todo se mueve por una razón! Razona con calma.",
+  "verificacion": "Automática (campo `calculo`) para cálculos; revisión ciega para razonamiento cualitativo.",
+  "ejemplo": "examples/areas/fisica.json"
+}

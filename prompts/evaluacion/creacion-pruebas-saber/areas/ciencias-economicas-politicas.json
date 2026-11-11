@@ -1,0 +1,77 @@
+{
+  "clave": "ciencias-economicas-politicas",
+  "nombre": "Ciencias económicas y políticas",
+  "grupo": "Asignaturas",
+  "grados": "10-11",
+  "descripcion": "Economía básica (oferta, demanda, inflación), sistemas económicos y políticos, Estado y ciudadanía.",
+  "fuente_marco": "Ley 115 de 1994 (art. 31: áreas de la educación media académica); ICFES, Sociales y Ciudadanas (conceptos y modelos conceptuales).",
+  "marcos": [
+    {
+      "nombre": "Ciencias económicas y políticas",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Pensamiento social",
+          "descripcion": "Usa conceptos de las ciencias sociales y ubica eventos, procesos y problemáticas en el tiempo y el espacio; conoce principios constitucionales."
+        },
+        {
+          "nombre": "Interpretación y análisis de perspectivas",
+          "descripcion": "Evalúa fuentes y argumentos y comprende las posturas e intereses de distintos actores sociales."
+        },
+        {
+          "nombre": "Pensamiento reflexivo y sistémico",
+          "descripcion": "Reconoce modelos conceptuales y relaciona las distintas dimensiones (económica, política, cultural, ambiental) de un problema social."
+        }
+      ],
+      "componentes": [
+        "Economía básica",
+        "Sistemas económicos",
+        "Sistemas políticos y Estado",
+        "Economía colombiana y global"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Gráfica de oferta y demanda o de precios",
+    "Tabla de datos económicos",
+    "Fragmento de una política pública",
+    "Situación de mercado cercana al estudiante"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "lineas",
+    "barras",
+    "circular",
+    "flujo"
+  ],
+  "reglas_de_calidad": [
+    "Pide aplicar conceptos (oferta, demanda, inflación, impuestos, subsidios) a situaciones concretas.",
+    "Con porcentajes y variaciones escribe `calculo`.",
+    "Neutralidad: presenta modelos (liberalismo, intervención del Estado) sin favorecer ninguno.",
+    "Verifica los datos y definiciones económicas."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir oferta con demanda",
+    "Confundir inflación con aumento de un solo precio",
+    "Confundir ingreso con ganancia",
+    "Confundir impuesto con subsidio",
+    "Atribuir el efecto contrario a una medida (subir impuestos «aumenta» el consumo)"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: oferta y demanda, inflación, sistemas económicos, Estado y sistemas políticos o economía colombiana?",
+    "¿Con gráficas de precios o con situaciones cotidianas de mercado?",
+    "¿Incluimos cálculos de porcentajes o variaciones?"
+  ],
+  "frase_final": "¡Entender la economía es entender el mundo! Éxito.",
+  "verificacion": "Automática para cálculos (`calculo`); revisión ciega para conceptos.",
+  "ejemplo": "examples/areas/ciencias-economicas-politicas.json"
+}

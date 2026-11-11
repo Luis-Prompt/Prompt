@@ -13,7 +13,7 @@ const D = lib('docx');
 const sharp = lib('sharp');
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, AlignmentType, BorderStyle,
         WidthType, ShadingType, SectionType, ImageRun, VerticalAlign, Header, PageNumber, Tab,
-        TabStopType, TableLayoutType, HeightRule } = D;
+        TabStopType, TableLayoutType, HeightRule, HorizontalPositionRelativeFrom, HorizontalPositionAlign, VerticalPositionRelativeFrom, TextWrappingType, TextWrappingSide } = D;
 
 // ═══ 1. ESCUDO INSTITUCIONAL ════════════════════════════════════════════════
 // Escudo 2025 optimizado para encabezado (PNG 240×290, 64 colores) incrustado en base64.
@@ -34,6 +34,26 @@ function cargarInstitucion(args) {
   }
   console.warn('⚠  No se encontró config/institucion.json: se usan los datos por defecto del script.');
 }
+// ═══ 1c. CATÁLOGO DE ÁREAS (areas/<areaClave>.json): competencias, componentes, niveles y frase final ═══
+let AREA = null;
+function cargarArea(clave, grado) {
+  if (!clave) return;
+  const cand = [process.env.AREAS_DIR && path.join(process.env.AREAS_DIR, clave + '.json'), path.join(__dirname, '..', 'areas', clave + '.json')];
+  for (const f of cand) {
+    try { if (f && fs.existsSync(f)) {
+      AREA = JSON.parse(fs.readFileSync(f, 'utf8'));
+      if (AREA.marcos && AREA.marcos.length) {            // varios marcos (p. ej. Saber 11.° y Saber 3.°-5.°-9.°): se elige por grado
+        const g = Number(grado), mk = AREA.marcos.find(m => (m.grados || []).includes(g)) || AREA.marcos[0];
+        AREA._marco = mk; AREA.niveles_cortos = mk.niveles_cortos || AREA.niveles_cortos;
+        AREA.competencias = AREA.marcos.flatMap(m => m.competencias || []); AREA.componentes = AREA.marcos.flatMap(m => m.componentes || []);
+      }
+      console.log(`📚 Área: ${AREA.nombre}${AREA._marco ? ' · marco: ' + AREA._marco.nombre : ''}  ← ${f}`); return;
+    } }
+    catch (e) { console.warn(`⚠  No se pudo leer ${f}: ${e.message}`); }
+  }
+  if (clave !== 'general') console.warn(`⚠  No hay catálogo para el área "${clave}" (areas/${clave}.json): no se validarán competencias ni componentes.`);
+}
+const nz = (t) => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const escudoDeConfig = () => (INST.escudo && INST.escudo.encabezado && INST_DIR) ? path.resolve(INST_DIR, INST.escudo.encabezado) : null;
 
 function localizarEscudo() {
@@ -118,8 +138,8 @@ function validar(ex) {
   const rango = RANGOS[(ex.config.longitud || '').toLowerCase()];
   mc.forEach((p, k) => {
     const id = `P${k + 1}`;
-    if (!p.enunciado || !p.pregunta) E.push(`${id}: falta enunciado o pregunta`);
-    if (rango && p.enunciado && (p.enunciado.length < rango[0] || p.enunciado.length > rango[1]))
+    if (!p.pregunta || (!p.enunciado && !p.estimulo)) E.push(`${id}: falta ${p.estimulo ? 'la pregunta' : 'enunciado o pregunta'}`);
+    if (rango && !p.estimulo && p.enunciado && (p.enunciado.length < rango[0] || p.enunciado.length > rango[1]))
       E.push(`${id}: enunciado de ${p.enunciado.length} caracteres; para "${ex.config.longitud}" debe estar entre ${rango[0]} y ${rango[1]}`);
     if (!p.correcta || !Array.isArray(p.distractores) || p.distractores.length !== 3) { E.push(`${id}: requiere "correcta" (texto) y 3 "distractores"`); return; }
     const ops = [p.correcta, ...p.distractores].map(s => String(s).trim());
@@ -148,6 +168,23 @@ function validar(ex) {
   const conComp = mc.filter(p => p.competencia).length;
   if (!conComp) W.push('Ninguna pregunta tiene "competencia": no se generará la matriz de especificaciones');
   else if (conComp < mc.length) W.push(`Solo ${conComp} de ${mc.length} preguntas tienen "competencia"; el resto saldrá como "Sin clasificar" en la matriz`);
+  // Textos compartidos (estímulos): un texto, tabla o gráfico para varias preguntas
+  const ests = ex.estimulos || [], idsEst = new Set();
+  ests.forEach((e, k) => {
+    const id = `Estímulo ${k + 1}`;
+    if (!e.id) E.push(`${id}: falta "id"`); else if (idsEst.has(e.id)) E.push(`${id}: id repetido "${e.id}"`); idsEst.add(e.id);
+    if (!e.texto && !e.visual) E.push(`${id}: requiere "texto" o "visual"`);
+    if (e.texto && e.texto.length > 3300) W.push(`${id}: texto muy largo (${e.texto.length} caracteres); la prueba SABER usa textos de hasta ~500 palabras`);
+  });
+  mc.forEach((p, k) => { if (p.estimulo && !idsEst.has(p.estimulo)) E.push(`P${k + 1}: el estímulo "${p.estimulo}" no existe en "estimulos"`); });
+  ests.forEach(e => { const n = mc.filter(p => p.estimulo === e.id).length; if (e.id && !n) W.push(`El estímulo "${e.id}" no tiene preguntas`); else if (n > 6) W.push(`El estímulo "${e.id}" tiene ${n} preguntas (recomendado: hasta 6)`); });
+  if (AREA) {
+    const comps = (AREA.competencias || []).map(c => nz(c.nombre)), cmps = (AREA.componentes || []).map(c => nz(typeof c === 'string' ? c : c.nombre));
+    mc.forEach((p, k) => {
+      if (p.competencia && comps.length && !comps.includes(nz(p.competencia))) W.push(`P${k + 1}: la competencia "${p.competencia}" no está en el catálogo de ${AREA.nombre}`);
+      if (p.componente && cmps.length && !cmps.includes(nz(p.componente))) W.push(`P${k + 1}: el componente "${p.componente}" no está en el catálogo de ${AREA.nombre}`);
+    });
+  }
   if (!mc.length) E.push('No hay preguntas de selección múltiple');
   return { E, W };
 }
@@ -220,6 +257,26 @@ function leyenda(items, y = 560) {                 // items: [{k:'ghost'|'fill',
 }
 const polar = (cx, cy, r, deg) => [cx + r * Math.cos((deg - 90) * Math.PI / 180), cy + r * Math.sin((deg - 90) * Math.PI / 180)];
 function wedge(cx, cy, r, a0, a1) { const [x0, y0] = polar(cx, cy, r, a0), [x1, y1] = polar(cx, cy, r, a1); const lg = (a1 - a0) > 180 ? 1 : 0; return `M${cx},${cy} L${x0.toFixed(1)},${y0.toFixed(1)} A${r},${r} 0 ${lg} 1 ${x1.toFixed(1)},${y1.toFixed(1)} Z`; }
+
+// ── Ayudas para las plantillas nuevas ───────────────────────────────────────
+const PAL = ['#3B82F6', '#F59E0B', '#10B981', '#EF4444', '#8B5CF6', '#EC4899', '#14B8A6', '#F97316'];
+function envolver(t, max) {                           // parte un texto en líneas de ≤ max caracteres
+  const out = []; let l = '';
+  for (const x of String(t).split(/\s+/)) { if (l && (l + ' ' + x).length > max) { out.push(l); l = x; } else l = (l ? l + ' ' : '') + x; }
+  if (l) out.push(l); return out;
+}
+const txtH = (x, y, t, size = 30, o = {}) => `<text x="${x}" y="${y}" ${FONT} font-size="${size}" font-weight="${o.w || 'bold'}" text-anchor="${o.a || 'middle'}" fill="${o.c || '#1F2937'}" stroke="#fff" stroke-width="8" paint-order="stroke" stroke-linejoin="round">${esc(t)}</text>`;
+function flecha(x1, y1, x2, y2, c = '#111827', w = 5) {   // línea con punta de flecha en (x2,y2)
+  const a = Math.atan2(y2 - y1, x2 - x1), L = 24, bx = x2 - L * 0.8 * Math.cos(a), by = y2 - L * 0.8 * Math.sin(a);
+  const p1 = [x2 - L * Math.cos(a - .42), y2 - L * Math.sin(a - .42)], p2 = [x2 - L * Math.cos(a + .42), y2 - L * Math.sin(a + .42)];
+  return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/><path d="M${x2.toFixed(1)},${y2.toFixed(1)} L${p1[0].toFixed(1)},${p1[1].toFixed(1)} L${p2[0].toFixed(1)},${p2[1].toFixed(1)} Z" fill="${c}"/>`;
+}
+const ejesXY = (x0, x1, y0, y1, max, paso, min = 0) => {   // cuadrícula horizontal con valores para gráficos de barras/líneas
+  let s = '';
+  for (let v = min; v <= max + 1e-9; v += paso) { const y = y0 - (y0 - y1) * (v - min) / (max - min); s += `<line x1="${x0}" y1="${y.toFixed(1)}" x2="${x1}" y2="${y.toFixed(1)}" stroke="${v === min ? '#111827' : '#D1D5DB'}" stroke-width="${v === min ? 5 : 2}"/>` + txt(x0 - 14, y + 9, String(Math.round(v * 100) / 100), 25, { a: 'end', w: 'normal' }); }
+  return s + `<line x1="${x0}" y1="${y1 - 10}" x2="${x0}" y2="${y0}" stroke="#111827" stroke-width="5"/>`;
+};
+const pasoAuto = (r) => r <= 10 ? 1 : r <= 20 ? 2 : r <= 50 ? 5 : r <= 100 ? 10 : r <= 200 ? 20 : r <= 500 ? 50 : 100;
 
 const PLANTILLAS = {
   // pizza / torta / círculo dividido en partes iguales; "marcadas" = partes que ya no están (comidas)
@@ -307,6 +364,155 @@ const PLANTILLAS = {
     }
     return s + leyenda([p.etiquetaPlantas && { k: 'fill', fill: 'url(#gGrass)', t: p.etiquetaPlantas }, p.etiquetaVacios && { k: 'fill', fill: 'url(#gSoil)', t: p.etiquetaVacios }], 545);
   },
+  circular(p) {                                        // gráfico circular (diagrama de torta)
+    const C = p.categorias, tot = C.reduce((a, c) => a + c.valor, 0), cx = 290, cy = 330, R = 215; let s = txt(450, 58, p.titulo || '', 36), a0 = 0;
+    C.forEach((c, i) => {
+      const a1 = a0 + 360 * c.valor / tot, col = c.color || PAL[i % PAL.length];
+      s += C.length === 1 ? `<circle cx="${cx}" cy="${cy}" r="${R}" fill="${col}" stroke="#fff" stroke-width="5"/>` : `<path d="${wedge(cx, cy, R, a0, a1)}" fill="${col}" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>`;
+      if ((p.mostrar === 'porcentaje' || p.mostrar === 'valor') && a1 - a0 > 20) { const [lx, ly] = polar(cx, cy, R * .64, (a0 + a1) / 2); s += txtH(lx, ly + 11, c.oculto ? '?' : p.mostrar === 'porcentaje' ? Math.round(100 * c.valor / tot) + '%' : String(c.valor), 32); }
+      a0 = a1;
+    });
+    C.forEach((c, i) => { const y = 150 + i * 60, col = c.color || PAL[i % PAL.length]; s += `<rect x="560" y="${y - 26}" width="38" height="38" rx="8" fill="${col}" stroke="#1F2937" stroke-width="2"/>` + txt(612, y + 4, c.nombre + (p.leyendaValores ? ' — ' + (c.oculto ? '?' : c.valor) : ''), 29, { a: 'start', w: 'normal' }); });
+    return s;
+  },
+  lineas(p) {                                          // gráfico de líneas (una o varias series)
+    const x0 = 150, x1 = 850, y0 = 450, y1 = 125, X = p.x, S = p.series, vals = S.flatMap(r => r.valores.filter(v => v != null)), min = p.min || 0, max = p.max || Math.max(...vals), paso = p.paso || pasoAuto(max - min);
+    const gap = X.length > 1 ? (x1 - x0) / (X.length - 1) : 0, px = (i) => X.length > 1 ? x0 + gap * i : (x0 + x1) / 2, py = (v) => y0 - (y0 - y1) * (v - min) / (max - min);
+    let s = txt(450, 58, p.titulo || '', 36) + ejesXY(x0, x1, y0, y1, max, paso, min);
+    X.forEach((lab, i) => { s += `<line x1="${px(i)}" y1="${y0}" x2="${px(i)}" y2="${y0 + 12}" stroke="#111827" stroke-width="4"/>` + txt(px(i), y0 + 46, String(lab), 26, { w: 'normal' }); });
+    S.forEach((r, k) => {
+      const col = r.color || PAL[k % PAL.length], pts = r.valores.map((v, i) => v == null ? null : [px(i), py(v)]); let d = '';
+      pts.forEach(q => { if (q) d += (d ? 'L' : 'M') + q[0].toFixed(1) + ',' + q[1].toFixed(1); });
+      s += `<path d="${d}" fill="none" stroke="${col}" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>` + pts.filter(Boolean).map(q => `<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="10" fill="#fff" stroke="${col}" stroke-width="5"/>`).join('');
+    });
+    if (S.length > 1) { let lx = 160; S.forEach((r, k) => { const col = r.color || PAL[k % PAL.length]; s += `<line x1="${lx}" y1="96" x2="${lx + 44}" y2="96" stroke="${col}" stroke-width="7" stroke-linecap="round"/>` + txt(lx + 54, 106, r.nombre, 26, { a: 'start', w: 'normal' }); lx += 80 + r.nombre.length * 15; }); }
+    if (p.ejeX) s += txt(450, 575, p.ejeX, 28, { w: 'normal', c: '#374151' });
+    return s + (p.ejeY ? `<text x="40" y="290" ${FONT} font-size="28" fill="#374151" text-anchor="middle" transform="rotate(-90 40 290)">${esc(p.ejeY)}</text>` : '');
+  },
+  histograma(p) {                                      // histograma: barras pegadas por intervalos
+    const I = p.intervalos, x0 = 150, x1 = 850, y0 = 450, y1 = 125, max = p.max || Math.max(...I.map(i => i.frecuencia)), paso = p.paso || pasoAuto(max), w = (x1 - x0) / I.length;
+    let s = txt(450, 58, p.titulo || '', 36) + ejesXY(x0, x1, y0, y1, max, paso);
+    I.forEach((it, i) => {
+      const x = x0 + w * i, h = (y0 - y1) * (it.oculto ? .5 * max : it.frecuencia) / max;
+      s += it.oculto ? `<rect x="${x}" y="${y0 - h}" width="${w}" height="${h}" fill="#F3F4F6" stroke="#6B7280" stroke-width="4" stroke-dasharray="10 7"/>` + txt(x + w / 2, y0 - h / 2 + 18, '?', 52, { c: '#6B7280' })
+        : `<rect x="${x}" y="${y0 - h}" width="${w}" height="${h}" fill="#60A5FA" stroke="#1E3A8A" stroke-width="3"/>` + (p.mostrarValores ? txt(x + w / 2, y0 - h - 10, String(it.frecuencia), 26) : '');
+      s += txt(x + w / 2, y0 + 44, it.etiqueta, 24, { w: 'normal' });
+    });
+    if (p.ejeX) s += txt(450, 575, p.ejeX, 28, { w: 'normal', c: '#374151' });
+    return s + (p.ejeY ? `<text x="40" y="290" ${FONT} font-size="28" fill="#374151" text-anchor="middle" transform="rotate(-90 40 290)">${esc(p.ejeY)}</text>` : '');
+  },
+  plano(p) {                                           // plano cartesiano con puntos, segmentos y polígonos
+    const xmin = p.xmin ?? -6, xmax = p.xmax ?? 6, ymin = p.ymin ?? -6, ymax = p.ymax ?? 6, u = Math.min(740 / (xmax - xmin), 450 / (ymax - ymin));
+    const left = 450 - u * (xmax - xmin) / 2, top = 325 - u * (ymax - ymin) / 2, X = (x) => left + (x - xmin) * u, Y = (y) => top + (ymax - y) * u, paso = p.paso || ((xmax - xmin) > 14 ? 2 : 1);
+    let s = txt(450, 40, p.titulo || '', 30);
+    for (let x = Math.ceil(xmin); x <= xmax; x++) s += `<line x1="${X(x)}" y1="${Y(ymin)}" x2="${X(x)}" y2="${Y(ymax)}" stroke="#E5E7EB" stroke-width="2"/>`;
+    for (let y = Math.ceil(ymin); y <= ymax; y++) s += `<line x1="${X(xmin)}" y1="${Y(y)}" x2="${X(xmax)}" y2="${Y(y)}" stroke="#E5E7EB" stroke-width="2"/>`;
+    s += `<rect x="${X(xmin)}" y="${Y(ymax)}" width="${u * (xmax - xmin)}" height="${u * (ymax - ymin)}" fill="none" stroke="#9CA3AF" stroke-width="3"/>`;
+    const ax = (xmin <= 0 && xmax >= 0) ? X(0) : X(xmin), ay = (ymin <= 0 && ymax >= 0) ? Y(0) : Y(ymin);
+    s += flecha(X(xmin), ay, X(xmax) + 22, ay, '#111827', 5) + flecha(ax, Y(ymin), ax, Y(ymax) - 20, '#111827', 5) + txt(X(xmax) + 38, ay + 10, 'x', 30) + txt(ax + 4, Y(ymax) - 24, 'y', 30);
+    for (let x = Math.ceil(xmin); x <= xmax; x++) if (x !== 0 && x % paso === 0) s += `<line x1="${X(x)}" y1="${ay - 7}" x2="${X(x)}" y2="${ay + 7}" stroke="#111827" stroke-width="3"/>` + txt(X(x), ay + 32, String(x), 20, { w: 'normal' });
+    for (let y = Math.ceil(ymin); y <= ymax; y++) if (y !== 0 && y % paso === 0) s += `<line x1="${ax - 7}" y1="${Y(y)}" x2="${ax + 7}" y2="${Y(y)}" stroke="#111827" stroke-width="3"/>` + txt(ax - 14, Y(y) + 7, String(y), 20, { a: 'end', w: 'normal' });
+    const P = p.puntos || [];
+    if (p.poligono) s += `<polygon points="${p.poligono.map(i => `${X(P[i].x)},${Y(P[i].y)}`).join(' ')}" fill="#BFDBFE" fill-opacity=".55" stroke="#1E3A8A" stroke-width="6" stroke-linejoin="round"/>`;
+    (p.segmentos || []).forEach(([a, b]) => { s += `<line x1="${X(P[a].x)}" y1="${Y(P[a].y)}" x2="${X(P[b].x)}" y2="${Y(P[b].y)}" stroke="#1E3A8A" stroke-width="6" stroke-linecap="round"/>`; });
+    P.forEach(q => { s += `<circle cx="${X(q.x)}" cy="${Y(q.y)}" r="10" fill="${q.color || '#E11D48'}" stroke="#7F1029" stroke-width="3"/>` + (q.etiqueta ? txtH(X(q.x) + 16, Y(q.y) - 14, q.etiqueta, 28, { a: 'start' }) : ''); });
+    return s;
+  },
+  figura(p) {                                          // figuras geométricas con medidas (usa "?" para la medida que se pide)
+    const e = p.etiquetas || {}, F = '#DBEAFE', K = '#1E3A8A', poly = (pts) => `<polygon points="${pts.map(q => q.join(',')).join(' ')}" fill="${F}" stroke="${K}" stroke-width="7" stroke-linejoin="round"/>`;
+    const recto = (x, y, dx, dy) => `<path d="M${x + dx * 34},${y} L${x + dx * 34},${y + dy * 34} L${x},${y + dy * 34}" fill="none" stroke="${K}" stroke-width="5"/>`, disc = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#DC2626" stroke-width="5" stroke-dasharray="12 8"/>`;
+    let s = '';
+    switch (p.tipo) {
+      case 'triangulo_rectangulo': s = poly([[220, 450], [690, 450], [220, 150]]) + recto(220, 450, 1, -1) + (e.cateto1 ? txtH(455, 505, e.cateto1, 40) : '') + (e.cateto2 ? txtH(190, 310, e.cateto2, 40, { a: 'end' }) : '') + (e.hipotenusa ? txtH(500, 285, e.hipotenusa, 40, { a: 'start' }) : ''); break;
+      case 'triangulo': s = poly([[150, 450], [750, 450], [430, 150]]) + disc(430, 150, 430, 450) + recto(430, 450, 1, -1) + (e.base ? txtH(450, 505, e.base, 40) : '') + (e.altura ? txtH(444, 320, e.altura, 40, { a: 'start' }) : '') + (e.lado1 ? txtH(250, 290, e.lado1, 38, { a: 'end' }) : '') + (e.lado2 ? txtH(640, 290, e.lado2, 38, { a: 'start' }) : ''); break;
+      case 'rectangulo': s = poly([[170, 170], [730, 170], [730, 430], [170, 430]]) + recto(170, 430, 1, -1) + (e.largo ? txtH(450, 495, e.largo, 40) : '') + (e.ancho ? txtH(760, 315, e.ancho, 40, { a: 'start' }) : ''); break;
+      case 'cuadrado': s = poly([[290, 130], [610, 130], [610, 450], [290, 450]]) + recto(290, 450, 1, -1) + (e.lado ? txtH(450, 508, e.lado, 40) : '') + (e.lado2 ? txtH(640, 300, e.lado2, 40, { a: 'start' }) : ''); break;
+      case 'circulo': s = `<circle cx="450" cy="300" r="195" fill="${F}" stroke="${K}" stroke-width="7"/><circle cx="450" cy="300" r="9" fill="${K}"/>` + (e.radio ? `<line x1="450" y1="300" x2="645" y2="300" stroke="#DC2626" stroke-width="6"/>` + txtH(548, 280, e.radio, 40) : '') + (e.diametro ? `<line x1="255" y1="${e.radio ? 380 : 300}" x2="645" y2="${e.radio ? 380 : 300}" stroke="#16A34A" stroke-width="6"/>` + txtH(450, e.radio ? 440 : 280, e.diametro, 40) : '') + (e.circunferencia ? txtH(450, 550, e.circunferencia, 38) : ''); break;
+      case 'trapecio': s = poly([[270, 170], [630, 170], [780, 440], [120, 440]]) + disc(270, 170, 270, 440) + recto(270, 440, 1, -1) + (e.baseMenor ? txtH(450, 140, e.baseMenor, 40) : '') + (e.baseMayor ? txtH(450, 500, e.baseMayor, 40) : '') + (e.altura ? txtH(284, 320, e.altura, 40, { a: 'start' }) : '') + (e.lado ? txtH(745, 300, e.lado, 38, { a: 'start' }) : ''); break;
+      case 'paralelogramo': s = poly([[260, 170], [770, 170], [640, 440], [130, 440]]) + disc(260, 170, 260, 440) + recto(260, 440, 1, -1) + (e.base ? txtH(385, 500, e.base, 40) : '') + (e.altura ? txtH(274, 320, e.altura, 40, { a: 'start' }) : '') + (e.lado ? txtH(740, 300, e.lado, 38, { a: 'start' }) : ''); break;
+      case 'poligono': { const n = p.lados || 5, V = Array.from({ length: n }, (_, i) => polar(450, 300, 195, 360 * i / n + 180 / n).map(v => +v.toFixed(1))); const m = [(V[0][0] + V[1][0]) / 2, (V[0][1] + V[1][1]) / 2]; s = poly(V) + (e.lado ? txtH(m[0] + (m[0] - 450) * .22, m[1] + (m[1] - 300) * .22 + 12, e.lado, 38) : '') + (e.nombre ? txt(450, 310, e.nombre, 36, { c: K }) : ''); break; }
+      default: throw new Error('figura: tipo no válido "' + p.tipo + '" (triangulo_rectangulo, triangulo, rectangulo, cuadrado, circulo, trapecio, paralelogramo, poligono)');
+    }
+    return s;
+  },
+  angulo(p) {                                          // ángulos a partir de rayos (grados, sentido antihorario desde la derecha)
+    const V = [300, 440], R = p.rayos, largo = (g) => { const c = Math.cos(g * Math.PI / 180), n = Math.sin(g * Math.PI / 180); return Math.min(c > 1e-6 ? (860 - V[0]) / c : c < -1e-6 ? (V[0] - 40) / -c : 1e9, n > 1e-6 ? (V[1] - 50) / n : n < -1e-6 ? (570 - V[1]) / -n : 1e9); }, et = p.etiquetas || [], pt = (g, r) => [V[0] + r * Math.cos(g * Math.PI / 180), V[1] - r * Math.sin(g * Math.PI / 180)];
+    let s = '';
+    for (let i = 0; i < R.length - 1; i++) {
+      const a = R[i], b = R[i + 1], r = 110, A = pt(a, r), B = pt(b, r), recto = Math.abs(b - a) === 90;
+      s += recto ? `<path d="M${V[0]},${V[1]} L${pt(a, 70)[0]},${pt(a, 70)[1]} L${pt(a, 70)[0] + pt(b, 70)[0] - V[0]},${pt(a, 70)[1] + pt(b, 70)[1] - V[1]} L${pt(b, 70)[0]},${pt(b, 70)[1]} Z" fill="#BFDBFE" fill-opacity=".6" stroke="#1E3A8A" stroke-width="4"/>`
+        : `<path d="M${V[0]},${V[1]} L${A[0].toFixed(1)},${A[1].toFixed(1)} A${r},${r} 0 ${(b - a) > 180 ? 1 : 0} 0 ${B[0].toFixed(1)},${B[1].toFixed(1)} Z" fill="#BFDBFE" fill-opacity=".6" stroke="#1E3A8A" stroke-width="4"/>`;
+      if (et[i]) { const m = pt((a + b) / 2, recto ? 120 : 180); s += txtH(m[0], m[1] + 12, et[i], 38); }
+    }
+    R.forEach(g => { const q = pt(g, largo(g)); s += `<line x1="${V[0]}" y1="${V[1]}" x2="${q[0].toFixed(1)}" y2="${q[1].toFixed(1)}" stroke="#111827" stroke-width="7" stroke-linecap="round"/>`; });
+    return s + `<circle cx="${V[0]}" cy="${V[1]}" r="11" fill="#111827"/>` + (p.nota ? txt(450, 570, p.nota, 30, { w: 'normal', c: '#374151' }) : '');
+  },
+  lineaTiempo(p) {                                     // línea de tiempo con eventos alternados arriba y abajo
+    const ev = p.eventos, n = ev.length, x0 = 150, x1 = 750, y = 320, slot = n > 1 ? (x1 - x0) / (n - 1) : 600, maxc = Math.max(12, Math.min(22, Math.floor(slot * 2 / 14)));
+    let s = txt(450, 55, p.titulo || '', 36) + `<line x1="${x0 - 60}" y1="${y}" x2="${x1 + 60}" y2="${y}" stroke="#111827" stroke-width="8" stroke-linecap="round"/>`;
+    ev.forEach((e, i) => {
+      const x = n > 1 ? x0 + slot * i : 450, up = i % 2 === 0, col = PAL[i % PAL.length], L = envolver(e.texto || '', maxc);
+      s += `<line x1="${x}" y1="${y + (up ? -18 : 18)}" x2="${x}" y2="${y + (up ? -62 : 62)}" stroke="#6B7280" stroke-width="4"/><circle cx="${x}" cy="${y}" r="18" fill="${col}" stroke="#111827" stroke-width="5"/>`;
+      if (up) { s += txt(x, y - 78, String(e.anio), 34, { c: '#1E3A8A' }); L.forEach((l, k) => { s += txt(x, y - 78 - 38 * (L.length - k), l, 24, { w: 'normal' }); }); }
+      else { s += txt(x, y + 98, String(e.anio), 34, { c: '#1E3A8A' }); L.forEach((l, k) => { s += txt(x, y + 98 + 36 * (k + 1), l, 24, { w: 'normal' }); }); }
+    });
+    return s;
+  },
+  flujo(p) {                                           // procesos, cadenas y ciclos (nodos con flechas); un nodo {oculto:true} muestra "?"
+    const N = p.nodos.map(n => typeof n === 'string' ? { texto: n } : n), m = N.length, modo = p.modo || 'fila', cols0 = Math.min(m, p.porFila || 3), bw = modo === 'fila' ? Math.min(210, 800 / cols0 - 66) : 210, bh = 96; let pos = [];
+    if (modo === 'ciclo') N.forEach((_, i) => { const a = (-90 + 360 * i / m) * Math.PI / 180; pos.push([450 + 300 * Math.cos(a), 325 + 190 * Math.sin(a)]); });
+    else if (modo === 'columna') N.forEach((_, i) => pos.push([450, 120 + Math.min(130, 420 / Math.max(1, m - 1)) * i]));
+    else { const cols = cols0, rows = Math.ceil(m / cols), dx = 800 / cols, dy = Math.min(190, 400 / Math.max(1, rows - 1 || 1)); N.forEach((_, i) => { const r = Math.floor(i / cols), c = i % cols, cc = r % 2 ? cols - 1 - c : c; pos.push([50 + dx / 2 + dx * cc, (rows === 1 ? 310 : 150 + dy * r)]); }); }
+    let s = txt(450, 50, p.titulo || '', 34);
+    const salida = (a, b) => { const dx = b[0] - a[0], dy = b[1] - a[1], t = Math.min(dx ? (bw / 2 + 6) / Math.abs(dx) : 9, dy ? (bh / 2 + 6) / Math.abs(dy) : 9); return [a[0] + dx * t, a[1] + dy * t]; };
+    const F = p.flechas || [...N.slice(0, -1).map((_, i) => [i, i + 1]), ...((modo === 'ciclo' || p.cerrar) && m > 2 ? [[m - 1, 0]] : [])];
+    F.forEach(([a, b, lab]) => { const A = salida(pos[a], pos[b]), B = salida(pos[b], pos[a]); s += flecha(A[0], A[1], B[0], B[1], '#374151', 5) + (lab ? txtH((A[0] + B[0]) / 2, (A[1] + B[1]) / 2 - 10, lab, 22, { w: 'normal' }) : ''); });
+    N.forEach((n, i) => {
+      const [x, y] = pos[i], col = PAL[i % PAL.length], L = envolver(n.texto || '', Math.max(8, Math.floor(bw / 15))), fs = (L.length > 3 || L.some(l => l.length > 11) || bw < 170) ? 22 : 26;
+      s += `<rect x="${x - bw / 2}" y="${y - bh / 2}" width="${bw}" height="${bh}" rx="18" fill="${n.oculto ? '#F3F4F6' : col + '22'}" stroke="${n.oculto ? '#6B7280' : col}" stroke-width="5" ${n.oculto ? 'stroke-dasharray="10 7"' : ''}/>`;
+      s += n.oculto ? txt(x, y + 18, '?', 56, { c: '#6B7280' }) : L.map((l, k) => txt(x, y + 9 + (k - (L.length - 1) / 2) * (fs + 6), l, fs)).join('');
+    });
+    return s;
+  },
+  aviso(p) {                                           // aviso, señal, cartel o etiqueta (texto discontinuo)
+    const est = p.estilo || 'informativo', T = { prohibido: ['#FEF2F2', '#DC2626'], advertencia: ['#FEFCE8', '#A16207'], informativo: ['#EFF6FF', '#1D4ED8'], invitacion: ['#FDF4FF', '#A21CAF'], etiqueta: ['#F9FAFB', '#374151'], seguridad: ['#F0FDF4', '#15803D'] }, [bg, fg] = T[est] || T.informativo;
+    const icono = ['prohibido', 'advertencia', 'informativo', 'seguridad'].includes(est) && p.icono !== false, cx = icono ? 560 : 450;
+    let s = `<rect x="70" y="60" width="760" height="480" rx="36" fill="${bg}" stroke="${fg}" stroke-width="12"/>`;
+    if (icono) {
+      if (est === 'prohibido') s += `<circle cx="200" cy="200" r="78" fill="#fff" stroke="${fg}" stroke-width="20"/><line x1="145" y1="145" x2="255" y2="255" stroke="${fg}" stroke-width="20" stroke-linecap="round"/>`;
+      else if (est === 'advertencia') s += `<polygon points="200,118 285,270 115,270" fill="#FACC15" stroke="${fg}" stroke-width="12" stroke-linejoin="round"/>` + txt(200, 252, '!', 84, { c: '#1F2937' });
+      else if (est === 'seguridad') s += `<circle cx="200" cy="200" r="80" fill="${fg}"/>` + txt(200, 232, '✓', 90, { c: '#fff' });
+      else s += `<circle cx="200" cy="200" r="80" fill="${fg}"/>` + txt(200, 232, 'i', 96, { c: '#fff' });
+    }
+    const T1 = envolver(p.titulo || '', icono ? 14 : 20), ts = T1.length > 2 ? 46 : 60, y0 = icono ? 190 : 170; T1.forEach((l, k) => { s += txt(cx, y0 + k * (ts + 10), l, ts, { c: fg }); });
+    const yIni = Math.max(icono ? y0 + T1.length * (ts + 10) + 70 : y0 + T1.length * (ts + 10) + 40, 330);
+    let fs = 36, cuerpo = []; const armar = () => { cuerpo = (p.lineas || []).map(ln => envolver(ln, Math.floor(700 / (fs * 0.56)))); return cuerpo.reduce((a, l) => a + l.length * (fs + 10) + 14, 0); };
+    while (armar() > 520 - yIni && fs > 24) fs -= 2;
+    let y = yIni; cuerpo.forEach(ls => { ls.forEach(l => { s += txt(450, y, l, fs, { w: 'normal', c: '#1F2937' }); y += fs + 10; }); y += 14; });
+    return s;
+  },
+  dialogo(p) {                                         // conversación en globos de diálogo
+    const M = p.mensajes; let y = 40, g = '';
+    M.forEach((m, i) => {
+      const izq = (m.lado || (i % 2 ? 'der' : 'izq')) === 'izq', L = envolver(m.texto, 34), w = Math.min(680, Math.max(260, Math.max(...L.map(l => l.length)) * 19 + 70)), h = 52 + L.length * 38 + 14, x = izq ? 50 : 850 - w;
+      g += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="30" fill="${izq ? '#E0F2FE' : '#DCFCE7'}" stroke="${izq ? '#0369A1' : '#15803D'}" stroke-width="4"/>` + txt(x + 26, y + 40, m.quien || '', 26, { a: 'start', c: izq ? '#0369A1' : '#15803D' });
+      L.forEach((l, k) => { g += txt(x + 26, y + 82 + k * 38, l, 29, { a: 'start', w: 'normal' }); });
+      y += h + 22;
+    });
+    const k = Math.min(1, 560 / (y - 22 + 20)); return `<g transform="translate(${450 * (1 - k)},${10}) scale(${k})">${g}</g>`;
+  },
+  circuloCromatico(p) {                                // círculo cromático de 12 colores (ocultos: índices que se muestran como "?")
+    const C = [['Amarillo', '#FFE81A'], ['Amarillo anaranjado', '#FDB515'], ['Anaranjado', '#F7821B'], ['Rojo anaranjado', '#EF4F23'], ['Rojo', '#E21F26'], ['Rojo violáceo', '#B5195D'], ['Violeta', '#7B2D8E'], ['Azul violáceo', '#4B3F9E'], ['Azul', '#1F5FBF'], ['Azul verdoso', '#13919A'], ['Verde', '#2BA84A'], ['Amarillo verdoso', '#9BCB3B']];
+    const oc = new Set(p.ocultos || []), cx = 290, cy = 310, R = 215, r = 98; let s = txt(450, 50, p.titulo || '', 34);
+    C.forEach(([nom, col], i) => {
+      const a0 = i * 30 - 15, a1 = a0 + 30, [x0, y0] = polar(cx, cy, R, a0), [x1, y1] = polar(cx, cy, R, a1), [x2, y2] = polar(cx, cy, r, a1), [x3, y3] = polar(cx, cy, r, a0);
+      s += `<path d="M${x0.toFixed(1)},${y0.toFixed(1)} A${R},${R} 0 0 1 ${x1.toFixed(1)},${y1.toFixed(1)} L${x2.toFixed(1)},${y2.toFixed(1)} A${r},${r} 0 0 0 ${x3.toFixed(1)},${y3.toFixed(1)} Z" fill="${oc.has(i) ? '#F3F4F6' : col}" stroke="${oc.has(i) ? '#6B7280' : '#fff'}" stroke-width="5" stroke-linejoin="round"/>`;
+      if (oc.has(i)) { const [qx, qy] = polar(cx, cy, (R + r) / 2, i * 30); s += txt(qx, qy + 16, '?', 46, { c: '#6B7280' }); }
+    });
+    if (p.centro) s += txt(cx, cy + 10, p.centro, 28, { w: 'normal' });
+    if (p.nombres) C.forEach(([nom, col], i) => { if (oc.has(i)) return; const y = 100 + i * 38; s += `<rect x="560" y="${y - 22}" width="30" height="30" rx="6" fill="${col}" stroke="#1F2937" stroke-width="2"/>` + txt(602, y + 3, nom, 24, { a: 'start', w: 'normal' }); });
+    return s;
+  },
   svg(p) { return p.svg; }                             // SVG propio (solo si ninguna plantilla sirve)
 };
 async function renderPNG(inner, file, W = 900, H = 600) {
@@ -366,7 +572,7 @@ function bloqueVisual(p, st, imgs) {
   const v = p.visual, out = [];
   if (!v) return out;
   if (v.tipo === 1 || v.tipo === 3) {
-    const L = p.enunciado.length, base = L <= 180 ? [216, 144] : L <= 420 ? [189, 126] : [162, 108];
+    const L = (p.enunciado || '').length, base = p._base || (L <= 180 ? [216, 144] : L <= 420 ? [189, 126] : [162, 108]);
     out.push(para([new ImageRun({ type: 'png', data: fs.readFileSync(imgs[p.num]), transformation: { width: Math.round(base[0] * st.img), height: Math.round(base[1] * st.img) }, altText: { name: 'img' + p.num, title: 'Imagen pregunta ' + p.num, description: v.leyenda || 'Imagen de apoyo' } })],
       { alignment: AlignmentType.CENTER, spacing: { before: 20, after: v.leyenda ? 10 : 50 }, keepNext: st.keep, keepLines: true }));
     if (v.leyenda) out.push(para([run(v.leyenda, { size: SZ_XS, italics: true, color: '555555' })], { alignment: AlignmentType.CENTER, spacing: { after: 50 }, keepNext: st.keep, keepLines: true }));
@@ -386,12 +592,66 @@ function bloqueVisual(p, st, imgs) {
   }
   return out;
 }
+// Texto compartido por varias preguntas (continuo o discontinuo): caja gris con título, párrafos, fuente y apoyo visual opcional
+function bloqueEstimulo(est, n0, n1, st, imgsEst, juntar) {
+  const out = [], rango = n0 === n1 ? `la pregunta ${n0}` : `las preguntas ${n0} ${n1 === n0 + 1 ? 'y' : 'a'} ${n1}`;
+  const sh = { type: ShadingType.CLEAR, fill: 'F5F5F5', color: 'auto' }, bd = { style: BorderStyle.SINGLE, size: 6, color: '7F7F7F', space: 4 };
+  const border = { top: bd, bottom: bd, left: bd, right: bd }, ind = { left: 120, right: 120 };
+  const rangoEn = n0 === n1 ? `question ${n0}` : `questions ${n0} ${n1 === n0 + 1 ? 'and' : 'to'} ${n1}`, ins = est.instruccion ? est.instruccion.replace(/\{preguntas\}/g, rango).replace(/\{questions\}/g, rangoEn) : `Responde ${rango} de acuerdo con ${est.tipo === 'discontinuo' ? 'la siguiente información' : 'el siguiente texto'}.`;
+  out.push(para([run(ins, { bold: true, size: SZ_S })], { alignment: AlignmentType.LEFT, spacing: { before: 0, after: 50 }, keepNext: true, keepLines: true }));
+  const partes = String(est.texto || '').split(/\n+/).filter(Boolean), num = (i) => est.numerarParrafos ? [run(`${i + 1}. `, { bold: true, size: SZ_S })] : [];
+  if (partes.length || est.titulo) {                 // caja gris = celda de tabla (los bordes de párrafo fallan al partirse entre columnas)
+    const izq = [];
+    if (est.titulo) izq.push(para([run(est.titulo, { bold: true, size: SZ_S })], { alignment: AlignmentType.CENTER, spacing: { before: 0, after: 40 }, keepNext: true, keepLines: true }));
+    partes.forEach((t, k) => izq.push(para([...num(k), run(t, { size: SZ_S })], { alignment: AlignmentType.JUSTIFIED, spacing: { before: 0, after: 40 }, widowControl: true })));
+    if (est.fuente) izq.push(para([run(est.fuente, { italics: true, size: SZ_XS, color: '555555' })], { alignment: AlignmentType.RIGHT, spacing: { before: 0, after: 0 } }));
+    const caja = { borders: bAll('7F7F7F', 6), shading: sh };
+    if (est._sprite) out.push(tablaLateral(izq, est._sprite, (est.texto || '').length + (est.titulo || '').length + 10, 'Ilustración del texto', 0.32, caja));
+    else if (juntar) out.push(tabla([new TableRow({ cantSplit: true, children: [celda(izq, COL_W, { ...caja, margins: { top: 60, bottom: 50, left: 110, right: 110 } })] })], [COL_W]));   // una sola celda: el texto no se parte entre columnas
+    else {                                          // texto muy largo: una fila por párrafo, la caja puede partirse entre columnas
+      const ln = line('7F7F7F', 6), ult = izq.length - 1;
+      out.push(tabla(izq.map((pp, k) => new TableRow({ cantSplit: false, children: [celda([pp], COL_W, { shading: sh, borders: { top: k === 0 ? ln : none, bottom: k === ult ? ln : none, left: ln, right: ln }, margins: { top: k === 0 ? 60 : 12, bottom: k === ult ? 50 : 12, left: 110, right: 110 } })] })), [COL_W]));
+    }
+  }
+  if (est.visual) out.push(...bloqueVisual({ num: est.id, enunciado: est.texto || '', visual: est.visual, _base: est.texto ? null : [270, 180] }, st, imgsEst));
+  out.push(para([], { spacing: { before: 0, after: 60, line: 80, lineRule: 'exact' }, keepNext: true }));
+  return out;
+}
+// Unidad de maquetación = una pregunta suelta, o un texto compartido con TODAS sus preguntas (siempre juntos y en orden)
+function unidades(mc) {
+  const out = [];
+  for (const p of mc) { const u = out[out.length - 1]; if (p._est && u && u.est === p._est) u.qs.push(p); else out.push({ est: p._est || null, qs: [p] }); }
+  return out;
+}
+const aplanar = (us) => us.flatMap(u => u.qs);
+function reunirGrupos(mc) {                           // las preguntas de un mismo texto quedan contiguas (en su orden relativo)
+  const vistos = new Set(), out = [];
+  for (const p of mc) { if (!p.estimulo) { out.push(p); continue; } if (vistos.has(p.estimulo)) continue; vistos.add(p.estimulo); mc.filter(q => q.estimulo === p.estimulo).forEach(q => out.push(q)); }
+  return out;
+}
+function estimarAltoUnidad(u) {                        // alto aproximado (pt) del texto compartido + sus preguntas
+  const lin = (n, cpl) => Math.ceil(n / cpl), e = u.est; let h = 14;
+  if (e) h += (e.titulo ? 14 : 0) + lin((e.texto || '').length, 40) * 11 + 12 + (e.fuente ? 12 : 0) + (e.visual ? 130 : 0) + (e._sprite ? 40 : 0);
+  u.qs.forEach(p => { h += lin(((p.enunciado || '') + p.pregunta).length, 34) * 12 + (p._ops || []).reduce((a, o) => a + lin(o.texto.length, 30) * 12, 0) + 14 + (p.visual ? 110 : 0); });
+  return h;
+}
+function bloqueUnidad(u, st, imgs, imgsEst, docente, juntarTodo) {
+  const out = [];
+  if (u.est) out.push(...bloqueEstimulo(u.est, u.qs[0].num, u.qs[u.qs.length - 1].num, st, imgsEst || {}, juntarTodo || estimarAltoUnidad(u) <= 520));
+  u.qs.forEach(p => out.push(...bloqueMC(p, st, imgs, docente)));
+  return out;
+}
 function bloqueMC(p, st, imgs, docente) {
   const el = [];
-  el.push(para([run(`${p.num}. `, { bold: true }), run(p.enunciado)], { alignment: AlignmentType.JUSTIFIED, spacing: { before: 0, after: st.enun }, keepNext: true, keepLines: true }));
-  el.push(...bloqueVisual(p, st, imgs));
-  el.push(para([run(p.pregunta, { bold: true })], { alignment: AlignmentType.JUSTIFIED, spacing: { before: 30, after: st.opt + 40 }, keepNext: true, keepLines: true }));
-  const ops = p._ops, corto = ops.every(o => o.texto.length <= 16);
+  if (p.enunciado) {
+    el.push(para([run(`${p.num}. `, { bold: true }), run(p.enunciado)], { alignment: AlignmentType.JUSTIFIED, spacing: { before: 0, after: st.enun }, keepNext: true, keepLines: true }));
+    el.push(...bloqueVisual(p, st, imgs));
+    el.push(para([run(p.pregunta, { bold: true })], { alignment: AlignmentType.JUSTIFIED, spacing: { before: 30, after: st.opt + 40 }, keepNext: true, keepLines: true }));
+  } else {                                          // pregunta de un texto compartido: sin enunciado propio
+    el.push(para([run(`${p.num}. `, { bold: true }), run(p.pregunta, { bold: true })], { alignment: AlignmentType.JUSTIFIED, spacing: { before: 0, after: st.opt + 40 }, keepNext: true, keepLines: true }));
+    el.push(...bloqueVisual(p, st, imgs));
+  }
+  const ops = p._ops, corto = !p._sprite && ops.every(o => o.texto.length <= 16);
   const mark = (o) => docente && o.ok ? { bold: true, shading: { type: ShadingType.CLEAR, fill: 'CDEFD0', color: 'auto' } } : {};
   const optRuns = (o) => [run(`${o.letra})`, { bold: true, ...mark(o) }), new TextRun({ children: [new Tab(), o.texto + (docente && o.ok ? (corto ? '  ←' : '   ← CORRECTA') : '')], font: F, size: SZ, ...mark(o) })];
   if (corto) {
@@ -401,6 +661,10 @@ function bloqueMC(p, st, imgs, docente) {
     }
   } else {
     ops.forEach((o, i) => el.push(para(optRuns(o), { indent: { left: 360, hanging: 360 }, tabStops: [{ type: TabStopType.LEFT, position: 360 }], alignment: AlignmentType.LEFT, spacing: { after: i === 3 ? st.fin : st.opt }, keepNext: i < 3 && st.keep, keepLines: true })));
+  }
+  if (p._sprite) {                                  // pregunta completa (enunciado + pregunta + opciones) a la izquierda, ilustración a la derecha
+    const cplL = Math.floor((COL_W * 0.66 - 200) / 20 / 5.3), lineas = Math.ceil(((p.enunciado || '').length + p.pregunta.length + 4) / cplL) + ops.reduce((a, o) => a + Math.ceil((o.texto.length + 4) / (cplL - 4)), 0);
+    return [tablaLateral(el, p._sprite, 0, `Ilustración de la pregunta ${p.num}`, 0.34, null, lineas), para([], { spacing: { before: 0, after: 0, line: 20, lineRule: 'exact' } })];
   }
   return el;
 }
@@ -518,7 +782,7 @@ function empaquetar(mc, ab, hP1, hP2, capFirst, capFull, SAFE = 8) {   // reorde
   };
   grupo(mc, hP1, res.mc); grupo(ab, hP2, res.ab); return res;
 }
-async function analizarLayout(pdf, claveUlt) {
+async function analizarLayout(pdf, claveUlt, esperados = []) {
   const pgs = await paginasPDF(pdf), norm = (t) => t.replace(/\s+/g, ' ');
   const textos = pgs.map((_, i) => norm(cp.execFileSync('pdftotext', ['-f', String(i + 1), '-l', String(i + 1), pdf, '-']).toString()));
   let ult = -1; textos.forEach((t, i) => { if (t.includes(claveUlt)) ult = i; });
@@ -527,7 +791,158 @@ async function analizarLayout(pdf, claveUlt) {
   const gaps = [];
   for (let p = 0; p < Math.max(ult, 0); p++) { const [, l] = tinta(pgs[p], lx0, lx1, top, bot + 10), [, r] = tinta(pgs[p], rx0, rx1, top, bot + 10); gaps.push({ pagina: p + 1, izq: Math.round(bot - l), der: Math.round(bot - r) }); }
   const maxGap = gaps.length ? Math.max(...gaps.flatMap(g => [g.izq, g.der])) : 0;
-  return { paginas: pgs.length, paginaUltimaPregunta: ult + 1, paginaHoja: hoja + 1, hojaMismaPagina: hoja === ult, gaps, maxGap };
+  const todo = textos.join(' '), faltan = esperados.filter(t => !todo.includes(t));   // integridad: todo el texto del Word debe verse en el PDF
+  return { paginas: pgs.length, paginaUltimaPregunta: ult + 1, paginaHoja: hoja + 1, hojaMismaPagina: hoja === ult, gaps, maxGap, faltan };
+}
+
+// ═══ 7b. IMÁGENES CON CHATGPT: prompt de hojas (sprites), recorte automático y colocación lateral ═══════
+const IMG_POR_HOJA = 8, MAX_HOJAS = 3, MAX_IMG = IMG_POR_HOJA * MAX_HOJAS;
+
+// Numera las imágenes (1..24) en el orden en que aparecen en la prueba. Respeta los números "imagen" ya asignados.
+function asignarImagenes(ex) {
+  const estMap = Object.fromEntries((ex.estimulos || []).map(e => [e.id, e])), cand = [], vistos = new Set(); let k = 0;
+  (ex.preguntas || []).forEach(p => {
+    if ((p.tipo || 'multiple') !== 'multiple') { if (p.imagenPrompt) cand.push({ ref: p, tipo: 'pregunta abierta', etiqueta: 'Pregunta abierta' }); return; }
+    k++; const e = p.estimulo && estMap[p.estimulo];
+    if (e && e.imagenPrompt && !vistos.has(e)) { vistos.add(e); cand.push({ ref: e, tipo: 'texto compartido', etiqueta: `Texto «${e.titulo || e.id}» (pregunta ${k})` }); }
+    if (p.imagenPrompt) cand.push({ ref: p, tipo: 'pregunta', etiqueta: `Pregunta ${k}` });
+  });
+  const usados = new Set();
+  cand.forEach(c => { const n = c.ref.imagen; if (Number.isInteger(n) && n >= 1 && n <= MAX_IMG && !usados.has(n)) usados.add(n); else delete c.ref.imagen; });
+  let sig = 1; cand.forEach(c => { if (c.ref.imagen) return; while (usados.has(sig)) sig++; if (sig <= MAX_IMG) { c.ref.imagen = sig; usados.add(sig); } });
+  const items = cand.filter(c => c.ref.imagen).map(c => ({ ...c, n: c.ref.imagen })).sort((a, b) => a.n - b.n);
+  items.forEach(i => { i.hoja = Math.ceil(i.n / IMG_POR_HOJA); const pos = (i.n - 1) % IMG_POR_HOJA; i.fila = Math.floor(pos / 4) + 1; i.col = pos % 4 + 1; });
+  const sobran = cand.length - items.length; if (sobran > 0) console.warn(`⚠  Hay ${sobran} imagen(es) de más: el máximo es ${MAX_IMG} (3 hojas de 8). Se ignoran las últimas.`);
+  return items;
+}
+function estiloPorGrado(g) {
+  g = Number(g);
+  if (g && g <= 5) return 'ilustración digital limpia y amable, estilo de libro escolar para niños de primaria: formas redondeadas, colores vivos y suaves, contornos definidos de grosor uniforme';
+  if (g && g <= 9) return 'ilustración digital clara y moderna, estilo de libro escolar para adolescentes: formas definidas, colores vivos pero equilibrados, contornos limpios y detalles reconocibles';
+  return 'ilustración digital sobria y detallada, estilo de material educativo para jóvenes: proporciones realistas, colores naturales, contornos finos y buena iluminación';
+}
+function textoPromptImagenes(ex, items) {
+  const m = ex.meta || {}, inst = INST.nombre || 'una institución educativa', hojas = Math.max(...items.map(i => i.hoja)), estilo = ex.config.estiloImagenes || estiloPorGrado(m.grado);
+  const general = `Eres un ilustrador profesional de material escolar. Vas a crear HOJAS DE ILUSTRACIONES (sprite sheets) para una evaluación escolar de ${m.area || m.asignatura || 'la asignatura'}, tema «${m.tema || ''}», grado ${m.grado || ''}.° (${inst}, Colombia). Las ilustraciones servirán de apoyo visual para que la evaluación sea más gráfica y clara.
+
+ESTILO (idéntico en todas las hojas): ${estilo}. Misma paleta, mismo grosor de línea y mismo nivel de detalle en las ${hojas} hojas. Usa contextos cercanos a estudiantes colombianos (colegio, familia, barrio, naturaleza del país) cuando la descripción lo permita. Personas diversas y respetuosas, sin estereotipos. Sin marcas, logotipos ni personajes con derechos de autor, y sin texto dentro de las ilustraciones (salvo que la descripción pida un texto exacto).
+
+FORMATO DE CADA HOJA:
+• UNA sola imagen horizontal por hoja, de 2048 × 1024 px (proporción 2:1), con 8 ilustraciones en una cuadrícula de 2 filas × 4 columnas (4 arriba y 4 abajo).
+• Cada ilustración va centrada en su celda (de 512 × 512 px aprox.), COMPLETA (nada cortado) y ocupando cerca del 80 % de la celda.
+• Deja un espacio vacío amplio entre ilustraciones: no deben tocarse, superponerse ni compartir sombras.
+• Sin líneas de cuadrícula, sin marcos, sin números, sin títulos ni etiquetas.
+
+FONDO — OBLIGATORIO:
+• Fondo TRANSPARENTE REAL (canal alfa), entregado como archivo PNG.
+• PROHIBIDO dibujar la cuadrícula gris y blanca que simula la transparencia; PROHIBIDO usar fondo blanco, de color o degradado.
+• Sin sombras proyectadas sobre el fondo y sin halos ni bordes blancos alrededor de las figuras (si hay sombra, debe ser parte del objeto).
+• Si no puedes entregar un PNG con transparencia real, avísame ANTES de generar la imagen.
+
+CALIDAD: alta resolución, líneas limpias, bordes nítidos, colores vivos pero suaves, buena iluminación y proporciones correctas.
+Las ilustraciones NO deben revelar la respuesta de ninguna pregunta: solo contextualizan la situación.
+
+Te pediré las hojas una por una (${Array.from({ length: hojas }, (_, i) => 'Hoja ' + (i + 1)).join(', ')}). Responde solo «Entendido» y espera la primera hoja.`;
+  const hojasTxt = [];
+  for (let h = 1; h <= hojas; h++) {
+    const its = items.filter(i => i.hoja === h), L = [];
+    L.push(`HOJA ${h} de ${hojas} — ${IMG_POR_HOJA} ilustraciones (2 filas × 4 columnas)`, '', `Genera ahora la HOJA ${h}: UNA sola imagen PNG de 2048 × 1024 px con fondo TRANSPARENTE REAL (canal alfa), con el formato y las reglas del prompt general. Contenido, de izquierda a derecha y de arriba abajo:`, '');
+    for (let pos = 0; pos < IMG_POR_HOJA; pos++) {
+      const n = (h - 1) * IMG_POR_HOJA + pos + 1, it = its.find(i => i.n === n);
+      if (pos === 0) L.push('FILA 1 (arriba)'); if (pos === 4) L.push('', 'FILA 2 (abajo)');
+      L.push(it ? `${pos % 4 + 1}. [Imagen ${n} · ${it.etiqueta}] ${String(it.ref.imagenPrompt).trim()}` : `${pos % 4 + 1}. [Imagen ${n}] CELDA VACÍA: no dibujes nada en este espacio.`);
+    }
+    L.push('', 'Recuerda: 8 ilustraciones separadas entre sí, sin texto, sin cuadrícula, bordes limpios y fondo transparente real (PNG con canal alfa).');
+    hojasTxt.push(L.join('\n'));
+  }
+  let md = `# Prompts para crear las imágenes de la evaluación con ChatGPT\n\n**Evaluación:** ${m.area || ''} · ${m.tema || ''} · grado ${m.grado || ''}.°  \n**Imágenes:** ${items.length} en ${hojas} hoja(s) de ${IMG_POR_HOJA}\n\n## Cómo se usa (4 pasos)\n1. Abre un chat **nuevo** en ChatGPT (con generación de imágenes) y pega el **PROMPT GENERAL**.\n2. Cuando responda «Entendido», pega el prompt de la **HOJA 1**. Descarga la imagen como **PNG**. Repite con la HOJA 2${hojas > 2 ? ' y la HOJA 3' : ''}.\n3. Si el fondo sale blanco o con cuadrícula gris, escribe: *«Quita el fondo y entrégame el PNG con transparencia real (canal alfa), sin cuadrícula.»*\n4. Sube las hojas a esta conversación **en orden** (Hoja 1, Hoja 2${hojas > 2 ? ', Hoja 3' : ''}). Yo recorto cada ilustración, la acomodo en la prueba al lado del texto y te entrego la evaluación terminada.\n\n---\n\n## 1) PROMPT GENERAL — pégalo primero\n\n\`\`\`text\n${general}\n\`\`\`\n`;
+  hojasTxt.forEach((t, i) => { md += `\n---\n\n## ${i + 2}) HOJA ${i + 1} — pégalo después\n\n\`\`\`text\n${t}\n\`\`\`\n`; });
+  return { md, general, hojas: hojasTxt };
+}
+
+// ── Lectura y limpieza de las hojas ────────────────────────────────────────
+async function leerRGBA(file) { const { data, info } = await sharp(file, { limitInputPixels: false }).ensureAlpha().raw().toBuffer({ resolveWithObject: true }); return { d: data, w: info.width, h: info.height }; }
+function tieneTransparencia(im) { let n = 0; for (let i = 3; i < im.d.length; i += 4) if (im.d[i] < 250) n++; return n > im.w * im.h * 0.005; }
+function quitarFondoPorColor(im) {                    // rescate: hoja sin transparencia real (fondo blanco, de color o cuadrícula gris simulada)
+  const { d, w, h } = im, bins = new Map(), q = (r, g, b) => (r >> 4) << 8 | (g >> 4) << 4 | (b >> 4);
+  const mu = (x, y) => { const i = (y * w + x) * 4, k = q(d[i], d[i + 1], d[i + 2]); bins.set(k, (bins.get(k) || 0) + 1); };
+  for (let x = 0; x < w; x++) { mu(x, 0); mu(x, h - 1); } for (let y = 0; y < h; y++) { mu(0, y); mu(w - 1, y); }
+  const tot = 2 * (w + h), fondo = [...bins.entries()].filter(([, c]) => c > tot * 0.08).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k]) => [((k >> 8) & 15) * 16 + 8, ((k >> 4) & 15) * 16 + 8, (k & 15) * 16 + 8]);
+  if (!fondo.length) return false;
+  const tol = 34, par = (p) => { const i = p * 4; return fondo.some(c => Math.abs(d[i] - c[0]) <= tol && Math.abs(d[i + 1] - c[1]) <= tol && Math.abs(d[i + 2] - c[2]) <= tol); };
+  const vis = new Uint8Array(w * h), pila = new Int32Array(w * h); let sp = 0;
+  const push = (x, y) => { const p = y * w + x; if (!vis[p] && par(p)) { vis[p] = 1; pila[sp++] = p; } };
+  for (let x = 0; x < w; x++) { push(x, 0); push(x, h - 1); } for (let y = 0; y < h; y++) { push(0, y); push(w - 1, y); }
+  while (sp) { const p = pila[--sp], x = p % w, y = (p / w) | 0; if (x > 0) push(x - 1, y); if (x < w - 1) push(x + 1, y); if (y > 0) push(x, y - 1); if (y < h - 1) push(x, y + 1); }
+  for (let p = 0; p < w * h; p++) if (vis[p]) d[p * 4 + 3] = 0;
+  const borde = []; for (let p = 0; p < w * h; p++) { if (vis[p]) continue; const x = p % w, y = (p / w) | 0, i = p * 4; if (Math.min(d[i], d[i + 1], d[i + 2]) > 205 && ((x > 0 && vis[p - 1]) || (x < w - 1 && vis[p + 1]) || (y > 0 && vis[p - w]) || (y < h - 1 && vis[p + w]))) borde.push(p); }
+  borde.forEach(p => { d[p * 4 + 3] = 0; });        // quita el halo claro de 1 px
+  return true;
+}
+// Detecta las ilustraciones (componentes conexas separadas por transparencia) y las ordena por filas (arriba→abajo, izquierda→derecha)
+function detectarObjetos(im, esperados) {
+  const { d, w, h } = im, S = Math.max(1, Math.round(Math.max(w, h) / 640)), mw = Math.ceil(w / S), mh = Math.ceil(h / S), m = new Uint8Array(mw * mh);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (d[(y * w + x) * 4 + 3] > 24) m[((y / S) | 0) * mw + ((x / S) | 0)] = 1;
+  const et = new Int32Array(mw * mh).fill(-1), pila = new Int32Array(mw * mh); let cs = [];
+  for (let s = 0; s < mw * mh; s++) {
+    if (!m[s] || et[s] >= 0) continue; let sp = 0; const c = { x0: mw, y0: mh, x1: 0, y1: 0, a: 0 }; pila[sp++] = s; et[s] = cs.length;
+    while (sp) { const p = pila[--sp], x = p % mw, y = (p / mw) | 0; c.a++; if (x < c.x0) c.x0 = x; if (x > c.x1) c.x1 = x; if (y < c.y0) c.y0 = y; if (y > c.y1) c.y1 = y;
+      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= mw || ny >= mh) continue; const q = ny * mw + nx; if (m[q] && et[q] < 0) { et[q] = cs.length; pila[sp++] = q; } } }
+    cs.push(c);
+  }
+  cs = cs.filter(c => c.a >= 4);
+  for (let gap = 0; gap <= 0.07; gap += 0.005) {      // une las partes sueltas de una misma ilustración, solo si hay de más
+    if (cs.length <= esperados) break; const G = gap * Math.max(mw, mh); let cambio = true;
+    while (cambio && cs.length > esperados) { cambio = false;
+      outer: for (let i = 0; i < cs.length; i++) for (let j = i + 1; j < cs.length; j++) { const a = cs[i], b = cs[j];
+        if (a.x0 - G <= b.x1 && b.x0 - G <= a.x1 && a.y0 - G <= b.y1 && b.y0 - G <= a.y1) { cs[i] = { x0: Math.min(a.x0, b.x0), y0: Math.min(a.y0, b.y0), x1: Math.max(a.x1, b.x1), y1: Math.max(a.y1, b.y1), a: a.a + b.a }; cs.splice(j, 1); cambio = true; break outer; } } }
+  }
+  if (cs.length > esperados) cs = cs.sort((a, b) => b.a - a.a).slice(0, esperados);
+  cs.forEach(c => { c.cy = (c.y0 + c.y1) / 2; c.cx = (c.x0 + c.x1) / 2; }); cs.sort((a, b) => a.cy - b.cy);
+  const hs = cs.map(c => c.y1 - c.y0).sort((a, b) => a - b), med = hs[(hs.length / 2) | 0] || 1, filas = [];
+  cs.forEach(c => { const f = filas[filas.length - 1]; if (f && Math.abs(c.cy - f.cy) < med * 0.6) { f.it.push(c); f.cy = f.it.reduce((s, x) => s + x.cy, 0) / f.it.length; } else filas.push({ cy: c.cy, it: [c] }); });
+  return filas.flatMap(f => f.it.sort((a, b) => a.cx - b.cx)).map(c => ({ x0: c.x0 * S, y0: c.y0 * S, x1: Math.min(w - 1, (c.x1 + 1) * S), y1: Math.min(h - 1, (c.y1 + 1) * S), S }));
+}
+async function cortarObjeto(im, r, file) {           // recorte exacto al borde de la ilustración (sin márgenes) y PNG con transparencia
+  const { d, w } = im; let x0 = r.x1, y0 = r.y1, x1 = r.x0, y1 = r.y0;
+  for (let y = r.y0; y <= r.y1; y++) for (let x = r.x0; x <= r.x1; x++) if (d[(y * w + x) * 4 + 3] > 12) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  const cw = x1 - x0 + 1, ch = y1 - y0 + 1, buf = Buffer.alloc(cw * ch * 4);
+  for (let y = 0; y < ch; y++) d.copy(buf, y * cw * 4, ((y0 + y) * w + x0) * 4, ((y0 + y) * w + x0 + cw) * 4);
+  for (let i = 3; i < buf.length; i += 4) if (buf[i] < 10) buf[i] = 0;
+  let s = sharp(buf, { raw: { width: cw, height: ch, channels: 4 } }); if (Math.max(cw, ch) > 900) s = s.resize({ width: cw >= ch ? 900 : undefined, height: ch > cw ? 900 : undefined, fit: 'inside' });
+  await s.png({ compressionLevel: 9 }).toFile(file); const meta = await sharp(file).metadata(); return { file, w: meta.width, h: meta.height };
+}
+async function cortarHojas(archivos, items, outDir) {   // → { [n]: {file,w,h} }
+  const dir = path.join(outDir, 'img', 'sprites'); fs.mkdirSync(dir, { recursive: true }); const res = {}, hojas = Math.max(...items.map(i => i.hoja));
+  if (archivos.length !== hojas) console.warn(`⚠  La prueba necesita ${hojas} hoja(s) de imágenes y recibí ${archivos.length}.`);
+  for (let h = 1; h <= Math.min(hojas, archivos.length); h++) {
+    const its = items.filter(i => i.hoja === h).sort((a, b) => a.n - b.n), im = await leerRGBA(archivos[h - 1]);
+    console.log(`🖼️  Hoja ${h}: ${path.basename(archivos[h - 1])} (${im.w}×${im.h} px)`);
+    if (!tieneTransparencia(im)) { const ok = quitarFondoPorColor(im); console.warn(`⚠  La hoja ${h} NO tiene transparencia real (${ok ? 'se quitó el fondo por color; revisa los bordes' : 'no pude quitar el fondo'}). Pide a ChatGPT un PNG con canal alfa para mejor calidad.`); }
+    const cajas = detectarObjetos(im, its.length);
+    if (cajas.length !== its.length) console.warn(`⚠  Hoja ${h}: encontré ${cajas.length} ilustraciones y esperaba ${its.length}. Revisa la previsualización.`);
+    for (let k = 0; k < Math.min(cajas.length, its.length); k++) res[its[k].n] = await cortarObjeto(im, cajas[k], path.join(dir, `imagen_${String(its[k].n).padStart(2, '0')}.png`));
+  }
+  return res;
+}
+async function previsualizarSprites(res, outFile) {   // hoja de contacto numerada para comprobar los recortes de un vistazo
+  const ns = Object.keys(res).map(Number).sort((a, b) => a - b), C = 220, cols = Math.min(8, Math.max(1, ns.length)), filas = Math.ceil(ns.length / cols), comp = [];
+  for (let i = 0; i < ns.length; i++) {
+    const x = (i % cols) * C, y = Math.floor(i / cols) * C, t = await sharp(res[ns[i]].file).resize({ width: C - 24, height: C - 24, fit: 'inside' }).png().toBuffer(), mt = await sharp(t).metadata();
+    comp.push({ input: t, left: x + Math.round((C - mt.width) / 2), top: y + Math.round((C - mt.height) / 2) });
+    comp.push({ input: Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="64" height="36"><rect width="64" height="36" rx="8" fill="#1F2937"/><text x="32" y="26" font-family="DejaVu Sans, Arial" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">${ns[i]}</text></svg>`), left: x + 6, top: y + 6 });
+  }
+  await sharp({ create: { width: cols * C, height: filas * C, channels: 4, background: '#E5E7EB' } }).composite(comp).png().toFile(outFile);
+}
+// (estímulos con ilustración) tabla: caja gris a la izquierda e ilustración a la derecha
+function tablaLateral(izq, spr, nchars, alt, frac = 0.36, caja = null, lineasExactas = 0) {
+  const wR = Math.round(COL_W * frac), wL = COL_W - wR, cpl = Math.max(18, Math.floor((wL - 200) / 20 / 5.3)), hTxt = Math.max(62, (lineasExactas || (Math.ceil(nchars / cpl) + 1)) * 12.6 + 8);
+  const maxW = (wR - 150) / 20 * 96 / 72, asp = spr.w / spr.h; let w = Math.min(maxW, hTxt * 96 / 72 * asp); w = Math.max(w, Math.min(72, maxW)); const h = w / asp;
+  const nb = { top: none, bottom: none, left: none, right: none };
+  return tabla([new TableRow({ cantSplit: true, children: [
+    celda(izq, wL, caja ? { borders: caja.borders, shading: caja.shading, margins: { top: 60, bottom: 40, left: 110, right: 110 } } : { borders: nb, margins: { top: 0, bottom: 0, left: 0, right: 100 } }),
+    celda([para([new ImageRun({ type: 'png', data: fs.readFileSync(spr.file), transformation: { width: Math.round(w), height: Math.round(h) }, altText: { name: 'ilustracion', title: alt, description: alt } })], { alignment: AlignmentType.CENTER, spacing: { before: 0, after: 0 }, keepNext: true })], wR, { borders: nb, verticalAlign: VerticalAlign.CENTER, margins: { top: 0, bottom: 0, left: 40, right: 0 } })] })],
+    [wL, wR], { borders: { top: none, bottom: none, left: none, right: none, insideHorizontal: none, insideVertical: none } });
 }
 
 // ═══ 8. PROGRAMA PRINCIPAL ═══════════════════════════════════════════════════
@@ -557,13 +972,13 @@ function matrizEspecificaciones(mc) {
   filas.push(new TableRow({ cantSplit: true, children: [celda([para([run('TOTAL', { size: SZ_XS, bold: true })], { alignment: AlignmentType.CENTER })], wC + wComp + wP, { columnSpan: 3, borders: bAll(), verticalAlign: VerticalAlign.CENTER }), c(mc.length, wT, { bold: true }), ...[1, 2, 3, 4].map(k => c(tot[k], wN, { bold: true }))] }));
   return [
     para([run('MATRIZ DE ESPECIFICACIONES', { bold: true })], { alignment: AlignmentType.CENTER, spacing: { before: 240, after: 60 }, keepNext: true }),
-    para([run('N1–N4 = nivel de desempeño SABER de cada pregunta de selección múltiple. Úsala para comprobar que la prueba cubre todas las competencias y no concentra la dificultad en un solo nivel.', { size: SZ_XS, italics: true })], { alignment: AlignmentType.JUSTIFIED, spacing: { after: 80 }, keepNext: true }),
+    para([run((AREA && AREA.niveles_cortos ? 'Niveles de desempeño: ' + AREA.niveles_cortos.map((n, i) => `N${i + 1} = ${n}`).join(' · ') + '. ' : 'N1–N4 = nivel de desempeño SABER de cada pregunta de selección múltiple. ') + 'Úsala para comprobar que la prueba cubre todas las competencias y no concentra la dificultad en un solo nivel.', { size: SZ_XS, italics: true })], { alignment: AlignmentType.JUSTIFIED, spacing: { after: 80 }, keepNext: true }),
     tabla(filas, [wC, wComp, wP, wT, wN, wN, wN, wN])
   ];
 }
 async function armar(ctx, nivel, hojaPropia) {
   const { ex, imgs, bubs, escudo, outDir } = ctx, st = NIVELES[nivel], m = ex.meta;
-  const mc = ctx.mc.slice(), ab = ctx.ab.slice();
+  let mc = ctx.mc.slice(); const ab = ctx.ab.slice();
   mc.forEach(p => p._ops = [p.correcta, ...p.distractores].map((t, i) => ({ letra: 'ABCD'[i], texto: String(t), ok: i === 0, error: '' })));
   const hdrCfg = Object.assign({ tituloMembrete: ['GESTION ACADEMICA', 'SEGUIMIENTO ACADEMICO', 'EVALUACION DE COMPRENSION'], codFormato: 'GA-F16', codVersion: 'Versión 1.0', codFecha: '04-04-2016' }, INST.membrete || {}, ex.config.membrete || {});
   const TITULO = (m.titulo || `EVALUACIÓN ESCRITA — ${(m.area || '').toUpperCase()}: ${(m.tema || '').toUpperCase()} — GRADO ${m.grado}°`) + (ctx.etiquetaVersion ? ` — VERSIÓN ${ctx.etiquetaVersion}` : '');
@@ -577,15 +992,16 @@ async function armar(ctx, nivel, hojaPropia) {
   let medido = false, movidas = 0;
   if (ctx.empaquetar) {
     mc.forEach((p, i) => p.num = i + 1); ab.forEach((p, i) => p.num = mc.length + i + 1);
-    const bl = [...mc.map(p => () => bloqueMC(p, st, imgs, false)), () => [bloqueParte('PARTE I')], ...(ab.length ? [() => [bloqueParte('PARTE II')], ...ab.map(p => () => bloqueAbierta(p, st, false))] : [])];
+    const uni0 = unidades(mc);
+    const bl = [...uni0.map(u => () => bloqueUnidad(u, st, imgs, ctx.imgsEst, false, ctx.juntarTodo)), () => [bloqueParte('PARTE I')], ...(ab.length ? [() => [bloqueParte('PARTE II')], ...ab.map(p => () => bloqueAbierta(p, st, false))] : [])];
     const hs = await medirBloques(bl, outDir, 'b' + nivel, st.fin);
     const hdoc = new Document({ styles: estilosDoc, compatibility: { version: 15 }, sections: [{ properties: sizeOf({}), headers: { default: makeHeader(escudo, hdrCfg) }, children: sec1(false) }] });
     const fS = path.join(outDir, `_sec1_${nivel}.docx`); fs.writeFileSync(fS, await Packer.toBuffer(hdoc)); const pS = aPDF(fS, outDir);
     if (hs && pS) {
       const pg = (await paginasPDF(pS))[0], [, l] = tinta(pg, 0, pg.w, 92, pg.h), capFirst = (PAGE_H / 20 - MARG.bottom / 20) - (l + 4 + 5), capFull = (PAGE_H - MARG.top - MARG.bottom) / 20;
-      const itM = mc.map((p, i) => ({ p, h: hs[i] })), hP1 = hs[mc.length], hP2 = ab.length ? hs[mc.length + 1] : 0, itA = ab.map((p, i) => ({ p, h: hs[mc.length + 2 + i] }));
+      const itM = uni0.map((u, i) => ({ p: u, h: hs[i] })), hP1 = hs[uni0.length], hP2 = ab.length ? hs[uni0.length + 1] : 0, itA = ab.map((p, i) => ({ p, h: hs[uni0.length + 2 + i] }));
       const r = empaquetar(itM, itA, hP1, hP2, capFirst, capFull);
-      r.mc.forEach((x, i) => { if (x.p !== mc[i]) movidas++; mc[i] = x.p; }); r.ab.forEach((x, i) => { ab[i] = x.p; });
+      const nuevos = aplanar(r.mc.map(x => x.p)); nuevos.forEach((x, i) => { if (x !== mc[i]) movidas++; }); mc = nuevos; r.ab.forEach((x, i) => { ab[i] = x.p; });
       medido = true; try { fs.unlinkSync(fS); fs.unlinkSync(pS); } catch (e) {}
     } else console.warn('⚠  No se pudo medir con LibreOffice; se mantiene el orden original.');
   }
@@ -595,8 +1011,8 @@ async function armar(ctx, nivel, hojaPropia) {
   const dist = asignarLetras(mc, seed), claves = mc.map(p => p._clave);
   const pc = (l) => Math.round(100 * dist[l] / mc.length);
   const FRASES = { matematicas: '¡Cada problema tiene solución! Confía en ti.', ciencias: '¡El conocimiento es tu superpoder! Da lo mejor.', lenguaje: '¡Las palabras son tu fuerza! Lee, piensa y triunfa.', sociales: '¡Conocer el mundo comienza contigo! Éxito.', tecnologia: '¡La tecnología está en tus manos! Demuéstralo.', general: '¡Tú puedes! Respira, enfócate y demuestra todo lo que sabes.' };
-  const frase = FRASES[(m.areaClave || 'general')] || FRASES.general;
-  const cuerpo = (docente) => { const els = [bloqueParte(`PARTE I — SELECCIÓN MÚLTIPLE CON ÚNICA RESPUESTA (${mc.length})`)]; mc.forEach(p => els.push(...bloqueMC(p, st, imgs, docente))); if (ab.length) { els.push(bloqueParte(`PARTE II — PREGUNTAS ABIERTAS (${ab.length})`)); ab.forEach(p => els.push(...bloqueAbierta(p, st, docente))); } return els; };
+  const frase = (AREA && AREA.frase_final) || FRASES[(m.areaClave || 'general')] || FRASES.general;
+  const cuerpo = (docente) => { const els = [bloqueParte(`PARTE I — SELECCIÓN MÚLTIPLE CON ÚNICA RESPUESTA (${mc.length})`)]; unidades(mc).forEach(u => els.push(...bloqueUnidad(u, st, imgs, ctx.imgsEst, docente, ctx.juntarTodo))); if (ab.length) { els.push(bloqueParte(`PARTE II — PREGUNTAS ABIERTAS (${ab.length})`)); ab.forEach(p => els.push(...bloqueAbierta(p, st, docente))); } return els; };
   const cols = { column: { count: 2, space: COL_GAP, separate: true, equalWidth: true } };
   const sec = (children, extra = {}) => ({ properties: sizeOf({ type: SectionType.CONTINUOUS, ...extra }), headers: { default: makeHeader(escudo, hdrCfg) }, children });
   const tipoHoja = hojaPropia ? { type: SectionType.NEXT_PAGE } : {};
@@ -636,24 +1052,51 @@ async function armar(ctx, nivel, hojaPropia) {
   const sfx = ctx.sufijo || '';
   const fE = path.join(outDir, base + sfx + '_ESTUDIANTE.docx'), fD = path.join(outDir, base + sfx + '_DOCENTE_CLAVES.docx');
   fs.writeFileSync(fE, await Packer.toBuffer(dEst)); fs.writeFileSync(fD, await Packer.toBuffer(dDoc));
-  const ult = mc.length && !ab.length ? mc[mc.length - 1].enunciado : (ab.length ? ab[ab.length - 1].enunciado : '');
-  return { fE, fD, claves, dist, pc, movidas, medido, claveUlt: ult.replace(/\s+/g, ' ').split(' ').slice(0, 4).join(' ') };
+  const ult = mc.length && !ab.length ? (mc[mc.length - 1].enunciado || mc[mc.length - 1].pregunta) : (ab.length ? ab[ab.length - 1].enunciado : '');
+  const ult2 = (t) => String(t || '').replace(/\s+/g, ' ').trim().split(' ').slice(-2).join(' ');
+  const esperados = [...mc.flatMap(p => [ult2(p.enunciado), ult2(p.pregunta), ...p._ops.map(o => ult2(o.texto))]), ...ab.map(p => ult2(p.pregunta)), ...(ctx.ex.estimulos || []).filter(e => mc.some(p => p._est === e)).map(e => ult2(e.texto))].filter(t => t.length > 3);
+  return { fE, fD, claves, dist, pc, movidas, medido, esperados, claveUlt: ult.replace(/\s+/g, ' ').split(' ').slice(0, 4).join(' ') };
 }
 
 (async () => {
   const args = process.argv.slice(2), jsonPath = args.find(a => a.endsWith('.json'));
-  if (!jsonPath) { console.error('Uso: node build_exam.js exam.json [--nivel 0-3] [--out carpeta] [--sin-ajuste]'); process.exit(2); }
+  if (!jsonPath) { console.error('Uso: node build_exam.js exam.json [--nivel 0-3] [--out carpeta] [--sin-ajuste] [--rapido] [--versiones 2] [--institucion archivo.json]'); process.exit(2); }
   cargarInstitucion(args);
   const nivelFijo = args.includes('--nivel') ? Number(args[args.indexOf('--nivel') + 1]) : null;
   const outDir = args.includes('--out') ? args[args.indexOf('--out') + 1] : './salida';
   fs.mkdirSync(path.join(outDir, 'img'), { recursive: true });
   const ex = JSON.parse(fs.readFileSync(jsonPath, 'utf8')); ex.config = ex.config || {}; ex.meta = ex.meta || {};
 
+  cargarArea(ex.meta.areaClave, ex.meta.grado);
   const { E, W } = validar(ex); W.forEach(w => console.warn('⚠  ' + w));
   if (E.length) { console.error('\n❌ LA PRUEBA NO PASA LA VALIDACIÓN. Corrige y vuelve a ejecutar:\n' + E.map(e => '   • ' + e).join('\n')); process.exit(1); }
   console.log('✅ Validación OK: opciones únicas, respuesta presente, longitudes en rango.');
 
-  const mc = ex.preguntas.filter(p => (p.tipo || 'multiple') === 'multiple'), ab = ex.preguntas.filter(p => p.tipo === 'abierta');
+  const estMap = Object.fromEntries((ex.estimulos || []).map(e => [e.id, e]));
+  // ── Imágenes con ChatGPT: (1) --prompt-imagenes escribe el prompt de las hojas; (2) --sprites hoja1.png hoja2.png… las recorta y las coloca ──
+  const itemsImg = asignarImagenes(ex), sp = args.indexOf('--sprites');
+  if (args.includes('--prompt-imagenes')) {
+    if (!itemsImg.length) { console.error('❌ Ninguna pregunta ni texto tiene "imagenPrompt". Agrega una descripción detallada de la ilustración en cada pregunta que la necesite.'); process.exit(1); }
+    const t = textoPromptImagenes(ex, itemsImg);
+    fs.writeFileSync(path.join(outDir, 'prompt_imagenes_chatgpt.md'), t.md);
+    fs.writeFileSync(path.join(outDir, 'imagenes_mapa.json'), JSON.stringify(itemsImg.map(i => ({ imagen: i.n, hoja: i.hoja, fila: i.fila, columna: i.col, para: i.etiqueta, descripcion: i.ref.imagenPrompt })), null, 2));
+    fs.writeFileSync(jsonPath, JSON.stringify(ex, null, 2));       // guarda el número de cada imagen en el exam.json (así no cambia después)
+    console.log(`🖼️  ${itemsImg.length} imagen(es) en ${Math.max(...itemsImg.map(i => i.hoja))} hoja(s). Prompts → ${path.join(outDir, 'prompt_imagenes_chatgpt.md')}`);
+    process.exit(0);
+  }
+  let spritesCortados = null;
+  if (sp >= 0) {
+    let arch = []; for (let k = sp + 1; k < args.length && !args[k].startsWith('--'); k++) arch.push(args[k]);
+    if (arch.length === 1 && fs.existsSync(arch[0]) && fs.statSync(arch[0]).isDirectory()) { const dd = arch[0]; arch = fs.readdirSync(dd).filter(f => /\.(png|webp|jpe?g)$/i.test(f)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })).map(f => path.join(dd, f)); }
+    if (!arch.length) { console.error('❌ --sprites necesita las hojas (PNG) en orden: --sprites hoja1.png hoja2.png hoja3.png  (o una carpeta).'); process.exit(1); }
+    if (!itemsImg.length) { console.error('❌ La prueba no tiene "imagenPrompt": no hay a dónde colocar las imágenes.'); process.exit(1); }
+    spritesCortados = await cortarHojas(arch, itemsImg, outDir);
+    await previsualizarSprites(spritesCortados, path.join(outDir, 'sprites_previsualizacion.png'));
+    itemsImg.forEach(i => { if (spritesCortados[i.n]) i.ref._sprite = spritesCortados[i.n]; });
+    console.log(`🖼️  ${Object.keys(spritesCortados).length} ilustración(es) recortadas y colocadas · previsualización: ${path.join(outDir, 'sprites_previsualizacion.png')}`);
+  } else if (itemsImg.length) console.warn(`⚠  ${itemsImg.length} imagen(es) pendientes (preguntas con "imagenPrompt"): genera el prompt con --prompt-imagenes y luego usa --sprites con las hojas de ChatGPT.`);
+  const mc = reunirGrupos(ex.preguntas.filter(p => (p.tipo || 'multiple') === 'multiple')), ab = ex.preguntas.filter(p => p.tipo === 'abierta');
+  mc.forEach(p => { if (p.estimulo) p._est = estMap[p.estimulo]; });
   mc.forEach((p, i) => p.num = i + 1); ab.forEach((p, i) => p.num = mc.length + i + 1);
   const imgs = {}; let nImg = 0;
   for (const p of ex.preguntas) {                      // PNG de alta resolución, una vez por pregunta
@@ -661,29 +1104,41 @@ async function armar(ctx, nivel, hojaPropia) {
     const plantilla = PLANTILLAS[v.plantilla]; if (!plantilla) { console.error(`❌ P${p.num}: plantilla "${v.plantilla}" no existe. Disponibles: ${Object.keys(PLANTILLAS).join(', ')}`); process.exit(1); }
     const f = path.join(outDir, 'img', `pregunta_${String(p.num).padStart(2, '0')}.png`); await renderPNG(plantilla(v.params || {}), f); imgs[p.num] = f; nImg++;
   }
+  const imgsEst = {};
+  for (const e of (ex.estimulos || [])) {              // apoyos visuales de los textos compartidos
+    const v = e.visual; if (!v || !(v.tipo === 1 || v.tipo === 3)) continue;
+    const plantilla = PLANTILLAS[v.plantilla]; if (!plantilla) { console.error(`❌ Estímulo ${e.id}: plantilla "${v.plantilla}" no existe. Disponibles: ${Object.keys(PLANTILLAS).join(', ')}`); process.exit(1); }
+    const f = path.join(outDir, 'img', `estimulo_${e.id}.png`); await renderPNG(plantilla(v.params || {}), f); imgsEst[e.id] = f; nImg++;
+  }
   // La imagen se asocia al OBJETO pregunta (no al número), así sobrevive al reordenamiento
   const imgPorPregunta = new Map(); for (const p of ex.preguntas) if (imgs[p.num]) imgPorPregunta.set(p, imgs[p.num]);
   const imgsProxy = new Proxy({}, { get: (_, n) => { for (const [p, f] of imgPorPregunta) if (String(p.num) === String(n)) return f; } });
   const bubs = {}; for (const L of 'ABCD') { bubs[L] = path.join(outDir, 'img', `ovalo_${L}.png`); bubs['F' + L] = path.join(outDir, 'img', `ovalo_${L}_lleno.png`); await bubble(L, false, bubs[L]); await bubble(L, true, bubs['F' + L]); }
   const escudo = await prepararEscudo();
 
-  const ctx = { ex, mc, ab, imgs: imgsProxy, bubs, escudo, outDir, empaquetar: !args.includes('--sin-ajuste') };
+  const rapido = args.includes('--rapido');            // prueba rápida: sin medir maquetación (solo para comprobar contenido)
+  const ctx = { ex, mc, ab, imgs: imgsProxy, imgsEst, bubs, escudo, outDir, empaquetar: !args.includes('--sin-ajuste') && !rapido };
   const niveles = nivelFijo !== null ? [nivelFijo] : [0, 1, 2];
   const optimizar = async (cx) => {
-    let mejor = null;
-  for (const nv of niveles) {
-    for (const hojaPropia of [false, true]) {
-      if (hojaPropia && mejor && mejor.an && mejor.an.hojaMismaPagina) continue;
-      console.log(`🧩 Maquetando (nivel de compactación ${nv}${hojaPropia ? ', hoja de respuestas en página propia' : ''})…`);
+    if (rapido) { const r = await armar(cx, 1, false); r.nivel = 1; r.hojaPropia = false; r.an = null; console.log('⚡ Modo rápido: documentos generados sin medir la maquetación'); return r; }
+    let mejor = null; const hayEst = cx.mc.some(p => p._est), modos = hayEst ? [false, true] : [false];
+    const bueno = (r) => r && r.an && r.an.maxGap <= 55 && !r.an.faltan.length;
+    for (const nv of niveles) for (const juntar of modos) for (const hojaPropia of [false, true]) {
+      if (bueno(mejor)) break;
+      if (hojaPropia && mejor && mejor.an && mejor.an.hojaMismaPagina && !mejor.an.faltan.length) continue;
+      cx.juntarTodo = juntar;
+      console.log(`🧩 Maquetando (compactación ${nv}${juntar ? ', textos compartidos sin partir' : ''}${hojaPropia ? ', hoja de respuestas en página propia' : ''})…`);
       const r = await armar(cx, nv, hojaPropia); const pdf = aPDF(r.fE, outDir);
-      r.nivel = nv; r.hojaPropia = hojaPropia;
-      if (pdf) { r.an = await analizarLayout(pdf, r.claveUlt); try { fs.unlinkSync(pdf); } catch (e) {} console.log(`   páginas: ${r.an.paginas} · hueco máx. al pie de columna: ${r.an.maxGap} pt · hoja en la misma página que las preguntas: ${r.an.hojaMismaPagina ? 'sí' : 'no'}`); }
-      const score = r.an ? r.an.maxGap + (r.an.hojaMismaPagina || hojaPropia ? 0 : 200) : 999;
+      r.nivel = nv; r.hojaPropia = hojaPropia; r.juntar = juntar;
+      if (pdf) {
+        r.an = await analizarLayout(pdf, r.claveUlt, r.esperados); try { fs.unlinkSync(pdf); } catch (e) {}
+        console.log(`   páginas: ${r.an.paginas} · hueco máx. al pie de columna: ${r.an.maxGap} pt · hoja en la misma página que las preguntas: ${r.an.hojaMismaPagina ? 'sí' : 'no'}${r.an.faltan.length ? ` · ⚠ faltan ${r.an.faltan.length} fragmento(s) de texto en el PDF` : ''}`);
+      }
+      const score = r.an ? r.an.maxGap + (r.an.hojaMismaPagina || hojaPropia ? 0 : 200) + 1000 * r.an.faltan.length : 999;
       r.score = score; if (!mejor || score < mejor.score) mejor = r;
-      if (r.an && r.an.maxGap <= 55) break;
     }
-    if (mejor && mejor.an && mejor.an.maxGap <= 55) break;
-  }
+    cx.juntarTodo = mejor.juntar;
+    if (mejor.an && mejor.an.faltan.length) console.warn(`⚠  Con ninguna maquetación se vio TODO el texto en la medición (faltan: ${mejor.an.faltan.slice(0, 3).join(' | ')}). Abre el Word y revisa esas preguntas.`);
     await armar(cx, mejor.nivel, mejor.hojaPropia);   // deja en disco la mejor versión
     return mejor;
   };
@@ -694,7 +1149,7 @@ async function armar(ctx, nivel, hojaPropia) {
   if (versiones >= 2) {                                // VERSIÓN B: otro orden de preguntas y otras letras
     const rnd = mulberry(20260508), barajar = (a) => { const x = a.slice(); for (let q = x.length - 1; q > 0; q--) { const r = Math.floor(rnd() * (q + 1)); [x[q], x[r]] = [x[r], x[q]]; } return x; };
     console.log('🔀 Armando la VERSIÓN B (otro orden de preguntas y otras letras)…');
-    mejorB = await optimizar({ ...ctx, mc: barajar(ctx.mc), ab: barajar(ctx.ab), sufijo: '_VersionB', etiquetaVersion: 'B', seedExtra: 7919 });
+    mejorB = await optimizar({ ...ctx, mc: aplanar(barajar(unidades(ctx.mc))), ab: barajar(ctx.ab), sufijo: '_VersionB', etiquetaVersion: 'B', seedExtra: 7919 });
     const igual = mejor.claves.filter((l, q) => l === mejorB.claves[q]).length;
     console.log(`🎯 Versión B claves: ${mejorB.claves.join('')} (misma letra que A en la misma posición: ${igual} de ${mc.length})`);
   }

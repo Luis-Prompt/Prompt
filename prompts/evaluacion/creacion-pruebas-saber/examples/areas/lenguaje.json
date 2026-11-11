@@ -1,0 +1,102 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Lenguaje",
+    "areaClave": "lenguaje",
+    "asignatura": "Lenguaje",
+    "tema": "Comprensión de un texto narrativo",
+    "grado": "5",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "t1",
+      "titulo": "La moneda de Mariana",
+      "texto": "Todas las tardes, Mariana pasaba frente a la panadería de la esquina y se detenía a mirar la vitrina. Tenía en su bolsillo una sola moneda de quinientos pesos, que había guardado durante dos semanas.\nAquel día, el olor del pan recién horneado la hizo entrar. Pidió un pan pequeño y, cuando iba a pagar, vio a un niño que contaba monedas con tristeza junto a la caja. A Mariana le dolió el estómago de hambre, pero también le dolió ver al niño.\nDudó un momento y, al final, puso su moneda sobre el mostrador y dijo: «Que sea para los dos». Partieron el pan en la acera y comieron en silencio, sonriendo.",
+      "fuente": "Texto original para este ejemplo"
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "t1",
+      "pregunta": "En el texto, la expresión «le dolió el estómago de hambre» indica que Mariana",
+      "correcta": "tenía mucha hambre.",
+      "distractores": [
+        "estaba enferma.",
+        "había comido demasiado.",
+        "sentía miedo del niño."
+      ],
+      "errores": [
+        "Interpreta literalmente «dolió» como enfermedad.",
+        "Contradice el texto: Mariana tenía una sola moneda.",
+        "No hay ninguna referencia al miedo en el texto."
+      ],
+      "justificacion": "La expresión dice que sentía hambre intensa; por eso el pan le llamó la atención.",
+      "competencia": "Competencia comunicativa lectora",
+      "componente": "Semántico",
+      "nivel": 1,
+      "dba": "Comprender el sentido de expresiones"
+    },
+    {
+      "estimulo": "t1",
+      "pregunta": "¿Cuál es el mensaje principal del texto?",
+      "correcta": "Compartir con quien lo necesita vale más que conservar lo propio.",
+      "distractores": [
+        "Es mejor ahorrar siempre las monedas para uno mismo.",
+        "Las panaderías venden el mejor pan del barrio.",
+        "Los niños no deben caminar solos por la calle."
+      ],
+      "errores": [
+        "Plantea lo contrario de lo que hace la protagonista.",
+        "Toma un detalle del lugar como si fuera el mensaje.",
+        "Introduce una idea que el texto no trata."
+      ],
+      "justificacion": "Mariana renuncia a su moneda para ayudar a otro niño: el texto valora la solidaridad.",
+      "competencia": "Competencia comunicativa lectora",
+      "componente": "Pragmático",
+      "nivel": 2,
+      "dba": "Identificar el propósito y el mensaje"
+    },
+    {
+      "estimulo": "t1",
+      "pregunta": "¿Por qué Mariana dudó antes de poner su moneda en el mostrador?",
+      "correcta": "Porque era su único dinero y lo había ahorrado durante dos semanas.",
+      "distractores": [
+        "Porque no le gustaba el pan de la panadería.",
+        "Porque no sabía contar monedas.",
+        "Porque el niño le pidió dinero."
+      ],
+      "errores": [
+        "No hay evidencia en el texto de que no le gustara el pan.",
+        "El texto no sugiere que no supiera contar.",
+        "El niño solo contaba monedas; no le pidió nada."
+      ],
+      "justificacion": "El texto dice que tenía una sola moneda guardada durante dos semanas.",
+      "competencia": "Competencia comunicativa lectora",
+      "componente": "Semántico",
+      "nivel": 2,
+      "dba": "Inferir causas a partir del texto"
+    },
+    {
+      "enunciado": "Observa estas oraciones sobre el texto.",
+      "pregunta": "¿Cuál oración está escrita correctamente?",
+      "correcta": "Mariana ahorró una moneda durante dos semanas.",
+      "distractores": [
+        "Mariana ahorro una moneda durante dos semanas.",
+        "Mariana ahorró una moneda durante dos semana.",
+        "Mariana ahorrado una moneda durante dos semanas."
+      ],
+      "errores": [
+        "Falta la tilde en «ahorró» (pasado).",
+        "Falla la concordancia: «dos semana».",
+        "Usa una forma verbal incorrecta: «ahorrado» sin auxiliar."
+      ],
+      "justificacion": "La única oración con tilde, concordancia y forma verbal correctas es la primera.",
+      "competencia": "Competencia comunicativa escritora",
+      "componente": "Sintáctico",
+      "nivel": 1,
+      "dba": "Revisar ortografía y concordancia"
+    }
+  ]
+}

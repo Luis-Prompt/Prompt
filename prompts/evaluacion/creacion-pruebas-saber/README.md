@@ -1,4 +1,4 @@
-# Creación de pruebas tipo SABER (v2.4)
+# Creación de pruebas tipo SABER (v2.6)
 
 Genera **dos documentos Word** a partir de las respuestas del docente:
 
@@ -6,6 +6,12 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 - `…_DOCENTE_CLAVES.docx`: la misma prueba con la clave resaltada, plantilla de calificación, justificación de cada respuesta, error que representa cada distractor y **matriz de especificaciones** (competencias × niveles).
 
 **Versiones A y B (opcional):** con `"versiones": 2` en el `config` del JSON, o `--versiones 2` al ejecutar, se generan cuatro Word: estudiante y docente de la versión A y de la versión B (otro orden de preguntas y otras letras de clave) para evitar la copia.
+
+**Todas las áreas:** el catálogo `areas/` cubre 20 áreas y asignaturas (ver `areas/README.md`); cada una trae su ejemplo en `examples/areas/` (`npm run probar:areas`).
+
+**Textos compartidos y gráficos:** un texto, tabla o gráfico puede servir a varias preguntas (`estimulos`), con 20 plantillas gráficas del script (barras, circular, líneas, histograma, plano, figuras, línea de tiempo, flujos, avisos, diálogos…).
+
+**Ilustraciones con ChatGPT:** `--prompt-imagenes` genera los prompts de hasta 3 hojas de 8 imágenes (fondo transparente real); `--sprites hoja1.png hoja2.png hoja3.png` las recorta y las coloca en la prueba (ver el PASO 4b del `SKILL.md`).
 
 ## Contenido de la carpeta
 
@@ -15,6 +21,8 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 | `scripts/build_exam.js` | Construye los Word, valida las preguntas y verifica la maquetación. |
 | `assets/escudo_header.png` | Escudo 2025 del encabezado (copia del banco de imágenes). |
 | `examples/exam_ejemplo.json` | Ejemplo completo (14 preguntas de selección múltiple + 2 abiertas, 6 gráficos). |
+| `areas/` | Catálogo de 20 áreas (marcos oficiales, competencias, reglas, errores típicos). |
+| `examples/` | Ejemplo general, un ejemplo por área (`examples/areas/`) y el ejemplo de ilustraciones. |
 | `package.json` | Dependencias (`docx`, `sharp`). |
 | `CHANGELOG.md` | Historial de versiones. |
 | `ROADMAP.md` | Mejoras pendientes, por prioridad. |

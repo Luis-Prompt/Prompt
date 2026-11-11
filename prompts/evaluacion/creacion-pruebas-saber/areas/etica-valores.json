@@ -1,0 +1,89 @@
+{
+  "clave": "etica-valores",
+  "nombre": "Ética y valores humanos",
+  "grupo": "Asignaturas",
+  "grados": "1-11",
+  "descripcion": "Dignidad, autonomía, responsabilidad, justicia, convivencia y proyecto de vida.",
+  "fuente_marco": "MEN, Lineamientos curriculares de Educación Ética y Valores Humanos; Estándares de Competencias Ciudadanas (MEN, 2004). Competencias adaptadas para evaluación escrita.",
+  "marcos": [
+    {
+      "nombre": "Ética y valores humanos",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Reflexión y juicio moral",
+          "descripcion": "Analiza situaciones morales, distingue valores en conflicto y evalúa razones."
+        },
+        {
+          "nombre": "Empatía y perspectiva del otro",
+          "descripcion": "Reconoce las emociones, necesidades y puntos de vista de los demás."
+        },
+        {
+          "nombre": "Responsabilidad y toma de decisiones",
+          "descripcion": "Identifica consecuencias de las acciones y asume responsabilidad."
+        },
+        {
+          "nombre": "Convivencia y resolución de conflictos",
+          "descripcion": "Reconoce y aplica formas pacíficas y justas de resolver conflictos."
+        }
+      ],
+      "componentes": [
+        "Dignidad humana",
+        "Autonomía y responsabilidad",
+        "Justicia y convivencia",
+        "Proyecto de vida"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Dilema moral breve",
+    "Situación de convivencia escolar",
+    "Caso con varias perspectivas",
+    "Texto breve sobre un valor"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "dialogo",
+    "flujo",
+    "aviso"
+  ],
+  "reglas_de_calidad": [
+    "Evalúa comprensión y razonamiento ético, no la «bondad» personal del estudiante ni sus creencias.",
+    "Una opción debe ser la más coherente con el valor o principio en juego; justifícalo.",
+    "Evita juicios sobre religión, política o familia del estudiante; usa casos hipotéticos.",
+    "Combina preguntas de única respuesta con preguntas abiertas de reflexión (rúbrica)."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir valor con norma",
+    "Justificar la acción por el beneficio propio inmediato",
+    "Confundir tolerancia con indiferencia",
+    "Responsabilizar a los demás por la propia decisión",
+    "Resolver el conflicto imponiéndose"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué valor o tema: respeto, honestidad, responsabilidad, justicia, solidaridad, proyecto de vida…?",
+    "¿Con dilemas, casos de convivencia o textos breves?",
+    "¿Incluimos preguntas abiertas de reflexión con rúbrica?"
+  ],
+  "frase_final": "¡Ser buena persona es tu mayor logro! Éxito.",
+  "verificacion": "Revisión ciega con rúbrica; las abiertas se califican con criterios.",
+  "ejemplo": "examples/areas/etica-valores.json"
+}

@@ -17,7 +17,7 @@ if (!['borrador', 'revisada', 'aprobada'].includes(estado)) { console.error('--e
 const slug = (t) => String(t || 'general').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'general';
 const norm = (t) => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
 const huella = (p) => crypto.createHash('sha1').update([p.tipo === 'abierta' ? 'a' : 'm', norm(p.enunciado), norm(p.pregunta), norm(p.correcta || p.respuestaModelo)].join('|')).digest('hex').slice(0, 10);
-const CAMPOS_EFIMEROS = new Set(['num', '_ops', '_clave', '_imgs']);
+const CAMPOS_EFIMEROS = new Set(['num', '_ops', '_clave', '_imgs', '_est', '_sprite']);
 
 const ex = JSON.parse(fs.readFileSync(jsonPath, 'utf8')), m = ex.meta || {};
 const area = slug(m.areaClave || m.area), grado = slug(m.grado), tema = slug(m.tema);
@@ -29,7 +29,8 @@ let nuevas = 0, repetidas = 0;
 for (const p of ex.preguntas || []) {
   const id = huella(p); if (ids.has(id)) { repetidas++; continue; }
   const limpia = Object.fromEntries(Object.entries(p).filter(([k]) => !CAMPOS_EFIMEROS.has(k)));
-  base.preguntas.push({ id, estado, fechaRegistro: new Date().toISOString().slice(0, 10), ...limpia }); ids.add(id); nuevas++;
+  const est = p.estimulo && (ex.estimulos || []).find(e => e.id === p.estimulo);   // la pregunta guarda una copia de su texto compartido
+  base.preguntas.push({ id, estado, fechaRegistro: new Date().toISOString().slice(0, 10), ...limpia, ...(est ? { estimuloData: est } : {}) }); ids.add(id); nuevas++;
 }
 fs.writeFileSync(file, JSON.stringify(base, null, 2) + '\n');
 console.log(`📚 ${path.relative(process.cwd(), file) || file}: ${nuevas} nuevas, ${repetidas} repetidas (ya estaban). Total en el archivo: ${base.preguntas.length}.`);

@@ -9,11 +9,15 @@ Ordenadas por prioridad. Marca con `x` lo terminado.
 - [x] **Preguntas iniciales por etapas (v2.2)** (tutorial), con opciones numeradas y resumen de confirmación antes de generar. Agregar: tipo de prueba (3.°, 5.°, 9.°, 11.°, Pro), competencia, tiempo, adaptaciones (NEE).
 
 ## Media
-- [ ] **Más plantillas gráficas:** geometría (ángulos, perímetro, área), plano cartesiano, diagrama circular, histograma, pictograma, línea de tiempo, ciclos (Ciencias), textos discontinuos (Lectura).
+- [x] **Más plantillas gráficas (v2.5):** geometría (ángulos, perímetro, área), plano cartesiano, diagrama circular, histograma, pictograma, línea de tiempo, ciclos (Ciencias), textos discontinuos (Lectura).
 - [x] **`config/institucion.json` (v2.4)** con membrete, escudo y nombre del colegio, para no depender del código.
 - [x] Exportar cada pregunta a `banco-preguntas/` (v2.4, `herramientas/guardar-en-banco.js`).
 - [ ] Armar una prueba nueva **tomando preguntas aprobadas del banco** (filtrar por área, grado, tema, competencia y nivel).
 - [x] Quitar el `|| true` del armado final (v2.3).
+
+- [ ] Armar una prueba **desde el banco de preguntas** (filtrar por área, grado, tema, competencia y nivel).
+- [ ] Hoja de respuestas para **lectura óptica** y exportación a PDF.
+- [ ] Revisar con docentes de cada área las competencias adaptadas (religión, ética, artística, educación física, tecnología).
 
 ## Baja
 - [ ] Asistente gráfico en GitHub Pages (formulario que arma el `exam.json`).

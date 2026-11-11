@@ -3,7 +3,7 @@ name: generador-examen-tipo-saber
 description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER.
 ---
 
-# GENERADOR DE EXAMEN TIPO SABER — v2.4
+# GENERADOR DE EXAMEN TIPO SABER — v2.6
 **Colegio Integrado Simón Bolívar · Cúcuta · Mg. Luis Alberto Avellaneda C.**
 
 ## QUÉ ENTREGA (DOS ARCHIVOS .docx; CUATRO si pide versiones A y B)
@@ -18,16 +18,23 @@ Si el docente pide **versiones A y B** (misma prueba con otro orden de preguntas
 Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numeradas y las opciones ya escritas (el docente responde con números o letras). Si el docente ya dio algún dato, no lo repitas. Al terminar, muestra un **resumen de confirmación** y espera el "sí" antes de generar.
 
 **Etapa 1 — ¿Qué vamos a evaluar?**
-1. **Área o prueba:** (a) Matemáticas · (b) Lectura crítica · (c) Ciencias naturales · (d) Sociales y ciudadanas · (e) Inglés · (f) Otra.
+1. **Área o asignatura** (muestra este menú y espera la respuesta; el catálogo completo está en `areas/indice.json`):
+   - *Pruebas Saber:* Matemáticas · Lenguaje · Lectura crítica · Inglés · Ciencias naturales · Ciencias sociales · Competencias ciudadanas.
+   - *Matemáticas por ramas:* Geometría · Estadística y probabilidad.
+   - *Ciencias:* Biología · Física · Química.
+   - *Humanidades y formación:* Constitución y democracia · Filosofía · Ética y valores · Educación religiosa · Ciencias económicas y políticas.
+   - *Otras asignaturas:* Educación artística · Educación física · Tecnología e informática.
+   Cuando el docente elija, **lee `areas/<clave>.json`** (claves: matematicas, geometria, estadistica, lenguaje, lectura-critica, ingles, ciencias-naturales, biologia, fisica, quimica, ciencias-sociales, constitucion-democracia, competencias-ciudadanas, filosofia, etica-valores, religion, artistica, educacion-fisica, tecnologia-informatica, ciencias-economicas-politicas) y úsalo así: ofrece las **competencias y componentes del marco que corresponde al grado** (`marcos[].grados`), haz sus `preguntas_iniciales` en la Etapa 2, aplica sus `reglas_de_calidad`, construye los distractores con sus `errores_tipicos_para_distractores`, usa los `tipos_de_estimulo` y `plantillas_recomendadas`, y su `frase_final`. Si el docente pide un área que no está, usa `areaClave:"general"` y ayúdalo a definir competencias.
 2. **Grado** (3.°, 5.°, 7.°, 9.°, 11.° u otro) y **tema(s)** concretos.
-3. **Competencia(s) a evaluar** (si no sabe, propón las de la prueba SABER del área y deja que elija).
+3. **Competencia(s) y componente(s) a evaluar:** muestra las del catálogo del área para el grado (con su descripción en una línea) y deja que elija; si no sabe, propón un reparto equilibrado.
 
 **Etapa 2 — ¿Cómo quieres la prueba?**
 4. **¿Cuántas preguntas de selección múltiple?** (recomendado 10, 15 o 20).
 5. **¿Preguntas abiertas?** Si **sí**, ¿cuántas? (1 a 4); si **no**, no se incluye la PARTE II.
 6. **Dificultad:** básica / media / alta / mixta (si es mixta, reparte entre los niveles de desempeño 1 a 4).
 7. **Longitud de enunciados:** corto (80–180 caracteres) / medio (250–420) / largo (550–800).
-8. **Apoyos visuales:** ¿cuántas preguntas llevan imagen, tabla, gráfico o cuadro?
+8. **Apoyos visuales:** (a) **gráficos, tablas y esquemas** que dibuja el script (barras, circular, líneas, histograma, plano cartesiano, figuras, línea de tiempo, flujos, avisos, diálogos…) y (b) **ilustraciones creadas con ChatGPT** (hasta 24, en 3 hojas de 8; ver PASO 4b). ¿Cuántas preguntas llevan cada tipo?
+   Además, haz las `preguntas_iniciales` del área elegida (tema exacto, tipo de texto, nivel MCER, uso de calculadora, etc.).
 
 **Etapa 3 — Detalles finales (opcionales)**
 9. Nombre del docente y período (si no los da, quedan en blanco para llenar a mano).
@@ -42,12 +49,13 @@ Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numerad
 1. Busca `/mnt/skills/user/generador-examen-tipo-saber/scripts/build_exam.js`. Si existe, úsalo.
 2. Si **no** existe, descarga el script oficial del repositorio (no lo reescribas ni lo modifiques):
    ```bash
-   mkdir -p /home/claude/examen/scripts /home/claude/examen/assets /home/claude/examen/config && cd /home/claude/examen
+   mkdir -p /home/claude/examen/scripts /home/claude/examen/assets /home/claude/examen/config /home/claude/examen/areas && cd /home/claude/examen
    R=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main
    B=$R/prompts/evaluacion/creacion-pruebas-saber
    curl -sL -o scripts/build_exam.js $B/scripts/build_exam.js
    curl -sL -o assets/escudo_header.png $B/assets/escudo_header.png
    curl -sL -o config/institucion.json $R/config/institucion.json
+   curl -sL -o areas/<clave>.json $B/areas/<clave>.json      # catálogo del área elegida (competencias, componentes, reglas)
    ```
    Si no hay red, pide al docente que suba `build_exam.js` y el escudo.
 3. `node` y `sharp` ya están disponibles. Si `require('docx')` falla: `npm install -g docx sharp`.
@@ -105,11 +113,34 @@ El script mide cada pregunta con LibreOffice, **reordena ventanas de hasta 6 pre
 | `barras` | `titulo`, `categorias:[{nombre,valor,oculto?}]`, `max`, `paso`, `ejeY?` (`oculto:true` dibuja una barra “?” sin revelar el valor) |
 | `cancha` | `estilo` (`cancha`/`piscina`/`lote`), `largo`, `ancho` (textos) |
 | `huerta` | `surcos`, `conPlantas`, `etiquetaPlantas?`, `etiquetaVacios?` |
+| `circular` | `titulo`, `categorias:[{nombre,valor,oculto?,color?}]`, `mostrar` (`porcentaje`/`valor`), `leyendaValores?` (nombres cortos, ≤ 18 caracteres) |
+| `lineas` | `titulo`, `x:[…]`, `series:[{nombre,valores:[…]}]`, `min?`, `max?`, `paso?`, `ejeX?`, `ejeY?` (varias series; `null` deja un hueco) |
+| `histograma` | `titulo`, `intervalos:[{etiqueta,frecuencia,oculto?}]`, `max?`, `paso?`, `mostrarValores?`, `ejeX?`, `ejeY?` |
+| `plano` | `titulo`, `xmin,xmax,ymin,ymax`, `puntos:[{x,y,etiqueta?}]`, `segmentos:[[i,j]]`, `poligono:[i,j,k…]` |
+| `figura` | `tipo` (`triangulo_rectangulo`, `triangulo`, `rectangulo`, `cuadrado`, `circulo`, `trapecio`, `paralelogramo`, `poligono`+`lados`), `etiquetas:{…}` (usa `"?"` en la medida que se pide) |
+| `angulo` | `rayos:[0,35,90]` (grados, antihorario desde la derecha), `etiquetas:["35°","?"]`, `nota?` |
+| `lineaTiempo` | `titulo`, `eventos:[{anio,texto}]` (hasta 6) |
+| `flujo` | `titulo`, `nodos:["…",{texto,oculto:true}]`, `modo` (`fila`/`ciclo`/`columna`), `porFila?`, `flechas?`, `cerrar?` (cadenas, ciclos, procesos, algoritmos) |
+| `aviso` | `estilo` (`prohibido`/`advertencia`/`informativo`/`seguridad`/`invitacion`/`etiqueta`), `titulo`, `lineas:[…]` (texto discontinuo, señales, carteles) |
+| `dialogo` | `mensajes:[{quien,texto,lado?}]` (hasta 5; conversaciones en inglés, lenguaje, ciudadanas) |
+| `circuloCromatico` | `titulo`, `ocultos:[índices]`, `nombres?`, `centro?` (con `ocultos` no actives `nombres`: revelaría la respuesta) |
 | `svg` | `svg` completo (último recurso; también se rasteriza a PNG) |
 - **tipo 2: tabla** `{titulo, headers[], rows[][]}`.
 - **tipo 3: gráfico de barras** (`plantilla:"barras"`).
 - **tipo 4: cuadro de texto** `{titulo, texto, fuente?}`.
 `leyenda` opcional como pie de figura. No se descargan imágenes de internet (en este entorno el acceso externo suele estar bloqueado); se generan localmente en PNG.
+
+### Textos compartidos (`estimulos`) — Lectura, Inglés, Sociales, Ciencias…
+Un texto, tabla, gráfico o aviso puede servir a varias preguntas (como en la prueba SABER). Se declara una vez y cada pregunta lo cita:
+```json
+"estimulos": [{"id":"t1","titulo":"…","texto":"Párrafo 1\nPárrafo 2","fuente":"Texto original","numerarParrafos":true,
+               "tipo":"discontinuo","visual":{…},"instruccion":"Responde {preguntas} de acuerdo con el siguiente texto."}],
+"preguntas": [{"estimulo":"t1","pregunta":"¿…?","correcta":"…","distractores":["…","…","…"], …}]
+```
+- La pregunta con `estimulo` **no necesita `enunciado`** (el texto es su contexto). El texto y sus preguntas **siempre van juntos y en orden**, también al armar la versión B.
+- **Nunca escribas números de pregunta** en `instruccion`: usa `{preguntas}` (o `{questions}` en inglés). Si no pones `instruccion`, el script la escribe solo («Responde las preguntas 2 a 4 de acuerdo con el siguiente texto.»).
+- 2 a 5 preguntas por texto (máx. 6); texto de hasta ~500 palabras; propio o adaptado, sin copiar textos con derechos de autor. Toda respuesta debe poder sostenerse con el texto.
+- `visual` puede ser cualquier plantilla (aviso, diálogo, gráfico) y `tipo:"discontinuo"` cambia la frase por «la siguiente información».
 
 ### Preguntas abiertas (solo si el docente dijo que sí)
 `{"tipo":"abierta","enunciado":"…","pregunta":"…","lineas":4,"puntos":2,"respuestaModelo":"…","criterios":["… (1 pto)","… (1 pto)"]}`. Salen en la **PARTE II** con líneas para escribir a mano; en el documento docente, con respuesta modelo y criterios.
@@ -138,6 +169,23 @@ cd /home/claude/examen && node build_exam.js exam.json --out /mnt/user-data/outp
 ```
 (o `node /mnt/skills/user/generador-examen-tipo-saber/scripts/build_exam.js exam.json --out /mnt/user-data/outputs`). Tarda ≈ 1 minuto: mide, reordena y verifica; ejecútalo en segundo plano si el límite de la herramienta es corto. **Si imprime ❌ con una lista, corrige exactamente esas preguntas en `exam.json` y repite** hasta ver ✅. Revisa los ⚠ (sobre todo “opciones numéricas sin calculo” y “visuales consecutivos”).
 
+## PASO 4b: ILUSTRACIONES CON CHATGPT (opcional, cuando el docente quiere una prueba más gráfica)
+Las plantillas del script dibujan datos y esquemas exactos. Para **ilustraciones de contexto** (animales, objetos, escenas, personas, lugares) el docente las crea con ChatGPT en **hojas de 8 imágenes** (2 filas × 4), hasta **3 hojas = 24 imágenes**, con **fondo transparente real**. Tú las recortas y las acomodas en la prueba.
+
+**A. Describe cada ilustración.** En cada pregunta (o texto compartido) que necesite una, agrega `"imagenPrompt"`: una descripción **muy detallada** para generarla: qué objetos o personas, cuántos, colores, postura, vista (frontal, lateral, tres cuartos), estilo, y qué NO debe aparecer. Reglas: sin texto dentro de la imagen; **no debe revelar la respuesta**; una sola escena clara; termina con «Fondo transparente». No uses ChatGPT para datos, cantidades exactas ni medidas: eso va en las plantillas del script.
+
+**B. Genera el prompt para el docente:**
+```bash
+node build_exam.js exam.json --out /mnt/user-data/outputs --prompt-imagenes
+```
+Crea `prompt_imagenes_chatgpt.md` (y guarda el número de cada imagen en `exam.json`). **Muestra al docente en bloques de código separados** (para copiar con un clic): el **PROMPT GENERAL** y luego **HOJA 1**, **HOJA 2** y **HOJA 3**, y explícale los pasos: 1) pegar el general en un chat nuevo de ChatGPT con imágenes, 2) pegar cada hoja y descargar el PNG, 3) si sale fondo blanco o cuadrícula gris, pedirle «quita el fondo y dame el PNG con transparencia real (canal alfa)», 4) subir las hojas aquí en orden. Adjunta el archivo `.md` con `present_files`.
+
+**C. Cuando el docente suba las hojas** (están en `/mnt/user-data/uploads`, en orden Hoja 1, 2, 3):
+```bash
+node build_exam.js exam.json --out /mnt/user-data/outputs --sprites hoja1.png hoja2.png hoja3.png
+```
+El script detecta cada ilustración (aunque no estén perfectamente alineadas), la **recorta al borde exacto sin márgenes**, conserva la transparencia (si la hoja trae fondo blanco o cuadrícula gris, lo quita y avisa), la numera y genera `sprites_previsualizacion.png`. **Mira esa previsualización** y confirma que las 8 imágenes de cada hoja se recortaron completas y en el orden correcto; si alguna falla, dile al docente cuál hoja repetir. Cada pregunta con ilustración queda como un **bloque indivisible**: texto y opciones a la izquierda, ilustración a la derecha (nunca se separan entre columnas ni se desconfigura el texto). Luego haz el PASO 5 y entrega la prueba **final con las imágenes**.
+
 ## PASO 5: REVISIÓN ANTES DE ENTREGAR
 1. Convierte el docx del estudiante a PDF y mira las páginas como imagen: escudo alineado al margen, sin huecos grandes, hoja de respuestas completa, imágenes legibles.
 2. Ejecuta el comando de la GARANTÍA DEL ESCUDO.
@@ -149,3 +197,6 @@ cd /home/claude/examen && node build_exam.js exam.json --out /mnt/user-data/outp
 - Nunca reveles la clave en el documento del estudiante, en el nombre del archivo ni en las imágenes.
 - Sin emojis dentro de los documentos Word.
 - No modifiques el script; si hay un error técnico, corrige primero el JSON.
+- **Integridad:** el script compara el texto del Word con el PDF de medición y descarta toda maquetación a la que le falte texto. Si al final imprime ⚠ «faltan fragmentos», abre el PDF y revisa esas preguntas antes de entregar.
+- Las instrucciones de los textos compartidos nunca llevan números escritos a mano (`{preguntas}`).
+- Las ilustraciones de ChatGPT son solo de contexto; los datos, medidas y cantidades salen siempre de las plantillas del script.

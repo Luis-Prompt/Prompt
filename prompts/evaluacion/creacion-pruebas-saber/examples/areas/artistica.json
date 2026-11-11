@@ -1,0 +1,119 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Educación artística",
+    "areaClave": "artistica",
+    "asignatura": "Educación artística",
+    "tema": "Teoría del color y apreciación",
+    "grado": "6",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "a1",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con el siguiente círculo cromático.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "circuloCromatico",
+        "params": {
+          "titulo": "Círculo cromático",
+          "ocultos": [
+            4
+          ]
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "a1",
+      "pregunta": "¿Qué color primario falta en el sector marcado con «?» del círculo cromático?",
+      "correcta": "Rojo",
+      "distractores": [
+        "Verde",
+        "Violeta",
+        "Anaranjado"
+      ],
+      "errores": [
+        "Es un color secundario (azul + amarillo).",
+        "Es un color secundario (rojo + azul).",
+        "Es un color secundario (rojo + amarillo)."
+      ],
+      "justificacion": "El sector marcado está entre el rojo anaranjado y el rojo violáceo: es el rojo, uno de los primarios.",
+      "competencia": "Sensibilidad",
+      "componente": "Artes plásticas y visuales",
+      "nivel": 2
+    },
+    {
+      "enunciado": "En un taller de pintura, una estudiante mezcla colores primarios.",
+      "pregunta": "¿Qué dos colores debe mezclar para obtener anaranjado?",
+      "correcta": "Amarillo y rojo",
+      "distractores": [
+        "Azul y amarillo",
+        "Rojo y azul",
+        "Azul y blanco"
+      ],
+      "errores": [
+        "Esa mezcla produce verde.",
+        "Esa mezcla produce violeta.",
+        "El blanco aclara el color, no produce anaranjado."
+      ],
+      "justificacion": "Amarillo + rojo = anaranjado.",
+      "competencia": "Sensibilidad",
+      "componente": "Artes plásticas y visuales",
+      "nivel": 1
+    },
+    {
+      "enunciado": "Los colores se pueden clasificar según la sensación que producen.",
+      "pregunta": "¿Cuál de estos grupos contiene solo colores cálidos?",
+      "correcta": "Rojo, anaranjado y amarillo",
+      "distractores": [
+        "Azul, verde y violeta",
+        "Rojo, azul y verde",
+        "Violeta, amarillo y azul"
+      ],
+      "errores": [
+        "Son colores fríos.",
+        "Mezcla cálidos y fríos.",
+        "Mezcla cálidos y fríos."
+      ],
+      "justificacion": "Los colores cálidos son los que evocan el fuego o el sol: rojo, anaranjado y amarillo.",
+      "competencia": "Apreciación estética",
+      "componente": "Artes plásticas y visuales",
+      "nivel": 2
+    },
+    {
+      "enunciado": "Un pintor usa azules y violetas en un cuadro para transmitir calma.",
+      "pregunta": "Esto muestra que el color puede",
+      "correcta": "expresar emociones y sensaciones.",
+      "distractores": [
+        "servir solo para decorar el marco.",
+        "indicar la técnica de pintura usada.",
+        "medir el tamaño de la obra."
+      ],
+      "errores": [
+        "Reduce el color a un adorno.",
+        "El color no indica por sí solo la técnica.",
+        "No tiene relación con el tamaño."
+      ],
+      "justificacion": "El color comunica sensaciones y estados de ánimo.",
+      "competencia": "Comunicación",
+      "componente": "Artes plásticas y visuales",
+      "nivel": 2
+    },
+    {
+      "tipo": "abierta",
+      "enunciado": "Piensa en una manifestación artística de tu región (música, danza, artesanía, pintura o teatro).",
+      "pregunta": "Descríbela y explica qué te transmite.",
+      "lineas": 4,
+      "puntos": 2,
+      "respuestaModelo": "Respuesta abierta: debe nombrar una manifestación, describir elementos (colores, ritmo, formas, movimientos) y explicar qué transmite.",
+      "criterios": [
+        "Nombra y describe la manifestación (1 pto).",
+        "Explica lo que transmite con razones (1 pto)."
+      ]
+    }
+  ]
+}

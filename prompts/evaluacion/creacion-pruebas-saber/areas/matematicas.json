@@ -1,0 +1,127 @@
+{
+  "clave": "matematicas",
+  "nombre": "Matemáticas",
+  "grupo": "Pruebas Saber",
+  "grados": "1-11",
+  "descripcion": "Aritmética, álgebra, funciones y resolución de problemas (Saber 3.°, 5.°, 9.° y 11.°).",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) y Saber 3.°, 5.° y 9.° (ICFES); Estándares Básicos de Competencias en Matemáticas (MEN, 2006).",
+  "marcos": [
+    {
+      "nombre": "Saber 11.° (grados 10 y 11)",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Interpretación y representación",
+          "descripcion": "Comprende y transforma información cuantitativa y esquemática presentada en tablas, gráficas, diagramas o esquemas."
+        },
+        {
+          "nombre": "Formulación y ejecución",
+          "descripcion": "Plantea e implementa estrategias que llevan a soluciones adecuadas de problemas con información cuantitativa."
+        },
+        {
+          "nombre": "Argumentación",
+          "descripcion": "Valida o refuta procedimientos, estrategias, conclusiones y representaciones matemáticas, dando razones."
+        }
+      ],
+      "componentes": [
+        "Álgebra y cálculo",
+        "Geometría",
+        "Estadística"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ],
+      "niveles": [
+        "Lee datos puntuales en tablas y gráficas con escala explícita.",
+        "Compara y relaciona datos; extrae información local y global.",
+        "Selecciona información, señala errores, usa proporcionalidad, conversiones y áreas.",
+        "Modela, usa propiedades algebraicas, probabilidad y funciones; justifica con varios conceptos."
+      ]
+    },
+    {
+      "nombre": "Saber 3.°, 5.° y 9.° (grados 1 a 9)",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "competencias": [
+        {
+          "nombre": "Comunicación, representación y modelación",
+          "descripcion": "Usa e interpreta distintos registros (tablas, gráficas, símbolos, lenguaje natural) y modela situaciones."
+        },
+        {
+          "nombre": "Razonamiento y argumentación",
+          "descripcion": "Justifica, conjetura, valida o refuta afirmaciones y procedimientos matemáticos."
+        },
+        {
+          "nombre": "Planteamiento y resolución de problemas",
+          "descripcion": "Formula problemas, diseña estrategias, las ejecuta y verifica la solución."
+        }
+      ],
+      "componentes": [
+        "Numérico-variacional",
+        "Geométrico-métrico",
+        "Aleatorio"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Situación cotidiana con datos",
+    "Tabla o gráfica con escala explícita",
+    "Figura geométrica con medidas",
+    "Procedimiento resuelto con un error para detectar",
+    "Afirmación para validar o refutar"
+  ],
+  "usa_textos_compartidos": false,
+  "plantillas_recomendadas": [
+    "barras",
+    "circular",
+    "lineas",
+    "plano",
+    "figura",
+    "recta",
+    "pizza",
+    "cuadricula"
+  ],
+  "reglas_de_calidad": [
+    "Escribe siempre el campo `calculo` cuando las opciones son numéricas: el script verifica que solo una opción dé el resultado.",
+    "Contextos variados: familiares, laborales, sociales y matemáticos (marco Saber 11.°).",
+    "Los distractores deben nacer de errores reales de procedimiento (olvidar un paso, invertir una operación, confundir perímetro con área).",
+    "Incluye preguntas de Argumentación (validar o refutar) y no solo de cálculo."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Ignorar un dato fijo (cargo inicial, banderazo)",
+    "Sumar o restar en lugar de multiplicar/dividir (razonamiento aditivo en problemas proporcionales)",
+    "Olvidar dividir entre 2 en el área del triángulo",
+    "Confundir perímetro con área",
+    "Error de signo o de distribución al operar expresiones algebraicas"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué pensamiento o componente evaluamos: numérico-variacional, geométrico-métrico o aleatorio (grados 1–9), o álgebra y cálculo, geometría y estadística (grados 10–11)?",
+    "¿El contexto de los problemas debe ser familiar, laboral, social o puramente matemático?",
+    "¿Pueden usar calculadora? (si no, mantén las cifras manejables)",
+    "¿Quieres incluir preguntas de argumentación (validar o refutar procedimientos)?"
+  ],
+  "frase_final": "¡Cada problema tiene solución! Confía en ti.",
+  "verificacion": "Automática para opciones numéricas (campo `calculo`, aritmética exacta con fracciones).",
+  "ejemplo": "examples/areas/matematicas.json"
+}

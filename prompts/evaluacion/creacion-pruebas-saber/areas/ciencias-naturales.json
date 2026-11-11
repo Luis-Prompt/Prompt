@@ -1,0 +1,119 @@
+{
+  "clave": "ciencias-naturales",
+  "nombre": "Ciencias naturales",
+  "grupo": "Pruebas Saber",
+  "grados": "1-11",
+  "descripcion": "Ciencias naturales y educación ambiental: entorno vivo, entorno físico, química y CTS.",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) — Ciencias Naturales (3 competencias; componentes biológico, físico, químico y CTS); Saber 5.°, 7.° y 9.° (Ciencias naturales y educación ambiental); Estándares Básicos de Competencias en Ciencias (MEN, 2006).",
+  "marcos": [
+    {
+      "nombre": "Saber 11.°",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Uso comprensivo del conocimiento científico",
+          "descripcion": "Comprende y usa conceptos, teorías y modelos de las ciencias naturales para solucionar problemas."
+        },
+        {
+          "nombre": "Explicación de fenómenos",
+          "descripcion": "Analiza y construye explicaciones, argumentos y modelos sobre fenómenos naturales."
+        },
+        {
+          "nombre": "Indagación",
+          "descripcion": "Reconoce preguntas y procedimientos adecuados; busca, selecciona e interpreta información y datos de una investigación."
+        }
+      ],
+      "componentes": [
+        "Biológico",
+        "Físico",
+        "Químico",
+        "Ciencia, tecnología y sociedad"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    },
+    {
+      "nombre": "Saber 5.°, 7.° y 9.° (grados 1 a 9)",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "competencias": [
+        {
+          "nombre": "Uso comprensivo del conocimiento científico",
+          "descripcion": "Comprende y usa conceptos, teorías y modelos de las ciencias naturales para solucionar problemas."
+        },
+        {
+          "nombre": "Explicación de fenómenos",
+          "descripcion": "Analiza y construye explicaciones, argumentos y modelos sobre fenómenos naturales."
+        },
+        {
+          "nombre": "Indagación",
+          "descripcion": "Reconoce preguntas y procedimientos adecuados; busca, selecciona e interpreta información y datos de una investigación."
+        }
+      ],
+      "componentes": [
+        "Entorno vivo",
+        "Entorno físico",
+        "Ciencia, tecnología y sociedad"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Descripción de un experimento",
+    "Tabla o gráfica de datos",
+    "Esquema o proceso",
+    "Situación cotidiana o ambiental",
+    "Afirmación científica para evaluar"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "lineas",
+    "barras",
+    "flujo",
+    "circular",
+    "histograma"
+  ],
+  "reglas_de_calidad": [
+    "Distribución Saber 11.°: 30 % uso comprensivo, 30 % explicación de fenómenos, 40 % indagación.",
+    "Prefiere preguntas de indagación: diseño experimental, variables, interpretación de datos y conclusiones.",
+    "Un experimento o gráfico puede servir a varias preguntas (`estimulos`).",
+    "Verifica la ciencia: unidades, magnitudes y fenómenos correctos; con opciones numéricas, `calculo`."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir correlación con causa",
+    "Confundir masa con peso, calor con temperatura",
+    "Cambiar dos variables a la vez en un diseño experimental",
+    "Conclusión que los datos no sustentan",
+    "Concepción alternativa frecuente (las plantas «se alimentan» del suelo)"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué componente: entorno vivo/biológico, entorno físico/físico, químico o CTS?",
+    "¿Prefieres énfasis en indagación (experimentos y datos), en explicación de fenómenos o en uso de conceptos?",
+    "¿Qué apoyo visual: gráfico de datos, esquema o proceso?",
+    "¿Qué tema exacto vieron (por ejemplo: ecosistemas, mezclas, energía, circuitos…)?"
+  ],
+  "frase_final": "¡El conocimiento es tu superpoder! Da lo mejor.",
+  "verificacion": "Automática para cálculos (campo `calculo`); revisión ciega con rúbrica para los conceptos.",
+  "ejemplo": "examples/areas/ciencias-naturales.json"
+}

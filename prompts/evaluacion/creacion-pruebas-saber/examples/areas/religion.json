@@ -1,0 +1,90 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Educación religiosa",
+    "areaClave": "religion",
+    "asignatura": "Educación religiosa",
+    "tema": "Hecho religioso, respeto y valores",
+    "grado": "9",
+    "docente": ""
+  },
+  "config": {},
+  "preguntas": [
+    {
+      "enunciado": "La Constitución colombiana garantiza la libertad de cultos (art. 19).",
+      "pregunta": "¿Qué significa ese principio?",
+      "correcta": "Cada persona puede profesar o no una religión sin ser discriminada.",
+      "distractores": [
+        "Todas las personas deben practicar la misma religión.",
+        "Solo las religiones mayoritarias merecen respeto.",
+        "Las creencias religiosas deben ocultarse en público."
+      ],
+      "errores": [
+        "Contradice la libertad de elegir.",
+        "Contradice la igualdad entre creencias.",
+        "Contradice el derecho a manifestar las creencias."
+      ],
+      "justificacion": "La libertad de cultos protege el derecho a elegir y a expresar las propias creencias.",
+      "competencia": "Respeto y diálogo entre creencias",
+      "componente": "Diálogo interreligioso",
+      "nivel": 1
+    },
+    {
+      "enunciado": "En muchas tradiciones se usan símbolos en sus celebraciones.",
+      "pregunta": "¿Qué es un símbolo religioso?",
+      "correcta": "Un signo que representa y recuerda una creencia o un valor de una tradición.",
+      "distractores": [
+        "Un objeto que solo sirve como adorno.",
+        "Una norma del manual de convivencia.",
+        "Un documento legal del Estado."
+      ],
+      "errores": [
+        "Ignora su significado.",
+        "Confunde símbolo con norma escolar.",
+        "Confunde símbolo con norma jurídica."
+      ],
+      "justificacion": "Los símbolos comunican significados compartidos por una comunidad.",
+      "competencia": "Comprensión del hecho religioso",
+      "componente": "Hecho religioso y cultura",
+      "nivel": 1
+    },
+    {
+      "enunciado": "Dos estudiantes de creencias distintas conversan sobre sus celebraciones.",
+      "pregunta": "¿Qué actitud favorece un diálogo respetuoso?",
+      "correcta": "Preguntar con interés y escuchar sin burlarse.",
+      "distractores": [
+        "Decir que su creencia es la única verdadera.",
+        "Evitar hablar del tema para siempre.",
+        "Pedirle que cambie de creencia."
+      ],
+      "errores": [
+        "Desconoce la libertad de cultos.",
+        "Evita el diálogo.",
+        "Presiona a la otra persona."
+      ],
+      "justificacion": "El respeto implica escuchar y comprender sin imponer.",
+      "competencia": "Respeto y diálogo entre creencias",
+      "componente": "Diálogo interreligioso",
+      "nivel": 2
+    },
+    {
+      "enunciado": "Muchas tradiciones promueven la solidaridad.",
+      "pregunta": "¿Qué acción refleja ese valor?",
+      "correcta": "Organizar una colecta de alimentos para familias necesitadas.",
+      "distractores": [
+        "Guardar los alimentos para uno mismo.",
+        "Exigir un pago por ayudar.",
+        "Ignorar a quien necesita ayuda."
+      ],
+      "errores": [
+        "Es lo contrario de compartir.",
+        "Condiciona la ayuda.",
+        "Desatiende al otro."
+      ],
+      "justificacion": "La solidaridad se expresa ayudando a quien lo necesita.",
+      "competencia": "Reflexión ética y proyecto de vida",
+      "componente": "Valores y proyecto de vida",
+      "nivel": 1
+    }
+  ]
+}

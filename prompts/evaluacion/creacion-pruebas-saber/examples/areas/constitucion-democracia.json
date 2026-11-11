@@ -1,0 +1,102 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Constitución política y democracia",
+    "areaClave": "constitucion-democracia",
+    "asignatura": "Constitución política y democracia",
+    "tema": "Mecanismos de protección y participación",
+    "grado": "10",
+    "docente": ""
+  },
+  "config": {},
+  "preguntas": [
+    {
+      "enunciado": "Un grupo de vecinos considera que se está amenazando su derecho fundamental a la salud por la negativa de una entidad a atenderlos, y quiere que un juez ordene protegerlo de inmediato.",
+      "pregunta": "¿Qué mecanismo de protección pueden usar?",
+      "correcta": "La acción de tutela",
+      "distractores": [
+        "El referendo",
+        "El cabildo abierto",
+        "La revocatoria del mandato"
+      ],
+      "errores": [
+        "Es un mecanismo de participación para aprobar o rechazar normas.",
+        "Es una reunión pública para discutir asuntos de interés local.",
+        "Sirve para terminar el mandato de un gobernante, no para proteger un derecho."
+      ],
+      "justificacion": "La tutela (art. 86) protege derechos fundamentales amenazados o vulnerados y la decide un juez con rapidez.",
+      "competencia": "Pensamiento social",
+      "componente": "Mecanismos de protección",
+      "nivel": 2
+    },
+    {
+      "enunciado": "Los habitantes de un municipio están inconformes porque el alcalde incumplió su programa de gobierno.",
+      "pregunta": "¿Qué mecanismo les permite votar para terminar el mandato del alcalde?",
+      "correcta": "La revocatoria del mandato",
+      "distractores": [
+        "El plebiscito",
+        "La iniciativa popular legislativa",
+        "La acción popular"
+      ],
+      "errores": [
+        "El plebiscito consulta al pueblo sobre una decisión del Ejecutivo.",
+        "Permite presentar proyectos de ley o de acuerdo.",
+        "Protege derechos e intereses colectivos ante un juez."
+      ],
+      "justificacion": "La revocatoria es un mecanismo de participación (art. 103) para revocar el mandato de alcaldes y gobernadores.",
+      "competencia": "Pensamiento social",
+      "componente": "Mecanismos de participación",
+      "nivel": 2
+    },
+    {
+      "enunciado": "El Congreso discute y aprueba las leyes del país.",
+      "pregunta": "¿A qué rama del poder público pertenece el Congreso?",
+      "correcta": "A la rama legislativa",
+      "distractores": [
+        "A la rama ejecutiva",
+        "A la rama judicial",
+        "A los organismos de control"
+      ],
+      "errores": [
+        "La ejecutiva ejecuta las leyes y administra.",
+        "La judicial administra justicia.",
+        "Los organismos de control vigilan la gestión pública."
+      ],
+      "justificacion": "El Congreso (Senado y Cámara) hace las leyes: es la rama legislativa.",
+      "competencia": "Pensamiento social",
+      "componente": "Ramas del poder y control",
+      "nivel": 1
+    },
+    {
+      "enunciado": "El artículo 1 de la Constitución define a Colombia como un Estado social de derecho.",
+      "pregunta": "¿Qué situación refleja ese principio?",
+      "correcta": "El Estado ofrece educación pública para garantizar igualdad de oportunidades.",
+      "distractores": [
+        "Un gobernante decide por sí solo qué leyes se cumplen.",
+        "Solo quienes pagan tienen acceso a la justicia.",
+        "Los derechos se aplican únicamente a algunos grupos."
+      ],
+      "errores": [
+        "Contradice el sometimiento del poder a la ley.",
+        "Contradice la igualdad ante la ley.",
+        "Contradice la universalidad de los derechos."
+      ],
+      "justificacion": "El Estado social de derecho busca garantizar derechos y condiciones de igualdad.",
+      "competencia": "Pensamiento reflexivo y sistémico",
+      "componente": "Principios fundamentales",
+      "nivel": 3
+    },
+    {
+      "tipo": "abierta",
+      "enunciado": "En el municipio de Villa Esperanza se quiere decidir si se construye un parque.",
+      "pregunta": "Explica con un ejemplo la diferencia entre un mecanismo de participación y uno de protección.",
+      "lineas": 4,
+      "puntos": 2,
+      "respuestaModelo": "Un mecanismo de participación permite decidir o intervenir en asuntos públicos (por ejemplo, una consulta popular sobre el parque). Uno de protección defiende derechos ante una amenaza (por ejemplo, una tutela si se vulnera un derecho fundamental).",
+      "criterios": [
+        "Define el mecanismo de participación (1 pto).",
+        "Define el mecanismo de protección con un ejemplo (1 pto)."
+      ]
+    }
+  ]
+}

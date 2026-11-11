@@ -1,0 +1,127 @@
+{
+  "clave": "ciencias-sociales",
+  "nombre": "Ciencias sociales (historia y geografía)",
+  "grupo": "Pruebas Saber",
+  "grados": "1-11",
+  "descripcion": "Historia, geografía, economía y política; Sociales y Ciudadanas en Saber 11.°.",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) — Sociales y Ciudadanas (3 competencias, 4 niveles); Estándares Básicos de Competencias en Ciencias Sociales (MEN, 2004).",
+  "marcos": [
+    {
+      "nombre": "Saber 11.° (Sociales y Ciudadanas)",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Pensamiento social",
+          "descripcion": "Usa conceptos de las ciencias sociales y ubica eventos, procesos y problemáticas en el tiempo y el espacio; conoce principios constitucionales."
+        },
+        {
+          "nombre": "Interpretación y análisis de perspectivas",
+          "descripcion": "Evalúa fuentes y argumentos y comprende las posturas e intereses de distintos actores sociales."
+        },
+        {
+          "nombre": "Pensamiento reflexivo y sistémico",
+          "descripcion": "Reconoce modelos conceptuales y relaciona las distintas dimensiones (económica, política, cultural, ambiental) de un problema social."
+        }
+      ],
+      "componentes": [
+        "Historia",
+        "Geografía",
+        "Economía",
+        "Política y Estado"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ],
+      "niveles": [
+        "Reconoce algunos derechos ciudadanos en situaciones sencillas.",
+        "Reconoce deberes del Estado, dimensiones de una situación y contextualiza fuentes.",
+        "Identifica prejuicios e intenciones, dimensiones e intereses, conceptos básicos y modelos.",
+        "Analiza y compara argumentos, evalúa alternativas de solución y relaciona fuentes con modelos conceptuales."
+      ]
+    },
+    {
+      "nombre": "Básica secundaria y primaria (grados 1 a 9)",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "competencias": [
+        {
+          "nombre": "Pensamiento social",
+          "descripcion": "Usa conceptos de las ciencias sociales y ubica eventos, procesos y problemáticas en el tiempo y el espacio; conoce principios constitucionales."
+        },
+        {
+          "nombre": "Interpretación y análisis de perspectivas",
+          "descripcion": "Evalúa fuentes y argumentos y comprende las posturas e intereses de distintos actores sociales."
+        },
+        {
+          "nombre": "Pensamiento reflexivo y sistémico",
+          "descripcion": "Reconoce modelos conceptuales y relaciona las distintas dimensiones (económica, política, cultural, ambiental) de un problema social."
+        }
+      ],
+      "componentes": [
+        "Historia",
+        "Geografía",
+        "Economía",
+        "Política y Estado"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Fuente primaria o fragmento de documento",
+    "Línea de tiempo",
+    "Mapa o descripción geográfica",
+    "Caricatura o aviso",
+    "Situación social con varios actores",
+    "Tabla o gráfica de datos sociales"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "lineaTiempo",
+    "barras",
+    "circular",
+    "lineas",
+    "flujo"
+  ],
+  "reglas_de_calidad": [
+    "Distribución Saber 11.°: 30 % pensamiento social, 40 % interpretación y análisis de perspectivas, 30 % pensamiento reflexivo y sistémico.",
+    "No pidas la opinión del estudiante ni lo «políticamente correcto»: pide analizar, comparar y evaluar.",
+    "Usa fuentes y casos con actores distintos; cuida la neutralidad política, religiosa y étnica.",
+    "Verifica fechas, nombres y hechos históricos antes de entregar."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Anacronismo (ubicar un hecho en la época equivocada)",
+    "Confundir causa con consecuencia",
+    "Atribuir a un actor un interés que la fuente no muestra",
+    "Confundir sistema político con sistema económico",
+    "Generalizar una fuente a todo el grupo social"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué eje: historia, geografía, economía o política y Estado? ¿Qué periodo o tema?",
+    "¿Con fuentes (documento, caricatura), línea de tiempo, mapa o gráfica?",
+    "¿Qué énfasis: pensamiento social, análisis de perspectivas o pensamiento reflexivo y sistémico?",
+    "¿Incluimos contexto colombiano, regional (Norte de Santander) o universal?"
+  ],
+  "frase_final": "¡Conocer el mundo comienza contigo! Éxito.",
+  "verificacion": "Revisión ciega con rúbrica (obligatoria); verificar fechas y hechos.",
+  "ejemplo": "examples/areas/ciencias-sociales.json"
+}

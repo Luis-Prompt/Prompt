@@ -1,0 +1,133 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Tecnología e informática",
+    "areaClave": "tecnologia-informatica",
+    "asignatura": "Tecnología e informática",
+    "tema": "Algoritmos, hojas de cálculo y seguridad digital",
+    "grado": "8",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "g1",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con el siguiente algoritmo.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "flujo",
+        "params": {
+          "titulo": "Algoritmo",
+          "porFila": 4,
+          "nodos": [
+            "Inicio: x = 5",
+            "Repetir 4 veces",
+            "Sumar 3 a x",
+            "Mostrar x"
+          ]
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "g1",
+      "pregunta": "Si x empieza en 5, ¿cuál es el valor final de x al terminar el algoritmo?",
+      "correcta": "17",
+      "distractores": [
+        "12",
+        "15",
+        "20"
+      ],
+      "errores": [
+        "Ignoró el valor inicial: 3 × 4.",
+        "Repitió el ciclo 3 veces en lugar de 4.",
+        "Repitió el ciclo 5 veces en lugar de 4."
+      ],
+      "justificacion": "Se suma 3 cuatro veces: 5 + 3 × 4 = 17.",
+      "competencia": "Solución de problemas con tecnología",
+      "componente": "Algoritmos y pensamiento computacional",
+      "nivel": 2,
+      "calculo": "5+3*4"
+    },
+    {
+      "enunciado": "Recibes un correo que dice: «Ganaste un premio, ingresa tu clave bancaria en este enlace».",
+      "pregunta": "¿Qué es lo más seguro que puedes hacer?",
+      "correcta": "No abrir el enlace y reportar el correo como fraude.",
+      "distractores": [
+        "Ingresar la clave para reclamar el premio.",
+        "Reenviar el correo a tus amigos.",
+        "Responder con tu número de cédula."
+      ],
+      "errores": [
+        "Entrega información que los delincuentes pueden usar.",
+        "Propaga el fraude.",
+        "Entrega datos personales."
+      ],
+      "justificacion": "Es un intento de fraude (phishing): nunca se deben entregar claves por correo.",
+      "competencia": "Apropiación y uso de la tecnología",
+      "componente": "Internet y seguridad digital",
+      "nivel": 1
+    },
+    {
+      "enunciado": "En una hoja de cálculo, la celda B2 contiene 8 y la celda C2 contiene 5.",
+      "pregunta": "¿Qué mostrará la celda D2 con la fórmula =B2*C2?",
+      "correcta": "40",
+      "distractores": [
+        "13",
+        "3",
+        "85"
+      ],
+      "errores": [
+        "Sumó los valores (8 + 5).",
+        "Restó los valores (8 − 5).",
+        "Unió los números como texto."
+      ],
+      "justificacion": "El asterisco indica multiplicación: 8 × 5 = 40.",
+      "competencia": "Apropiación y uso de la tecnología",
+      "componente": "Hojas de cálculo y herramientas ofimáticas",
+      "nivel": 2,
+      "calculo": "8*5",
+      "visual": {
+        "tipo": 2,
+        "titulo": "Hoja de cálculo",
+        "headers": [
+          "",
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rows": [
+          [
+            "2",
+            "",
+            "8",
+            "5",
+            "=B2*C2"
+          ]
+        ]
+      }
+    },
+    {
+      "enunciado": "En un computador hay componentes físicos y programas.",
+      "pregunta": "¿Cuál de estos elementos es software?",
+      "correcta": "Un procesador de texto",
+      "distractores": [
+        "El teclado",
+        "La memoria RAM",
+        "El monitor"
+      ],
+      "errores": [
+        "Es hardware (dispositivo de entrada).",
+        "Es hardware (memoria física).",
+        "Es hardware (dispositivo de salida)."
+      ],
+      "justificacion": "El software son los programas; los demás son componentes físicos.",
+      "competencia": "Naturaleza y evolución de la tecnología",
+      "componente": "Hardware y software",
+      "nivel": 1
+    }
+  ]
+}

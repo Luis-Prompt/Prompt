@@ -23,6 +23,10 @@ jobs:
         run: npm install
       - name: Generar el examen de ejemplo
         run: npm run ejemplo
+      - name: Probar los 20 ejemplos de áreas
+        run: npm run probar:areas
+      - name: Probar el recorte de ilustraciones
+        run: npm run ejemplo:imagenes
       - name: Comprobar que salieron los dos Word y el resumen
         run: |
           ls salida
