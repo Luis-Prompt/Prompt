@@ -1,0 +1,117 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Competencias ciudadanas",
+    "areaClave": "competencias-ciudadanas",
+    "asignatura": "Competencias ciudadanas",
+    "tema": "Convivencia y valoración de las diferencias",
+    "grado": "7",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "d1",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con la siguiente conversación.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "dialogo",
+        "params": {
+          "mensajes": [
+            {
+              "quien": "Camila",
+              "texto": "No quiero que Valentina trabaje con nosotros: es nueva y habla diferente."
+            },
+            {
+              "quien": "Santiago",
+              "texto": "Pero ella saca buenas notas y puede ayudarnos."
+            },
+            {
+              "quien": "Camila",
+              "texto": "Siempre hemos trabajado los tres."
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "d1",
+      "pregunta": "¿Por qué Camila rechaza que Valentina trabaje con ellos?",
+      "correcta": "Porque Valentina es nueva y habla diferente.",
+      "distractores": [
+        "Porque Valentina tiene malas notas.",
+        "Porque Valentina no quiere trabajar en equipo.",
+        "Porque Santiago se lo pidió."
+      ],
+      "errores": [
+        "Contradice el diálogo: Valentina saca buenas notas.",
+        "El diálogo no dice eso.",
+        "Santiago defiende a Valentina."
+      ],
+      "justificacion": "Camila lo dice expresamente: «es nueva y habla diferente».",
+      "competencia": "Multiperspectivismo",
+      "componente": "Pluralidad, identidad y valoración de las diferencias",
+      "nivel": 1
+    },
+    {
+      "estimulo": "d1",
+      "pregunta": "¿Qué derecho de Valentina se vulnera con la actitud de Camila?",
+      "correcta": "El derecho a no ser discriminada por su forma de hablar.",
+      "distractores": [
+        "El derecho a elegir a sus compañeros de equipo.",
+        "El derecho a recibir calificaciones altas.",
+        "El derecho a decidir quién trabaja en cada grupo."
+      ],
+      "errores": [
+        "No es un derecho que se vulnere en este caso.",
+        "Las calificaciones dependen del desempeño.",
+        "No es un derecho de Valentina."
+      ],
+      "justificacion": "La Constitución garantiza la igualdad y prohíbe la discriminación (art. 13).",
+      "competencia": "Conocimientos",
+      "componente": "Pluralidad, identidad y valoración de las diferencias",
+      "nivel": 2
+    },
+    {
+      "estimulo": "d1",
+      "pregunta": "¿Qué solución respeta a todos y favorece la convivencia?",
+      "correcta": "Dialogar con Camila para que comprenda que todos pueden aportar al equipo.",
+      "distractores": [
+        "Ignorar el problema y esperar a que pase.",
+        "Cambiar a Valentina de grupo sin consultarla.",
+        "Votar para decidir quién se queda sin grupo."
+      ],
+      "errores": [
+        "Deja el conflicto sin resolver.",
+        "Excluye a Valentina sin escucharla.",
+        "Convierte la exclusión en una decisión de mayoría."
+      ],
+      "justificacion": "El diálogo permite escuchar las perspectivas y reconocer el valor de la diversidad.",
+      "competencia": "Pensamiento sistémico",
+      "componente": "Convivencia y paz",
+      "nivel": 3
+    },
+    {
+      "enunciado": "En el colegio se va a elegir al personero estudiantil.",
+      "pregunta": "¿Qué es el voto en esa elección?",
+      "correcta": "Un mecanismo de participación para elegir a un representante.",
+      "distractores": [
+        "Un permiso para no asistir a clases.",
+        "Una sanción del manual de convivencia.",
+        "Una calificación de la asignatura de sociales."
+      ],
+      "errores": [
+        "No tiene relación con la participación.",
+        "No es una sanción.",
+        "No es una calificación."
+      ],
+      "justificacion": "El voto es el mecanismo con el que los estudiantes participan en el gobierno escolar.",
+      "competencia": "Conocimientos",
+      "componente": "Participación y responsabilidad democrática",
+      "nivel": 1
+    }
+  ]
+}

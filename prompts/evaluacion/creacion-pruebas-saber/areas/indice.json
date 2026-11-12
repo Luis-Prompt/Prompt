@@ -1,0 +1,145 @@
+{
+  "version": "2.5",
+  "areas": [
+    {
+      "clave": "matematicas",
+      "nombre": "Matemáticas",
+      "grupo": "Pruebas Saber",
+      "grados": "1-11",
+      "descripcion": "Aritmética, álgebra, funciones y resolución de problemas (Saber 3.°, 5.°, 9.° y 11.°)."
+    },
+    {
+      "clave": "geometria",
+      "nombre": "Geometría",
+      "grupo": "Asignaturas",
+      "grados": "1-11",
+      "descripcion": "Figuras, medidas, ángulos, coordenadas, congruencia, semejanza y sólidos."
+    },
+    {
+      "clave": "estadistica",
+      "nombre": "Estadística y probabilidad",
+      "grupo": "Asignaturas",
+      "grados": "1-11",
+      "descripcion": "Tablas, gráficos, medidas de tendencia central, probabilidad y conteo."
+    },
+    {
+      "clave": "lenguaje",
+      "nombre": "Lenguaje (Lengua Castellana)",
+      "grupo": "Pruebas Saber",
+      "grados": "1-11",
+      "descripcion": "Comprensión lectora, producción textual, gramática, literatura y medios (Saber 3.°, 5.° y 9.°)."
+    },
+    {
+      "clave": "lectura-critica",
+      "nombre": "Lectura crítica",
+      "grupo": "Pruebas Saber",
+      "grados": "9-11",
+      "descripcion": "Prueba de lectura de Saber 11.°: textos continuos y discontinuos, literarios e informativos."
+    },
+    {
+      "clave": "ingles",
+      "nombre": "Inglés",
+      "grupo": "Pruebas Saber",
+      "grados": "1-11",
+      "descripcion": "Lectura y uso del inglés alineados con el MCER (Saber 11.°: Pre A1, A1, A2 y B1)."
+    },
+    {
+      "clave": "ciencias-naturales",
+      "nombre": "Ciencias naturales",
+      "grupo": "Pruebas Saber",
+      "grados": "1-11",
+      "descripcion": "Ciencias naturales y educación ambiental: entorno vivo, entorno físico, química y CTS."
+    },
+    {
+      "clave": "biologia",
+      "nombre": "Biología",
+      "grupo": "Asignaturas",
+      "grados": "6-11",
+      "descripcion": "La célula, genética, ecosistemas, evolución, fisiología y salud."
+    },
+    {
+      "clave": "fisica",
+      "nombre": "Física",
+      "grupo": "Asignaturas",
+      "grados": "9-11",
+      "descripcion": "Cinemática, dinámica, energía, ondas, calor y electricidad."
+    },
+    {
+      "clave": "quimica",
+      "nombre": "Química",
+      "grupo": "Asignaturas",
+      "grados": "9-11",
+      "descripcion": "Materia, tabla periódica, enlaces, reacciones, soluciones y química orgánica."
+    },
+    {
+      "clave": "ciencias-sociales",
+      "nombre": "Ciencias sociales (historia y geografía)",
+      "grupo": "Pruebas Saber",
+      "grados": "1-11",
+      "descripcion": "Historia, geografía, economía y política; Sociales y Ciudadanas en Saber 11.°."
+    },
+    {
+      "clave": "constitucion-democracia",
+      "nombre": "Constitución política y democracia",
+      "grupo": "Asignaturas",
+      "grados": "6-11",
+      "descripcion": "Principios, derechos, mecanismos de protección y de participación, ramas del poder y organismos de control."
+    },
+    {
+      "clave": "competencias-ciudadanas",
+      "nombre": "Competencias ciudadanas",
+      "grupo": "Pruebas Saber",
+      "grados": "1-11",
+      "descripcion": "Pensamiento ciudadano: conocimientos, argumentación, multiperspectivismo y pensamiento sistémico."
+    },
+    {
+      "clave": "filosofia",
+      "nombre": "Filosofía",
+      "grupo": "Asignaturas",
+      "grados": "10-11",
+      "descripcion": "Problemas filosóficos, argumentación, ética, política, conocimiento y lógica."
+    },
+    {
+      "clave": "etica-valores",
+      "nombre": "Ética y valores humanos",
+      "grupo": "Asignaturas",
+      "grados": "1-11",
+      "descripcion": "Dignidad, autonomía, responsabilidad, justicia, convivencia y proyecto de vida."
+    },
+    {
+      "clave": "religion",
+      "nombre": "Educación religiosa",
+      "grupo": "Asignaturas",
+      "grados": "1-11",
+      "descripcion": "Hecho religioso, tradiciones, textos y principios; reflexión ética y respeto a la libertad de cultos."
+    },
+    {
+      "clave": "artistica",
+      "nombre": "Educación artística",
+      "grupo": "Asignaturas",
+      "grados": "1-11",
+      "descripcion": "Artes plásticas y visuales, música, danza, teatro y audiovisuales; teoría del color y apreciación."
+    },
+    {
+      "clave": "educacion-fisica",
+      "nombre": "Educación física, recreación y deporte",
+      "grupo": "Asignaturas",
+      "grados": "1-11",
+      "descripcion": "Motricidad, salud, reglamentos, capacidades físicas y valores del juego."
+    },
+    {
+      "clave": "tecnologia-informatica",
+      "nombre": "Tecnología e informática",
+      "grupo": "Asignaturas",
+      "grados": "1-11",
+      "descripcion": "Naturaleza de la tecnología, uso de herramientas digitales, solución de problemas y pensamiento computacional."
+    },
+    {
+      "clave": "ciencias-economicas-politicas",
+      "nombre": "Ciencias económicas y políticas",
+      "grupo": "Asignaturas",
+      "grados": "10-11",
+      "descripcion": "Economía básica (oferta, demanda, inflación), sistemas económicos y políticos, Estado y ciudadanía."
+    }
+  ]
+}

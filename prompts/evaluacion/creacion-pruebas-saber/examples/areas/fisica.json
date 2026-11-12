@@ -1,0 +1,129 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Física",
+    "areaClave": "fisica",
+    "asignatura": "Física",
+    "tema": "Cinemática, dinámica y energía",
+    "grado": "10",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "f1",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con la siguiente gráfica.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "lineas",
+        "params": {
+          "titulo": "Posición de un ciclista",
+          "x": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "series": [
+            {
+              "nombre": "Posición (m)",
+              "valores": [
+                0,
+                5,
+                10,
+                15,
+                20
+              ]
+            }
+          ],
+          "ejeX": "Tiempo (s)",
+          "ejeY": "Posición (m)",
+          "paso": 5
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "f1",
+      "pregunta": "¿Qué tipo de movimiento describe la gráfica?",
+      "correcta": "Movimiento rectilíneo uniforme",
+      "distractores": [
+        "Movimiento uniformemente acelerado",
+        "Reposo",
+        "Caída libre"
+      ],
+      "errores": [
+        "Una aceleración daría una curva, no una recta.",
+        "En reposo la posición no cambiaría.",
+        "En caída libre la posición crece cada vez más rápido."
+      ],
+      "justificacion": "La posición aumenta lo mismo en cada segundo: la velocidad es constante.",
+      "competencia": "Explicación de fenómenos",
+      "componente": "Físico",
+      "nivel": 2
+    },
+    {
+      "estimulo": "f1",
+      "pregunta": "¿Cuál es la velocidad del ciclista?",
+      "correcta": "5 m/s",
+      "distractores": [
+        "20 m/s",
+        "4 m/s",
+        "0,2 m/s"
+      ],
+      "errores": [
+        "Tomó la posición final como velocidad.",
+        "Tomó el tiempo final como velocidad.",
+        "Invirtió la división (tiempo ÷ distancia)."
+      ],
+      "justificacion": "v = 20 m ÷ 4 s = 5 m/s.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Físico",
+      "nivel": 2,
+      "calculo": "20/4"
+    },
+    {
+      "enunciado": "Un objeto de 2 kg se acelera a 3 m/s².",
+      "pregunta": "¿Qué fuerza neta actúa sobre él? (F = m · a)",
+      "correcta": "6 N",
+      "distractores": [
+        "1,5 N",
+        "5 N",
+        "0,67 N"
+      ],
+      "errores": [
+        "Dividió la aceleración entre la masa.",
+        "Sumó la masa y la aceleración.",
+        "Dividió la masa entre la aceleración."
+      ],
+      "justificacion": "F = 2 kg × 3 m/s² = 6 N.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Físico",
+      "nivel": 2,
+      "calculo": "2*3"
+    },
+    {
+      "enunciado": "Un objeto de 4 kg se mueve a 3 m/s.",
+      "pregunta": "¿Cuál es su energía cinética? (Ec = ½ · m · v²)",
+      "correcta": "18 J",
+      "distractores": [
+        "12 J",
+        "36 J",
+        "6 J"
+      ],
+      "errores": [
+        "Multiplicó masa por velocidad sin elevar al cuadrado ni usar ½.",
+        "Olvidó multiplicar por ½: 4 × 3².",
+        "Usó ½ · m · v sin elevar la velocidad al cuadrado."
+      ],
+      "justificacion": "Ec = ½ × 4 × 3² = 18 J.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Físico",
+      "nivel": 3,
+      "calculo": "4*3*3/2"
+    }
+  ]
+}

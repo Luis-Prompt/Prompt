@@ -1,0 +1,88 @@
+{
+  "clave": "artistica",
+  "nombre": "Educación artística",
+  "grupo": "Asignaturas",
+  "grados": "1-11",
+  "descripcion": "Artes plásticas y visuales, música, danza, teatro y audiovisuales; teoría del color y apreciación.",
+  "fuente_marco": "MEN, Orientaciones Pedagógicas para la Educación Artística en Básica y Media (2010): competencias de sensibilidad, apreciación estética y comunicación.",
+  "marcos": [
+    {
+      "nombre": "Educación artística",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Sensibilidad",
+          "descripcion": "Percibe y reconoce elementos sensibles de las manifestaciones artísticas."
+        },
+        {
+          "nombre": "Apreciación estética",
+          "descripcion": "Analiza, interpreta y valora obras y manifestaciones artísticas en su contexto."
+        },
+        {
+          "nombre": "Comunicación",
+          "descripcion": "Usa los lenguajes artísticos para expresar ideas y emociones."
+        }
+      ],
+      "componentes": [
+        "Artes plásticas y visuales",
+        "Música",
+        "Danza",
+        "Teatro",
+        "Audiovisuales"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Círculo cromático o paleta",
+    "Descripción de una obra o manifestación",
+    "Partitura o patrón rítmico descrito",
+    "Texto sobre un artista o movimiento",
+    "Aviso o afiche"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "circuloCromatico",
+    "aviso",
+    "flujo",
+    "dialogo"
+  ],
+  "reglas_de_calidad": [
+    "En un examen escrito evalúa conceptos (color, forma, ritmo, elementos del teatro) y apreciación, no el talento.",
+    "Para teoría del color usa `circuloCromatico` (con `ocultos`); no actives `nombres` si el nombre revela la respuesta.",
+    "Combina preguntas de única respuesta con abiertas (describe, interpreta) calificadas con rúbrica.",
+    "Respeta la diversidad cultural: incluye manifestaciones colombianas y regionales."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir colores primarios con secundarios",
+    "Confundir color cálido con frío",
+    "Confundir ritmo con melodía o con armonía",
+    "Confundir técnica con estilo",
+    "Atribuir una obra a un movimiento equivocado"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué lenguaje artístico: artes plásticas, música, danza, teatro o audiovisuales?",
+    "¿Qué tema: teoría del color, composición, ritmo, elementos del teatro, historia del arte regional…?",
+    "¿Incluimos preguntas abiertas de apreciación calificadas con rúbrica?"
+  ],
+  "frase_final": "¡El arte te da alas! Expresa lo que sabes.",
+  "verificacion": "Revisión ciega con rúbrica; las abiertas con criterios.",
+  "ejemplo": "examples/areas/artistica.json"
+}

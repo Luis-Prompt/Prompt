@@ -1,0 +1,115 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Biología",
+    "areaClave": "biologia",
+    "asignatura": "Biología",
+    "tema": "Ecosistemas, genética y célula",
+    "grado": "8",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "c1",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con la siguiente cadena alimenticia.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "flujo",
+        "params": {
+          "titulo": "Cadena alimenticia de un pastizal",
+          "nodos": [
+            "Pasto",
+            "Saltamontes",
+            {
+              "texto": "",
+              "oculto": true
+            },
+            "Serpiente",
+            "Águila"
+          ]
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "c1",
+      "pregunta": "¿Qué organismo corresponde al recuadro «?», si es un consumidor que se alimenta de saltamontes y es alimento de las serpientes?",
+      "correcta": "Una rana",
+      "distractores": [
+        "Una vaca",
+        "Un hongo",
+        "Una lombriz de tierra"
+      ],
+      "errores": [
+        "Es un herbívoro: no se alimenta de insectos.",
+        "Es un descomponedor, no un consumidor.",
+        "Es un detritívoro: se alimenta de materia muerta."
+      ],
+      "justificacion": "La rana come insectos como los saltamontes y es presa de las serpientes.",
+      "competencia": "Explicación de fenómenos",
+      "componente": "Entorno vivo",
+      "nivel": 2
+    },
+    {
+      "estimulo": "c1",
+      "pregunta": "Si desaparecieran las serpientes, ¿qué efecto es más probable a corto plazo?",
+      "correcta": "Aumentará la población de ranas.",
+      "distractores": [
+        "Disminuirá la población de ranas.",
+        "Aumentará la población de saltamontes.",
+        "Disminuirá la cantidad de pasto."
+      ],
+      "errores": [
+        "Ignora que las ranas perderían a su depredador.",
+        "Con más ranas, los saltamontes disminuirían.",
+        "Con menos saltamontes, el pasto tendería a aumentar."
+      ],
+      "justificacion": "Sin depredador, las ranas aumentan; luego bajan los saltamontes y sube el pasto.",
+      "competencia": "Explicación de fenómenos",
+      "componente": "Entorno vivo",
+      "nivel": 3
+    },
+    {
+      "enunciado": "En los guisantes, el color amarillo (A) domina sobre el verde (a). Se cruzan dos plantas heterocigotas (Aa × Aa).",
+      "pregunta": "¿Qué fracción de la descendencia tendrá semillas verdes?",
+      "correcta": "1/4",
+      "distractores": [
+        "1/2",
+        "3/4",
+        "0"
+      ],
+      "errores": [
+        "Confunde el cruce con Aa × aa.",
+        "Es la proporción de semillas amarillas.",
+        "Cree que el carácter recesivo no se puede expresar."
+      ],
+      "justificacion": "El cuadro de Punnett da AA, Aa, Aa y aa: solo aa (1 de 4) es verde.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Biológico",
+      "nivel": 3,
+      "calculo": "1/4"
+    },
+    {
+      "enunciado": "Las células eucariotas tienen distintos organelos con funciones específicas.",
+      "pregunta": "¿Qué organelo produce la mayor parte de la energía (ATP) de la célula?",
+      "correcta": "La mitocondria",
+      "distractores": [
+        "El ribosoma",
+        "El núcleo",
+        "El lisosoma"
+      ],
+      "errores": [
+        "El ribosoma sintetiza proteínas.",
+        "El núcleo guarda el material genético.",
+        "El lisosoma digiere sustancias."
+      ],
+      "justificacion": "La mitocondria realiza la respiración celular y produce la mayor parte del ATP.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Biológico",
+      "nivel": 1
+    }
+  ]
+}

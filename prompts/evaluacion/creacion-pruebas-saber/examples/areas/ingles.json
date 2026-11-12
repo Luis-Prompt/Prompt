@@ -1,0 +1,158 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Inglés",
+    "areaClave": "ingles",
+    "asignatura": "Inglés",
+    "tema": "Signs, conversations and short texts (A1-A2)",
+    "grado": "9",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "s1",
+      "tipo": "discontinuo",
+      "instruccion": "Answer {questions} according to the sign.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "aviso",
+        "params": {
+          "estilo": "prohibido",
+          "titulo": "NO MOBILE PHONES",
+          "lineas": [
+            "Please turn off your phone during the exam"
+          ]
+        }
+      }
+    },
+    {
+      "id": "s2",
+      "tipo": "discontinuo",
+      "instruccion": "Answer {questions} according to the conversation.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "dialogo",
+        "params": {
+          "mensajes": [
+            {
+              "quien": "Ana",
+              "texto": "Hi Tom! Are you going to the school fair?"
+            },
+            {
+              "quien": "Tom",
+              "texto": "Yes, I am. I will meet my friends there at three o'clock."
+            },
+            {
+              "quien": "Ana",
+              "texto": "Great! Can I come with you?"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "s3",
+      "titulo": "My day",
+      "texto": "My name is Laura and I live in Cúcuta. I have a small dog called Max. Every morning I walk with him before school. In the afternoon, I do my homework and play the guitar.",
+      "instruccion": "Answer {questions} according to the text."
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "s1",
+      "pregunta": "What does the sign mean?",
+      "correcta": "You must not use your phone here.",
+      "distractores": [
+        "You can use your phone only for calls.",
+        "You must buy a phone here.",
+        "You should charge your phone here."
+      ],
+      "errores": [
+        "Reads «turn off» as «only calls are allowed».",
+        "Confuses «phone» with something to buy.",
+        "Confuses the instruction with a service."
+      ],
+      "justificacion": "«No mobile phones» means it is forbidden to use phones.",
+      "competencia": "Lectura y uso del inglés",
+      "componente": "Avisos y señales",
+      "nivel": 2
+    },
+    {
+      "estimulo": "s2",
+      "pregunta": "What time will Tom meet his friends?",
+      "correcta": "At three o'clock.",
+      "distractores": [
+        "At two o'clock.",
+        "At four o'clock.",
+        "At five o'clock."
+      ],
+      "errores": [
+        "Another time that is not in the conversation.",
+        "Another time that is not in the conversation.",
+        "Another time that is not in the conversation."
+      ],
+      "justificacion": "Tom says: «I will meet my friends there at three o'clock».",
+      "competencia": "Lectura y uso del inglés",
+      "componente": "Conversaciones",
+      "nivel": 2
+    },
+    {
+      "enunciado": "Mary ____ her homework every day after school.",
+      "pregunta": "Choose the correct option to complete the sentence.",
+      "correcta": "does",
+      "distractores": [
+        "do",
+        "doing",
+        "is do"
+      ],
+      "errores": [
+        "Wrong verb form for «Mary» (third person singular).",
+        "Wrong form: the gerund needs «is».",
+        "Mixes the auxiliary «is» with the base verb."
+      ],
+      "justificacion": "With third person singular in present simple, we use «does».",
+      "competencia": "Lectura y uso del inglés",
+      "componente": "Gramática en contexto",
+      "nivel": 1
+    },
+    {
+      "estimulo": "s3",
+      "pregunta": "What does Laura do in the morning?",
+      "correcta": "She walks with her dog.",
+      "distractores": [
+        "She plays the guitar.",
+        "She does her homework.",
+        "She goes to the park."
+      ],
+      "errores": [
+        "This happens in the afternoon.",
+        "This happens in the afternoon.",
+        "The text does not mention the park."
+      ],
+      "justificacion": "The text says: «Every morning I walk with him before school».",
+      "competencia": "Lectura y uso del inglés",
+      "componente": "Comprensión de lectura",
+      "nivel": 2
+    },
+    {
+      "enunciado": "A person who teaches students at school is a ____.",
+      "pregunta": "Choose the correct word.",
+      "correcta": "teacher",
+      "distractores": [
+        "doctor",
+        "driver",
+        "farmer"
+      ],
+      "errores": [
+        "A doctor works in a hospital.",
+        "A driver drives vehicles.",
+        "A farmer works in the countryside."
+      ],
+      "justificacion": "A teacher is the person who teaches students at school.",
+      "competencia": "Lectura y uso del inglés",
+      "componente": "Vocabulario",
+      "nivel": 1
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Filosofía",
+    "areaClave": "filosofia",
+    "asignatura": "Filosofía",
+    "tema": "Conocimiento, argumentación y ética",
+    "grado": "10",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "p1",
+      "titulo": "Dos posturas sobre el conocimiento",
+      "texto": "Una persona afirma: «Todo lo que no puedo ver con mis propios ojos no existe». Para justificarlo, dice que los sentidos son la única fuente confiable de conocimiento.\nOtra persona le responde que nadie ha visto nunca los números y, sin embargo, los usamos para medir, construir y predecir con éxito.",
+      "instruccion": "Responde {preguntas} de acuerdo con el siguiente texto.",
+      "fuente": "Texto original para este ejemplo"
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "p1",
+      "pregunta": "¿Cuál es la tesis de la primera persona?",
+      "correcta": "Solo existe lo que puede percibirse con los sentidos.",
+      "distractores": [
+        "Los números son más reales que los objetos.",
+        "Los sentidos nos engañan siempre.",
+        "El conocimiento es imposible."
+      ],
+      "errores": [
+        "Es la postura de la segunda persona, no de la primera.",
+        "Contradice su confianza en los sentidos.",
+        "No se desprende del texto."
+      ],
+      "justificacion": "La primera persona afirma que lo que no se ve con los ojos no existe.",
+      "competencia": "Competencia crítica",
+      "componente": "Conocimiento",
+      "nivel": 2
+    },
+    {
+      "estimulo": "p1",
+      "pregunta": "¿Qué busca mostrar la segunda persona con el ejemplo de los números?",
+      "correcta": "Que hay cosas que no se ven y, sin embargo, existen o son útiles.",
+      "distractores": [
+        "Que los números no existen porque no se ven.",
+        "Que los sentidos son la mejor fuente de conocimiento.",
+        "Que medir es imposible sin ver."
+      ],
+      "errores": [
+        "Afirma lo contrario del ejemplo.",
+        "Es la tesis que se está cuestionando.",
+        "El texto afirma que se mide con éxito."
+      ],
+      "justificacion": "El ejemplo funciona como contraejemplo de la tesis de que solo existe lo que se percibe.",
+      "competencia": "Competencia dialógica",
+      "componente": "Conocimiento",
+      "nivel": 3
+    },
+    {
+      "enunciado": "Un argumento dice: «Todos los filósofos se hacen preguntas. Sofía se hace preguntas. Entonces, Sofía es filósofa».",
+      "pregunta": "¿Por qué este razonamiento no es válido?",
+      "correcta": "Porque otras personas que no son filósofas también se hacen preguntas.",
+      "distractores": [
+        "Porque la conclusión es falsa.",
+        "Porque las premisas son falsas.",
+        "Porque Sofía no existe."
+      ],
+      "errores": [
+        "La validez no depende de que la conclusión sea verdadera o falsa.",
+        "La validez no depende de la verdad de las premisas.",
+        "La existencia de Sofía no es el problema lógico."
+      ],
+      "justificacion": "Es la falacia de afirmar el consecuente: tener una propiedad común no basta para pertenecer al grupo.",
+      "competencia": "Competencia crítica",
+      "componente": "Lógica y argumentación",
+      "nivel": 3
+    },
+    {
+      "enunciado": "Se discute si es justo mentir para proteger a alguien.",
+      "pregunta": "¿A qué rama de la filosofía pertenece esta discusión?",
+      "correcta": "A la ética",
+      "distractores": [
+        "A la lógica",
+        "A la estética",
+        "A la metafísica"
+      ],
+      "errores": [
+        "La lógica estudia la validez de los argumentos.",
+        "La estética estudia la belleza y el arte.",
+        "La metafísica estudia la realidad y el ser."
+      ],
+      "justificacion": "La ética se pregunta por lo bueno, lo justo y el deber.",
+      "competencia": "Competencia dialógica",
+      "componente": "Ética",
+      "nivel": 1
+    }
+  ]
+}

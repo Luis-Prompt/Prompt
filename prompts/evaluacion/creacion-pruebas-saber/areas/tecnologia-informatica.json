@@ -1,0 +1,92 @@
+{
+  "clave": "tecnologia-informatica",
+  "nombre": "Tecnología e informática",
+  "grupo": "Asignaturas",
+  "grados": "1-11",
+  "descripcion": "Naturaleza de la tecnología, uso de herramientas digitales, solución de problemas y pensamiento computacional.",
+  "fuente_marco": "MEN, Orientaciones Generales para la Educación en Tecnología (2008): naturaleza y evolución de la tecnología; apropiación y uso; solución de problemas con tecnología; tecnología y sociedad.",
+  "marcos": [
+    {
+      "nombre": "Tecnología e informática",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Naturaleza y evolución de la tecnología",
+          "descripcion": "Reconoce características, evolución y relaciones de la tecnología."
+        },
+        {
+          "nombre": "Apropiación y uso de la tecnología",
+          "descripcion": "Usa herramientas y recursos tecnológicos de forma adecuada y segura."
+        },
+        {
+          "nombre": "Solución de problemas con tecnología",
+          "descripcion": "Identifica problemas, diseña y evalúa soluciones tecnológicas."
+        },
+        {
+          "nombre": "Tecnología y sociedad",
+          "descripcion": "Analiza los efectos de la tecnología en la sociedad y el ambiente."
+        }
+      ],
+      "componentes": [
+        "Hardware y software",
+        "Internet y seguridad digital",
+        "Hojas de cálculo y herramientas ofimáticas",
+        "Algoritmos y pensamiento computacional",
+        "Diseño y procesos tecnológicos"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Diagrama de flujo o algoritmo",
+    "Hoja de cálculo (tabla) con fórmula",
+    "Situación de seguridad digital",
+    "Proceso de diseño tecnológico",
+    "Aviso o correo para analizar"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "flujo",
+    "aviso",
+    "dialogo",
+    "barras"
+  ],
+  "reglas_de_calidad": [
+    "Prefiere preguntas de análisis (¿qué hace este algoritmo?, ¿qué error hay?) sobre memorizar nombres de programas.",
+    "Evita marcas o versiones que cambian rápido; usa conceptos generales.",
+    "Algoritmos: usa `flujo` con pasos numerados y pide el resultado de ejecutarlo; con valores numéricos, `calculo`.",
+    "Seguridad digital: usa casos realistas (phishing, contraseñas, privacidad)."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir hardware con software",
+    "Confundir internet con la web",
+    "Confundir copia de seguridad con almacenamiento en la nube",
+    "Confundir referencia relativa con absoluta en una hoja de cálculo",
+    "Ejecutar un ciclo un número de veces equivocado"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: hardware y software, internet y seguridad, hojas de cálculo, algoritmos o diseño tecnológico?",
+    "¿Qué herramientas han usado en clase?",
+    "¿Incluimos un diagrama de flujo o una tabla de hoja de cálculo?"
+  ],
+  "frase_final": "¡La tecnología está en tus manos! Demuéstralo.",
+  "verificacion": "Automática para cálculos (`calculo`); revisión ciega para conceptos.",
+  "ejemplo": "examples/areas/tecnologia-informatica.json"
+}

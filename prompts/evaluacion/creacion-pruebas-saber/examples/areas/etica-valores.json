@@ -1,0 +1,111 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Ética y valores humanos",
+    "areaClave": "etica-valores",
+    "asignatura": "Ética y valores humanos",
+    "tema": "Honestidad, lealtad y convivencia",
+    "grado": "6",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "z1",
+      "titulo": "Un dilema en el examen",
+      "texto": "Durante un examen, Juan nota que su mejor amigo, Daniel, copia las respuestas de otro compañero. Daniel le susurra: «No digas nada, somos amigos». Juan sabe que copiar es una falta y que perjudica a quienes sí estudiaron.",
+      "instruccion": "Responde {preguntas} de acuerdo con el siguiente caso.",
+      "fuente": "Caso hipotético para este ejemplo"
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "z1",
+      "pregunta": "¿Qué valores entran en conflicto para Juan?",
+      "correcta": "La lealtad hacia su amigo y la honestidad.",
+      "distractores": [
+        "La puntualidad y el orden.",
+        "La generosidad y la gratitud.",
+        "La obediencia y la disciplina."
+      ],
+      "errores": [
+        "No aparecen en la situación.",
+        "No aparecen en la situación.",
+        "No aparecen en la situación."
+      ],
+      "justificacion": "Juan quiere ser leal con Daniel, pero copiar es deshonesto y perjudica a otros.",
+      "competencia": "Reflexión y juicio moral",
+      "componente": "Autonomía y responsabilidad",
+      "nivel": 2
+    },
+    {
+      "estimulo": "z1",
+      "pregunta": "¿Qué intención tiene Daniel cuando dice «somos amigos»?",
+      "correcta": "Que Juan se calle y no lo delate.",
+      "distractores": [
+        "Que Juan le enseñe las respuestas.",
+        "Que Juan le agradezca por ayudarlo.",
+        "Que Juan cambie de lugar."
+      ],
+      "errores": [
+        "Daniel ya está copiando de otro compañero.",
+        "Daniel no ofrece ayuda alguna.",
+        "No pide cambio de lugar."
+      ],
+      "justificacion": "La frase busca que Juan sea cómplice por lealtad.",
+      "competencia": "Empatía y perspectiva del otro",
+      "componente": "Dignidad humana",
+      "nivel": 2
+    },
+    {
+      "estimulo": "z1",
+      "pregunta": "¿Qué acción es más coherente con la honestidad y el respeto hacia los demás?",
+      "correcta": "Hablar con Daniel, explicarle por qué es injusto y proponerle que lo corrija.",
+      "distractores": [
+        "Callarse para no perder la amistad.",
+        "Copiar también para no quedar en desventaja.",
+        "Burlarse de Daniel frente al grupo."
+      ],
+      "errores": [
+        "Se vuelve cómplice de la falta.",
+        "Responde a una falta con otra falta.",
+        "Irrespeta la dignidad de Daniel."
+      ],
+      "justificacion": "Dialogar permite ser honesto sin humillar y dar a Daniel la oportunidad de corregir.",
+      "competencia": "Responsabilidad y toma de decisiones",
+      "componente": "Autonomía y responsabilidad",
+      "nivel": 3
+    },
+    {
+      "enunciado": "Dos compañeros discuten por el uso de la cancha en el descanso.",
+      "pregunta": "¿Cuál es una forma pacífica de resolver el conflicto?",
+      "correcta": "Acordar turnos para usar la cancha.",
+      "distractores": [
+        "Que gane quien grite más fuerte.",
+        "Que el más grande decida.",
+        "Evitar para siempre a los compañeros."
+      ],
+      "errores": [
+        "Resuelve por imposición verbal.",
+        "Resuelve por la fuerza.",
+        "Evita el conflicto, pero no lo resuelve."
+      ],
+      "justificacion": "Los acuerdos de turnos respetan a ambas partes.",
+      "competencia": "Convivencia y resolución de conflictos",
+      "componente": "Justicia y convivencia",
+      "nivel": 1
+    },
+    {
+      "tipo": "abierta",
+      "enunciado": "Juan debe decidir qué hacer con lo que vio durante el examen.",
+      "pregunta": "Escribe qué harías tú en su lugar y explica tu decisión usando al menos dos valores.",
+      "lineas": 5,
+      "puntos": 2,
+      "respuestaModelo": "Respuesta abierta coherente: por ejemplo, hablar con Daniel (honestidad y respeto), explicarle las consecuencias y proponerle corregir. Debe nombrar al menos dos valores y justificarlos.",
+      "criterios": [
+        "Describe una acción posible (1 pto).",
+        "Justifica con al menos dos valores (1 pto)."
+      ]
+    }
+  ]
+}

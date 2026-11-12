@@ -1,0 +1,86 @@
+{
+  "clave": "constitucion-democracia",
+  "nombre": "Constitución política y democracia",
+  "grupo": "Asignaturas",
+  "grados": "6-11",
+  "descripcion": "Principios, derechos, mecanismos de protección y de participación, ramas del poder y organismos de control.",
+  "fuente_marco": "Constitución Política de Colombia (1991); Ley 115 de 1994 (art. 14) y Ley 107 de 1994; ICFES, Sociales y Ciudadanas (competencia Pensamiento social).",
+  "marcos": [
+    {
+      "nombre": "Constitución y democracia",
+      "grados": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Pensamiento social",
+          "descripcion": "Usa conceptos de las ciencias sociales y ubica eventos, procesos y problemáticas en el tiempo y el espacio; conoce principios constitucionales."
+        },
+        {
+          "nombre": "Interpretación y análisis de perspectivas",
+          "descripcion": "Evalúa fuentes y argumentos y comprende las posturas e intereses de distintos actores sociales."
+        },
+        {
+          "nombre": "Pensamiento reflexivo y sistémico",
+          "descripcion": "Reconoce modelos conceptuales y relaciona las distintas dimensiones (económica, política, cultural, ambiental) de un problema social."
+        }
+      ],
+      "componentes": [
+        "Principios fundamentales",
+        "Derechos y deberes",
+        "Mecanismos de protección",
+        "Mecanismos de participación",
+        "Ramas del poder y control",
+        "Organización territorial"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Caso o situación a la luz de un derecho",
+    "Fragmento adaptado de un artículo",
+    "Noticia o hecho institucional",
+    "Situación para identificar el mecanismo de participación"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "flujo",
+    "circular",
+    "barras",
+    "aviso"
+  ],
+  "reglas_de_calidad": [
+    "Usa casos concretos: el estudiante identifica el derecho, el mecanismo (tutela, acción popular, referendo, revocatoria…) o la rama del poder.",
+    "Verifica los artículos y nombres: solo cita artículos que conozcas con certeza (art. 1, 86, 103…) o describe el contenido sin número.",
+    "Distingue mecanismos de participación (art. 103: voto, plebiscito, referendo, consulta popular, cabildo abierto, iniciativa legislativa, revocatoria) de mecanismos de protección (tutela, acciones populares, de cumplimiento).",
+    "Neutralidad política: no evalúes partidos ni personas, sino instituciones y reglas."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir tutela con acción popular",
+    "Confundir referendo con plebiscito o con consulta popular",
+    "Atribuir a una rama del poder funciones de otra",
+    "Confundir derechos fundamentales con derechos colectivos",
+    "Creer que el presidente puede anular decisiones judiciales"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: principios, derechos y deberes, mecanismos de protección, mecanismos de participación, ramas del poder u organización territorial?",
+    "¿Qué grado y con casos reales o hipotéticos?",
+    "¿Incluimos preguntas de argumentación (¿qué mecanismo corresponde y por qué?)?"
+  ],
+  "frase_final": "¡Conocer tus derechos te hace libre! Éxito.",
+  "verificacion": "Revisión ciega con rúbrica; verificar artículos y definiciones.",
+  "ejemplo": "examples/areas/constitucion-democracia.json"
+}

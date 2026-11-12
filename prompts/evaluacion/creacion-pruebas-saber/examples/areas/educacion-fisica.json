@@ -1,0 +1,128 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Educación física, recreación y deporte",
+    "areaClave": "educacion-fisica",
+    "asignatura": "Educación física, recreación y deporte",
+    "tema": "Capacidades físicas y salud",
+    "grado": "8",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "fc",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con la siguiente gráfica.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "lineas",
+        "params": {
+          "titulo": "Frecuencia cardiaca durante la clase",
+          "x": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20"
+          ],
+          "series": [
+            {
+              "nombre": "Pulsaciones por minuto",
+              "valores": [
+                70,
+                110,
+                150,
+                160,
+                95
+              ]
+            }
+          ],
+          "ejeX": "Minutos",
+          "ejeY": "Pulsaciones/min",
+          "min": 60,
+          "max": 180,
+          "paso": 20
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "fc",
+      "pregunta": "¿En qué minuto se registró la frecuencia cardiaca más alta?",
+      "correcta": "En el minuto 15",
+      "distractores": [
+        "En el minuto 0",
+        "En el minuto 10",
+        "En el minuto 20"
+      ],
+      "errores": [
+        "Es el valor en reposo.",
+        "Es menor que el del minuto 15.",
+        "Es el valor en recuperación."
+      ],
+      "justificacion": "La gráfica muestra el pico de 160 pulsaciones por minuto en el minuto 15.",
+      "competencia": "Competencia motriz",
+      "componente": "Salud y autocuidado",
+      "nivel": 1
+    },
+    {
+      "estimulo": "fc",
+      "pregunta": "¿Qué ocurre entre los minutos 15 y 20?",
+      "correcta": "La frecuencia disminuye porque el cuerpo se recupera.",
+      "distractores": [
+        "Aumenta porque empezó el calentamiento.",
+        "No cambia porque el ejercicio fue constante.",
+        "Se detiene el corazón por el esfuerzo."
+      ],
+      "errores": [
+        "El calentamiento ocurre al inicio, no al final.",
+        "La gráfica muestra un descenso.",
+        "Es una afirmación falsa e irreal."
+      ],
+      "justificacion": "Después del esfuerzo máximo, la frecuencia baja a medida que el cuerpo se recupera.",
+      "competencia": "Competencia axiológica corporal",
+      "componente": "Salud y autocuidado",
+      "nivel": 2
+    },
+    {
+      "enunciado": "Antes de una clase de educación física, los estudiantes hacen calentamiento.",
+      "pregunta": "¿Para qué sirve principalmente el calentamiento?",
+      "correcta": "Para preparar los músculos y prevenir lesiones.",
+      "distractores": [
+        "Para que el ejercicio dure menos.",
+        "Para aumentar el peso corporal.",
+        "Para reemplazar el descanso posterior."
+      ],
+      "errores": [
+        "No acorta el ejercicio.",
+        "No aumenta el peso.",
+        "No reemplaza el descanso."
+      ],
+      "justificacion": "El calentamiento aumenta la temperatura muscular y prepara las articulaciones.",
+      "competencia": "Competencia motriz",
+      "componente": "Capacidades físicas",
+      "nivel": 1
+    },
+    {
+      "enunciado": "Un estudiante corre 20 minutos sin detenerse.",
+      "pregunta": "¿Qué capacidad física trabaja principalmente?",
+      "correcta": "La resistencia",
+      "distractores": [
+        "La flexibilidad",
+        "La fuerza máxima",
+        "La coordinación"
+      ],
+      "errores": [
+        "La flexibilidad se trabaja con estiramientos.",
+        "La fuerza máxima se trabaja con cargas altas y pocas repeticiones.",
+        "La coordinación se trabaja con movimientos precisos."
+      ],
+      "justificacion": "Mantener un esfuerzo prolongado desarrolla la resistencia.",
+      "competencia": "Competencia motriz",
+      "componente": "Capacidades físicas",
+      "nivel": 2
+    }
+  ]
+}

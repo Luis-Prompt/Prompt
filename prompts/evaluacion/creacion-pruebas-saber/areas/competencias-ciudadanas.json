@@ -1,0 +1,88 @@
+{
+  "clave": "competencias-ciudadanas",
+  "nombre": "Competencias ciudadanas",
+  "grupo": "Pruebas Saber",
+  "grados": "1-11",
+  "descripcion": "Pensamiento ciudadano: conocimientos, argumentación, multiperspectivismo y pensamiento sistémico.",
+  "fuente_marco": "ICFES, Saber 5.°, 7.° y 9.° — Competencias ciudadanas (pensamiento ciudadano; acciones y actitudes); Estándares de Competencias Ciudadanas (MEN, 2004): convivencia y paz; participación y responsabilidad democrática; pluralidad, identidad y valoración de las diferencias.",
+  "marcos": [
+    {
+      "nombre": "Pensamiento ciudadano",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Conocimientos",
+          "descripcion": "Conoce los derechos, deberes, mecanismos e instituciones que regulan la vida en sociedad."
+        },
+        {
+          "nombre": "Argumentación",
+          "descripcion": "Analiza y evalúa argumentos sobre situaciones de la vida ciudadana."
+        },
+        {
+          "nombre": "Multiperspectivismo",
+          "descripcion": "Comprende los puntos de vista e intereses de las distintas personas involucradas en una situación."
+        },
+        {
+          "nombre": "Pensamiento sistémico",
+          "descripcion": "Reconoce que las decisiones tienen efectos en distintos ámbitos y relaciona las partes con el todo."
+        }
+      ],
+      "componentes": [
+        "Convivencia y paz",
+        "Participación y responsabilidad democrática",
+        "Pluralidad, identidad y valoración de las diferencias"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Situación de convivencia escolar",
+    "Dilema o conflicto entre personas",
+    "Caso de participación (gobierno escolar)",
+    "Situación de discriminación o de diferencias"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "dialogo",
+    "aviso",
+    "flujo"
+  ],
+  "reglas_de_calidad": [
+    "Plantea situaciones cercanas al estudiante y con actores diversos; no pidas «lo que harías» (opinión), sino analizar, comprender perspectivas o identificar derechos.",
+    "Una sola opción debe ser defendible según los principios y la norma (Constitución, manual de convivencia).",
+    "Evita estereotipos de género, origen, religión o condición social.",
+    "Las acciones y actitudes se evalúan con cuestionarios, no con preguntas de única respuesta correcta."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Responder desde el «deber ser» o la opinión y no desde el análisis",
+    "Atribuir la causa del conflicto solo a una persona",
+    "Confundir derecho con favor o con privilegio",
+    "Resolver el conflicto con violencia o imposición",
+    "Ignorar la perspectiva de uno de los actores"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué competencia: conocimientos, argumentación, multiperspectivismo o pensamiento sistémico?",
+    "¿Qué ámbito: convivencia y paz, participación democrática o pluralidad y diferencias?",
+    "¿Con casos del colegio, de la familia o de la comunidad?"
+  ],
+  "frase_final": "¡Convivir bien comienza contigo! Tú puedes.",
+  "verificacion": "Revisión ciega con rúbrica (obligatoria).",
+  "ejemplo": "examples/areas/competencias-ciudadanas.json"
+}

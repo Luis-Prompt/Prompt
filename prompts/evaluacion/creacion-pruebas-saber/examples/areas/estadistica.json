@@ -1,0 +1,153 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Estadística y probabilidad",
+    "areaClave": "estadistica",
+    "asignatura": "Estadística y probabilidad",
+    "tema": "Interpretación de datos y probabilidad",
+    "grado": "9",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "g1",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con la siguiente gráfica.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "circular",
+        "params": {
+          "titulo": "Deporte favorito de 40 estudiantes",
+          "categorias": [
+            {
+              "nombre": "Fútbol",
+              "valor": 16
+            },
+            {
+              "nombre": "Baloncesto",
+              "valor": 10
+            },
+            {
+              "nombre": "Voleibol",
+              "valor": 8
+            },
+            {
+              "nombre": "Natación",
+              "valor": 6
+            }
+          ],
+          "mostrar": "porcentaje"
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "g1",
+      "pregunta": "¿Cuántos estudiantes prefieren baloncesto?",
+      "correcta": "10 estudiantes",
+      "distractores": [
+        "25 estudiantes",
+        "15 estudiantes",
+        "4 estudiantes"
+      ],
+      "errores": [
+        "Tomó el porcentaje (25 %) como si fuera el número de estudiantes.",
+        "Usó el porcentaje de otra categoría (natación, 15 %).",
+        "Calculó el 10 % de 40 en lugar del 25 %."
+      ],
+      "justificacion": "El 25 % de 40 estudiantes es 10.",
+      "competencia": "Comunicación, representación y modelación",
+      "componente": "Aleatorio",
+      "nivel": 2,
+      "dba": "Interpretar gráficos circulares",
+      "calculo": "25*40/100"
+    },
+    {
+      "estimulo": "g1",
+      "pregunta": "¿Qué fracción de los estudiantes prefiere fútbol o voleibol?",
+      "correcta": "3/5",
+      "distractores": [
+        "2/5",
+        "1/4",
+        "13/20"
+      ],
+      "errores": [
+        "Solo consideró fútbol (40 %).",
+        "Tomó baloncesto (25 %) en lugar de voleibol.",
+        "Sumó fútbol y baloncesto en vez de fútbol y voleibol."
+      ],
+      "justificacion": "Fútbol (40 %) + voleibol (20 %) = 60 % = 60/100 = 3/5.",
+      "competencia": "Comunicación, representación y modelación",
+      "componente": "Aleatorio",
+      "nivel": 2,
+      "dba": "Operar con porcentajes y fracciones",
+      "calculo": "(40+20)/100"
+    },
+    {
+      "enunciado": "Las notas de cinco estudiantes en un quiz fueron: 3,0; 4,0; 4,0; 5,0 y 4,5.",
+      "pregunta": "¿Cuál es el promedio de las notas?",
+      "correcta": "4,1",
+      "distractores": [
+        "4,0",
+        "4,4",
+        "20,5"
+      ],
+      "errores": [
+        "Dio la mediana (o la moda) en lugar del promedio.",
+        "Omitió la nota 3,0 y dividió entre 4.",
+        "Sumó las notas y no dividió entre 5."
+      ],
+      "justificacion": "La suma es 20,5 y, dividida entre 5 datos, da 4,1.",
+      "competencia": "Planteamiento y resolución de problemas",
+      "componente": "Aleatorio",
+      "nivel": 2,
+      "dba": "Calcular medidas de tendencia central",
+      "calculo": "(3+4+4+5+4.5)/5",
+      "visual": {
+        "tipo": 2,
+        "titulo": "Notas del quiz",
+        "headers": [
+          "Estudiante",
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "rows": [
+          [
+            "Nota",
+            "3,0",
+            "4,0",
+            "4,0",
+            "5,0",
+            "4,5"
+          ]
+        ]
+      }
+    },
+    {
+      "enunciado": "En una bolsa hay 3 balotas rojas, 5 azules y 2 verdes. Se saca una al azar.",
+      "pregunta": "¿Cuál es la probabilidad de que la balota sea azul?",
+      "correcta": "1/2",
+      "distractores": [
+        "5/3",
+        "1/5",
+        "3/10"
+      ],
+      "errores": [
+        "Comparó azules con rojas (5/3) en lugar de compararlas con el total.",
+        "Usó 1 caso favorable en vez de 5.",
+        "Dio la probabilidad de sacar una balota roja."
+      ],
+      "justificacion": "Hay 5 casos favorables de 10 posibles: 5/10 = 1/2.",
+      "competencia": "Planteamiento y resolución de problemas",
+      "componente": "Aleatorio",
+      "nivel": 2,
+      "dba": "Calcular probabilidades simples",
+      "calculo": "5/10"
+    }
+  ]
+}

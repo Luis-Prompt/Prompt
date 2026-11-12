@@ -1,0 +1,86 @@
+{
+  "clave": "lectura-critica",
+  "nombre": "Lectura crítica",
+  "grupo": "Pruebas Saber",
+  "grados": "9-11",
+  "descripcion": "Prueba de lectura de Saber 11.°: textos continuos y discontinuos, literarios e informativos.",
+  "fuente_marco": "ICFES, Guía de orientación Saber 11.° (icfes.gov.co) — prueba de Lectura Crítica (3 competencias, 4 niveles; textos de hasta ~500 palabras).",
+  "marcos": [
+    {
+      "nombre": "Saber 11.°",
+      "grados": [
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Identifica y entiende los contenidos locales que conforman un texto",
+          "descripcion": "Comprende el significado de palabras, expresiones y frases explícitas y sus relaciones semánticas."
+        },
+        {
+          "nombre": "Comprende cómo se articulan las partes de un texto para darle un sentido global",
+          "descripcion": "Relaciona frases, párrafos y secciones para comprender el sentido global del texto."
+        },
+        {
+          "nombre": "Reflexiona a partir de un texto y evalúa su contenido",
+          "descripcion": "Evalúa la validez de argumentos, advierte supuestos, deriva implicaciones y reconoce estrategias argumentativas y retóricas."
+        }
+      ],
+      "componentes": [
+        "Texto continuo literario",
+        "Texto continuo informativo",
+        "Texto continuo filosófico",
+        "Texto discontinuo literario",
+        "Texto discontinuo informativo"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ],
+      "niveles": [
+        "Identifica elementos literales en textos continuos y discontinuos.",
+        "Comprende de forma literal, reconoce información explícita, estructura y relaciones básicas.",
+        "Infiere contenidos implícitos, jerarquiza información, reconoce intención y valida argumentos.",
+        "Reflexiona sobre la visión de mundo del autor, evalúa argumentos y contrasta con la posición propia."
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Texto continuo literario (cuento, poema, fábula)",
+    "Texto continuo informativo (ensayo, columna, crónica)",
+    "Texto filosófico breve",
+    "Texto discontinuo: infografía, aviso, tabla, etiqueta, caricatura o cómic"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "aviso",
+    "dialogo",
+    "barras",
+    "flujo"
+  ],
+  "reglas_de_calidad": [
+    "Siempre con `estimulos`: un texto (máx. ~500 palabras) para 2–5 preguntas; numera los párrafos con `numerarParrafos:true` si las preguntas los citan.",
+    "Distribución sugerida de competencias: 25 % local, 42 % global, 33 % crítica; reparte los niveles 1–4.",
+    "No evalúes conocimientos externos: toda respuesta debe poder sostenerse con el texto.",
+    "Incluye al menos un texto discontinuo (aviso, tabla, infografía) cuando haya 8 o más preguntas."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Dato literal verdadero pero que no responde lo que se pregunta",
+    "Conclusión que parece razonable pero el texto no la autoriza",
+    "Atribuir al autor una postura contraria",
+    "Confundir la tesis con un ejemplo o un argumento",
+    "Generalizar más allá de lo que afirma el texto"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tipos de texto quieres: literario, informativo, filosófico y/o discontinuo?",
+    "¿Cuántos textos y cuántas preguntas por texto?",
+    "¿Tienes los textos, o redacto textos originales de la longitud y complejidad del grado?",
+    "¿Qué mezcla de niveles de desempeño (1 a 4) buscas?"
+  ],
+  "frase_final": "¡Lee entre líneas y piensa con criterio!",
+  "verificacion": "Revisión ciega con rúbrica (obligatoria).",
+  "ejemplo": "examples/areas/lectura-critica.json"
+}

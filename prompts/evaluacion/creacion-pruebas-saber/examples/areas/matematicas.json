@@ -1,0 +1,142 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Matemáticas",
+    "areaClave": "matematicas",
+    "asignatura": "Matemáticas",
+    "tema": "Ecuaciones, áreas y proporcionalidad",
+    "grado": "9",
+    "docente": ""
+  },
+  "config": {},
+  "preguntas": [
+    {
+      "enunciado": "Un taxi cobra $4.000 de banderazo y $1.500 por cada kilómetro recorrido. Camila pagó $14.500 por un viaje.",
+      "pregunta": "¿Cuántos kilómetros recorrió Camila?",
+      "correcta": "7 km",
+      "distractores": [
+        "10 km",
+        "8 km",
+        "6 km"
+      ],
+      "errores": [
+        "Dividió 14.500 entre 1.500 y aproximó, ignorando el banderazo.",
+        "Contó el banderazo como un kilómetro más.",
+        "Restó un kilómetro por el banderazo en vez de restar los $4.000."
+      ],
+      "justificacion": "Se resta el banderazo: 14.500 − 4.000 = 10.500, y se divide entre 1.500: 7 km.",
+      "competencia": "Planteamiento y resolución de problemas",
+      "componente": "Numérico-variacional",
+      "nivel": 2,
+      "dba": "Resolver problemas con ecuaciones lineales",
+      "calculo": "(14500-4000)/1500"
+    },
+    {
+      "enunciado": "Luis resolvió la ecuación 3(x − 2) = 15 así: 3x − 2 = 15; 3x = 17; x = 17/3.",
+      "pregunta": "¿Cuál es el error en el procedimiento de Luis?",
+      "correcta": "No multiplicó el 2 por 3 al aplicar la propiedad distributiva.",
+      "distractores": [
+        "Debió restar 3 a ambos lados antes de abrir el paréntesis.",
+        "La propiedad distributiva no se puede aplicar cuando hay una resta.",
+        "El resultado debía ser negativo por el signo menos del paréntesis."
+      ],
+      "errores": [
+        "Propone un paso que no sirve para despejar la x.",
+        "Cree falsamente que la distributiva no funciona con restas.",
+        "Confunde el signo dentro del paréntesis con el signo del resultado."
+      ],
+      "justificacion": "Al distribuir, 3(x − 2) = 3x − 6, no 3x − 2. Entonces 3x = 21 y x = 7.",
+      "competencia": "Razonamiento y argumentación",
+      "componente": "Numérico-variacional",
+      "nivel": 3,
+      "dba": "Validar procedimientos algebraicos"
+    },
+    {
+      "enunciado": "En el plano cartesiano se dibujó el triángulo ABC, con A(1, 1), B(6, 1) y C(3, 5). Cada cuadro mide 1 unidad.",
+      "pregunta": "¿Cuál es el área del triángulo ABC?",
+      "correcta": "10 unidades cuadradas",
+      "distractores": [
+        "20 unidades cuadradas",
+        "12,5 unidades cuadradas",
+        "14 unidades cuadradas"
+      ],
+      "errores": [
+        "Multiplicó base por altura y no dividió entre 2.",
+        "Usó la base (5) también como altura: 5 × 5 ÷ 2.",
+        "Sumó los lados (perímetro aproximado) en vez de calcular el área."
+      ],
+      "justificacion": "La base AB mide 5 y la altura 4 (de y = 1 a y = 5): 5 × 4 ÷ 2 = 10.",
+      "competencia": "Comunicación, representación y modelación",
+      "componente": "Geométrico-métrico",
+      "nivel": 2,
+      "dba": "Calcular áreas en el plano cartesiano",
+      "calculo": "5*4/2",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "plano",
+        "params": {
+          "titulo": "Triángulo ABC",
+          "xmin": -1,
+          "xmax": 8,
+          "ymin": -1,
+          "ymax": 7,
+          "puntos": [
+            {
+              "x": 1,
+              "y": 1,
+              "etiqueta": "A"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "etiqueta": "B"
+            },
+            {
+              "x": 3,
+              "y": 5,
+              "etiqueta": "C"
+            }
+          ],
+          "poligono": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "enunciado": "Una receta para 4 personas lleva 300 g de harina.",
+      "pregunta": "¿Cuántos gramos de harina se necesitan para 10 personas?",
+      "correcta": "750 g",
+      "distractores": [
+        "1.200 g",
+        "306 g",
+        "600 g"
+      ],
+      "errores": [
+        "Multiplicó 300 × 4 en lugar de usar la proporción.",
+        "Sumó la diferencia de personas (6) a los 300 g.",
+        "Duplicó la receta, aproximando 10 personas a 8."
+      ],
+      "justificacion": "Cada persona usa 300 ÷ 4 = 75 g; para 10 personas: 75 × 10 = 750 g.",
+      "competencia": "Planteamiento y resolución de problemas",
+      "componente": "Numérico-variacional",
+      "nivel": 2,
+      "dba": "Resolver problemas de proporcionalidad directa",
+      "calculo": "300*10/4"
+    },
+    {
+      "tipo": "abierta",
+      "enunciado": "Observa la ecuación 2x + 5 = 17.",
+      "pregunta": "Resuélvela y explica con tus palabras cada paso del procedimiento.",
+      "lineas": 4,
+      "puntos": 2,
+      "respuestaModelo": "2x = 17 − 5 = 12; x = 12 ÷ 2 = 6. Se resta 5 a ambos lados y luego se divide entre 2.",
+      "criterios": [
+        "Resta 5 a ambos lados (1 pto).",
+        "Divide entre 2 y obtiene x = 6 (1 pto)."
+      ]
+    }
+  ]
+}

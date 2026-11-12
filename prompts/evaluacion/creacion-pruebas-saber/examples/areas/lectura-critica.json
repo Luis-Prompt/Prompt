@@ -1,0 +1,117 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Lectura crítica",
+    "areaClave": "lectura-critica",
+    "asignatura": "Lectura crítica",
+    "tema": "Texto informativo y texto discontinuo",
+    "grado": "11",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "b1",
+      "titulo": "¿Para qué sirven las bibliotecas hoy?",
+      "numerarParrafos": true,
+      "texto": "Con una conexión a internet y un teléfono, casi cualquier dato está al alcance de la mano. De ahí que muchos se pregunten si las bibliotecas públicas todavía son necesarias.\nLa respuesta es que sí, pero por razones distintas a las de hace cincuenta años. Una biblioteca ya no es solo un depósito de libros: es un espacio gratuito donde se enseña a buscar, comparar y evaluar información, algo que ninguna pantalla garantiza por sí sola.\nAdemás, ofrece lo que el mercado rara vez regala: un lugar tranquilo para estudiar, computadores para quienes no tienen uno en casa y talleres abiertos a toda la comunidad.\nCerrar bibliotecas porque existe internet equivale a cerrar las escuelas porque existen los videos educativos: se confunde el acceso a la información con la capacidad de usarla bien.",
+      "fuente": "Columna de opinión escrita para este ejemplo"
+    },
+    {
+      "id": "b2",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con el siguiente aviso.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "aviso",
+        "params": {
+          "estilo": "informativo",
+          "titulo": "BIBLIOTECA MUNICIPAL",
+          "lineas": [
+            "Lunes a viernes: 8:00 a. m. a 6:00 p. m.",
+            "Sábados: 9:00 a. m. a 1:00 p. m.",
+            "Préstamo con carné: máximo 3 libros por 8 días"
+          ]
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "b1",
+      "pregunta": "Según el párrafo 2, una biblioteca actual es principalmente",
+      "correcta": "un espacio gratuito donde se aprende a buscar y evaluar información.",
+      "distractores": [
+        "un depósito donde solo se guardan libros antiguos.",
+        "un lugar que reemplaza el uso del internet.",
+        "un servicio de venta de libros a bajo costo."
+      ],
+      "errores": [
+        "Retoma la idea que el texto descarta («ya no es solo un depósito»).",
+        "El texto no plantea que reemplace al internet.",
+        "El texto habla de un espacio gratuito, no de ventas."
+      ],
+      "justificacion": "El párrafo 2 dice que es un espacio gratuito donde se enseña a buscar, comparar y evaluar información.",
+      "competencia": "Identifica y entiende los contenidos locales que conforman un texto",
+      "componente": "Texto continuo informativo",
+      "nivel": 2
+    },
+    {
+      "estimulo": "b1",
+      "pregunta": "¿Qué función cumple el párrafo 4 dentro del texto?",
+      "correcta": "Refuerza la tesis mediante una analogía.",
+      "distractores": [
+        "Presenta una objeción que el autor acepta.",
+        "Resume los datos estadísticos del texto.",
+        "Introduce un tema distinto al de los párrafos anteriores."
+      ],
+      "errores": [
+        "El párrafo no acepta la objeción: la rebate.",
+        "El texto no presenta datos estadísticos.",
+        "Continúa el mismo tema, no cambia de asunto."
+      ],
+      "justificacion": "Compara cerrar bibliotecas con cerrar escuelas por los videos educativos: es una analogía que apoya la tesis.",
+      "competencia": "Comprende cómo se articulan las partes de un texto para darle un sentido global",
+      "componente": "Texto continuo informativo",
+      "nivel": 3
+    },
+    {
+      "estimulo": "b1",
+      "pregunta": "El argumento del párrafo 4 se debilitaría si se demostrara que",
+      "correcta": "las personas que usan internet aprenden por sí solas a evaluar la información.",
+      "distractores": [
+        "las bibliotecas ofrecen computadores gratuitos a sus usuarios.",
+        "muchas escuelas utilizan videos educativos en sus clases.",
+        "algunas bibliotecas tienen horarios limitados."
+      ],
+      "errores": [
+        "Refuerza la idea de que la biblioteca ofrece servicios útiles.",
+        "No afecta la analogía entre bibliotecas y escuelas.",
+        "Un horario limitado no refuta que se confunda acceso con capacidad."
+      ],
+      "justificacion": "El argumento sostiene que acceso no es capacidad de usar bien la información; si el acceso bastara para aprender a evaluarla, el argumento perdería fuerza.",
+      "competencia": "Reflexiona a partir de un texto y evalúa su contenido",
+      "componente": "Texto continuo informativo",
+      "nivel": 4
+    },
+    {
+      "estimulo": "b2",
+      "pregunta": "Daniel tiene carné y quiere llevarse 4 libros por dos semanas. Según el aviso, ¿qué le corresponde hacer?",
+      "correcta": "Llevar máximo 3 libros y devolverlos en 8 días.",
+      "distractores": [
+        "Llevar los 4 libros y devolverlos en 8 días.",
+        "Llevar los 4 libros por dos semanas con su carné.",
+        "Llevar 3 libros y devolverlos en dos semanas."
+      ],
+      "errores": [
+        "Ignora el máximo de 3 libros.",
+        "Ignora el máximo de libros y el plazo.",
+        "Respeta el máximo, pero cambia el plazo de 8 días."
+      ],
+      "justificacion": "El aviso indica un préstamo de máximo 3 libros por 8 días con carné.",
+      "competencia": "Identifica y entiende los contenidos locales que conforman un texto",
+      "componente": "Texto discontinuo informativo",
+      "nivel": 2
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "clave": "filosofia",
+  "nombre": "Filosofía",
+  "grupo": "Asignaturas",
+  "grados": "10-11",
+  "descripcion": "Problemas filosóficos, argumentación, ética, política, conocimiento y lógica.",
+  "fuente_marco": "MEN, Orientaciones Pedagógicas para la Filosofía en la Educación Media (2010): pensamiento crítico; ICFES, Lectura Crítica (textos filosóficos).",
+  "marcos": [
+    {
+      "nombre": "Filosofía en la educación media",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Competencia crítica",
+          "descripcion": "Analiza y evalúa argumentos, supuestos y consecuencias de una postura."
+        },
+        {
+          "nombre": "Competencia dialógica",
+          "descripcion": "Comprende y contrasta posturas distintas, reconociendo razones y su contexto."
+        },
+        {
+          "nombre": "Competencia creativa",
+          "descripcion": "Propone alternativas, ejemplos y soluciones a problemas filosóficos."
+        }
+      ],
+      "componentes": [
+        "Conocimiento",
+        "Ética",
+        "Política",
+        "Estética",
+        "Metafísica y ontología",
+        "Lógica y argumentación"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Texto filosófico breve (adaptado o propio)",
+    "Argumento con premisas y conclusión",
+    "Dilema ético",
+    "Comparación de dos posturas"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "dialogo",
+    "flujo"
+  ],
+  "reglas_de_calidad": [
+    "No evalúes datos de historia de la filosofía de memoria: pide identificar la tesis, las premisas, el supuesto o la consecuencia de un texto.",
+    "Redacta textos propios o parafraseados (no copies traducciones con derechos de autor) y cita el autor solo si estás seguro.",
+    "Una sola respuesta debe ser defendible desde el texto; evita pedir la opinión del estudiante.",
+    "Incluye preguntas de lógica sencilla (validez de un argumento, falacias comunes)."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir la tesis con una premisa",
+    "Confundir un ejemplo con el argumento general",
+    "Atribuir al autor la postura contraria",
+    "Aceptar una falacia (generalización apresurada, falsa causa, ad hominem)",
+    "Confundir lo que es (descriptivo) con lo que debe ser (normativo)"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué eje: conocimiento, ética, política, estética, metafísica o lógica y argumentación?",
+    "¿Tienes textos o autores específicos, o redacto textos originales?",
+    "¿Qué profundidad: identificar tesis y premisas, evaluar el argumento o contrastar posturas?"
+  ],
+  "frase_final": "¡Pensar bien es tu mejor herramienta! Razona con calma.",
+  "verificacion": "Revisión ciega con rúbrica (obligatoria).",
+  "ejemplo": "examples/areas/filosofia.json"
+}

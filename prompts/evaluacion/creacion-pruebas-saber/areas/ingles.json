@@ -1,0 +1,111 @@
+{
+  "clave": "ingles",
+  "nombre": "Inglés",
+  "grupo": "Pruebas Saber",
+  "grados": "1-11",
+  "descripcion": "Lectura y uso del inglés alineados con el MCER (Saber 11.°: Pre A1, A1, A2 y B1).",
+  "fuente_marco": "ICFES, Saber 11.° — Prueba de Inglés (niveles de desempeño vigentes: Pre A1, A1, A2, B1; hasta 2021 se reportaban A-, A1, A2, B1, B+); MEN, Currículo Sugerido de Inglés.",
+  "marcos": [
+    {
+      "nombre": "Saber 11.°",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Lectura y uso del inglés",
+          "descripcion": "Comprende y usa el inglés en avisos, vocabulario, conversaciones, gramática en contexto y textos de lectura (la prueba tiene siete partes)."
+        }
+      ],
+      "componentes": [
+        "Avisos y señales",
+        "Vocabulario",
+        "Conversaciones",
+        "Gramática en contexto",
+        "Comprensión de lectura"
+      ],
+      "niveles_cortos": [
+        "Pre A1",
+        "A1",
+        "A2",
+        "B1"
+      ],
+      "niveles": [
+        "Identifica palabras simples en frases sencillas sobre personas y lugares familiares.",
+        "Entiende información e indicaciones en avisos según el contexto.",
+        "Comprende información específica en textos informativos y descriptivos sencillos.",
+        "Infiere y comprende un mayor rango de textos de diferentes campos."
+      ]
+    },
+    {
+      "nombre": "Grados 1 a 9",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "competencias": [
+        {
+          "nombre": "Lectura y uso del inglés",
+          "descripcion": "Comprende y usa vocabulario, gramática y textos de nivel A1–A2 en contextos cercanos."
+        }
+      ],
+      "componentes": [
+        "Vocabulario",
+        "Gramática en contexto",
+        "Comprensión de lectura",
+        "Conversaciones"
+      ],
+      "niveles_cortos": [
+        "Pre A1",
+        "A1",
+        "A2",
+        "B1"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Aviso, señal o cartel",
+    "Conversación corta",
+    "Texto corto para completar (gramática)",
+    "Texto informativo o descriptivo breve",
+    "Correo, mensaje o invitación"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "aviso",
+    "dialogo",
+    "barras",
+    "flujo"
+  ],
+  "reglas_de_calidad": [
+    "Redacta enunciados, textos y opciones EN INGLÉS al nivel pedido (Pre A1, A1, A2 o B1); las instrucciones del examen quedan en español.",
+    "Usa vocabulario y estructuras del nivel; evita expresiones idiomáticas ajenas al nivel.",
+    "Para avisos y conversaciones usa las plantillas `aviso` y `dialogo`.",
+    "Cada pregunta debe evaluar una sola cosa (vocabulario, gramática o comprensión).",
+    "Revisión ciega: verifica ortografía y concordancia; una sola opción debe ser gramaticalmente correcta en el contexto."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Tiempo verbal equivocado (present simple vs. present continuous)",
+    "Falso amigo (actually/actualmente, library/librería)",
+    "Preposición incorrecta (in/on/at)",
+    "Orden de palabras influido por el español",
+    "Pronombre o posesivo equivocado (his/her/their)"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué nivel MCER buscas: Pre A1, A1, A2 o B1? (y qué grado)",
+    "¿Qué tipos de tarea: avisos, vocabulario, conversaciones, gramática en contexto o lectura?",
+    "¿Qué temas o vocabulario han visto (familia, escuela, comida, rutinas, viajes…)?",
+    "¿Cuántas preguntas por texto o conversación?"
+  ],
+  "frase_final": "¡You can do it! Respira, lee con calma y confía en ti.",
+  "verificacion": "Revisión ciega con rúbrica; verificación gramatical de cada opción.",
+  "ejemplo": "examples/areas/ingles.json"
+}

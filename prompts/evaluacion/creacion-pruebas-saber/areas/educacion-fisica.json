@@ -1,0 +1,87 @@
+{
+  "clave": "educacion-fisica",
+  "nombre": "Educación física, recreación y deporte",
+  "grupo": "Asignaturas",
+  "grados": "1-11",
+  "descripcion": "Motricidad, salud, reglamentos, capacidades físicas y valores del juego.",
+  "fuente_marco": "MEN, Orientaciones Pedagógicas para la Educación Física, Recreación y Deporte (2010): competencias motriz, expresiva corporal y axiológica corporal.",
+  "marcos": [
+    {
+      "nombre": "Educación física",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Competencia motriz",
+          "descripcion": "Comprende y aplica conceptos de movimiento, capacidades físicas y técnica."
+        },
+        {
+          "nombre": "Competencia expresiva corporal",
+          "descripcion": "Reconoce y usa el cuerpo para expresar y comunicar."
+        },
+        {
+          "nombre": "Competencia axiológica corporal",
+          "descripcion": "Relaciona la actividad física con la salud, el cuidado de sí y de los otros, y los valores del juego."
+        }
+      ],
+      "componentes": [
+        "Capacidades físicas",
+        "Deportes y reglamentos",
+        "Salud y autocuidado",
+        "Expresión corporal y recreación"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Situación de juego o deporte",
+    "Tabla de frecuencia cardiaca o de entrenamiento",
+    "Reglamento adaptado",
+    "Caso de salud o hábitos"
+  ],
+  "usa_textos_compartidos": false,
+  "plantillas_recomendadas": [
+    "lineas",
+    "barras",
+    "circular",
+    "cancha",
+    "flujo"
+  ],
+  "reglas_de_calidad": [
+    "Evalúa conocimiento escrito (reglas, capacidades, salud), nunca el rendimiento físico del estudiante.",
+    "Con datos (pulsaciones, tiempos) usa `lineas` o `barras` y `calculo`.",
+    "Cuida la inclusión: evita comparar cuerpos o capacidades físicas de las personas.",
+    "Verifica las reglas del deporte elegido."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir resistencia con fuerza",
+    "Confundir calentamiento con estiramiento final",
+    "Confundir regla de un deporte con la de otro",
+    "Creer que más intensidad siempre es mejor",
+    "Confundir frecuencia cardiaca en reposo con la máxima"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tema: capacidades físicas, deporte y reglamento, salud y hábitos, o expresión corporal?",
+    "¿Qué deporte(s) o actividades han trabajado?",
+    "¿Incluimos datos (pulsaciones, tiempos) para interpretar?"
+  ],
+  "frase_final": "¡Mente sana en cuerpo sano! Mucho éxito.",
+  "verificacion": "Automática para cálculos (`calculo`); revisión ciega para conceptos.",
+  "ejemplo": "examples/areas/educacion-fisica.json"
+}

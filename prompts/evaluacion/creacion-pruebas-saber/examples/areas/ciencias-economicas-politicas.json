@@ -1,0 +1,129 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Ciencias económicas y políticas",
+    "areaClave": "ciencias-economicas-politicas",
+    "asignatura": "Ciencias económicas y políticas",
+    "tema": "Precios, inflación y conceptos económicos",
+    "grado": "11",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "p",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con la siguiente gráfica.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "lineas",
+        "params": {
+          "titulo": "Precio del kilo de papa (miles de $)",
+          "x": [
+            "Ene",
+            "Feb",
+            "Mar",
+            "Abr",
+            "May"
+          ],
+          "series": [
+            {
+              "nombre": "Precio",
+              "valores": [
+                2,
+                2.2,
+                2.6,
+                3.2,
+                3.4
+              ]
+            }
+          ],
+          "ejeX": "Mes",
+          "ejeY": "Miles de $",
+          "min": 0,
+          "max": 4,
+          "paso": 1
+        }
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "p",
+      "pregunta": "¿Entre qué meses aumentó más el precio?",
+      "correcta": "Entre marzo y abril",
+      "distractores": [
+        "Entre enero y febrero",
+        "Entre febrero y marzo",
+        "Entre abril y mayo"
+      ],
+      "errores": [
+        "Aumentó solo 0,2.",
+        "Aumentó 0,4.",
+        "Aumentó 0,2."
+      ],
+      "justificacion": "De marzo (2,6) a abril (3,2) el aumento fue de 0,6, el mayor.",
+      "competencia": "Interpretación y análisis de perspectivas",
+      "componente": "Economía básica",
+      "nivel": 2
+    },
+    {
+      "enunciado": "La oferta de un producto disminuye y la demanda se mantiene igual.",
+      "pregunta": "¿Qué es lo más probable que ocurra con el precio?",
+      "correcta": "Que aumente.",
+      "distractores": [
+        "Que disminuya.",
+        "Que se mantenga igual.",
+        "Que desaparezca."
+      ],
+      "errores": [
+        "Sería lo esperado si la oferta aumentara.",
+        "Ignora el desequilibrio entre oferta y demanda.",
+        "No es una consecuencia necesaria."
+      ],
+      "justificacion": "Con menos oferta y la misma demanda, el producto es más escaso y su precio tiende a subir.",
+      "competencia": "Pensamiento social",
+      "componente": "Economía básica",
+      "nivel": 2
+    },
+    {
+      "enunciado": "El precio de una canasta pasó de $200.000 a $210.000 en un año.",
+      "pregunta": "¿Cuál fue la variación porcentual del precio?",
+      "correcta": "5 %",
+      "distractores": [
+        "10 %",
+        "0,5 %",
+        "105 %"
+      ],
+      "errores": [
+        "Tomó la diferencia en miles (10.000) como porcentaje.",
+        "Dividió la diferencia entre 2.000.000 (error de magnitud).",
+        "Dividió el precio final entre el inicial y lo expresó en porcentaje."
+      ],
+      "justificacion": "(210.000 − 200.000) ÷ 200.000 × 100 = 5 %.",
+      "competencia": "Pensamiento reflexivo y sistémico",
+      "componente": "Economía colombiana y global",
+      "nivel": 3,
+      "calculo": "(210000-200000)/200000"
+    },
+    {
+      "enunciado": "Para reducir el costo del transporte público, el Estado paga parte del pasaje.",
+      "pregunta": "¿Cómo se llama esta ayuda?",
+      "correcta": "Subsidio",
+      "distractores": [
+        "Impuesto",
+        "Préstamo",
+        "Precio máximo"
+      ],
+      "errores": [
+        "Un impuesto es un pago obligatorio al Estado.",
+        "Un préstamo se devuelve con intereses.",
+        "Un precio máximo limita el valor de un bien."
+      ],
+      "justificacion": "Un subsidio es una ayuda económica del Estado para reducir el costo de un bien o servicio.",
+      "competencia": "Pensamiento social",
+      "componente": "Sistemas políticos y Estado",
+      "nivel": 1
+    }
+  ]
+}

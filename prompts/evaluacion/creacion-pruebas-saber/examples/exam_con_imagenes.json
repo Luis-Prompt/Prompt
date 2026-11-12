@@ -1,0 +1,261 @@
+{
+  "_nota": "Ejemplo del flujo de imágenes con ChatGPT: cada pregunta trae 'imagenPrompt'.",
+  "meta": {
+    "area": "Ciencias naturales",
+    "areaClave": "ciencias-naturales",
+    "asignatura": "Ciencias naturales",
+    "tema": "Los seres vivos y su entorno",
+    "grado": "4",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "j1",
+      "titulo": "El jardín del colegio",
+      "texto": "Los estudiantes de 4.º A cuidan el jardín del colegio. Cada semana recogen cáscaras de frutas y hojas secas para preparar abono. Con él alimentan la tierra donde crecen las plantas. Hace poco notaron que en la tierra del jardín vivían muchas lombrices.",
+      "fuente": "Texto original para este ejemplo",
+      "imagenPrompt": "Un rincón de jardín escolar visto de frente: un pequeño bancal de tierra marrón oscura con tres plantas verdes pequeñas, una regadera metálica gris a la derecha y dos lombrices rosadas asomando de la tierra a la izquierda; unas cuantas cáscaras de frutas y hojas secas al pie. Sin personas. Fondo transparente."
+    }
+  ],
+  "preguntas": [
+    {
+      "enunciado": "Daniela dejó una planta de frijol en una maceta junto a la ventana de su salón.",
+      "pregunta": "¿Qué necesita la planta para producir su alimento?",
+      "correcta": "Luz, agua y aire",
+      "distractores": [
+        "Solo tierra",
+        "Solo agua",
+        "Oscuridad y calor"
+      ],
+      "errores": [
+        "Ignora la luz y el aire.",
+        "Ignora la luz y el aire.",
+        "La oscuridad impide la fotosíntesis."
+      ],
+      "justificacion": "Las plantas fabrican su alimento con luz, agua y aire (dióxido de carbono).",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno vivo",
+      "nivel": 1,
+      "imagenPrompt": "Una planta de frijol joven, con tallo verde y 6 hojas grandes, sembrada en una maceta de barro marrón sobre el alféizar de una ventana de salón; rayos de luz solar amarilla entran por la ventana desde arriba a la izquierda. Vista frontal, centrada, sin personas. Fondo transparente."
+    },
+    {
+      "enunciado": "Una vaca pasta todo el día en un potrero.",
+      "pregunta": "¿Qué tipo de alimentación tiene la vaca?",
+      "correcta": "Herbívora",
+      "distractores": [
+        "Carnívora",
+        "Omnívora",
+        "Descomponedora"
+      ],
+      "errores": [
+        "Se alimentaría de otros animales.",
+        "Comería plantas y animales.",
+        "Se alimentaría de materia muerta."
+      ],
+      "justificacion": "Las vacas se alimentan solo de plantas: son herbívoras.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno vivo",
+      "nivel": 1,
+      "imagenPrompt": "Una vaca lechera adulta de perfil, manchas negras sobre blanco, comiendo pasto verde con la cabeza baja; en el suelo, solo un pequeño manojo de pasto verde alrededor de sus patas (sin potrero ni cielo). Vista lateral completa, patas incluidas. Fondo transparente."
+    },
+    {
+      "enunciado": "En un congelador, un vaso con agua se convirtió en hielo.",
+      "pregunta": "¿En qué estado de la materia está el hielo?",
+      "correcta": "Sólido",
+      "distractores": [
+        "Líquido",
+        "Gaseoso",
+        "Plasma"
+      ],
+      "errores": [
+        "Es el estado del agua antes de congelarse.",
+        "Es el estado del vapor de agua.",
+        "No corresponde al hielo."
+      ],
+      "justificacion": "El hielo conserva su forma: es un sólido.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno físico",
+      "nivel": 1,
+      "imagenPrompt": "Un vaso transparente de vidrio, de boca ancha, lleno hasta el borde de cubos de hielo cristalinos con reflejos azulados claros y pequeñas gotas de agua condensada en la pared del vaso. Vista frontal, ligeramente desde arriba. Fondo transparente."
+    },
+    {
+      "enunciado": "Un pez nada en un río de Norte de Santander.",
+      "pregunta": "¿Cuál es el hábitat del pez?",
+      "correcta": "Acuático",
+      "distractores": [
+        "Terrestre",
+        "Aéreo",
+        "Subterráneo"
+      ],
+      "errores": [
+        "Los peces no viven en tierra.",
+        "Los peces no viven en el aire.",
+        "Los peces no viven bajo tierra."
+      ],
+      "justificacion": "Los peces viven y respiran en el agua.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno vivo",
+      "nivel": 1,
+      "imagenPrompt": "Un pez tipo bocachico (cuerpo plateado alargado con reflejos dorados) nadando hacia la derecha entre algas verdes y 4 burbujas de aire; solo el pez, las algas y las burbujas, sin fondo de río ni rocas. Vista lateral. Fondo transparente."
+    },
+    {
+      "enunciado": "Camilo arrancó con cuidado una planta pequeña para observar sus partes.",
+      "pregunta": "¿Qué parte de la planta absorbe el agua del suelo?",
+      "correcta": "La raíz",
+      "distractores": [
+        "La hoja",
+        "El tallo",
+        "La flor"
+      ],
+      "errores": [
+        "La hoja capta la luz.",
+        "El tallo transporta el agua.",
+        "La flor sirve para reproducirse."
+      ],
+      "justificacion": "Las raíces absorben el agua y los minerales del suelo.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno vivo",
+      "nivel": 1,
+      "imagenPrompt": "Una planta pequeña completa arrancada de la tierra, mostrando raíces blancas ramificadas con un poco de tierra marrón adherida, tallo verde, tres hojas verdes y una flor amarilla pequeña. Vista frontal, sin etiquetas ni flechas. Fondo transparente."
+    },
+    {
+      "enunciado": "En el patio del colegio, una rana salta cerca de un charco.",
+      "pregunta": "¿A qué grupo de vertebrados pertenece la rana?",
+      "correcta": "Anfibios",
+      "distractores": [
+        "Reptiles",
+        "Aves",
+        "Mamíferos"
+      ],
+      "errores": [
+        "Los reptiles tienen escamas.",
+        "Las aves tienen plumas.",
+        "Los mamíferos tienen pelo."
+      ],
+      "justificacion": "Las ranas son anfibios: viven parte de su vida en el agua y parte en tierra.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno vivo",
+      "nivel": 2,
+      "imagenPrompt": "Una rana verde brillante con manchas oscuras, sentada sobre una hoja grande de nenúfar flotando en un trozo pequeño de agua azul clara; ojos grandes saltones y piel húmeda con brillos. Vista lateral tres cuartos. Fondo transparente."
+    },
+    {
+      "enunciado": "Marta terminó de comer una mandarina y tiene la cáscara en la mano.",
+      "pregunta": "¿En cuál caneca debe depositar la cáscara?",
+      "correcta": "En la verde (residuos orgánicos)",
+      "distractores": [
+        "En la blanca (aprovechables)",
+        "En la negra (no aprovechables)",
+        "En ninguna, se deja en el patio"
+      ],
+      "errores": [
+        "La blanca recibe plástico, papel, vidrio y metal.",
+        "La negra recibe residuos no aprovechables.",
+        "Los residuos no se dejan en el suelo."
+      ],
+      "justificacion": "En Colombia los residuos orgánicos van en la caneca verde.",
+      "competencia": "Explicación de fenómenos",
+      "componente": "Ciencia, tecnología y sociedad",
+      "nivel": 2,
+      "imagenPrompt": "Tres canecas de reciclaje de plástico con tapa, una al lado de la otra: blanca, negra y verde (de izquierda a derecha), cada una con un símbolo pequeño de reciclaje en el frente y sin ningún texto. Vista frontal. Fondo transparente."
+    },
+    {
+      "enunciado": "Después de calentarse el agua de un charco, el vapor sube al cielo y forma nubes.",
+      "pregunta": "¿Cómo se llama el proceso por el cual el agua líquida pasa a vapor?",
+      "correcta": "Evaporación",
+      "distractores": [
+        "Condensación",
+        "Precipitación",
+        "Solidificación"
+      ],
+      "errores": [
+        "Es el paso de vapor a líquido.",
+        "Es la caída del agua en forma de lluvia.",
+        "Es el paso de líquido a sólido."
+      ],
+      "justificacion": "La evaporación es el cambio de líquido a gas por el calor del Sol.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno físico",
+      "nivel": 2,
+      "imagenPrompt": "Un sol amarillo sonriente-neutro en la esquina superior, un charco azul claro en el suelo del que suben tres líneas onduladas de vapor, y una nube blanca esponjosa arriba a la derecha. Composición pequeña y compacta, sin lluvia. Fondo transparente."
+    },
+    {
+      "enunciado": "Un niño se acerca una flor a la nariz.",
+      "pregunta": "¿Con cuál sentido percibe su aroma?",
+      "correcta": "Olfato",
+      "distractores": [
+        "Gusto",
+        "Tacto",
+        "Vista"
+      ],
+      "errores": [
+        "El gusto percibe sabores.",
+        "El tacto percibe texturas.",
+        "La vista percibe formas y colores."
+      ],
+      "justificacion": "El olfato percibe los olores.",
+      "competencia": "Uso comprensivo del conocimiento científico",
+      "componente": "Entorno vivo",
+      "nivel": 1,
+      "imagenPrompt": "Un niño de 8 años de piel morena y cabello negro corto, con camiseta azul, de perfil, con los ojos cerrados oliendo una flor roja de pétalos grandes que sostiene con ambas manos frente a su nariz; expresión tranquila. Medio cuerpo. Fondo transparente."
+    },
+    {
+      "enunciado": "En una escuela rural se instaló un panel solar en el techo.",
+      "pregunta": "¿Qué fuente de energía aprovecha el panel solar?",
+      "correcta": "La energía del Sol",
+      "distractores": [
+        "La energía del viento",
+        "La energía del agua",
+        "La energía del carbón"
+      ],
+      "errores": [
+        "Esa la aprovechan los aerogeneradores.",
+        "Esa la aprovechan las hidroeléctricas.",
+        "El carbón se quema, no lo usa el panel."
+      ],
+      "justificacion": "Los paneles solares transforman la luz del Sol en electricidad.",
+      "competencia": "Explicación de fenómenos",
+      "componente": "Ciencia, tecnología y sociedad",
+      "nivel": 2,
+      "imagenPrompt": "Una casita escolar pequeña de una planta, con techo inclinado de teja roja y dos paneles solares azul oscuro rectangulares instalados sobre el techo; sol amarillo pequeño arriba a la izquierda. Vista frontal tres cuartos, sin personas. Fondo transparente."
+    },
+    {
+      "estimulo": "j1",
+      "pregunta": "¿Para qué sirven principalmente las lombrices en el jardín del colegio?",
+      "correcta": "Para airear y enriquecer el suelo",
+      "distractores": [
+        "Para dar sombra a las plantas",
+        "Para producir flores",
+        "Para atraer la lluvia"
+      ],
+      "errores": [
+        "No dan sombra.",
+        "No producen flores.",
+        "No influyen en la lluvia."
+      ],
+      "justificacion": "Las lombrices remueven la tierra y ayudan a descomponer materia orgánica.",
+      "competencia": "Indagación",
+      "componente": "Entorno vivo",
+      "nivel": 2
+    },
+    {
+      "estimulo": "j1",
+      "pregunta": "Según el texto, ¿qué hizo el curso 4.º A para cuidar el jardín?",
+      "correcta": "Hizo abono con residuos orgánicos",
+      "distractores": [
+        "Cortó todas las plantas",
+        "Quitó la tierra",
+        "Pintó las macetas de rojo"
+      ],
+      "errores": [
+        "El texto no lo dice.",
+        "El texto no lo dice.",
+        "El texto no lo dice."
+      ],
+      "justificacion": "El texto afirma que prepararon abono con cáscaras y hojas secas.",
+      "competencia": "Indagación",
+      "componente": "Entorno vivo",
+      "nivel": 1
+    }
+  ]
+}

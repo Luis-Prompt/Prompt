@@ -1,0 +1,116 @@
+{
+  "clave": "lenguaje",
+  "nombre": "Lenguaje (Lengua Castellana)",
+  "grupo": "Pruebas Saber",
+  "grados": "1-11",
+  "descripcion": "Comprensión lectora, producción textual, gramática, literatura y medios (Saber 3.°, 5.° y 9.°).",
+  "fuente_marco": "ICFES, Saber 3.°, 5.° y 9.° (competencias comunicativas lectora y escritora); Estándares Básicos de Competencias en Lenguaje (MEN, 2006).",
+  "marcos": [
+    {
+      "nombre": "Saber 3.°, 5.° y 9.° (grados 1 a 9)",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "competencias": [
+        {
+          "nombre": "Competencia comunicativa lectora",
+          "descripcion": "Comprende e interpreta textos: contenidos, organización y propósito."
+        },
+        {
+          "nombre": "Competencia comunicativa escritora",
+          "descripcion": "Produce y revisa textos: coherencia, cohesión, gramática y propósito comunicativo."
+        }
+      ],
+      "componentes": [
+        "Semántico",
+        "Sintáctico",
+        "Pragmático"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    },
+    {
+      "nombre": "Lengua Castellana, grados 10 y 11",
+      "grados": [
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Comprensión e interpretación textual",
+          "descripcion": "Comprende, interpreta y evalúa textos de distinto tipo."
+        },
+        {
+          "nombre": "Producción textual",
+          "descripcion": "Planea, escribe y revisa textos con coherencia y cohesión."
+        },
+        {
+          "nombre": "Literatura",
+          "descripcion": "Reconoce géneros, recursos, épocas y autores, y analiza obras."
+        },
+        {
+          "nombre": "Medios de comunicación y otros sistemas simbólicos",
+          "descripcion": "Interpreta información de medios y lenguajes no verbales."
+        }
+      ],
+      "componentes": [
+        "Semántico",
+        "Sintáctico",
+        "Pragmático"
+      ],
+      "niveles_cortos": [
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Nivel 4"
+      ],
+      "nota": "Para la prueba de lectura de Saber 11.° usa el área «Lectura crítica»."
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Texto narrativo, descriptivo, expositivo o argumentativo",
+    "Fábula, cuento o poema",
+    "Texto discontinuo (aviso, cartel, historieta)",
+    "Oración o párrafo con un error para corregir",
+    "Párrafo desordenado"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "aviso",
+    "dialogo"
+  ],
+  "reglas_de_calidad": [
+    "Usa un texto (`estimulos`) para 2–4 preguntas; el texto debe ser adecuado al grado (longitud y vocabulario).",
+    "Marca el componente: semántico (significado), sintáctico (estructura y gramática) o pragmático (propósito y contexto).",
+    "Las respuestas deben sostenerse en el texto, no en conocimientos previos.",
+    "Escribe textos propios o adaptados; no copies textos con derechos de autor."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Información que está en el texto pero no responde la pregunta",
+    "Inferir algo que el texto no dice (sobreinterpretación)",
+    "Confundir el tema con el propósito del texto",
+    "Cambiar el sentido de una palabra por otra de forma parecida",
+    "Ignorar el conector (porque, aunque, sin embargo)"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué evaluamos: comprensión lectora, producción escrita (coherencia, gramática, ortografía), literatura o medios?",
+    "¿Qué tipo de texto: narrativo, descriptivo, expositivo, argumentativo o discontinuo?",
+    "¿Tienes un texto, o prefieres que redacte uno original adecuado al grado y al tema?",
+    "¿Cuántas preguntas por texto (2 a 4)?"
+  ],
+  "frase_final": "¡Las palabras son tu fuerza! Lee, piensa y triunfa.",
+  "verificacion": "Revisión ciega con rúbrica (obligatoria): las respuestas deben poder sostenerse únicamente con el texto.",
+  "ejemplo": "examples/areas/lenguaje.json"
+}

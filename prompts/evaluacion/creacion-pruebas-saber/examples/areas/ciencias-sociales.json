@@ -1,0 +1,129 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Ciencias sociales",
+    "areaClave": "ciencias-sociales",
+    "asignatura": "Ciencias sociales",
+    "tema": "Independencia de Colombia y análisis de fuentes",
+    "grado": "11",
+    "docente": ""
+  },
+  "config": {},
+  "estimulos": [
+    {
+      "id": "h1",
+      "tipo": "discontinuo",
+      "instruccion": "Responde {preguntas} de acuerdo con la siguiente línea de tiempo.",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "lineaTiempo",
+        "params": {
+          "titulo": "Hechos de la Independencia",
+          "eventos": [
+            {
+              "anio": "1810",
+              "texto": "Grito de Independencia en Bogotá"
+            },
+            {
+              "anio": "1819",
+              "texto": "Batalla de Boyacá"
+            },
+            {
+              "anio": "1821",
+              "texto": "Congreso de Cúcuta"
+            },
+            {
+              "anio": "1830",
+              "texto": "Muerte de Bolívar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "i1",
+      "titulo": "Informe municipal (fragmento)",
+      "texto": "En 2020, el 60 % de los hogares del barrio tenía acceso a internet; en 2024, el porcentaje subió al 80 %. Sin embargo, solo el 30 % de los hogares con ingresos más bajos cuenta con computador.",
+      "instruccion": "Responde {preguntas} de acuerdo con el siguiente texto.",
+      "fuente": "Texto ficticio para este ejemplo"
+    }
+  ],
+  "preguntas": [
+    {
+      "estimulo": "h1",
+      "pregunta": "Según la línea de tiempo, ¿qué hecho ocurrió entre la Batalla de Boyacá y la muerte de Bolívar?",
+      "correcta": "El Congreso de Cúcuta de 1821.",
+      "distractores": [
+        "El Grito de Independencia en Bogotá.",
+        "La proclamación de la Constitución de 1991.",
+        "La llegada de Colón a América."
+      ],
+      "errores": [
+        "Ocurrió antes de la Batalla de Boyacá (1810).",
+        "Ocurrió mucho después de 1830.",
+        "Ocurrió siglos antes (1492)."
+      ],
+      "justificacion": "La línea de tiempo ubica el Congreso de Cúcuta en 1821, entre 1819 y 1830.",
+      "competencia": "Pensamiento social",
+      "componente": "Historia",
+      "nivel": 1
+    },
+    {
+      "enunciado": "El Congreso de 1821 se reunió en la Villa del Rosario de Cúcuta, hoy en Norte de Santander, y aprobó la Constitución de la Gran Colombia.",
+      "pregunta": "Según esta información, Cúcuta es históricamente importante porque",
+      "correcta": "allí se aprobó la Constitución de la Gran Colombia.",
+      "distractores": [
+        "allí se libró la Batalla de Boyacá.",
+        "allí nació Simón Bolívar.",
+        "allí se proclamó el Grito de Independencia."
+      ],
+      "errores": [
+        "La Batalla de Boyacá fue en Boyacá.",
+        "El texto no menciona su lugar de nacimiento.",
+        "El Grito de Independencia fue en Bogotá."
+      ],
+      "justificacion": "El texto afirma que en la Villa del Rosario de Cúcuta se aprobó la Constitución de la Gran Colombia.",
+      "competencia": "Pensamiento social",
+      "componente": "Historia",
+      "nivel": 2
+    },
+    {
+      "estimulo": "i1",
+      "pregunta": "¿Qué conclusión se desprende del informe?",
+      "correcta": "Aunque aumentó el acceso a internet, persisten desigualdades en el acceso a equipos.",
+      "distractores": [
+        "El acceso a internet disminuyó entre 2020 y 2024.",
+        "Todos los hogares del barrio tienen computador.",
+        "Las desigualdades desaparecieron en 2024."
+      ],
+      "errores": [
+        "Contradice los datos: subió de 60 % a 80 %.",
+        "El informe dice que solo el 30 % de los hogares con menos ingresos tiene computador.",
+        "El informe muestra desigualdades persistentes."
+      ],
+      "justificacion": "El informe combina un aumento de conectividad con una brecha de equipos.",
+      "competencia": "Interpretación y análisis de perspectivas",
+      "componente": "Economía",
+      "nivel": 3
+    },
+    {
+      "estimulo": "i1",
+      "pregunta": "¿Qué decisión pública sería coherente con el informe?",
+      "correcta": "Ofrecer préstamo de computadores a los hogares con menos ingresos.",
+      "distractores": [
+        "Reducir la oferta de internet en el barrio.",
+        "Suspender los programas de conectividad.",
+        "Ofrecer internet solo a hogares que ya tengan computador."
+      ],
+      "errores": [
+        "Iría en contra del avance en conectividad.",
+        "Frenaría un avance que el informe muestra.",
+        "Profundizaría la brecha que el informe señala."
+      ],
+      "justificacion": "El informe señala la falta de equipos en hogares de bajos ingresos; prestarlos ataca esa brecha.",
+      "competencia": "Pensamiento reflexivo y sistémico",
+      "componente": "Política y Estado",
+      "nivel": 3
+    }
+  ]
+}

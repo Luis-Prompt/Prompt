@@ -1,0 +1,89 @@
+{
+  "clave": "religion",
+  "nombre": "Educación religiosa",
+  "grupo": "Asignaturas",
+  "grados": "1-11",
+  "descripcion": "Hecho religioso, tradiciones, textos y principios; reflexión ética y respeto a la libertad de cultos.",
+  "fuente_marco": "Ley 115 de 1994 (arts. 23 y 24); Constitución Política (art. 19, libertad de cultos); plan de área de Educación Religiosa del colegio (PEI). Las competencias son una adaptación y deben ajustarse al plan de área.",
+  "marcos": [
+    {
+      "nombre": "Educación religiosa escolar",
+      "grados": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "competencias": [
+        {
+          "nombre": "Comprensión del hecho religioso",
+          "descripcion": "Conoce y explica manifestaciones, tradiciones y símbolos religiosos."
+        },
+        {
+          "nombre": "Conocimiento de textos y principios",
+          "descripcion": "Identifica enseñanzas, relatos y principios de las tradiciones estudiadas."
+        },
+        {
+          "nombre": "Reflexión ética y proyecto de vida",
+          "descripcion": "Relaciona los valores de las tradiciones con decisiones personales y sociales."
+        },
+        {
+          "nombre": "Respeto y diálogo entre creencias",
+          "descripcion": "Reconoce y respeta la diversidad de creencias y la libertad de cultos."
+        }
+      ],
+      "componentes": [
+        "Hecho religioso y cultura",
+        "Textos y tradiciones",
+        "Valores y proyecto de vida",
+        "Diálogo interreligioso"
+      ],
+      "niveles_cortos": [
+        "Insuficiente",
+        "Mínimo",
+        "Satisfactorio",
+        "Avanzado"
+      ]
+    }
+  ],
+  "tipos_de_estimulo": [
+    "Relato o texto breve de una tradición",
+    "Símbolo, fiesta o celebración",
+    "Situación de convivencia entre creencias",
+    "Valor o principio para relacionar con la vida diaria"
+  ],
+  "usa_textos_compartidos": true,
+  "plantillas_recomendadas": [
+    "flujo",
+    "aviso",
+    "dialogo"
+  ],
+  "reglas_de_calidad": [
+    "Evalúa conocimiento y comprensión, nunca la fe personal ni las prácticas del estudiante.",
+    "Usa lenguaje respetuoso y neutral con todas las tradiciones; no compares creencias como mejores o peores.",
+    "Ajusta contenidos al plan de área de la institución (confesional o no); verifica nombres, fechas y relatos con la fuente del colegio.",
+    "Evita preguntas que obliguen a declarar una creencia."
+  ],
+  "errores_tipicos_para_distractores": [
+    "Confundir una fiesta o símbolo con otro de otra tradición",
+    "Atribuir un relato o una enseñanza a la tradición equivocada",
+    "Confundir religión con moral o con cultura en general",
+    "Equiparar tolerancia con indiferencia",
+    "Generalizar una práctica a todas las personas de una religión"
+  ],
+  "preguntas_iniciales": [
+    "¿Qué tradición(es) o temas indica el plan de área (por ejemplo: hecho religioso, textos, valores, celebraciones, diálogo interreligioso)?",
+    "¿Qué grado y con relatos o con situaciones de la vida diaria?",
+    "¿Tienes el material de clase (textos, fechas) para ceñirme a él?"
+  ],
+  "frase_final": "¡Respetar es comprender! Tú puedes.",
+  "verificacion": "Revisión ciega con rúbrica; verificar contenidos con el plan de área.",
+  "ejemplo": "examples/areas/religion.json"
+}

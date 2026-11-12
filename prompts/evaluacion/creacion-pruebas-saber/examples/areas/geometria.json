@@ -1,0 +1,133 @@
+{
+  "_nota": "Ejemplo de prueba para probar el generador y servir de modelo. Revísalo antes de aplicarlo en clase.",
+  "meta": {
+    "area": "Geometría",
+    "areaClave": "geometria",
+    "asignatura": "Geometría",
+    "tema": "Triángulos, ángulos y círculo",
+    "grado": "9",
+    "docente": ""
+  },
+  "config": {},
+  "preguntas": [
+    {
+      "enunciado": "La figura muestra un triángulo rectángulo con catetos de 12 cm y 5 cm.",
+      "pregunta": "¿Cuánto mide la hipotenusa?",
+      "correcta": "13 cm",
+      "distractores": [
+        "17 cm",
+        "7 cm",
+        "60 cm"
+      ],
+      "errores": [
+        "Sumó los catetos (12 + 5).",
+        "Restó los catetos (12 − 5).",
+        "Multiplicó los catetos (12 × 5)."
+      ],
+      "justificacion": "Por el teorema de Pitágoras: 12² + 5² = 144 + 25 = 169, y la raíz de 169 es 13.",
+      "competencia": "Planteamiento y resolución de problemas",
+      "componente": "Geométrico-métrico",
+      "nivel": 3,
+      "dba": "Aplicar el teorema de Pitágoras",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "figura",
+        "params": {
+          "tipo": "triangulo_rectangulo",
+          "etiquetas": {
+            "cateto1": "12 cm",
+            "cateto2": "5 cm",
+            "hipotenusa": "?"
+          }
+        }
+      }
+    },
+    {
+      "enunciado": "En la figura, dos ángulos adyacentes forman un ángulo recto (90°). Uno de ellos mide 35°.",
+      "pregunta": "¿Cuánto mide el otro ángulo?",
+      "correcta": "55°",
+      "distractores": [
+        "145°",
+        "35°",
+        "65°"
+      ],
+      "errores": [
+        "Usó 180° (ángulos suplementarios) en lugar de 90°.",
+        "Supuso que los dos ángulos son iguales.",
+        "Restó mal: calculó 100 − 35."
+      ],
+      "justificacion": "Los ángulos complementarios suman 90°: 90° − 35° = 55°.",
+      "competencia": "Planteamiento y resolución de problemas",
+      "componente": "Geométrico-métrico",
+      "nivel": 1,
+      "dba": "Calcular ángulos complementarios",
+      "calculo": "90-35",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "angulo",
+        "params": {
+          "rayos": [
+            0,
+            35,
+            90
+          ],
+          "etiquetas": [
+            "35°",
+            "?"
+          ]
+        }
+      }
+    },
+    {
+      "enunciado": "Una persona afirma: «Todo cuadrilátero con sus cuatro lados iguales es un cuadrado».",
+      "pregunta": "¿Por qué la afirmación es falsa?",
+      "correcta": "Un rombo tiene los cuatro lados iguales y sus ángulos no son rectos.",
+      "distractores": [
+        "Un cuadrado no puede tener los cuatro lados iguales.",
+        "Un rectángulo siempre tiene los cuatro lados iguales.",
+        "Los cuadriláteros solo pueden tener dos lados iguales."
+      ],
+      "errores": [
+        "Niega una propiedad que sí cumple el cuadrado.",
+        "Atribuye al rectángulo una propiedad que no siempre tiene.",
+        "Generaliza una restricción inexistente."
+      ],
+      "justificacion": "El rombo es un contraejemplo: tiene cuatro lados iguales pero ángulos que no miden 90°.",
+      "competencia": "Razonamiento y argumentación",
+      "componente": "Geométrico-métrico",
+      "nivel": 3,
+      "dba": "Justificar propiedades de cuadriláteros"
+    },
+    {
+      "enunciado": "La figura muestra una circunferencia con radio de 7 cm.",
+      "pregunta": "¿Cuál es la longitud del diámetro?",
+      "correcta": "14 cm",
+      "distractores": [
+        "3,5 cm",
+        "7 cm",
+        "49 cm"
+      ],
+      "errores": [
+        "Dividió el radio entre 2.",
+        "Tomó el radio como si fuera el diámetro.",
+        "Elevó el radio al cuadrado (7 × 7)."
+      ],
+      "justificacion": "El diámetro es el doble del radio: 2 × 7 = 14 cm.",
+      "competencia": "Comunicación, representación y modelación",
+      "componente": "Geométrico-métrico",
+      "nivel": 1,
+      "dba": "Relacionar radio y diámetro",
+      "calculo": "7*2",
+      "visual": {
+        "tipo": 1,
+        "plantilla": "figura",
+        "params": {
+          "tipo": "circulo",
+          "etiquetas": {
+            "radio": "7 cm"
+          }
+        }
+      }
+    }
+  ]
+}
