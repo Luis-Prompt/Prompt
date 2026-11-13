@@ -1,0 +1,145 @@
+{
+  "_nota": "Cada semana de la planeación usa un autor/teoría DIFERENTE y nunca se repite en semanas consecutivas. Elige según la actividad de la semana.",
+  "autores": [
+    {
+      "autor": "Lev Vygotsky",
+      "teoria": "Aprendizaje sociocultural y zona de desarrollo próximo",
+      "idea_clave": "El aprendizaje se construye con la mediación de otros y del lenguaje.",
+      "mejor_para": "trabajo en parejas o grupos, andamiaje, diálogo",
+      "aplicacion_tipica": "El docente modela y luego cede el control: parejas con roles de tutor y aprendiz."
+    },
+    {
+      "autor": "David Ausubel",
+      "teoria": "Aprendizaje significativo",
+      "idea_clave": "Se aprende al conectar lo nuevo con los conocimientos previos.",
+      "mejor_para": "inicio de un tema, mapas conceptuales, organizadores previos",
+      "aplicacion_tipica": "Activar saberes previos con una pregunta o mapa antes de presentar el concepto."
+    },
+    {
+      "autor": "Jean Piaget",
+      "teoria": "Constructivismo cognitivo",
+      "idea_clave": "El estudiante construye el conocimiento mediante desequilibrio y acomodación.",
+      "mejor_para": "exploración con material concreto, conflictos cognitivos",
+      "aplicacion_tipica": "Situación que contradice una idea previa para que el estudiante la reorganice."
+    },
+    {
+      "autor": "Jerome Bruner",
+      "teoria": "Aprendizaje por descubrimiento y representaciones",
+      "idea_clave": "Se pasa de lo concreto (enactivo) a lo gráfico (icónico) y lo simbólico.",
+      "mejor_para": "matemáticas y ciencias: de lo concreto a lo abstracto",
+      "aplicacion_tipica": "Manipular material, dibujar el esquema y luego escribir la regla."
+    },
+    {
+      "autor": "George Polya",
+      "teoria": "Resolución de problemas",
+      "idea_clave": "Cuatro fases: comprender, planear, ejecutar y mirar hacia atrás.",
+      "mejor_para": "problemas matemáticos y lógicos",
+      "aplicacion_tipica": "Guiar con las cuatro fases y pedir verificar el resultado."
+    },
+    {
+      "autor": "Hans Freudenthal",
+      "teoria": "Educación matemática realista",
+      "idea_clave": "Las matemáticas se aprenden matematizando situaciones reales.",
+      "mejor_para": "matemáticas con contextos cotidianos y locales",
+      "aplicacion_tipica": "Partir de una situación del entorno y llegar a la herramienta matemática."
+    },
+    {
+      "autor": "Raymond Duval",
+      "teoria": "Registros de representación semiótica",
+      "idea_clave": "Comprender es poder pasar entre registros (verbal, gráfico, tabular, simbólico).",
+      "mejor_para": "matemáticas y ciencias con gráficos y tablas",
+      "aplicacion_tipica": "Convertir un enunciado en tabla, luego en gráfico y en expresión."
+    },
+    {
+      "autor": "Zoltan Dienes",
+      "teoria": "Variabilidad matemática y perceptual",
+      "idea_clave": "Se generaliza al ver el mismo concepto en muchas formas y materiales.",
+      "mejor_para": "conceptos con varios materiales o ejemplos",
+      "aplicacion_tipica": "Representar la misma idea con fichas, dibujos y números."
+    },
+    {
+      "autor": "Paulo Freire",
+      "teoria": "Pedagogía crítica y dialógica",
+      "idea_clave": "Se aprende desde la realidad del estudiante, con diálogo y reflexión sobre su contexto.",
+      "mejor_para": "ciencias sociales, ética, lenguaje con temas del entorno",
+      "aplicacion_tipica": "Problematizar un hecho de la comunidad y dialogar sobre causas y acciones."
+    },
+    {
+      "autor": "John Dewey",
+      "teoria": "Aprender haciendo (pedagogía activa)",
+      "idea_clave": "La experiencia y la acción reflexiva producen el aprendizaje.",
+      "mejor_para": "proyectos, laboratorios, salidas",
+      "aplicacion_tipica": "Proyecto corto con producto final y reflexión sobre lo hecho."
+    },
+    {
+      "autor": "Howard Gardner",
+      "teoria": "Inteligencias múltiples",
+      "idea_clave": "Las personas aprenden de formas diversas: lingüística, lógica, espacial, musical, corporal, etc.",
+      "mejor_para": "diversificar actividades y evidencias",
+      "aplicacion_tipica": "Ofrecer varias formas de mostrar lo aprendido (dibujo, canción, maqueta, texto)."
+    },
+    {
+      "autor": "Benjamin Bloom",
+      "teoria": "Taxonomía de objetivos (revisada por Anderson y Krathwohl)",
+      "idea_clave": "Los objetivos se ordenan de recordar a crear.",
+      "mejor_para": "redactar metas y escalar la complejidad",
+      "aplicacion_tipica": "Pasar de preguntas de recordar a preguntas de analizar, evaluar y crear."
+    },
+    {
+      "autor": "Dylan Wiliam y Paul Black",
+      "teoria": "Evaluación formativa",
+      "idea_clave": "La evaluación que ofrece retroalimentación mejora el aprendizaje mientras ocurre.",
+      "mejor_para": "cierres, quizzes, retroalimentación",
+      "aplicacion_tipica": "Ticket de salida y retroalimentación específica con una acción de mejora."
+    },
+    {
+      "autor": "Reuven Feuerstein",
+      "teoria": "Experiencia de aprendizaje mediado",
+      "idea_clave": "El mediador intenciona, da significado y trascendencia a la experiencia.",
+      "mejor_para": "estudiantes con dificultades, razonamiento",
+      "aplicacion_tipica": "Mediar con preguntas que lleven al estudiante a explicar su propio proceso."
+    },
+    {
+      "autor": "Albert Bandura",
+      "teoria": "Aprendizaje social y autoeficacia",
+      "idea_clave": "Se aprende observando modelos y creyendo en la propia capacidad.",
+      "mejor_para": "modelado, trabajo con ejemplos resueltos",
+      "aplicacion_tipica": "Ejemplo resuelto en voz alta y luego práctica guiada con retroalimentación."
+    },
+    {
+      "autor": "María Montessori",
+      "teoria": "Ambiente preparado y autonomía",
+      "idea_clave": "Materiales ordenados y concretos favorecen la autonomía y la concentración.",
+      "mejor_para": "primeros grados, centros de aprendizaje",
+      "aplicacion_tipica": "Estaciones de trabajo con material concreto y elección guiada."
+    },
+    {
+      "autor": "Lee Shulman",
+      "teoria": "Conocimiento didáctico del contenido",
+      "idea_clave": "Enseñar bien exige transformar el contenido en representaciones comprensibles.",
+      "mejor_para": "cualquier área: elegir analogías y ejemplos",
+      "aplicacion_tipica": "Elegir la analogía o ejemplo que mejor hace visible el concepto."
+    },
+    {
+      "autor": "Carol Dweck",
+      "teoria": "Mentalidad de crecimiento",
+      "idea_clave": "La inteligencia se desarrolla con esfuerzo y estrategias.",
+      "mejor_para": "cierres, metacognición, motivación",
+      "aplicacion_tipica": "Reflexionar sobre qué estrategia ayudó y qué cambiaría en el siguiente intento."
+    },
+    {
+      "autor": "David Kolb",
+      "teoria": "Aprendizaje experiencial (ciclo de Kolb)",
+      "idea_clave": "Experiencia concreta, observación reflexiva, conceptualización y experimentación.",
+      "mejor_para": "ciencias, tecnología, laboratorios",
+      "aplicacion_tipica": "Experiencia, reflexión guiada, formulación de la idea y nueva prueba."
+    },
+    {
+      "autor": "Seymour Papert",
+      "teoria": "Construccionismo",
+      "idea_clave": "Se aprende construyendo objetos con significado, especialmente con tecnología.",
+      "mejor_para": "tecnología, robótica, programación",
+      "aplicacion_tipica": "Construir un programa o artefacto que resuelva un problema real."
+    }
+  ]
+}

@@ -7,19 +7,30 @@
   "lema": "Virtud - Ciencia - Cultura",
   "valores": "Honradez - Amor - Esfuerzo - Fe",
   "eslogan": "Educamos para construir proyectos de vida con éxito",
-
   "escudo": {
     "maestro": "../banco-imagenes/escudos/escudo_colegio_simon_bolivar_2025.png",
     "encabezado": "../banco-imagenes/escudos/escudo_colegio_simon_bolivar_2025_encabezado.png",
     "miniatura": "../banco-imagenes/escudos/escudo_colegio_simon_bolivar_2025_miniatura.png"
   },
-
   "membrete": {
-    "tituloMembrete": ["GESTION ACADEMICA", "SEGUIMIENTO ACADEMICO", "EVALUACION DE COMPRENSION"],
+    "tituloMembrete": [
+      "GESTION ACADEMICA",
+      "SEGUIMIENTO ACADEMICO",
+      "EVALUACION DE COMPRENSION"
+    ],
     "codFormato": "GA-F16",
     "codVersion": "Versión 1.0",
     "codFecha": "04-04-2016"
   },
-
-  "_nota": "Las rutas de 'escudo' son relativas a este archivo. Para cambiar de institución, edita este archivo y reemplaza las imágenes con herramientas/preparar-escudo.py."
+  "_nota": "Las rutas de 'escudo' son relativas a este archivo. 'membrete' lo usa el generador de pruebas y 'membrete_planeacion' el de planeaciones. Para cambiar de institución, edita este archivo y reemplaza las imágenes con herramientas/preparar-escudo.py.",
+  "membrete_planeacion": {
+    "tituloMembrete": [
+      "GESTION ACADEMICA",
+      "SEGUIMIENTO ACADEMICO",
+      "PLANEACION ACADEMICA"
+    ],
+    "codFormato": "GA-F16",
+    "codVersion": "Versión 1.0",
+    "codFecha": "04-04-2016"
+  }
 }
