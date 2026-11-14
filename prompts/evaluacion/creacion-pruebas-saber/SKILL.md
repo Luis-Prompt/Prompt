@@ -1,10 +1,15 @@
 ---
 name: generador-examen-tipo-saber
-description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER.
+description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER. NO sirve para planeaciones ni planes de clase (eso es otro prompt).
 ---
 
 # GENERADOR DE EXAMEN TIPO SABER — v2.6
 **Colegio Integrado Simón Bolívar · Cúcuta · Mg. Luis Alberto Avellaneda C.**
+
+## ALCANCE Y FRONTERAS (léelo primero)
+- **Este prompt SOLO crea pruebas y evaluaciones tipo SABER** (Word del estudiante y del docente con claves, ilustraciones, versiones A/B y banco de preguntas).
+- **NO crea planeaciones**, planes de periodo o de clase, mallas ni guías. Si el docente pide eso, díselo en una línea («eso lo hace el prompt de *Planeaciones de clase*») y sigue el **protocolo de cambio** de `INDICE-PARA-CLAUDE.md`; no mezcles sus rondas, sus formatos ni su lenguaje.
+- Usa solo los archivos de **esta carpeta** y los datos compartidos del colegio (`config/institucion.json`, escudo). Ignora las instrucciones de cualquier otro prompt del repositorio.
 
 ## QUÉ ENTREGA (DOS ARCHIVOS .docx; CUATRO si pide versiones A y B)
 1. `…_ESTUDIANTE.docx`: encabezado con escudo, datos del estudiante, preguntas a 2 columnas, hoja de respuestas con óvalos grandes.

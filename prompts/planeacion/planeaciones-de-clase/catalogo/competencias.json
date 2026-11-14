@@ -1,0 +1,212 @@
+{
+  "_nota": "Tres competencias por área para la Fase 3.1 (ajusta a la malla del colegio). Procesos mentales comunes al final.",
+  "familias": {
+    "matematicas": [
+      {
+        "nombre": "Comunicación, representación y modelación",
+        "descripcion": "Usa e interpreta registros (tablas, gráficas, símbolos, lenguaje natural) y modela situaciones."
+      },
+      {
+        "nombre": "Razonamiento y argumentación",
+        "descripcion": "Justifica, conjetura, valida o refuta afirmaciones y procedimientos."
+      },
+      {
+        "nombre": "Planteamiento y resolución de problemas",
+        "descripcion": "Formula problemas, diseña estrategias, las ejecuta y verifica."
+      }
+    ],
+    "lenguaje": [
+      {
+        "nombre": "Comprensión e interpretación textual (competencia lectora)",
+        "descripcion": "Comprende, interpreta y evalúa textos de distinto tipo."
+      },
+      {
+        "nombre": "Producción textual (competencia escritora)",
+        "descripcion": "Planea, escribe y revisa textos con coherencia y cohesión."
+      },
+      {
+        "nombre": "Comunicación oral y pragmática",
+        "descripcion": "Usa el lenguaje oral según el propósito, el interlocutor y el contexto."
+      }
+    ],
+    "ciencias-naturales": [
+      {
+        "nombre": "Uso comprensivo del conocimiento científico",
+        "descripcion": "Comprende y usa conceptos, teorías y modelos de las ciencias."
+      },
+      {
+        "nombre": "Explicación de fenómenos",
+        "descripcion": "Analiza y construye explicaciones y modelos sobre fenómenos naturales."
+      },
+      {
+        "nombre": "Indagación",
+        "descripcion": "Formula preguntas, diseña procedimientos y analiza datos."
+      }
+    ],
+    "ciencias-sociales": [
+      {
+        "nombre": "Pensamiento social",
+        "descripcion": "Usa conceptos de las ciencias sociales y ubica hechos en el tiempo y el espacio."
+      },
+      {
+        "nombre": "Interpretación y análisis de perspectivas",
+        "descripcion": "Evalúa fuentes y comprende posturas e intereses de distintos actores."
+      },
+      {
+        "nombre": "Pensamiento reflexivo y sistémico",
+        "descripcion": "Relaciona dimensiones económicas, políticas, culturales y ambientales."
+      }
+    ],
+    "ingles": [
+      {
+        "nombre": "Comprensión (escucha y lectura)",
+        "descripcion": "Entiende información en textos orales y escritos sencillos."
+      },
+      {
+        "nombre": "Producción escrita",
+        "descripcion": "Escribe textos cortos con vocabulario y estructuras del nivel."
+      },
+      {
+        "nombre": "Producción oral (monólogo y conversación)",
+        "descripcion": "Se expresa y conversa sobre temas cotidianos."
+      }
+    ],
+    "artistica": [
+      {
+        "nombre": "Sensibilidad",
+        "descripcion": "Percibe y reconoce elementos de las manifestaciones artísticas."
+      },
+      {
+        "nombre": "Apreciación estética",
+        "descripcion": "Analiza, interpreta y valora obras en su contexto."
+      },
+      {
+        "nombre": "Comunicación",
+        "descripcion": "Usa los lenguajes artísticos para expresar ideas y emociones."
+      }
+    ],
+    "educacion-fisica": [
+      {
+        "nombre": "Competencia motriz",
+        "descripcion": "Comprende y aplica movimientos, capacidades físicas y técnicas."
+      },
+      {
+        "nombre": "Competencia expresiva corporal",
+        "descripcion": "Usa el cuerpo para expresar y comunicar."
+      },
+      {
+        "nombre": "Competencia axiológica corporal",
+        "descripcion": "Relaciona la actividad física con la salud, el cuidado y los valores del juego."
+      }
+    ],
+    "etica": [
+      {
+        "nombre": "Reflexión y juicio moral",
+        "descripcion": "Analiza situaciones morales y evalúa razones."
+      },
+      {
+        "nombre": "Empatía y perspectiva del otro",
+        "descripcion": "Reconoce emociones, necesidades y puntos de vista de los demás."
+      },
+      {
+        "nombre": "Responsabilidad y toma de decisiones",
+        "descripcion": "Identifica consecuencias y asume responsabilidad."
+      }
+    ],
+    "religion": [
+      {
+        "nombre": "Comprensión del hecho religioso",
+        "descripcion": "Conoce y explica manifestaciones, tradiciones y símbolos religiosos."
+      },
+      {
+        "nombre": "Conocimiento de textos y principios",
+        "descripcion": "Identifica enseñanzas y relatos de las tradiciones estudiadas."
+      },
+      {
+        "nombre": "Reflexión ética y respeto entre creencias",
+        "descripcion": "Relaciona valores con la vida y respeta la libertad de cultos."
+      }
+    ],
+    "tecnologia": [
+      {
+        "nombre": "Apropiación y uso de la tecnología",
+        "descripcion": "Usa herramientas y recursos tecnológicos de forma adecuada y segura."
+      },
+      {
+        "nombre": "Solución de problemas con tecnología",
+        "descripcion": "Identifica problemas, diseña y evalúa soluciones."
+      },
+      {
+        "nombre": "Tecnología y sociedad",
+        "descripcion": "Analiza los efectos de la tecnología en la sociedad y el ambiente."
+      }
+    ],
+    "filosofia": [
+      {
+        "nombre": "Competencia crítica",
+        "descripcion": "Analiza y evalúa argumentos y supuestos."
+      },
+      {
+        "nombre": "Competencia dialógica",
+        "descripcion": "Comprende y contrasta posturas distintas."
+      },
+      {
+        "nombre": "Competencia creativa",
+        "descripcion": "Propone alternativas y soluciones a problemas filosóficos."
+      }
+    ],
+    "economia": [
+      {
+        "nombre": "Pensamiento social",
+        "descripcion": "Usa conceptos económicos y políticos en situaciones reales."
+      },
+      {
+        "nombre": "Interpretación y análisis de perspectivas",
+        "descripcion": "Compara posturas y fuentes sobre un problema económico."
+      },
+      {
+        "nombre": "Pensamiento reflexivo y sistémico",
+        "descripcion": "Relaciona decisiones económicas con sus efectos sociales y ambientales."
+      }
+    ],
+    "transicion": [
+      {
+        "nombre": "Dimensión cognitiva",
+        "descripcion": "Explora, compara y representa su entorno."
+      },
+      {
+        "nombre": "Dimensión comunicativa",
+        "descripcion": "Se expresa y comprende mensajes orales y gráficos."
+      },
+      {
+        "nombre": "Dimensión socioafectiva y corporal",
+        "descripcion": "Reconoce emociones, normas y su cuerpo en movimiento."
+      }
+    ]
+  },
+  "familias_alias": {
+    "quimica": "ciencias-naturales",
+    "fisica": "ciencias-naturales",
+    "biologia": "ciencias-naturales"
+  },
+  "procesos_mentales": {
+    "basicos": [
+      "Observar",
+      "Comparar",
+      "Clasificar",
+      "Describir",
+      "Ordenar",
+      "Relacionar"
+    ],
+    "superiores": [
+      "Analizar",
+      "Inferir",
+      "Sintetizar",
+      "Evaluar",
+      "Crear",
+      "Resolver problemas",
+      "Argumentar",
+      "Metacognición"
+    ]
+  }
+}

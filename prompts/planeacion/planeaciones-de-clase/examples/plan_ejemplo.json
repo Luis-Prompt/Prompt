@@ -1,0 +1,407 @@
+{
+  "_nota": "Ejemplo completo para probar el generador y servir de modelo. Los contenidos deben revisarse y ajustarse al plan de área del colegio.",
+  "meta": {
+    "institucion": "Colegio Integrado Simón Bolívar",
+    "docente": "Docente de ejemplo",
+    "area": "Matemáticas",
+    "asignatura": "Matemáticas",
+    "grado": "4°",
+    "periodo": 1,
+    "anio": 2026,
+    "horasSemanales": 4,
+    "grupos": 2,
+    "semanas": 9,
+    "enfoque": "Aprendizaje Significativo (Ausubel)",
+    "color": "verde",
+    "proyectos": [
+      "Convivencia y Paz"
+    ],
+    "contexto": "Cúcuta, Norte de Santander"
+  },
+  "fase1": {
+    "meta": "Al finalizar el periodo, los estudiantes de 4.° leerán, escribirán, compararán y operarán números naturales hasta los millones (**Saber**), resolverán problemas multiplicativos y de divisibilidad y representarán fracciones equivalentes con material concreto y gráficos (**Hacer**), y trabajarán con responsabilidad, respeto y perseverancia en equipo (**Ser**), en coherencia con los DBA 1 y 2 de Matemáticas de grado cuarto.",
+    "pregunta": "¿Cómo usamos los números grandes, la multiplicación y las fracciones para resolver situaciones reales del mercado, el barrio y el colegio en Cúcuta, como repartir, comprar y medir?",
+    "ejes": [
+      {
+        "tema": "Sistema de numeración hasta millones",
+        "descripcion": "Lectura, escritura, valor posicional, comparación, orden y aproximación."
+      },
+      {
+        "tema": "Multiplicación por 2 y 3 cifras",
+        "descripcion": "Algoritmos, propiedades y resolución de problemas multiplicativos."
+      },
+      {
+        "tema": "Divisibilidad",
+        "descripcion": "Múltiplos, divisores y criterios de divisibilidad por 2, 3, 5, 9 y 10."
+      },
+      {
+        "tema": "Fracciones equivalentes",
+        "descripcion": "Fracciones como relación parte-todo, su representación y la equivalencia."
+      }
+    ],
+    "dba": [
+      {
+        "numero": "1",
+        "texto": "Interpreta las fracciones como razón, relación parte todo, cociente y operador en diferentes contextos",
+        "verificado": true
+      },
+      {
+        "numero": "2",
+        "texto": "Describe y justifica diferentes estrategias para representar, operar y hacer estimaciones con números naturales y números racionales expresados como fracciones o como decimales",
+        "verificado": false
+      }
+    ],
+    "estandar": "Estándares Básicos de Competencias en Matemáticas (MEN, 2006), grupo de grados 4.° a 5.°: pensamientos numérico-variacional y espacial-métrico.",
+    "lineamiento": "Lineamientos Curriculares de Matemáticas (MEN, 1998).",
+    "marcoLegal": "Ley 115 de 1994 (art. 23: Matemáticas, área obligatoria y fundamental); evaluación según el Decreto 1290 de 2009, compilado en el Decreto 1075 de 2015, y el SIEE del colegio; Convivencia y Paz: Ley 1620 de 2013 y Decreto 1965 de 2013.",
+    "diversidad": "Diseño Universal para el Aprendizaje (DUA): ofrecer representaciones múltiples (material concreto, gráfico y simbólico), varias formas de expresión (oral, dibujo y escrito) y ajustes razonables según el PIAR (Decreto 1421 de 2017) para los estudiantes que lo requieran."
+  },
+  "semanas": [
+    {
+      "n": 1,
+      "tema": "Sistema de numeración hasta los millones: valor posicional",
+      "meta": "Lee, escribe y descompone números naturales hasta los millones usando el valor posicional. **Evidencia:** tabla de valor posicional completa y 5 números descompuestos.",
+      "dba": "DBA 2 (representar números naturales)",
+      "inicio": "(10 min) Se muestra una factura ficticia de un supermercado por $2.345.678 y se pregunta: ¿cómo se lee este número? ¿qué valor tiene cada cifra?",
+      "desarrollo": "Con fichas de colores y el ábaco de cifras, los estudiantes forman números de 7 cifras y los ubican en la tabla de valor posicional (unidades, miles y millones). Cada pareja lee en voz alta cinco números y los descompone de forma aditiva (3.450.206 = 3.000.000 + 400.000 + 50.000 + 200 + 6).",
+      "sustento": {
+        "autor": "Jean Piaget",
+        "teoria": "Constructivismo cognitivo",
+        "idea": "El estudiante construye la noción de valor posicional al agrupar y desagrupar material concreto, no solo al escuchar la regla."
+      },
+      "cierre": "Ticket de salida: cada estudiante escribe con letras un número de 7 cifras y explica qué valor tiene su cifra de los millones.",
+      "evaluacion": "Quiz corto de 5 ítems (lectura y descomposición) con lista de cotejo.",
+      "saber": {
+        "pregunta": "¿Cuál es la descomposición correcta del número 4.305.072?",
+        "opciones": [
+          "4.000.000 + 300.000 + 5.000 + 70 + 2",
+          "4.000.000 + 30.000 + 5.000 + 70 + 2",
+          "4.000.000 + 300.000 + 50.000 + 7 + 2",
+          "400.000 + 30.000 + 5.000 + 70 + 2"
+        ],
+        "rta": "a"
+      },
+      "compromiso": "(20 min) Buscar en casa tres números grandes (precio, kilómetros, población) y escribirlos con cifras y con letras.",
+      "recursos": "Ábaco de cifras, fichas de colores, tabla de valor posicional impresa, tablero."
+    },
+    {
+      "n": 2,
+      "tema": "Comparación, orden y aproximación de números naturales",
+      "meta": "Compara y ordena números hasta los millones y los aproxima a la centena de mil más cercana. **Evidencia:** 6 números ordenados con los signos <, > e =.",
+      "dba": "DBA 2 (representar y comparar números naturales)",
+      "inicio": "(10 min) Juego «mayor o menor»: se muestran dos cifras de ventas ficticias de tiendas y se pregunta cuál es mayor y cómo lo saben.",
+      "desarrollo": "Se comparan los números cifra a cifra, empezando por la posición de mayor valor; se ubican en una recta numérica con cortes cada 100.000 y se practica la aproximación a la centena de mil. Se trabaja en parejas con andamiaje: el compañero «tutor» formula preguntas guía y el «aprendiz» explica sus pasos.",
+      "sustento": {
+        "autor": "Lev Vygotsky",
+        "teoria": "Aprendizaje sociocultural y zona de desarrollo próximo",
+        "idea": "Las parejas con roles de tutor y aprendiz permiten avanzar con ayuda hasta lograr hacerlo solo."
+      },
+      "cierre": "Cada pareja escribe en un cartel una regla para comparar números y la explica al grupo.",
+      "evaluacion": "Taller de 8 puntos y rúbrica de explicación (comparación y justificación).",
+      "saber": {
+        "pregunta": "Observa los números 5.432.100 y 5.423.999. ¿Cuál afirmación es verdadera?",
+        "opciones": [
+          "5.432.100 es menor que 5.423.999",
+          "5.432.100 es igual a 5.423.999",
+          "5.432.100 es mayor que 5.423.999",
+          "Son equivalentes porque ambos empiezan por 5"
+        ],
+        "rta": "c"
+      },
+      "compromiso": "(20 min) Ordenar de menor a mayor 6 números tomados de un recibo de servicios o del periódico.",
+      "recursos": "Recta numérica en papel bond, tarjetas de números, cartulinas, marcadores."
+    },
+    {
+      "n": 3,
+      "tema": "Multiplicación por una y dos cifras: estrategias y algoritmo",
+      "meta": "Multiplica números de hasta cuatro cifras por números de una y dos cifras con estrategias y con el algoritmo tradicional. **Evidencia:** 6 multiplicaciones resueltas y explicación de un paso.",
+      "dba": "DBA 2 (operar con números naturales)",
+      "inicio": "(10 min) Pregunta detonadora: «Si una caja trae 24 huevos y compramos 15 cajas, ¿cuántos huevos hay?» Los estudiantes estiman antes de calcular.",
+      "desarrollo": "Se compara la descomposición (24 × 15 = 24 × 10 + 24 × 5 = 240 + 120 = 360) con el algoritmo en columna. Se usa un modelo de área en papel cuadriculado para ver por qué se suman los productos parciales. Después, práctica guiada y luego independiente.",
+      "sustento": {
+        "autor": "Jerome Bruner",
+        "teoria": "Representaciones enactiva, icónica y simbólica",
+        "idea": "Se pasa del modelo de área concreto al dibujo y luego al algoritmo simbólico."
+      },
+      "cierre": "Cada estudiante explica en voz alta qué representa el producto parcial «240» en el modelo de área.",
+      "evaluacion": "Práctica de 6 multiplicaciones con autoverificación con calculadora y lista de cotejo de los pasos del algoritmo.",
+      "saber": {
+        "pregunta": "Una caja trae 24 huevos. ¿Cuántos huevos hay en 15 cajas?",
+        "opciones": [
+          "360 huevos",
+          "120 huevos",
+          "240 huevos",
+          "39 huevos"
+        ],
+        "rta": "a"
+      },
+      "compromiso": "(20 min) Resolver 4 multiplicaciones en el cuaderno y dibujar el modelo de área de una de ellas.",
+      "recursos": "Papel cuadriculado, cuadrículas impresas, calculadora para verificar, tablero."
+    },
+    {
+      "n": 4,
+      "tema": "Multiplicación por tres cifras y propiedades",
+      "meta": "Multiplica por números de tres cifras y aplica las propiedades conmutativa, asociativa y distributiva para facilitar cálculos. **Evidencia:** 4 multiplicaciones y 3 cálculos mentales justificados.",
+      "dba": "DBA 2 (operar y estimar con números naturales)",
+      "inicio": "(10 min) Reto de cálculo mental: «¿Cómo calcularías 5 × 48 × 2 sin lápiz?» Se recogen las estrategias de los estudiantes.",
+      "desarrollo": "Se estudian las propiedades con ejemplos: conmutativa (3 × 7 = 7 × 3), asociativa ((5 × 2) × 48 = 5 × (2 × 48) = 480) y distributiva (6 × 104 = 6 × 100 + 6 × 4 = 624). Luego se aplica el algoritmo con factores de tres cifras. Los estudiantes completan «tarjetas de estrategia» en equipos de cuatro.",
+      "sustento": {
+        "autor": "Zoltan Dienes",
+        "teoria": "Variabilidad matemática y perceptual",
+        "idea": "El mismo concepto se aprende mejor cuando se ve con distintos ejemplos y materiales."
+      },
+      "cierre": "Cada equipo presenta la estrategia que más le ayudó y explica por qué.",
+      "evaluacion": "Quiz de 5 ítems (propiedades y algoritmo) y rúbrica de presentación de estrategia.",
+      "saber": {
+        "pregunta": "¿Qué propiedad se usa en 7 × 105 = 7 × 100 + 7 × 5?",
+        "opciones": [
+          "Propiedad conmutativa",
+          "Propiedad asociativa",
+          "Propiedad distributiva",
+          "Propiedad modulativa (elemento neutro)"
+        ],
+        "rta": "c"
+      },
+      "compromiso": "(20 min) Inventar y resolver 2 cálculos mentales usando la propiedad distributiva.",
+      "recursos": "Tarjetas de estrategia, hojas de trabajo, tablero, calculadora."
+    },
+    {
+      "n": 5,
+      "tema": "Problemas multiplicativos",
+      "meta": "Plantea y resuelve problemas multiplicativos de la vida diaria explicando la estrategia usada. **Evidencia:** 4 problemas resueltos con las cuatro fases.",
+      "dba": "DBA 2 (resolver problemas con números naturales)",
+      "inicio": "(10 min) Se presenta una cartelera de precios de la tienda escolar y se pregunta: «¿Cuánto costarían 12 empanadas si cada una vale $1.500?»",
+      "desarrollo": "Se guía el trabajo con las cuatro fases de Polya: comprender, planear, ejecutar y mirar hacia atrás. Los equipos resuelven problemas con precios, distancias y repartos usando una hoja de ruta que exige escribir el plan antes de operar y verificar el resultado con una estimación.",
+      "sustento": {
+        "autor": "George Polya",
+        "teoria": "Resolución de problemas",
+        "idea": "Resolver bien implica comprender, planear, ejecutar y revisar lo hecho."
+      },
+      "cierre": "Se comparan dos formas de resolver el mismo problema y se elige la más eficiente.",
+      "evaluacion": "Taller de 4 problemas con rúbrica de las cuatro fases (comprensión, plan, ejecución y verificación).",
+      "saber": {
+        "pregunta": "Una caja de lápices cuesta $3.200 y la profesora compra 8 cajas. ¿Cuánto paga en total?",
+        "opciones": [
+          "$25.600",
+          "$3.208",
+          "$24.600",
+          "$26.500"
+        ],
+        "rta": "a"
+      },
+      "compromiso": "(20 min) Escribir un problema multiplicativo con datos de su casa y resolverlo con las cuatro fases.",
+      "recursos": "Cartelera de precios, hoja de ruta de Polya, billetes didácticos, tablero."
+    },
+    {
+      "n": 6,
+      "tema": "Múltiplos, divisores y criterios de divisibilidad",
+      "meta": "Encuentra múltiplos y divisores y aplica los criterios de divisibilidad por 2, 3, 5, 9 y 10. **Evidencia:** cuadro de criterios y 8 números clasificados.",
+      "dba": "DBA 2 (relaciones entre números naturales)",
+      "inicio": "(10 min) Juego de reparto: «Tenemos 36 stickers; ¿de cuántas maneras se pueden repartir en grupos iguales sin que sobre ninguno?»",
+      "desarrollo": "Se exploran los múltiplos con la tabla del 100 y los divisores con rectángulos de fichas. Se descubren los criterios por patrones: un número es divisible por 3 si la suma de sus cifras lo es, y por 9 si esa suma es múltiplo de 9. Cada estudiante completa un cuadro de criterios con ejemplos propios.",
+      "sustento": {
+        "autor": "Hans Freudenthal",
+        "teoria": "Educación matemática realista",
+        "idea": "Las regularidades se descubren matematizando situaciones reales de reparto y agrupación."
+      },
+      "cierre": "Se concluye con un cuadro de criterios construido por todo el grupo.",
+      "evaluacion": "Quiz de clasificación de números y rúbrica del cuadro de criterios.",
+      "saber": {
+        "pregunta": "¿Cuál de los siguientes números es divisible por 3 y por 5?",
+        "opciones": [
+          "135",
+          "124",
+          "250",
+          "93"
+        ],
+        "rta": "a"
+      },
+      "compromiso": "(20 min) Clasificar 6 números del calendario o de un recibo según los criterios del 2, 3, 5, 9 y 10.",
+      "recursos": "Tabla del 100, fichas, tarjetas de criterios, tablero."
+    },
+    {
+      "n": 7,
+      "tema": "Las fracciones como relación parte-todo",
+      "meta": "Interpreta fracciones como relación parte-todo y como cociente en diferentes contextos y las representa en gráficos y en la recta. **Evidencia:** 5 representaciones correctas.",
+      "dba": "DBA 1 (interpretar fracciones)",
+      "inicio": "(10 min) Se reparte una barra de chocolate de papel entre 4 estudiantes con partes desiguales y entre otros 4 con partes iguales: «¿cuál reparto es justo y por qué?»",
+      "desarrollo": "Con tiras de papel y círculos fraccionarios se representan 1/2, 1/4, 3/4, 2/3 y 5/6; se escribe la fracción, se lee y se ubica en la recta numérica. Se relaciona la fracción con la división (3/4 como 3 ÷ 4) y con el operador (3/4 de 20 es 15).",
+      "sustento": {
+        "autor": "Raymond Duval",
+        "teoria": "Registros de representación semiótica",
+        "idea": "Comprender una fracción es poder pasar entre palabras, dibujo, recta y símbolo."
+      },
+      "cierre": "Cada estudiante elige una fracción y la presenta en los cuatro registros: palabras, dibujo, recta y símbolo.",
+      "evaluacion": "Rúbrica de los cuatro registros y quiz de 5 ítems.",
+      "saber": {
+        "pregunta": "Camila comió 3 de las 8 porciones de una pizza. ¿Qué fracción de la pizza comió?",
+        "opciones": [
+          "3/8",
+          "8/3",
+          "5/8",
+          "3/5"
+        ],
+        "rta": "a"
+      },
+      "compromiso": "(20 min) Dibujar y pintar 3 fracciones de objetos de su casa (frutas, baldosas, útiles) y escribirlas.",
+      "recursos": "Tiras de papel, círculos fraccionarios, recta numérica, colores."
+    },
+    {
+      "n": 8,
+      "tema": "Fracciones equivalentes",
+      "meta": "Reconoce y construye fracciones equivalentes por amplificación y simplificación y explica por qué representan la misma cantidad. **Evidencia:** 6 parejas de fracciones equivalentes con justificación.",
+      "dba": "DBA 1 (fracciones equivalentes)",
+      "inicio": "(10 min) Se muestran dos tiras del mismo tamaño, una dividida en 2 partes y otra en 4, y se pregunta: «¿1/2 y 2/4 son lo mismo?»",
+      "desarrollo": "Con tiras de papel plegado se comprueba que 1/2 = 2/4 = 4/8. Se generaliza: multiplicar o dividir numerador y denominador por el mismo número no cambia el valor. Los estudiantes juegan al «dominó de equivalentes» y justifican cada pareja.",
+      "sustento": {
+        "autor": "Lee Shulman",
+        "teoria": "Conocimiento didáctico del contenido",
+        "idea": "La analogía del papel plegado hace visible por qué las fracciones equivalentes representan la misma cantidad."
+      },
+      "cierre": "Cada equipo explica con sus palabras por qué amplificar no cambia el valor de la fracción.",
+      "evaluacion": "Quiz de 6 ítems y rúbrica de justificación en el dominó de equivalentes.",
+      "saber": {
+        "pregunta": "¿Cuál fracción es equivalente a 2/3?",
+        "opciones": [
+          "4/6",
+          "3/4",
+          "2/6",
+          "4/9"
+        ],
+        "rta": "a"
+      },
+      "compromiso": "(20 min) Escribir tres fracciones equivalentes a 1/2 y tres a 3/4, y dibujar una de ellas.",
+      "recursos": "Tiras de papel, dominó de equivalentes, cuadrícula, tablero."
+    },
+    {
+      "n": 9,
+      "tema": "Cierre del periodo: evaluación bimestral",
+      "meta": "Integra y aplica lo aprendido sobre numeración, multiplicación, divisibilidad y fracciones y reflexiona sobre su propio proceso. **Evidencia:** prueba bimestral y autoevaluación.",
+      "dba": "DBA 1 y DBA 2 (integración)",
+      "inicio": "(10 min) Repaso con un juego de preguntas por equipos que recoge los cuatro ejes del periodo.",
+      "desarrollo": "Se aplica la evaluación bimestral tipo Saber (selección múltiple con situaciones del contexto) y un problema abierto con rúbrica. Se brinda tiempo adicional y apoyos según el PIAR cuando corresponda.",
+      "sustento": {
+        "autor": "Dylan Wiliam y Paul Black",
+        "teoria": "Evaluación formativa",
+        "idea": "La evaluación debe dar retroalimentación para mejorar, no solo calificar."
+      },
+      "cierre": "Autoevaluación guiada: «¿Qué aprendí? ¿Qué me costó? ¿Qué haré distinto en el periodo 2?»",
+      "evaluacion": "Prueba bimestral (Saber), portafolio de talleres (Hacer) y autoevaluación y coevaluación (Ser), según el SIEE.",
+      "saber": {
+        "pregunta": "En un bus caben 45 pasajeros. ¿Cuántos pasajeros pueden viajar en 12 buses llenos?",
+        "opciones": [
+          "540",
+          "57",
+          "450",
+          "90"
+        ],
+        "rta": "a"
+      },
+      "compromiso": "(20 min) Escribir una carta breve a un compañero explicando qué estrategia de este periodo le recomienda y por qué.",
+      "recursos": "Prueba bimestral impresa, rúbrica, formato de autoevaluación, calculadora solo para verificar."
+    }
+  ],
+  "fase3": {
+    "competencias": [
+      {
+        "nombre": "Comunicación, representación y modelación",
+        "descripcion": "Usa e interpreta registros (tablas, gráficas, símbolos y lenguaje natural) y modela situaciones con números y fracciones."
+      },
+      {
+        "nombre": "Razonamiento y argumentación",
+        "descripcion": "Justifica procedimientos, criterios de divisibilidad y equivalencias de fracciones."
+      },
+      {
+        "nombre": "Planteamiento y resolución de problemas",
+        "descripcion": "Plantea y resuelve problemas multiplicativos y verifica sus resultados."
+      }
+    ],
+    "procesos": {
+      "basicos": [
+        "Observar",
+        "Comparar",
+        "Clasificar",
+        "Describir",
+        "Ordenar",
+        "Relacionar"
+      ],
+      "superiores": [
+        "Analizar",
+        "Inferir",
+        "Sintetizar",
+        "Evaluar",
+        "Resolver problemas",
+        "Argumentar",
+        "Metacognición"
+      ]
+    },
+    "logro": "El estudiante lee, escribe, compara y opera números naturales hasta los millones, resuelve problemas multiplicativos y de divisibilidad, y representa e identifica fracciones equivalentes, explicando sus estrategias con claridad y trabajando con responsabilidad y respeto en equipo.",
+    "desempenos": {
+      "cognitivo": "Reconoce el valor posicional hasta los millones, las propiedades de la multiplicación, los criterios de divisibilidad y la relación parte-todo en las fracciones.",
+      "procedimental": "Aplica algoritmos y estrategias de multiplicación, clasifica números según su divisibilidad y construye fracciones equivalentes con material concreto y gráficos.",
+      "actitudinal": "Participa con respeto, cumple con sus compromisos, escucha a sus compañeros y persevera ante los retos."
+    },
+    "evaluacion": [
+      {
+        "dimension": "Cognitivo (Saber)",
+        "porcentaje": 40,
+        "instrumentos": "Quices y prueba bimestral tipo Saber."
+      },
+      {
+        "dimension": "Procedimental (Hacer)",
+        "porcentaje": 40,
+        "instrumentos": "Talleres, portafolio, exposiciones y rúbricas."
+      },
+      {
+        "dimension": "Actitudinal (Ser)",
+        "porcentaje": 20,
+        "instrumentos": "Autoevaluación, coevaluación y observación del docente."
+      }
+    ],
+    "matriz": [
+      {
+        "indicador": "Lee, escribe, compara y aproxima números naturales hasta los millones.",
+        "previos": "Numeración hasta 9.999 y valor posicional (grado 3.°).",
+        "temas": "Sem 1-2: sistema de numeración; comparación, orden y aproximación.",
+        "evaluacion": "Quiz de 5 ítems y taller de 8 puntos.",
+        "criterios": "Lee y escribe correctamente; ordena sin errores al menos 5 de 6 números.",
+        "tiempo": "2 semanas · 8 h"
+      },
+      {
+        "indicador": "Resuelve problemas multiplicativos y aplica criterios de divisibilidad.",
+        "previos": "Tablas de multiplicar y multiplicación por una cifra.",
+        "temas": "Sem 3-6: multiplicación por 2 y 3 cifras, propiedades, problemas multiplicativos, múltiplos, divisores y divisibilidad.",
+        "evaluacion": "Quices y taller de problemas con rúbrica de Polya.",
+        "criterios": "Aplica el algoritmo sin errores; plantea, ejecuta y verifica; clasifica con los criterios.",
+        "tiempo": "4 semanas · 16 h"
+      },
+      {
+        "indicador": "Interpreta y construye fracciones equivalentes y cierra el periodo.",
+        "previos": "Partición de la unidad (grado 3.°).",
+        "temas": "Sem 7-9: fracciones parte-todo, fracciones equivalentes y cierre bimestral.",
+        "evaluacion": "Rúbrica de registros, dominó de equivalentes y prueba bimestral.",
+        "criterios": "Representa en cuatro registros y justifica equivalencias; alcanza el nivel básico en la prueba.",
+        "tiempo": "3 semanas · 12 h"
+      }
+    ],
+    "apoyo": {
+      "dificultades": [
+        "Material concreto adicional (ábaco, regletas, tiras) y tutoría entre pares en la zona de desarrollo próximo.",
+        "Guías con ejemplos resueltos paso a paso y tablas de multiplicar de apoyo.",
+        "Tiempo adicional y menos ítems por evaluación, sin bajar la exigencia conceptual."
+      ],
+      "avanzados": [
+        "Problemas multiplicativos de dos pasos con datos de la ciudad.",
+        "Retos de divisibilidad: hallar el menor número divisible por 2, 3 y 5.",
+        "Crear y resolver sus propios problemas con fracciones para sus compañeros."
+      ]
+    },
+    "bibliografia": [
+      "Ministerio de Educación Nacional. (2016). *Derechos Básicos de Aprendizaje: Matemáticas, versión 2*. MEN.",
+      "Ministerio de Educación Nacional. (2006). *Estándares básicos de competencias en lenguaje, matemáticas, ciencias y ciudadanas*. MEN.",
+      "Ministerio de Educación Nacional. (1998). *Matemáticas: Lineamientos curriculares*. MEN.",
+      "Polya, G. (1945). *How to solve it: A new aspect of mathematical method*. Princeton University Press.",
+      "Duval, R. (2006). A cognitive analysis of problems of comprehension in a learning of mathematics. *Educational Studies in Mathematics, 61*(1-2), 103-131."
+    ]
+  }
+}

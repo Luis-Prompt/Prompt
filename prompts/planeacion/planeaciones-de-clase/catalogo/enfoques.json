@@ -1,0 +1,53 @@
+{
+  "_nota": "Si el docente elige «Tú elige el más pertinente», escoge el que mejor encaje con el área y el tema y dilo en una línea.",
+  "enfoques": [
+    {
+      "nombre": "Aprendizaje Basado en Problemas (ABP)",
+      "teoria": "Barrows / Dewey",
+      "descripcion": "El estudiante aprende resolviendo un problema auténtico con apoyo del docente.",
+      "inicio": "Presentar el problema y preguntas detonadoras",
+      "desarrollo": "Investigar, discutir y proponer soluciones",
+      "cierre": "Presentar la solución y reflexionar"
+    },
+    {
+      "nombre": "Aprendizaje Cooperativo (Vygotsky)",
+      "teoria": "Vygotsky / Johnson y Johnson",
+      "descripcion": "Equipos con roles e interdependencia positiva.",
+      "inicio": "Formar equipos y asignar roles",
+      "desarrollo": "Tarea compartida con responsabilidad individual",
+      "cierre": "Coevaluación y autoevaluación del equipo"
+    },
+    {
+      "nombre": "Aprendizaje Significativo (Ausubel)",
+      "teoria": "Ausubel",
+      "descripcion": "Se conecta lo nuevo con los saberes previos.",
+      "inicio": "Activar saberes previos",
+      "desarrollo": "Organizadores gráficos y ejemplos cercanos",
+      "cierre": "Mapa conceptual de síntesis"
+    },
+    {
+      "nombre": "Instrucción Directa + Modelado",
+      "teoria": "Rosenshine / Bandura",
+      "descripcion": "Explicación clara, modelado, práctica guiada y práctica independiente.",
+      "inicio": "Objetivo y repaso breve",
+      "desarrollo": "Yo hago, nosotros hacemos, tú haces",
+      "cierre": "Verificación de comprensión"
+    },
+    {
+      "nombre": "Gamificación y aprendizaje lúdico",
+      "teoria": "Huizinga / Kapp",
+      "descripcion": "Reto, reglas, puntos y retroalimentación inmediata.",
+      "inicio": "Presentar el reto y las reglas",
+      "desarrollo": "Juego o misión con niveles",
+      "cierre": "Balance y reflexión sobre lo aprendido"
+    },
+    {
+      "nombre": "Flipped Classroom",
+      "teoria": "Bergmann y Sams",
+      "descripcion": "El contenido se estudia en casa y el aula se usa para practicar y aplicar.",
+      "inicio": "Verificar el material previo",
+      "desarrollo": "Práctica, proyectos y resolución de dudas",
+      "cierre": "Ticket de salida"
+    }
+  ]
+}

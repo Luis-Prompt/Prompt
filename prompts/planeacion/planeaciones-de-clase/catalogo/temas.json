@@ -1,0 +1,896 @@
+{
+  "_nota": "Temas SUGERIDOS por familia y grado (basados en DBA, mallas y EBC del MEN). El docente elige los de su periodo; si su plan de área es distinto, manda el suyo. Verifica con el DBA oficial antes de citarlo.",
+  "familias": {
+    "matematicas": {
+      "Transición": [
+        "Conteo hasta 10",
+        "Nociones espaciales",
+        "Clasificación de objetos",
+        "Nociones de cantidad"
+      ],
+      "1": [
+        "Sistema de numeración 0-99",
+        "Adición y sustracción básica",
+        "Figuras geométricas",
+        "Medición informal"
+      ],
+      "2": [
+        "Numeración hasta 999",
+        "Operaciones con reagrupación",
+        "Tablas de multiplicar iniciales",
+        "Fracciones simples"
+      ],
+      "3": [
+        "Números hasta 9.999",
+        "Multiplicación y división básica",
+        "Fracciones propias",
+        "Perímetro y área básica"
+      ],
+      "4": [
+        "Números hasta millones",
+        "Multiplicación por 2 y 3 cifras",
+        "Divisibilidad",
+        "Fracciones equivalentes"
+      ],
+      "5": [
+        "Números decimales",
+        "Fracciones y operaciones",
+        "Porcentajes básicos",
+        "Geometría plana",
+        "Estadística básica"
+      ],
+      "6": [
+        "Números enteros",
+        "Fracciones y decimales avanzados",
+        "Razones y proporciones",
+        "Álgebra inicial",
+        "Geometría"
+      ],
+      "7": [
+        "Números racionales",
+        "Proporcionalidad directa e inversa",
+        "Álgebra: expresiones y ecuaciones",
+        "Estadística"
+      ],
+      "8": [
+        "Ecuaciones lineales",
+        "Sistemas de ecuaciones",
+        "Teorema de Pitágoras",
+        "Funciones lineales",
+        "Estadística descriptiva"
+      ],
+      "9": [
+        "Funciones cuadráticas",
+        "Sistemas de ecuaciones",
+        "Trigonometría básica",
+        "Probabilidad",
+        "Geometría analítica"
+      ],
+      "10": [
+        "Números reales y complejos",
+        "Funciones y álgebra avanzada",
+        "Trigonometría",
+        "Estadística inferencial"
+      ],
+      "11": [
+        "Cálculo diferencial e integral",
+        "Geometría analítica avanzada",
+        "Probabilidad y estadística",
+        "Matemáticas financieras"
+      ]
+    },
+    "lenguaje": {
+      "Transición": [
+        "Conciencia fonológica",
+        "Lectura de imágenes",
+        "Expresión oral",
+        "Pre-escritura"
+      ],
+      "1": [
+        "Lectura silábica y de palabras",
+        "Escritura inicial",
+        "Comprensión oral",
+        "Textos narrativos simples"
+      ],
+      "2": [
+        "Lectura de textos cortos",
+        "Tipos de oraciones",
+        "Escritura creativa",
+        "Sinónimos y antónimos"
+      ],
+      "3": [
+        "Comprensión lectora",
+        "Producción textual",
+        "Géneros narrativos",
+        "Gramática básica"
+      ],
+      "4": [
+        "Texto narrativo y descriptivo",
+        "Uso del diccionario",
+        "Coherencia y cohesión",
+        "Comunicación oral"
+      ],
+      "5": [
+        "Tipología textual",
+        "Producción de textos argumentativos simples",
+        "Literatura colombiana",
+        "Medios de comunicación"
+      ],
+      "6": [
+        "Géneros literarios",
+        "Comprensión e inferencia",
+        "Producción textual",
+        "Comunicación y lenguaje"
+      ],
+      "7": [
+        "Literatura universal",
+        "Argumentación",
+        "Ortografía avanzada",
+        "Medios y TIC"
+      ],
+      "8": [
+        "Texto argumentativo",
+        "Retórica y discurso",
+        "Literatura latinoamericana",
+        "Semántica"
+      ],
+      "9": [
+        "Literatura colombiana",
+        "Ensayo académico",
+        "Análisis crítico",
+        "Oralidad avanzada"
+      ],
+      "10": [
+        "Literatura universal contemporánea",
+        "Texto expositivo-argumentativo",
+        "Semiótica",
+        "Investigación lingüística"
+      ],
+      "11": [
+        "Literatura y sociedad",
+        "Ensayo de grado",
+        "Análisis del discurso",
+        "Comunicación intercultural"
+      ]
+    },
+    "ciencias-naturales": {
+      "Transición": [
+        "Los seres vivos",
+        "Cuerpo humano",
+        "El agua y el aire",
+        "La naturaleza"
+      ],
+      "1": [
+        "Seres vivos y no vivos",
+        "Partes del cuerpo",
+        "Estados de la materia",
+        "Ciclo del agua"
+      ],
+      "2": [
+        "Plantas y animales",
+        "Ecosistemas cercanos",
+        "La materia y sus cambios",
+        "El tiempo atmosférico"
+      ],
+      "3": [
+        "Cadena alimentaria",
+        "El suelo",
+        "La célula básica",
+        "Energía y movimiento"
+      ],
+      "4": [
+        "Sistema digestivo y respiratorio",
+        "Plantas: fotosíntesis",
+        "Mezclas y soluciones",
+        "La luz y el sonido"
+      ],
+      "5": [
+        "Sistema nervioso y reproducción",
+        "Ecosistemas de Colombia",
+        "Átomo y moléculas básicos",
+        "Fuerza y movimiento"
+      ],
+      "6": [
+        "Célula: tipos y funciones",
+        "Clasificación de los seres vivos",
+        "La materia y sus propiedades",
+        "Ecosistemas"
+      ],
+      "7": [
+        "Genética y herencia básica",
+        "Evolución",
+        "Química: tabla periódica",
+        "Calor y temperatura"
+      ],
+      "8": [
+        "Química: reacciones y enlaces",
+        "Biología: sistemas del cuerpo",
+        "Electricidad y magnetismo",
+        "Ecología"
+      ],
+      "9": [
+        "Química orgánica",
+        "Genética molecular",
+        "Física: movimiento y fuerzas",
+        "Biotecnología"
+      ],
+      "10": [
+        "Termodinámica",
+        "Química analítica",
+        "Biología celular avanzada",
+        "Electromagnetismo"
+      ],
+      "11": [
+        "Física moderna",
+        "Química industrial",
+        "Biología molecular",
+        "Medio ambiente y desarrollo sostenible"
+      ]
+    },
+    "ciencias-sociales": {
+      "Transición": [
+        "Mi familia y yo",
+        "Mi institución",
+        "Mi barrio y comunidad",
+        "Normas de convivencia"
+      ],
+      "1": [
+        "La familia",
+        "El colegio",
+        "El municipio",
+        "Los derechos del niño"
+      ],
+      "2": [
+        "La comunidad",
+        "Grupos étnicos de Colombia",
+        "El entorno geográfico",
+        "Las normas"
+      ],
+      "3": [
+        "Historia de mi región",
+        "Geografía de Colombia",
+        "Democracia escolar",
+        "Cultura y tradiciones"
+      ],
+      "4": [
+        "Historia de Colombia (colonia)",
+        "Regiones naturales",
+        "Economía básica",
+        "Derechos y deberes"
+      ],
+      "5": [
+        "Historia de Colombia (independencia)",
+        "Geografía latinoamericana",
+        "Ciudadanía",
+        "Ambiente y sociedad"
+      ],
+      "6": [
+        "Prehistoria y civilizaciones antiguas",
+        "Geografía mundial",
+        "Economía básica",
+        "Democracia"
+      ],
+      "7": [
+        "Edad Media y Moderna",
+        "América Latina",
+        "Derechos Humanos",
+        "Cultura y sociedad"
+      ],
+      "8": [
+        "Historia Contemporánea",
+        "Globalización",
+        "Conflicto armado colombiano",
+        "Geopolítica"
+      ],
+      "9": [
+        "Colombia siglo XX",
+        "Constitución Política",
+        "Economía colombiana",
+        "Paz y convivencia"
+      ],
+      "10": [
+        "Historia Universal siglo XX",
+        "Democracia y ciudadanía global",
+        "Geopolítica",
+        "Desarrollo sostenible"
+      ],
+      "11": [
+        "Colombia en el mundo",
+        "Problemas contemporáneos",
+        "Filosofía política",
+        "Proyecto de vida"
+      ]
+    },
+    "tecnologia": {
+      "Transición": [
+        "Uso básico del computador",
+        "El ratón y el teclado",
+        "Software educativo básico"
+      ],
+      "1": [
+        "Uso básico del computador",
+        "El ratón y el teclado",
+        "Software educativo básico"
+      ],
+      "2": [
+        "Uso básico del computador",
+        "El ratón y el teclado",
+        "Software educativo básico"
+      ],
+      "3": [
+        "Hardware y software",
+        "Internet seguro",
+        "Procesador de texto",
+        "Pensamiento computacional básico"
+      ],
+      "4": [
+        "Hardware y software",
+        "Internet seguro",
+        "Procesador de texto",
+        "Pensamiento computacional básico"
+      ],
+      "5": [
+        "Hardware y software",
+        "Internet seguro",
+        "Procesador de texto",
+        "Pensamiento computacional básico"
+      ],
+      "6": [
+        "Redes y comunicación",
+        "Hojas de cálculo",
+        "Presentaciones digitales",
+        "Seguridad digital",
+        "Programación básica (Scratch)"
+      ],
+      "7": [
+        "Redes y comunicación",
+        "Hojas de cálculo",
+        "Presentaciones digitales",
+        "Seguridad digital",
+        "Programación básica (Scratch)"
+      ],
+      "8": [
+        "Redes y comunicación",
+        "Hojas de cálculo",
+        "Presentaciones digitales",
+        "Seguridad digital",
+        "Programación básica (Scratch)"
+      ],
+      "9": [
+        "Programación (Python/HTML)",
+        "Bases de datos",
+        "Diseño digital",
+        "Inteligencia Artificial y ética",
+        "Robótica"
+      ],
+      "10": [
+        "Programación (Python/HTML)",
+        "Bases de datos",
+        "Diseño digital",
+        "Inteligencia Artificial y ética",
+        "Robótica"
+      ],
+      "11": [
+        "Programación (Python/HTML)",
+        "Bases de datos",
+        "Diseño digital",
+        "Inteligencia Artificial y ética",
+        "Robótica"
+      ]
+    },
+    "ingles": {
+      "Transición": [
+        "Saludos y presentaciones",
+        "Colores, números y formas",
+        "La familia y los amigos",
+        "Mi escuela y mis útiles"
+      ],
+      "1": [
+        "Saludos y presentaciones",
+        "Colores, números y formas",
+        "La familia y los amigos",
+        "Mi escuela y mis útiles"
+      ],
+      "2": [
+        "Saludos y presentaciones",
+        "Colores, números y formas",
+        "La familia y los amigos",
+        "Mi escuela y mis útiles"
+      ],
+      "3": [
+        "Rutinas diarias (present simple)",
+        "Comida y bebidas",
+        "Descripción de personas y lugares",
+        "Habilidades (can) y gustos"
+      ],
+      "4": [
+        "Rutinas diarias (present simple)",
+        "Comida y bebidas",
+        "Descripción de personas y lugares",
+        "Habilidades (can) y gustos"
+      ],
+      "5": [
+        "Rutinas diarias (present simple)",
+        "Comida y bebidas",
+        "Descripción de personas y lugares",
+        "Habilidades (can) y gustos"
+      ],
+      "6": [
+        "Present continuous y actividades",
+        "Pasado simple (was/were y verbos regulares)",
+        "La ciudad y las direcciones",
+        "Comparativos y superlativos"
+      ],
+      "7": [
+        "Present continuous y actividades",
+        "Pasado simple (was/were y verbos regulares)",
+        "La ciudad y las direcciones",
+        "Comparativos y superlativos"
+      ],
+      "8": [
+        "Pasado continuo",
+        "Futuro (will / going to)",
+        "Obligación y consejos (must, should)",
+        "Presente perfecto: introducción"
+      ],
+      "9": [
+        "Pasado continuo",
+        "Futuro (will / going to)",
+        "Obligación y consejos (must, should)",
+        "Presente perfecto: introducción"
+      ],
+      "10": [
+        "Condicionales (0, 1 y 2)",
+        "Voz pasiva",
+        "Estilo indirecto (reported speech)",
+        "Lectura de textos académicos y preparación Saber"
+      ],
+      "11": [
+        "Condicionales (0, 1 y 2)",
+        "Voz pasiva",
+        "Estilo indirecto (reported speech)",
+        "Lectura de textos académicos y preparación Saber"
+      ]
+    },
+    "artistica": {
+      "Transición": [
+        "Colores primarios y secundarios",
+        "Líneas y formas",
+        "Ritmo y sonidos del entorno",
+        "Expresión corporal y juego dramático"
+      ],
+      "1": [
+        "Colores primarios y secundarios",
+        "Líneas y formas",
+        "Ritmo y sonidos del entorno",
+        "Expresión corporal y juego dramático"
+      ],
+      "2": [
+        "Colores primarios y secundarios",
+        "Líneas y formas",
+        "Ritmo y sonidos del entorno",
+        "Expresión corporal y juego dramático"
+      ],
+      "3": [
+        "Dibujo y composición",
+        "Música: pulso y ritmo",
+        "Danzas folclóricas colombianas",
+        "Teatro y dramatización"
+      ],
+      "4": [
+        "Dibujo y composición",
+        "Música: pulso y ritmo",
+        "Danzas folclóricas colombianas",
+        "Teatro y dramatización"
+      ],
+      "5": [
+        "Dibujo y composición",
+        "Música: pulso y ritmo",
+        "Danzas folclóricas colombianas",
+        "Teatro y dramatización"
+      ],
+      "6": [
+        "Teoría del color y composición",
+        "Perspectiva y volumen",
+        "Música: notación y géneros colombianos",
+        "Teatro: cuerpo y voz",
+        "Artes audiovisuales"
+      ],
+      "7": [
+        "Teoría del color y composición",
+        "Perspectiva y volumen",
+        "Música: notación y géneros colombianos",
+        "Teatro: cuerpo y voz",
+        "Artes audiovisuales"
+      ],
+      "8": [
+        "Teoría del color y composición",
+        "Perspectiva y volumen",
+        "Música: notación y géneros colombianos",
+        "Teatro: cuerpo y voz",
+        "Artes audiovisuales"
+      ],
+      "9": [
+        "Teoría del color y composición",
+        "Perspectiva y volumen",
+        "Música: notación y géneros colombianos",
+        "Teatro: cuerpo y voz",
+        "Artes audiovisuales"
+      ],
+      "10": [
+        "Historia del arte y movimientos",
+        "Proyecto artístico personal",
+        "Producción audiovisual",
+        "Gestión cultural y patrimonio"
+      ],
+      "11": [
+        "Historia del arte y movimientos",
+        "Proyecto artístico personal",
+        "Producción audiovisual",
+        "Gestión cultural y patrimonio"
+      ]
+    },
+    "educacion-fisica": {
+      "Transición": [
+        "Esquema corporal y lateralidad",
+        "Locomoción y equilibrio",
+        "Juegos cooperativos",
+        "Hábitos de higiene y salud"
+      ],
+      "1": [
+        "Esquema corporal y lateralidad",
+        "Locomoción y equilibrio",
+        "Juegos cooperativos",
+        "Hábitos de higiene y salud"
+      ],
+      "2": [
+        "Esquema corporal y lateralidad",
+        "Locomoción y equilibrio",
+        "Juegos cooperativos",
+        "Hábitos de higiene y salud"
+      ],
+      "3": [
+        "Capacidades coordinativas",
+        "Iniciación deportiva (baloncesto, fútbol, voleibol)",
+        "Juegos tradicionales colombianos",
+        "Salud y alimentación"
+      ],
+      "4": [
+        "Capacidades coordinativas",
+        "Iniciación deportiva (baloncesto, fútbol, voleibol)",
+        "Juegos tradicionales colombianos",
+        "Salud y alimentación"
+      ],
+      "5": [
+        "Capacidades coordinativas",
+        "Iniciación deportiva (baloncesto, fútbol, voleibol)",
+        "Juegos tradicionales colombianos",
+        "Salud y alimentación"
+      ],
+      "6": [
+        "Capacidades condicionales",
+        "Fundamentos técnicos de deportes de conjunto",
+        "Atletismo básico",
+        "Expresión corporal y danza",
+        "Reglamento y juego limpio"
+      ],
+      "7": [
+        "Capacidades condicionales",
+        "Fundamentos técnicos de deportes de conjunto",
+        "Atletismo básico",
+        "Expresión corporal y danza",
+        "Reglamento y juego limpio"
+      ],
+      "8": [
+        "Capacidades condicionales",
+        "Fundamentos técnicos de deportes de conjunto",
+        "Atletismo básico",
+        "Expresión corporal y danza",
+        "Reglamento y juego limpio"
+      ],
+      "9": [
+        "Capacidades condicionales",
+        "Fundamentos técnicos de deportes de conjunto",
+        "Atletismo básico",
+        "Expresión corporal y danza",
+        "Reglamento y juego limpio"
+      ],
+      "10": [
+        "Planificación del entrenamiento",
+        "Primeros auxilios y prevención de lesiones",
+        "Deporte y proyecto de vida",
+        "Recreación y liderazgo"
+      ],
+      "11": [
+        "Planificación del entrenamiento",
+        "Primeros auxilios y prevención de lesiones",
+        "Deporte y proyecto de vida",
+        "Recreación y liderazgo"
+      ]
+    },
+    "etica": {
+      "Transición": [
+        "Normas y acuerdos del salón",
+        "Sentimientos y emociones",
+        "Respeto y cuidado de los demás",
+        "Mi familia y mis responsabilidades"
+      ],
+      "1": [
+        "Normas y acuerdos del salón",
+        "Sentimientos y emociones",
+        "Respeto y cuidado de los demás",
+        "Mi familia y mis responsabilidades"
+      ],
+      "2": [
+        "Normas y acuerdos del salón",
+        "Sentimientos y emociones",
+        "Respeto y cuidado de los demás",
+        "Mi familia y mis responsabilidades"
+      ],
+      "3": [
+        "Empatía y escucha",
+        "Resolución pacífica de conflictos",
+        "Diversidad y no discriminación",
+        "Responsabilidad y honestidad"
+      ],
+      "4": [
+        "Empatía y escucha",
+        "Resolución pacífica de conflictos",
+        "Diversidad y no discriminación",
+        "Responsabilidad y honestidad"
+      ],
+      "5": [
+        "Empatía y escucha",
+        "Resolución pacífica de conflictos",
+        "Diversidad y no discriminación",
+        "Responsabilidad y honestidad"
+      ],
+      "6": [
+        "Dignidad y derechos humanos",
+        "Toma de decisiones y consecuencias",
+        "Manejo de conflictos y mediación",
+        "Autocuidado y proyecto de vida"
+      ],
+      "7": [
+        "Dignidad y derechos humanos",
+        "Toma de decisiones y consecuencias",
+        "Manejo de conflictos y mediación",
+        "Autocuidado y proyecto de vida"
+      ],
+      "8": [
+        "Dignidad y derechos humanos",
+        "Toma de decisiones y consecuencias",
+        "Manejo de conflictos y mediación",
+        "Autocuidado y proyecto de vida"
+      ],
+      "9": [
+        "Dignidad y derechos humanos",
+        "Toma de decisiones y consecuencias",
+        "Manejo de conflictos y mediación",
+        "Autocuidado y proyecto de vida"
+      ],
+      "10": [
+        "Dilemas morales y juicio ético",
+        "Ciudadanía y participación",
+        "Ética profesional y proyecto de vida",
+        "Responsabilidad social"
+      ],
+      "11": [
+        "Dilemas morales y juicio ético",
+        "Ciudadanía y participación",
+        "Ética profesional y proyecto de vida",
+        "Responsabilidad social"
+      ]
+    },
+    "religion": {
+      "Transición": [
+        "Mi familia y mis creencias",
+        "La vida y la creación",
+        "Fiestas y celebraciones",
+        "Valores: amor y respeto"
+      ],
+      "1": [
+        "Mi familia y mis creencias",
+        "La vida y la creación",
+        "Fiestas y celebraciones",
+        "Valores: amor y respeto"
+      ],
+      "2": [
+        "Mi familia y mis creencias",
+        "La vida y la creación",
+        "Fiestas y celebraciones",
+        "Valores: amor y respeto"
+      ],
+      "3": [
+        "Textos sagrados",
+        "Personajes y relatos",
+        "Valores y comportamiento",
+        "Celebraciones religiosas del año"
+      ],
+      "4": [
+        "Textos sagrados",
+        "Personajes y relatos",
+        "Valores y comportamiento",
+        "Celebraciones religiosas del año"
+      ],
+      "5": [
+        "Textos sagrados",
+        "Personajes y relatos",
+        "Valores y comportamiento",
+        "Celebraciones religiosas del año"
+      ],
+      "6": [
+        "El hecho religioso",
+        "Grandes tradiciones religiosas",
+        "Libertad de cultos y diálogo interreligioso",
+        "Ética y vida"
+      ],
+      "7": [
+        "El hecho religioso",
+        "Grandes tradiciones religiosas",
+        "Libertad de cultos y diálogo interreligioso",
+        "Ética y vida"
+      ],
+      "8": [
+        "El hecho religioso",
+        "Grandes tradiciones religiosas",
+        "Libertad de cultos y diálogo interreligioso",
+        "Ética y vida"
+      ],
+      "9": [
+        "El hecho religioso",
+        "Grandes tradiciones religiosas",
+        "Libertad de cultos y diálogo interreligioso",
+        "Ética y vida"
+      ],
+      "10": [
+        "Religión, cultura y sociedad",
+        "Sentido de la vida y proyecto de vida",
+        "Ética social y compromiso",
+        "Fe, ciencia y razón"
+      ],
+      "11": [
+        "Religión, cultura y sociedad",
+        "Sentido de la vida y proyecto de vida",
+        "Ética social y compromiso",
+        "Fe, ciencia y razón"
+      ]
+    },
+    "filosofia": {
+      "10": [
+        "Introducción a la filosofía",
+        "Lógica y argumentación",
+        "El problema del conocimiento",
+        "Antropología filosófica"
+      ],
+      "11": [
+        "Ética y moral",
+        "Filosofía política",
+        "Estética",
+        "Filosofía contemporánea y proyecto de vida"
+      ]
+    },
+    "economia": {
+      "10": [
+        "Escasez y elección",
+        "Oferta, demanda y mercado",
+        "Producción y costos",
+        "Indicadores económicos"
+      ],
+      "11": [
+        "Sistemas económicos",
+        "Inflación, empleo y política económica",
+        "Comercio internacional y globalización",
+        "Finanzas personales y emprendimiento"
+      ]
+    },
+    "quimica": {
+      "6": [
+        "Materia y sus propiedades",
+        "Mezclas y métodos de separación",
+        "Estados de la materia"
+      ],
+      "7": [
+        "Tabla periódica",
+        "Átomo y modelos atómicos",
+        "Cambios físicos y químicos"
+      ],
+      "8": [
+        "Enlaces químicos",
+        "Reacciones y ecuaciones",
+        "Compuestos inorgánicos"
+      ],
+      "9": [
+        "Química orgánica: hidrocarburos",
+        "Grupos funcionales",
+        "Estequiometría básica"
+      ],
+      "10": [
+        "Mol y estequiometría",
+        "Gases",
+        "Soluciones y concentraciones"
+      ],
+      "11": [
+        "Equilibrio químico",
+        "Ácidos y bases",
+        "Electroquímica",
+        "Química ambiental"
+      ]
+    },
+    "fisica": {
+      "6": [
+        "Magnitudes y medición",
+        "Movimiento y velocidad",
+        "Fuerzas"
+      ],
+      "7": [
+        "Calor y temperatura",
+        "Ondas: sonido y luz",
+        "Energía"
+      ],
+      "8": [
+        "Electricidad y circuitos",
+        "Magnetismo",
+        "Trabajo y potencia"
+      ],
+      "9": [
+        "Movimiento uniforme y acelerado",
+        "Leyes de Newton",
+        "Energía mecánica"
+      ],
+      "10": [
+        "Cinemática",
+        "Dinámica",
+        "Trabajo, energía y potencia",
+        "Conservación del momento"
+      ],
+      "11": [
+        "Ondas y óptica",
+        "Electromagnetismo",
+        "Termodinámica",
+        "Física moderna"
+      ]
+    },
+    "biologia": {
+      "6": [
+        "La célula",
+        "Clasificación de los seres vivos",
+        "Ecosistemas"
+      ],
+      "7": [
+        "Genética mendeliana",
+        "Evolución",
+        "Reproducción"
+      ],
+      "8": [
+        "Sistemas del cuerpo humano",
+        "Salud y nutrición",
+        "Ecología y ambiente"
+      ],
+      "9": [
+        "Genética molecular",
+        "Biotecnología",
+        "Biodiversidad en Colombia"
+      ],
+      "10": [
+        "Biología celular",
+        "Metabolismo",
+        "Fisiología humana"
+      ],
+      "11": [
+        "Genética y evolución",
+        "Ecología y sostenibilidad",
+        "Biología molecular"
+      ]
+    },
+    "transicion": {
+      "Transición": [
+        "Cuerpo y movimiento (Dimensión Corporal)",
+        "Lenguaje oral y primeras letras (Dimensión Comunicativa)",
+        "Cantidad, forma y espacio (Dimensión Cognitiva)",
+        "Emociones y convivencia (Dimensión Ética y Valores)",
+        "Colores, sonidos y creación (Dimensión Estética)"
+      ]
+    }
+  }
+}

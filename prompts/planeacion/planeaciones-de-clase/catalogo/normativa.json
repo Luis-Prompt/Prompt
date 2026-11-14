@@ -1,0 +1,72 @@
+{
+  "_nota": "Referencias normativas. 'verificar' = confirma la vigencia con una búsqueda antes de citar; la normativa cambia.",
+  "base": [
+    {
+      "norma": "Ley 115 de 1994 (Ley General de Educación)",
+      "uso": "Art. 22 (media) o art. 23 (áreas obligatorias y fundamentales de básica) según el área"
+    },
+    {
+      "norma": "Decreto 1290 de 2009, compilado en el Decreto 1075 de 2015",
+      "uso": "Evaluación del aprendizaje y promoción; va en la sección de evaluación",
+      "verificar": true
+    },
+    {
+      "norma": "Estándares Básicos de Competencias (MEN, 2006)",
+      "uso": "Por grupo de grados: 1-3, 4-5, 6-7, 8-9, 10-11"
+    },
+    {
+      "norma": "Derechos Básicos de Aprendizaje (DBA), versión 2",
+      "uso": "Citar el DBA exacto con su número (disponibles de forma oficial para Lenguaje, Matemáticas, Ciencias Naturales y Ciencias Sociales; en otras áreas se usan mallas de aprendizaje y estándares)",
+      "verificar": true
+    }
+  ],
+  "inclusion": [
+    {
+      "norma": "Decreto 1421 de 2017",
+      "uso": "Educación inclusiva; PIAR y Diseño Universal para el Aprendizaje (DUA)",
+      "verificar": true
+    },
+    {
+      "norma": "Ley 1618 de 2013",
+      "uso": "Derechos de las personas con discapacidad",
+      "verificar": true
+    }
+  ],
+  "proyectos_transversales": {
+    "PRAE (Proyecto Ambiental)": "Decreto 1743 de 1994",
+    "Educación para la Democracia": "Ley 115 de 1994, art. 14 (literal a) y Ley 107 de 1994",
+    "Educación Sexual": "Ley 115 de 1994, art. 14 (literal e) y Ley 1620 de 2013",
+    "Aprovechamiento del Tiempo Libre": "Ley 115 de 1994, art. 14 (literal b)",
+    "TIC y Medios": "Ley 115 de 1994, art. 23 (Tecnología e Informática) y Ley 1341 de 2009",
+    "Convivencia y Paz": "Ley 1620 de 2013, Decreto 1965 de 2013 y Ley 1732 de 2014 (Cátedra de la Paz)"
+  },
+  "lineamientos_por_familia": {
+    "matematicas": "Lineamientos Curriculares de Matemáticas (MEN, 1998)",
+    "lenguaje": "Lineamientos Curriculares de Lengua Castellana (MEN, 1998)",
+    "ciencias-naturales": "Lineamientos Curriculares de Ciencias Naturales y Educación Ambiental (MEN, 1998)",
+    "ciencias-sociales": "Lineamientos Curriculares de Ciencias Sociales (MEN, 2002)",
+    "tecnologia": "Orientaciones Generales para la Educación en Tecnología (MEN, 2008)",
+    "educacion-fisica": "Lineamientos Curriculares de Educación Física, Recreación y Deporte (MEN, 2000)",
+    "ingles": "Guía 22: Estándares Básicos de Competencias en Lenguas Extranjeras: Inglés (MEN, 2006)",
+    "etica": "Lineamientos Curriculares de Educación Ética y Valores Humanos (MEN, 1998)",
+    "artistica": "Orientaciones Pedagógicas para la Educación Artística en Básica y Media (MEN, 2010)",
+    "religion": "Ley 115 de 1994 (arts. 23 y 24) y plan de área de Educación Religiosa del colegio",
+    "filosofia": "Orientaciones Pedagógicas para la Filosofía en la Educación Media (MEN, 2010)",
+    "economia": "Ley 115 de 1994 (art. 31) y plan de área del colegio",
+    "transicion": "Lineamientos Pedagógicos y Curriculares para la Educación Inicial en el Marco de la Atención Integral (MEN, 2017) y Bases Curriculares para la Educación Inicial y Preescolar (MEN, 2017)"
+  },
+  "estandares_por_grupo": {
+    "Transición": "Bases Curriculares para la Educación Inicial y Preescolar",
+    "1": "Grupo de grados 1.° a 3.°",
+    "2": "Grupo de grados 1.° a 3.°",
+    "3": "Grupo de grados 1.° a 3.°",
+    "4": "Grupo de grados 4.° a 5.°",
+    "5": "Grupo de grados 4.° a 5.°",
+    "6": "Grupo de grados 6.° a 7.°",
+    "7": "Grupo de grados 6.° a 7.°",
+    "8": "Grupo de grados 8.° a 9.°",
+    "9": "Grupo de grados 8.° a 9.°",
+    "10": "Grupo de grados 10.° a 11.°",
+    "11": "Grupo de grados 10.° a 11.°"
+  }
+}
