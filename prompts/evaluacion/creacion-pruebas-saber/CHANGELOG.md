@@ -1,5 +1,8 @@
 # Historial de cambios — Creación de pruebas tipo SABER
 
+## 2.7.0 — borrador de preguntas
+- Entrada opcional: acepta un `preguntas_planeacion.json` (borrador de preguntas) y lo completa y verifica antes de armar la prueba; el banco guarda su origen (semana y tema).
+
 ## 2.6.1 — aislamiento
 - Bloque «ALCANCE Y FRONTERAS» y descripción con lo que NO hace (no crea planeaciones). Sin cambios en el generador.
 

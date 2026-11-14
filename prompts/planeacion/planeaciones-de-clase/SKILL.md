@@ -29,6 +29,7 @@ El documento trae: membrete institucional con escudo en **todas** las páginas �
    curl -sL -o assets/escudo_header.png $B/assets/escudo_header.png
    curl -sL -o config/institucion.json $R/config/institucion.json
    for f in asignaturas temas teorias enfoques competencias normativa; do curl -sL -o catalogo/$f.json $B/catalogo/$f.json; done
+   curl -sL -o scripts/plan-a-borrador.js $R/herramientas/plan-a-borrador.js     # solo si el docente quiere llevar las preguntas a una prueba
    ```
 3. `node`, `docx` y `sharp` ya están disponibles; si `require('docx')` falla: `npm install -g docx sharp`.
 4. Si no hay red y los archivos no existen, pide al docente que suba `build_plan.js`. **Nunca generes el documento sin el escudo ni con un marcador de texto.**
@@ -104,7 +105,7 @@ Dentro de los textos puedes usar `**negrita**` y `*cursiva*`. Sin emojis dentro 
 4. Valida el Word: `python3 /mnt/skills/public/docx/scripts/office/validate.py <archivo.docx>`.
 5. **Mira el PDF:** convierte 2 o 3 páginas a imagen (`pdftoppm -png -r 70`) y revisa el membrete con el escudo, la tabla maestra y las firmas (que no queden partidas entre páginas). Si algo falla, corrige y regenera.
 6. Entrega con `present_files`: primero el **Word** y luego el **PDF**. Resume en **máximo 5 líneas** qué contiene (páginas, semanas, DBA a verificar con †) y recuérdale al docente: la ponderación se ajusta al SIEE y los DBA marcados † se confirman con el documento oficial.
-7. Cierra con **una sola línea**: «Si después quieres la **prueba del periodo**, dímelo y cambiamos al prompt de pruebas.» **No empieces esa tarea ni mezcles su entrevista**: si el docente acepta, aplica el protocolo de cambio de `INDICE-PARA-CLAUDE.md` (cargar el `SKILL.md` de pruebas desde cero y reutilizar solo los datos que el docente confirme: grado, periodo, asignatura y temas).
+7. Cierra con **una sola línea**: «Si después quieres la **prueba del periodo**, dímelo y cambiamos al prompt de pruebas.» **No empieces esa tarea ni mezcles su entrevista.** Si el docente acepta llevar las preguntas de la planeación a una prueba, ejecuta `node scripts/plan-a-borrador.js plan.json --out /mnt/user-data/outputs/preguntas_planeacion.json`, entrégalo con `present_files` y dile que lo suba al prompt de pruebas (esto solo mueve **datos**). Después, si el docente acepta, aplica el protocolo de cambio de `INDICE-PARA-CLAUDE.md` (cargar el `SKILL.md` de pruebas desde cero y reutilizar solo los datos que el docente confirme: grado, periodo, asignatura y temas).
 
 ## REGLAS FIJAS
 - El membrete (escudo, «GESTION ACADEMICA · SEGUIMIENTO ACADEMICO · PLANEACION ACADEMICA», GA-F16, versión, fecha y «Página X de Y») es **institucional y fijo**: viene de `config/institucion.json` y se repite en todas las páginas. El color elegido solo afecta las tablas del cuerpo.

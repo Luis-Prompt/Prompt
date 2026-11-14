@@ -72,7 +72,8 @@
   "recursos_compartidos": {
     "config/institucion.json": "Nombre del colegio, escudo y membretes (datos, no instrucciones)",
     "banco-imagenes/escudos/": "Escudo 2025 en tres tamaños",
-    "herramientas/": "Utilidades opcionales (preparar escudo, guardar en banco)"
+    "herramientas/": "Utilidades opcionales (preparar escudo, guardar en banco)",
+    "herramientas/plan-a-borrador.js": "Puente de DATOS: preguntas de una planeación → borrador de preguntas para una prueba"
   },
   "frases_para_docentes": {
     "prueba": "Usa el repositorio https://github.com/Luis-Prompt/Prompt para crear una prueba de comprensión.",
