@@ -1,5 +1,8 @@
 # Historial de cambios — Creación de pruebas tipo SABER
 
+## 2.6.1 — aislamiento
+- Bloque «ALCANCE Y FRONTERAS» y descripción con lo que NO hace (no crea planeaciones). Sin cambios en el generador.
+
 ## 2.6.0 — ilustraciones con ChatGPT
 - Nuevo flujo de **hojas de ilustraciones**: cada pregunta (o texto compartido) puede llevar `imagenPrompt`; `--prompt-imagenes` genera el **prompt general + prompts de hasta 3 hojas de 8 imágenes** (2 filas × 4, fondo transparente real) para pegar en ChatGPT.
 - `--sprites hoja1.png hoja2.png hoja3.png` **detecta, recorta (sin márgenes) y numera** cada ilustración aunque la hoja no esté perfectamente alineada; conserva la transparencia; si la hoja trae fondo blanco o la falsa cuadrícula gris, lo quita y avisa; genera `sprites_previsualizacion.png`.

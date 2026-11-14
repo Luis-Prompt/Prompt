@@ -2,19 +2,30 @@
 
 Repositorio central para **crear, ordenar y mejorar día a día** los prompts (skills) que se usan con Claude para producir material educativo del **Colegio Integrado Simón Bolívar (Cúcuta)**. Cada prompt tiene su propia carpeta con todo lo que necesita: instrucciones, scripts, ejemplos y registro de cambios.
 
-## 🚀 Empezar (docentes)
-Abre Claude, copia **un enlace** de la tabla y escribe: *«Usa este prompt: [enlace]»*. Claude te guiará paso a paso.
+## 🤖 Si le pasas este repositorio a Claude
+Este repositorio tiene **prompts independientes**; cada uno hace **una sola cosa** y **no se mezcla con los demás**. Claude elige uno según lo que pidas, lee solo el `SKILL.md` de ese prompt y ignora el resto. Las reglas están en [`INDICE-PARA-CLAUDE.md`](INDICE-PARA-CLAUDE.md) (versión para máquinas: [`prompts/INDICE.json`](prompts/INDICE.json)).
 
-| Prompt | Para qué sirve | Versión | Enlace para copiar |
+## 🚀 Empezar (docentes)
+Abre Claude y copia **una** de estas frases (según lo que necesites):
+
+| Quiero… | Escribe en Claude |
+|---|---|
+| 📝 una **prueba de comprensión** | *Usa el repositorio https://github.com/Luis-Prompt/Prompt para crear una prueba de comprensión.* |
+| 📅 una **planeación de clase** | *Usa el repositorio https://github.com/Luis-Prompt/Prompt para crear una planeación de clase.* |
+
+También puedes pegar directamente el enlace de un solo prompt:
+
+| Prompt | Para qué sirve (y para qué NO) | Versión | Enlace para copiar |
 |---|---|---|---|
-| 📝 **Creación de pruebas tipo SABER** | Prueba del estudiante y del docente (con claves) en Word para **20 áreas**, con textos compartidos, gráficos, ilustraciones con ChatGPT y hoja de respuestas | 2.6 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md) |
-| 📅 **Planeaciones de clase** | Planeación completa del periodo (9 semanas) en **Word horizontal y PDF**, con tutorial por rondas | 1.0 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/planeacion/planeaciones-de-clase/SKILL.md) |
+| 📝 **Creación de pruebas tipo SABER** | Prueba del estudiante y del docente (con claves) en Word para **20 áreas**, con textos compartidos, gráficos, ilustraciones con ChatGPT y hoja de respuestas. *No crea planeaciones.* | 2.6 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md) |
+| 📅 **Planeaciones de clase** | Planeación completa del periodo (9 semanas) en **Word horizontal y PDF**, con tutorial por rondas. *No crea pruebas.* | 1.0 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/planeacion/planeaciones-de-clase/SKILL.md) |
 
 ## 🗺️ Mapa del repositorio
 ```
 Prompt/
 ├─ README.md                  ← este índice
-├─ prompts/                   Los prompts, uno por carpeta y agrupados por categoría
+├─ INDICE-PARA-CLAUDE.md      ← enrutador: cómo elegir UN prompt sin mezclarlos
+├─ prompts/                   Los prompts, uno por carpeta y agrupados por categoría (INDICE.json)
 │  ├─ evaluacion/
 │  │  └─ creacion-pruebas-saber/     SKILL.md · scripts · areas (20) · examples
 │  ├─ planeacion/

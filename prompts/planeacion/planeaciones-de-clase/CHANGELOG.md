@@ -1,5 +1,8 @@
 # Historial de cambios — Planeaciones de clase
 
+## 1.0.1 — aislamiento
+- Bloque «ALCANCE Y FRONTERAS» y descripción con lo que NO hace; el cierre ya no mezcla la entrevista de pruebas (protocolo de cambio en `INDICE-PARA-CLAUDE.md`).
+
 ## 1.0.0 — primera versión
 - Base: el prompt «Generador de Planeaciones Académicas en DOCX» (v3), reorganizado y potenciado.
 - **Entrevista por rondas gráfica y realmente usable con botones:** la herramienta de botones admite 2 a 4 opciones, así que el grado y la asignatura se eligen en **dos pasos** o con **paginación** (el prompt original pedía 12 y 17 botones). Barra de progreso, mapa del proceso, tarjeta de resumen y **vista previa del cronograma** de las 9 semanas antes de generar. Modo express.

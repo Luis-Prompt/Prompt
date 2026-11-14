@@ -2,9 +2,13 @@
 
 ## 1. Usar un prompt
 1. Entra a Claude (claude.ai o la app).
-2. Copia el enlace del prompt (tabla del [README](../README.md)).
-3. Escribe: **«Usa este prompt: [enlace]»** y envía.
+2. Escribe **una** de estas frases:
+   - *Usa el repositorio https://github.com/Luis-Prompt/Prompt para crear una **prueba de comprensión**.*
+   - *Usa el repositorio https://github.com/Luis-Prompt/Prompt para crear una **planeación de clase**.*
+3. Claude elige el prompt correcto y **no mezcla** las instrucciones de uno con las del otro. Si tu petición no es clara, te preguntará «¿una prueba o una planeación?».
 4. Responde con clics. Al final recibirás tus archivos.
+
+(También puedes pegar el enlace directo del prompt, de la tabla del [README](../README.md).)
 
 ## 2. ¿Qué prompt necesito?
 | Quiero… | Usa |

@@ -2,9 +2,9 @@ name: Verificar generador de examen
 
 on:
   push:
-    paths: ['prompts/evaluacion/creacion-pruebas-saber/**', 'prompts/planeacion/planeaciones-de-clase/**']
+    paths: ['prompts/**', 'INDICE-PARA-CLAUDE.md', 'README.md']
   pull_request:
-    paths: ['prompts/evaluacion/creacion-pruebas-saber/**', 'prompts/planeacion/planeaciones-de-clase/**']
+    paths: ['prompts/**', 'INDICE-PARA-CLAUDE.md', 'README.md']
 
 jobs:
   generar-ejemplo:
@@ -59,3 +59,13 @@ jobs:
           ls salida
           test -f salida/*.docx
           test -f salida/*.pdf
+
+  verificar-aislamiento:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Comprobar que los prompts no se mezclan
+        run: node herramientas/verificar-indice.js
