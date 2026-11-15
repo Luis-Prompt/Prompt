@@ -1,7 +1,7 @@
 # Mejoras pendientes — Planeaciones de clase
 
 ## Alta
-- [ ] **Del plan a la prueba:** exportar las 9 preguntas Saber de la planeación al `banco-preguntas/` y ofrecer armar la prueba del periodo con el prompt de pruebas.
+- [x] **Del plan a la prueba (v1.1):** `herramientas/plan-a-borrador.js` exporta las preguntas Saber como borrador de datos para el prompt de pruebas (que las completa, las verifica y las puede guardar en el banco).
 - [ ] **Biblioteca de DBA verificados** (`catalogo/dba/`): texto oficial por área y grado, con fuente y fecha de verificación, para no depender de la búsqueda.
 - [ ] Revisión por docentes de cada área de los temas sugeridos y de las competencias adaptadas.
 

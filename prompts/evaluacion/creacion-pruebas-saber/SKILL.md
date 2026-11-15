@@ -19,6 +19,12 @@ Si el docente pide **versiones A y B** (misma prueba con otro orden de preguntas
 
 ---
 
+## ENTRADA OPCIONAL: borrador de preguntas (`preguntas_planeacion.json`)
+Si el docente sube un archivo con `"_borrador": true`, tómalo como **punto de partida de las preguntas** (ya trae enunciado, pregunta, opciones y respuesta; en `origen` está la semana y el tema de donde salió). Haz esto antes de armar la prueba:
+1. Completa lo que falta en cada pregunta: `justificacion`, `errores` (uno por distractor, en el mismo orden), `competencia`, `componente`, `nivel` (1-4) según `areas/<clave>.json`, y `calculo` si las opciones son numéricas.
+2. **Verifica cada respuesta** (resuélvela tú antes de aceptarla) y corrige lo que falle; propón un `tema` descriptivo usando `temasDelPeriodo`.
+3. Haz la entrevista solo para lo que falte (preguntas adicionales, apoyos visuales, versiones A/B, formato) y construye la prueba con el procedimiento normal. Quita `_borrador`, `_instrucciones` y `origen` del JSON final.
+
 ## PASO 0: ENTREVISTA INICIAL POR ETAPAS (tutorial)
 Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numeradas y las opciones ya escritas (el docente responde con números o letras). Si el docente ya dio algún dato, no lo repitas. Al terminar, muestra un **resumen de confirmación** y espera el "sí" antes de generar.
 

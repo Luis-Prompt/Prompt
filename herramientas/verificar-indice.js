@@ -27,6 +27,7 @@ for (const p of idx.prompts) {
   otras.forEach(o => { if (s.includes(o + '/scripts') || s.includes(o + '/catalogo') || s.includes(o + '/areas')) falla(`${c} usa archivos internos de otro prompt (${o})`); });
   if (!E.some(e => e.startsWith(c))) bien(`${c} aislado y con fronteras claras`);
 }
+Object.keys(idx.recursos_compartidos || {}).forEach(r => { if (!fs.existsSync(path.join(raiz, r))) falla(`El recurso compartido ${r} no existe`); });
 const md = leer('INDICE-PARA-CLAUDE.md');
 (md.match(/\]\(([^)#]+)\)/g) || []).map(x => x.slice(2, -1)).filter(x => !/^https?:/.test(x)).forEach(rel => { if (!fs.existsSync(path.join(raiz, rel))) falla(`INDICE-PARA-CLAUDE.md enlaza a un archivo que no existe: ${rel}`); });
 const rd = leer('README.md'); if (!rd.includes('INDICE-PARA-CLAUDE.md')) falla('El README no enlaza a INDICE-PARA-CLAUDE.md');

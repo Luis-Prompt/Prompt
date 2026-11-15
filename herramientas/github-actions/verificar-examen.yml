@@ -69,3 +69,5 @@ jobs:
           node-version: 20
       - name: Comprobar que los prompts no se mezclan
         run: node herramientas/verificar-indice.js
+      - name: Probar el puente de datos plan → borrador de preguntas
+        run: node herramientas/plan-a-borrador.js prompts/planeacion/planeaciones-de-clase/examples/plan_ejemplo.json --out /tmp/preguntas_planeacion.json

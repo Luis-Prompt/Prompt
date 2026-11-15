@@ -1,5 +1,8 @@
 # Historial de cambios — Planeaciones de clase
 
+## 1.1.0 — puente de datos hacia las pruebas
+- Opcional: exporta las preguntas Saber de la planeación a `preguntas_planeacion.json` (solo datos) para el prompt de pruebas. No mezcla instrucciones.
+
 ## 1.0.1 — aislamiento
 - Bloque «ALCANCE Y FRONTERAS» y descripción con lo que NO hace; el cierre ya no mezcla la entrevista de pruebas (protocolo de cambio en `INDICE-PARA-CLAUDE.md`).
 

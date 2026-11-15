@@ -26,6 +26,9 @@ Si, mientras trabajas con un prompt, el docente pide algo del otro (por ejemplo,
 3. **Carga el `SKILL.md` del otro prompt y descarta las instrucciones del anterior.**
 4. Reutiliza **solo los datos que el docente confirme** (grado, periodo, asignatura, temas, institución). No arrastres rondas, plantillas ni reglas.
 
+## 3b. El único puente permitido entre prompts: datos, no instrucciones
+`herramientas/plan-a-borrador.js` convierte las preguntas Saber de una planeación en `preguntas_planeacion.json`, que el prompt de pruebas recibe como **borrador de preguntas**. Pasa solo información (preguntas, opciones, respuesta, semana y tema); ninguno de los dos prompts usa las rondas, los formatos ni las reglas del otro.
+
 ## 4. Qué NO hace cada prompt
 - **Pruebas tipo SABER:** no crea planeaciones, mallas, guías ni planes de clase.
 - **Planeaciones de clase:** no crea pruebas, exámenes, quices ni hojas de respuestas (aunque la planeación incluya una pregunta tipo Saber por semana).
