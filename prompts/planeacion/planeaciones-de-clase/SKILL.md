@@ -41,6 +41,9 @@ El documento trae: membrete institucional con escudo en **todas** las páginas �
 - **Lo más gráfico posible:** emojis, barras de progreso y tablas de resumen en el chat. Si tienes la herramienta de visualización, muestra además: (a) la **paleta de colores** (tres muestras de las tablas), (b) el **mapa del documento** (Fases 1-2-3 en cajas) y (c) el **cronograma de las 9 semanas** antes de generar. Si no la tienes, hazlo con tablas y emojis.
 - No repitas lo que el docente ya dijo (si pegó datos, úsalos). Si el docente prefiere ir rápido, ofrécele el **modo express**: un solo mensaje con grado, periodo, área, temas, enfoque y proyectos, y tú completas lo demás.
 
+## PERFIL DEL DOCENTE (opcional: ahorra rondas)
+Si el docente sube un `perfil_docente.json` de una sesión anterior, úsalo: ya trae su nombre, la institución, sus cursos (grado, asignatura, horas y grupos) y sus preferencias (color, enfoque, proyectos, contexto). Confirma lo que vas a reutilizar **en una línea** («Profe, Matemáticas 4.°, 4 horas, color verde, enfoque significativo, ¿seguimos?») y **salta las rondas ya respondidas**: pregunta solo grado, periodo, temas y fecha de inicio. Al final el script guarda un `perfil_docente.json` actualizado: entrégalo y dile que lo suba la próxima vez (con `--perfil perfil_docente.json` se conservan sus otros cursos).
+
 ## PASO 1: ENTREVISTA POR RONDAS
 
 ### RONDA 0 — Bienvenida y mapa (sin preguntas largas)
@@ -52,7 +55,7 @@ Pantalla 1B (3 preguntas): grado (las opciones de ese nivel: p. ej. 6°, 7°, 8�
 
 ### RONDA 2 — Asignatura y docente `▰▰▱▱▱`
 Lee `catalogo/asignaturas.json` (`bandas`) y ofrece las del grado elegido con **dos pasos**: primero el grupo (Matemáticas y afines · Lenguaje e idiomas · Ciencias · Sociales y formación · Artes, deporte y tecnología) y luego la asignatura (paginada si hay más de 4). Después, en una pantalla: ⏱️ horas semanales (1-2 · 3 · 4 · 5 o más) · 🏫 grupos (1 · 2 · 3 · 4 o más) · 📆 semanas del periodo (**9 recomendado** · 10 · 8).
-Luego pide por texto: ✍️ **nombre completo del docente** y confirma la institución: «¿Usamos **{nombre de config/institucion.json}**?» (botón Sí / Otra). El año lectivo es el año en curso.
+Luego pide por texto: ✍️ **nombre completo del docente**, confirma la institución («¿Usamos **{nombre de config/institucion.json}**?», botón Sí / Otra) y 📅 la **fecha en que empieza el periodo** (el lunes de la semana 1, p. ej. «19 de enero de 2026»; es opcional, pero con ella el cronograma trae **fechas reales** y descuenta los festivos de Colombia). El año lectivo es el año en curso.
 
 ### RONDA 3 — Temas y enfoque `▰▰▰▱▱`
 - **Temas:** lee `catalogo/temas.json` con la `familia` de la asignatura (`asignaturas.json` → `familias`) y el grado. Muestra la lista numerada de temas sugeridos con una línea de qué se trabaja en cada uno, y pide los números del periodo. Si el docente tiene su malla, usa la suya. Para una asignatura o grado sin lista, propón 4-6 temas según los DBA y las mallas, y confírmalos.
@@ -65,7 +68,7 @@ Luego pide por texto: ✍️ **nombre completo del docente** y confirma la insti
 - ✍️ Texto libre: número de estudiantes u otra observación («Listo» si no hay).
 
 ### RONDA 5 — Vista previa `▰▰▰▰▰`
-Muestra la **tarjeta de resumen** (grado, periodo, área, horas, docente, institución, temas, enfoque, color, proyectos, contexto) y el **cronograma propuesto**: una tabla con las 9 semanas (tema y sustento teórico de cada una; la última es cierre y evaluación). Pregunta con botones: ✅ **Generar ya** · 🔀 Cambiar el orden o los temas · 🧠 Cambiar el enfoque.
+Muestra la **tarjeta de resumen** (grado, periodo, área, horas, docente, institución, temas, enfoque, color, proyectos, contexto) y el **cronograma propuesto**: una tabla con las 9 semanas (**fechas reales si dio la de inicio, con los festivos marcados ★**, tema y sustento teórico de cada una; la última es cierre y evaluación). Para consultar los festivos de un año: `node scripts/build_plan.js --festivos 2026`. Pregunta con botones: ✅ **Generar ya** · 🔀 Cambiar el orden o los temas · 🧠 Cambiar el enfoque.
 
 ## PASO 2: CONSTRUIR EL CONTENIDO (internamente, sin mostrarlo en el chat)
 Escribe un `plan.json` (estructura abajo; un ejemplo completo está en `examples/plan_ejemplo.json`).
@@ -85,7 +88,7 @@ Escribe un `plan.json` (estructura abajo; un ejemplo completo está en `examples
 
 ### Estructura de `plan.json`
 ```json
-{ "meta":  {"institucion":"","docente":"","area":"","asignatura":"","grado":"4°","periodo":1,"anio":2026,"horasSemanales":4,"grupos":2,"semanas":9,"enfoque":"","color":"verde|azul|gris","proyectos":[],"contexto":""},
+{ "meta":  {"institucion":"","docente":"","area":"","asignatura":"","grado":"4°","periodo":1,"anio":2026,"fechaInicio":"2026-01-19","horasSemanales":4,"grupos":2,"semanas":9,"enfoque":"","color":"verde|azul|gris","proyectos":[],"contexto":""},
   "fase1": {"meta":"","pregunta":"","ejes":[{"tema":"","descripcion":""}],"dba":[{"numero":"1","texto":"","verificado":true}],"estandar":"","lineamiento":"","marcoLegal":"","diversidad":"(solo si hay PIAR)"},
   "semanas":[{"n":1,"tema":"","meta":"","dba":"","inicio":"","desarrollo":"","sustento":{"autor":"","teoria":"","idea":""},"cierre":"","evaluacion":"",
               "saber":{"pregunta":"","opciones":["","","",""],"rta":"a"},"compromiso":"","recursos":""}],
@@ -104,7 +107,7 @@ Dentro de los textos puedes usar `**negrita**` y `*cursiva*`. Sin emojis dentro 
 3. Genera el Word y el PDF y **comprueba la integridad**: compara el texto del plan con el PDF. Si imprime ⚠ «faltan fragmentos», revisa esas páginas.
 4. Valida el Word: `python3 /mnt/skills/public/docx/scripts/office/validate.py <archivo.docx>`.
 5. **Mira el PDF:** convierte 2 o 3 páginas a imagen (`pdftoppm -png -r 70`) y revisa el membrete con el escudo, la tabla maestra y las firmas (que no queden partidas entre páginas). Si algo falla, corrige y regenera.
-6. Entrega con `present_files`: primero el **Word** y luego el **PDF**. Resume en **máximo 5 líneas** qué contiene (páginas, semanas, DBA a verificar con †) y recuérdale al docente: la ponderación se ajusta al SIEE y los DBA marcados † se confirman con el documento oficial.
+6. Entrega con `present_files`: primero el **Word**, luego el **PDF** y por último el `perfil_docente.json`. Resume en **máximo 5 líneas** qué contiene (páginas, semanas, DBA a verificar con †) y recuérdale al docente: la ponderación se ajusta al SIEE y los DBA marcados † se confirman con el documento oficial.
 7. Cierra con **una sola línea**: «Si después quieres la **prueba del periodo**, dímelo y cambiamos al prompt de pruebas.» **No empieces esa tarea ni mezcles su entrevista.** Si el docente acepta llevar las preguntas de la planeación a una prueba, ejecuta `node scripts/plan-a-borrador.js plan.json --out /mnt/user-data/outputs/preguntas_planeacion.json`, entrégalo con `present_files` y dile que lo suba al prompt de pruebas (esto solo mueve **datos**). Después, si el docente acepta, aplica el protocolo de cambio de `INDICE-PARA-CLAUDE.md` (cargar el `SKILL.md` de pruebas desde cero y reutilizar solo los datos que el docente confirme: grado, periodo, asignatura y temas).
 
 ## REGLAS FIJAS
@@ -112,3 +115,4 @@ Dentro de los textos puedes usar `**negrita**` y `*cursiva*`. Sin emojis dentro 
 - Documento horizontal, Arial 9 pt, márgenes estrechos; los estilos los aplica el script, no los reescribas.
 - No muestres el JSON ni el contenido completo en el chat: el entregable es el Word y el PDF.
 - Honestidad pedagógica: lo que no puedas verificar (DBA, normas, referencias) se marca o se omite; nunca se inventa.
+- **Calendario:** los festivos los calcula el script (Ley Emiliani, fecha de Pascua y la Ley 2578 de 2026) y se descuentan de las horas efectivas. No incluyen el receso estudiantil ni las semanas institucionales: dile al docente que los contraste con el calendario académico del colegio.

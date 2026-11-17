@@ -25,7 +25,11 @@ for (const p of idx.prompts) {
   const B = (s.match(/B=\$R\/(prompts\/[^\s]+)/) || [])[1]; if (B && B !== p.carpeta) falla(`${c} descarga archivos de otra carpeta: ${B}`);
   const otras = idx.prompts.filter(q => q.id !== p.id).map(q => q.carpeta);
   otras.forEach(o => { if (s.includes(o + '/scripts') || s.includes(o + '/catalogo') || s.includes(o + '/areas')) falla(`${c} usa archivos internos de otro prompt (${o})`); });
-  if (!E.some(e => e.startsWith(c))) bien(`${c} aislado y con fronteras claras`);
+  (s.match(/`referencia\/[\w\-.]+\.md`/g) || []).map(x => x.replace(/`/g, '')).forEach(rel => { if (!fs.existsSync(path.join(raiz, p.carpeta, rel))) falla(`${c} cita ${rel} y no existe`); });
+  (s.match(/for f in ([^;]+); do curl[^\n]*\$B\/(\S+)\/\$f\.json/g) || []).forEach(m => { const nombres = m.match(/for f in ([^;]+);/)[1].split(/\s+/), dir = m.match(/\$B\/(\S+)\/\$f/)[1]; nombres.forEach(nm => { if (!fs.existsSync(path.join(raiz, p.carpeta, dir, nm + '.json'))) falla(`${c} descarga ${dir}/${nm}.json y no existe en su carpeta`); }); });
+  (s.match(/-o \S+ \$B\/\S+/g) || []).map(x => x.split('$B/')[1]).filter(x => !x.includes('<') && !x.includes('$') && !x.includes(';')).forEach(rel => { if (!fs.existsSync(path.join(raiz, p.carpeta, rel))) falla(`${c} descarga ${rel} y no existe en su carpeta`); });
+  (s.match(/-o \S+ \$R\/\S+/g) || []).map(x => x.split('$R/')[1]).filter(x => !x.includes('<')).forEach(rel => { if (!fs.existsSync(path.join(raiz, rel))) falla(`${c} descarga ${rel} y no existe en el repositorio`); });
+  if (!E.some(e => e.startsWith(c))) bien(`${c} aislado y con fronteras claras; todos los archivos que cita existen`);
 }
 Object.keys(idx.recursos_compartidos || {}).forEach(r => { if (!fs.existsSync(path.join(raiz, r))) falla(`El recurso compartido ${r} no existe`); });
 const md = leer('INDICE-PARA-CLAUDE.md');

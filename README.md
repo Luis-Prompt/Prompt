@@ -17,8 +17,8 @@ También puedes pegar directamente el enlace de un solo prompt:
 
 | Prompt | Para qué sirve (y para qué NO) | Versión | Enlace para copiar |
 |---|---|---|---|
-| 📝 **Creación de pruebas tipo SABER** | Prueba del estudiante y del docente (con claves) en Word para **20 áreas**, con textos compartidos, gráficos, ilustraciones con ChatGPT y hoja de respuestas. *No crea planeaciones.* | 2.6 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md) |
-| 📅 **Planeaciones de clase** | Planeación completa del periodo (9 semanas) en **Word horizontal y PDF**, con tutorial por rondas. *No crea pruebas.* | 1.0 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/planeacion/planeaciones-de-clase/SKILL.md) |
+| 📝 **Creación de pruebas tipo SABER** | Prueba del estudiante y del docente (con claves) en Word para **20 áreas**, con textos compartidos, gráficos, ilustraciones con ChatGPT y hoja de respuestas. *No crea planeaciones.* | 2.8 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md) |
+| 📅 **Planeaciones de clase** | Planeación completa del periodo (9 semanas) en **Word horizontal y PDF**, con tutorial por rondas. *No crea pruebas.* | 1.2 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/planeacion/planeaciones-de-clase/SKILL.md) |
 
 ## 🗺️ Mapa del repositorio
 ```
@@ -47,7 +47,7 @@ Prompt/
 1. Anota la idea en **Issues** (hay plantillas) o en el `ROADMAP.md` del prompt.
 2. Haz el cambio en una **rama**, nunca directo en `main`.
 3. Actualiza el `CHANGELOG.md` del prompt y sube su versión.
-4. Prueba con el ejemplo del prompt (`npm run ejemplo`).
+4. Corre **`npm test`** (verifica el aislamiento de los prompts, genera los ejemplos y comprueba la calificación).
 5. Únelo a `main` con un *Pull Request*.
 
 ## 📐 Reglas de orden
@@ -56,4 +56,4 @@ Prompt/
 - Cada prompt trae un ejemplo funcional en `examples/`.
 - No subir claves, tokens ni datos personales de estudiantes.
 
-Guía rápida para docentes: [`docs/GUIA-RAPIDA.md`](docs/GUIA-RAPIDA.md).
+Guía rápida para docentes: [`docs/GUIA-RAPIDA.md`](docs/GUIA-RAPIDA.md) · Ideas para seguir mejorando: [`docs/IDEAS.md`](docs/IDEAS.md).

@@ -1,4 +1,4 @@
-# Planeaciones de clase (v1.0)
+# Planeaciones de clase (v1.2)
 
 Tutor interactivo que guía al docente, **con botones y de forma gráfica**, para crear la planeación completa de un periodo y entregarla en **Word horizontal y PDF**, con el membrete y el escudo del colegio en todas las páginas.
 
@@ -28,6 +28,9 @@ cd prompts/planeacion/planeaciones-de-clase
 npm install
 npm run ejemplo        # genera el Word y el PDF en ./salida
 ```
+
+## Calendario real
+Con la fecha de inicio del periodo, el documento trae las fechas de cada semana, marca los festivos de Colombia (★) y descuenta las horas efectivas. No incluye el receso estudiantil ni las semanas institucionales: contrasta con el calendario académico del colegio.
 
 ## Control de calidad que hace el script
 - **Valida** el plan: semanas completas, sustentos que no se repiten, preguntas Saber con 4 opciones distintas y `rta` válida, mínimo 2 DBA y 2 referencias, porcentajes de evaluación que suman 100.

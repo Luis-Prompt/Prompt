@@ -1,5 +1,12 @@
 # Historial de cambios — Creación de pruebas tipo SABER
 
+## 2.8.0 — calificación automática y prompt más liviano
+- **Plantilla de calificación en Excel** (`scripts/build_calificacion.py`): el docente escribe el nombre y las letras que marcó cada estudiante; el libro calcula **nota (1,0-5,0), desempeño, aciertos**, el **análisis por pregunta** (índice de dificultad, lectura «revisar la pregunta», qué letra eligieron) y el resultado **por competencia y por nivel**, con gráficas. Entiende las versiones A y B. Parámetros editables (exigencia del 60 %, rangos de desempeño) para ajustar al SIEE.
+- `resumen.json` ahora registra la identidad, la clave, la competencia y el nivel de cada pregunta en cada versión.
+- **Perfil del docente:** guarda `perfil_docente.json` y lo acepta de vuelta para saltar preguntas repetidas.
+- **Prompt más liviano:** las plantillas gráficas y el flujo de ilustraciones pasaron a `referencia/` y solo se leen cuando hacen falta (el `SKILL.md` baja de 23 a 19 mil caracteres aun con funciones nuevas).
+- Prueba automática `npm run probar:calificacion`: 12 estudiantes simulados con versiones A y B contra un cálculo independiente.
+
 ## 2.7.0 — borrador de preguntas
 - Entrada opcional: acepta un `preguntas_planeacion.json` (borrador de preguntas) y lo completa y verifica antes de armar la prueba; el banco guarda su origen (semana y tema).
 

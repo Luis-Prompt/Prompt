@@ -1,6 +1,6 @@
 {
   "name": "planeaciones-de-clase",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Genera planeaciones acad\u00e9micas en Word (horizontal) y PDF a partir de un plan.json.",
   "private": true,
   "scripts": {

@@ -5,3 +5,5 @@ salida/
 # Nunca subir claves
 *.pem
 .env
+__pycache__/
+*.pyc

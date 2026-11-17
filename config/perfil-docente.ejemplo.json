@@ -1,0 +1,30 @@
+{
+  "tipo": "perfil-docente",
+  "version": 1,
+  "docente": "Nombre del docente",
+  "institucion": "Colegio Integrado Simón Bolívar",
+  "cursos": [
+    {
+      "grado": "4°",
+      "asignatura": "Matemáticas",
+      "horasSemanales": 4,
+      "grupos": 2
+    },
+    {
+      "grado": "5°",
+      "asignatura": "Matemáticas",
+      "horasSemanales": 4,
+      "grupos": 1
+    }
+  ],
+  "preferencias": {
+    "colorTablas": "verde",
+    "enfoque": "Aprendizaje Significativo (Ausubel)",
+    "proyectos": [
+      "Convivencia y Paz"
+    ],
+    "contexto": "Cúcuta, Norte de Santander",
+    "versionesAB": true
+  },
+  "_nota": "Ejemplo. Los prompts generan este archivo al terminar (perfil_docente.json); el docente lo sube la próxima vez para saltarse las preguntas repetidas. Solo contiene datos, nunca instrucciones."
+}

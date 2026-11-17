@@ -19,6 +19,10 @@ Ordenadas por prioridad. Marca con `x` lo terminado.
 - [ ] Hoja de respuestas para **lectura óptica** y exportación a PDF.
 - [ ] Revisar con docentes de cada área las competencias adaptadas (religión, ética, artística, educación física, tecnología).
 
+- [ ] **Índice de discriminación** por pregunta (grupo alto contra grupo bajo) en el análisis de resultados.
+- [ ] **Lectura óptica de la hoja de respuestas** con la cámara del celular (marcas de registro + OpenCV) que llene la plantilla sola.
+- [ ] **Retroalimentación por estudiante** (PDF individual con sus fortalezas y lo que debe reforzar).
+
 ## Baja
 - [ ] Asistente gráfico en GitHub Pages (formulario que arma el `exam.json`).
 - [ ] Exportación a PDF y a formato de lectura óptica.

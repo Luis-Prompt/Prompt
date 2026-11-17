@@ -1,4 +1,4 @@
-# Creación de pruebas tipo SABER (v2.6)
+# Creación de pruebas tipo SABER (v2.8)
 
 Genera **dos documentos Word** a partir de las respuestas del docente:
 
@@ -13,6 +13,8 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 
 **Ilustraciones con ChatGPT:** `--prompt-imagenes` genera los prompts de hasta 3 hojas de 8 imágenes (fondo transparente real); `--sprites hoja1.png hoja2.png hoja3.png` las recorta y las coloca en la prueba (ver el PASO 4b del `SKILL.md`).
 
+**Calificación automática (Excel):** junto con la prueba se entrega una plantilla que corrige sola. El docente escribe las letras que marcó cada estudiante y el libro da la nota, el desempeño y el análisis por pregunta, competencia y nivel (`scripts/build_calificacion.py`).
+
 ## Contenido de la carpeta
 
 | Archivo | Función |
@@ -21,6 +23,8 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 | `scripts/build_exam.js` | Construye los Word, valida las preguntas y verifica la maquetación. |
 | `assets/escudo_header.png` | Escudo 2025 del encabezado (copia del banco de imágenes). |
 | `examples/exam_ejemplo.json` | Ejemplo completo (14 preguntas de selección múltiple + 2 abiertas, 6 gráficos). |
+| `scripts/build_calificacion.py` | Plantilla de calificación y análisis en Excel (versiones A y B). |
+| `referencia/` | Guías que el prompt lee solo cuando las necesita (plantillas gráficas, ilustraciones con ChatGPT). |
 | `areas/` | Catálogo de 20 áreas (marcos oficiales, competencias, reglas, errores típicos). |
 | `examples/` | Ejemplo general, un ejemplo por área (`examples/areas/`) y el ejemplo de ilustraciones. |
 | `package.json` | Dependencias (`docx`, `sharp`). |

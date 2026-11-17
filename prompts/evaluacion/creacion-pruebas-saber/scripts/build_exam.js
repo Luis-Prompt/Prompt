@@ -1055,7 +1055,8 @@ async function armar(ctx, nivel, hojaPropia) {
   const ult = mc.length && !ab.length ? (mc[mc.length - 1].enunciado || mc[mc.length - 1].pregunta) : (ab.length ? ab[ab.length - 1].enunciado : '');
   const ult2 = (t) => String(t || '').replace(/\s+/g, ' ').trim().split(' ').slice(-2).join(' ');
   const esperados = [...mc.flatMap(p => [ult2(p.enunciado), ult2(p.pregunta), ...p._ops.map(o => ult2(o.texto))]), ...ab.map(p => ult2(p.pregunta)), ...(ctx.ex.estimulos || []).filter(e => mc.some(p => p._est === e)).map(e => ult2(e.texto))].filter(t => t.length > 3);
-  return { fE, fD, claves, dist, pc, movidas, medido, esperados, claveUlt: ult.replace(/\s+/g, ' ').split(' ').slice(0, 4).join(' ') };
+  const lista = mc.map(p => ({ num: p.num, id: p._id, clave: p._clave, competencia: p.competencia || '', componente: p.componente || '', nivel: p.nivel || null, dba: p.dba || '' }));
+  return { fE, fD, claves, dist, pc, movidas, medido, esperados, lista, claveUlt: ult.replace(/\s+/g, ' ').split(' ').slice(0, 4).join(' ') };
 }
 
 (async () => {
@@ -1095,6 +1096,7 @@ async function armar(ctx, nivel, hojaPropia) {
     itemsImg.forEach(i => { if (spritesCortados[i.n]) i.ref._sprite = spritesCortados[i.n]; });
     console.log(`🖼️  ${Object.keys(spritesCortados).length} ilustración(es) recortadas y colocadas · previsualización: ${path.join(outDir, 'sprites_previsualizacion.png')}`);
   } else if (itemsImg.length) console.warn(`⚠  ${itemsImg.length} imagen(es) pendientes (preguntas con "imagenPrompt"): genera el prompt con --prompt-imagenes y luego usa --sprites con las hojas de ChatGPT.`);
+  ex.preguntas.filter(p => (p.tipo || 'multiple') === 'multiple').forEach((p, i) => { p._id = i + 1; });   // identidad estable de cada pregunta (A y B)
   const mc = reunirGrupos(ex.preguntas.filter(p => (p.tipo || 'multiple') === 'multiple')), ab = ex.preguntas.filter(p => p.tipo === 'abierta');
   mc.forEach(p => { if (p.estimulo) p._est = estMap[p.estimulo]; });
   mc.forEach((p, i) => p.num = i + 1); ab.forEach((p, i) => p.num = mc.length + i + 1);
@@ -1157,6 +1159,16 @@ async function armar(ctx, nivel, hojaPropia) {
   if (mc.length >= 8 && Math.max(...Object.values(mejor.dist)) / mc.length > .4) console.warn('⚠  Distribución de claves desbalanceada');
   const resumen = { estudiante: mejor.fE, docente: mejor.fD, preguntasMC: mc.length, abiertas: ab.length, imagenes: nImg, claves: mejor.claves.join(''), distribucion: mejor.dist, escudo: escudo.origen, nivelCompactacion: mejor.nivel, hojaEnPaginaPropia: mejor.hojaPropia, preguntasReubicadas: mejor.movidas, layout: mejor.an || 'sin verificar (LibreOffice no disponible)' };
   if (mejorB) resumen.versionB = { estudiante: mejorB.fE, docente: mejorB.fD, claves: mejorB.claves.join(''), distribucion: mejorB.dist, layout: mejorB.an || 'sin verificar' };
+  const mt = ex.meta || {}; resumen.meta = { area: mt.area, areaClave: mt.areaClave, asignatura: mt.asignatura, tema: mt.tema, grado: mt.grado, docente: mt.docente || '', institucion: INST.nombre || '' };
+  resumen.preguntas = mejor.lista; resumen.abiertasInfo = ab.map((p, i) => ({ n: i + 1, puntos: p.puntos || 2 }));
+  if (mejorB) resumen.versionB.preguntas = mejorB.lista;
+  try {                                                // perfil del docente (datos reutilizables entre prompts)
+    let prev = {}; if (args.includes('--perfil')) prev = JSON.parse(fs.readFileSync(args[args.indexOf('--perfil') + 1], 'utf8'));
+    const asig = mt.asignatura || mt.area, cursos = (Array.isArray(prev.cursos) ? prev.cursos : []).filter(c => !(nz(c.asignatura) === nz(asig) && nz(c.grado) === nz(mt.grado)));
+    cursos.push({ grado: mt.grado, asignatura: asig });
+    const perfil = { tipo: 'perfil-docente', version: 1, docente: mt.docente || prev.docente || '', institucion: INST.nombre || prev.institucion || '', cursos, preferencias: { ...(prev.preferencias || {}), versionesAB: versiones >= 2 } };
+    fs.writeFileSync(path.join(outDir, 'perfil_docente.json'), JSON.stringify(perfil, null, 2) + '\n'); console.log('👤 Perfil del docente → ' + path.join(outDir, 'perfil_docente.json'));
+  } catch (e) { console.warn('⚠  No se guardó el perfil del docente: ' + e.message); }
   fs.writeFileSync(path.join(outDir, 'resumen.json'), JSON.stringify(resumen, null, 2));
   console.log('📄 ' + mejor.fE + '\n📄 ' + mejor.fD + (mejorB ? '\n📄 ' + mejorB.fE + '\n📄 ' + mejorB.fD : '') + '\n' + JSON.stringify(resumen));
   if (mejor.an && mejor.an.maxGap > 55) console.warn(`⚠  Queda un hueco de ${mejor.an.maxGap} pt al pie de una columna; revisa y, si es necesario, ejecuta con --nivel 3.`);

@@ -1,5 +1,9 @@
 # Historial de cambios — Planeaciones de clase
 
+## 1.2.0 — calendario real y perfil del docente
+- **Fechas reales:** con `meta.fechaInicio` el cronograma muestra las fechas de cada semana, marca con ★ las que tienen festivo y calcula las **horas efectivas** (festivos descontados). Los festivos de Colombia se calculan (Ley Emiliani, fecha de Pascua y la Ley 2578 de 2026) y se contrastaron con fuentes externas: 19 festivos en 2026. `node scripts/build_plan.js --festivos 2026` los lista.
+- **Perfil del docente:** guarda `perfil_docente.json` (cursos y preferencias) y lo acepta de vuelta para saltar rondas repetidas.
+
 ## 1.1.0 — puente de datos hacia las pruebas
 - Opcional: exporta las preguntas Saber de la planeación a `preguntas_planeacion.json` (solo datos) para el prompt de pruebas. No mezcla instrucciones.
 

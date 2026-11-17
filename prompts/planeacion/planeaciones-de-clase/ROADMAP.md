@@ -5,6 +5,8 @@
 - [ ] **Biblioteca de DBA verificados** (`catalogo/dba/`): texto oficial por área y grado, con fuente y fecha de verificación, para no depender de la búsqueda.
 - [ ] Revisión por docentes de cada área de los temas sugeridos y de las competencias adaptadas.
 
+- [ ] **Calendario institucional:** recesos y semanas institucionales configurables (por colegio) para que las horas efectivas sean exactas.
+
 ## Media
 - [ ] **Plan de clase por sesión** (una clase de 45-90 min) a partir de una semana de la planeación.
 - [ ] **Rúbricas** listas por evidencia (Word/PDF).

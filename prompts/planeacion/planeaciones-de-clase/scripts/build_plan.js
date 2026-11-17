@@ -12,6 +12,24 @@ const D = lib('docx'), sharp = lib('sharp');
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, AlignmentType, BorderStyle, WidthType, ShadingType, ImageRun, VerticalAlign, Header, Footer, PageNumber,
         PageBreak, PageOrientation, LevelFormat, TableLayoutType, HeightRule } = D;
 
+// ── 0b. Calendario: festivos de Colombia (Ley Emiliani + Pascua) y fechas de cada semana ─────────────
+const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'], DIAS = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+const addDias = (d, n) => { const x = new Date(d.getTime()); x.setUTCDate(x.getUTCDate() + n); return x; }, iso = (d) => d.toISOString().slice(0, 10);
+function pascua(y) { const a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451), mes = Math.floor((h + l - 7 * m + 114) / 31), dia = ((h + l - 7 * m + 114) % 31) + 1; return new Date(Date.UTC(y, mes - 1, dia)); }
+const lunesSig = (d) => { const w = d.getUTCDay(); return w === 1 ? d : addDias(d, (8 - w) % 7); };
+function festivosColombia(y) {
+  const F = new Map(), set = (d, n) => F.set(iso(d), n), U = (m, dd) => new Date(Date.UTC(y, m - 1, dd));
+  [[1, 1, 'Año Nuevo'], [5, 1, 'Día del Trabajo'], [7, 20, 'Independencia'], [8, 7, 'Batalla de Boyacá'], [12, 8, 'Inmaculada Concepción'], [12, 25, 'Navidad']].forEach(([m, dd, n]) => set(U(m, dd), n));
+  [[1, 6, 'Reyes Magos'], [3, 19, 'San José'], [6, 29, 'San Pedro y San Pablo'], [8, 15, 'Asunción de la Virgen'], [10, 12, 'Día de la Raza'], [11, 1, 'Todos los Santos'], [11, 11, 'Independencia de Cartagena']].forEach(([m, dd, n]) => set(lunesSig(U(m, dd)), n));
+  if (y >= 2026) set(lunesSig(U(7, 9)), 'Nuestra Señora del Rosario de Chiquinquirá');   // Ley 2578 de 2026 (sujeta a la Ley Emiliani: en 2026 cae el lunes 13 de julio)
+  const P = pascua(y); set(addDias(P, -3), 'Jueves Santo'); set(addDias(P, -2), 'Viernes Santo'); set(lunesSig(addDias(P, 39)), 'Ascensión del Señor'); set(lunesSig(addDias(P, 60)), 'Corpus Christi'); set(lunesSig(addDias(P, 68)), 'Sagrado Corazón');
+  return F;
+}
+if (process.argv.includes('--festivos')) {            // node build_plan.js --festivos 2026
+  const y = Number(process.argv[process.argv.indexOf('--festivos') + 1]) || new Date().getFullYear();
+  [...festivosColombia(y)].sort().forEach(([f, n]) => { const d = new Date(f + 'T00:00:00Z'); console.log(`${f} (${DIAS[d.getUTCDay()]})  ${n}`); }); process.exit(0);
+}
+
 // ── 0. Argumentos ───────────────────────────────────────────────────────────
 const args = process.argv.slice(2), jsonPath = args.find(a => a.endsWith('.json') && !(args[args.indexOf(a) - 1] || '').startsWith('--'));
 const val = (k, d) => args.includes(k) ? args[args.indexOf(k) + 1] : d;
@@ -48,6 +66,7 @@ function validar() {
   ['meta', 'pregunta'].forEach(k => req(F1, k, 'fase1'));
   if (!Array.isArray(F1.ejes) || F1.ejes.length < 2) E.push('fase1: "ejes" debe tener al menos 2 temas'); else F1.ejes.forEach((e, i) => { if (!e.tema || !e.descripcion) E.push(`fase1.ejes[${i}]: requiere tema y descripcion`); });
   if (!Array.isArray(F1.dba) || F1.dba.length < 2) E.push('fase1: se requieren al menos 2 DBA (numero y texto)'); else F1.dba.forEach((d, i) => { if (!d.numero || !d.texto) E.push(`fase1.dba[${i}]: requiere numero y texto`); });
+  if (M.fechaInicio && isNaN(new Date(M.fechaInicio + 'T00:00:00Z'))) E.push('meta.fechaInicio debe tener el formato AAAA-MM-DD (ej. 2026-01-19)');
   const n = Number(M.semanas || 9); if (n < 8 || n > 10) E.push('meta.semanas debe estar entre 8 y 10');
   if (SEM.length !== n) E.push(`Hay ${SEM.length} semanas y meta.semanas es ${n}`);
   let prev = null;
@@ -75,9 +94,22 @@ function validar() {
   if ((F1.dba || []).some(d => d.verificado === false)) W.push('Hay DBA marcados como no verificados: se imprimirán con † para que el docente los confirme con el documento oficial del MEN');
   return { E, W };
 }
+let CAL = null;                                       // fechas de cada semana (lunes a viernes) con los festivos descontados
+function construirCalendario() {
+  if (!M.fechaInicio) return;
+  let d0 = new Date(M.fechaInicio + 'T00:00:00Z'); const w = d0.getUTCDay(); d0 = addDias(d0, w === 0 ? 1 : 1 - w);
+  const F = new Map([...festivosColombia(d0.getUTCFullYear()), ...festivosColombia(d0.getUTCFullYear() + 1)]), fmt = (d) => `${d.getUTCDate()} ${MESES[d.getUTCMonth()]}`;
+  CAL = SEM.map((_, i) => {
+    const lun = addDias(d0, 7 * i), vie = addDias(lun, 4), fest = [];
+    for (let k = 0; k < 5; k++) { const dia = addDias(lun, k), nom = F.get(iso(dia)); if (nom) fest.push({ txt: `${DIAS[dia.getUTCDay()]} ${fmt(dia)}`, nombre: nom }); }
+    return { lun, vie, fest, habiles: 5 - fest.length, rango: lun.getUTCMonth() === vie.getUTCMonth() ? `${lun.getUTCDate()}-${vie.getUTCDate()} ${MESES[lun.getUTCMonth()]}` : `${fmt(lun)} - ${fmt(vie)}` };
+  });
+  CAL.fmt = fmt;
+}
 const V = validar();
 V.W.forEach(w => console.warn('⚠  ' + w));
 if (V.E.length) { console.error('❌ La planeación tiene errores:\n' + V.E.map(e => '  • ' + e).join('\n')); process.exit(1); }
+construirCalendario();
 console.log(`✅ Validación OK: ${SEM.length} semanas completas, sustentos distintos, preguntas Saber con 4 opciones.`);
 
 // ── 3. Estilos y utilidades ─────────────────────────────────────────────────
@@ -132,7 +164,9 @@ function bloqueIdentificacion() {
     fila('Área / asignatura', M.asignatura || M.area, 'Grado', `${M.grado}${M.grupos ? ' · ' + M.grupos + ' grupo(s)' : ''}`, 1),
     fila('Periodo académico', `Periodo ${M.periodo} · ${SEM.length} semanas`, 'Año lectivo', String(M.anio), 0),
     fila('Intensidad horaria', `${M.horasSemanales} hora(s) semanales`, 'Enfoque pedagógico', M.enfoque || '—', 1),
-    fila('Proyectos transversales', pry, 'Contexto', M.contexto || 'General', 0)], w)];
+    fila('Proyectos transversales', pry, 'Contexto', M.contexto || 'General', 0),
+    ...(CAL ? [(() => { const nom = Number(M.horasSemanales) * CAL.length, ef = CAL.reduce((a, c) => a + Number(M.horasSemanales) * c.habiles / 5, 0), nf = CAL.reduce((a, c) => a + c.fest.length, 0);
+      return fila('Calendario', `Del ${CAL.fmt(CAL[0].lun)} al ${CAL.fmt(CAL[CAL.length - 1].vie)} de ${CAL[CAL.length - 1].vie.getUTCFullYear()}${nf ? ` · ${nf} festivo(s) en el periodo` : ''}`, 'Horas efectivas', `≈ ${Math.round(ef)} de ${nom} h (festivos descontados)`, 1); })()] : [])], w)];
 }
 function bloqueFase1() {
   const w = [2800, 11600], marca = (d) => `**DBA ${d.numero}${d.verificado === false ? ' †' : ''}:** “${String(d.texto).replace(/^[“"]|[”".]+$/g, '')}.”`;
@@ -151,7 +185,9 @@ function bloqueFase1() {
 function bloqueRuta() {                                         // línea de ruta del periodo: una columna por semana
   const n = SEM.length, base = Math.floor(W / n), w = SEM.map((_, i) => i === n - 1 ? W - base * (n - 1) : base);
   return [tabla([new TableRow({ children: SEM.map((s, i) => cell([para(rich(`SEM ${s.n || i + 1}`, { size: 16, bold: true, color: GRIS }), { align: AlignmentType.CENTER, after: 0 })], w[i], { fill: C.encabezado, v: VerticalAlign.CENTER })) }),
-    new TableRow({ children: SEM.map((s, i) => cell([para(rich(String(s.tema).toUpperCase(), { size: 14 }), { align: AlignmentType.CENTER, after: 0 })], w[i], { fill: alt(i + 1), v: VerticalAlign.CENTER })) })], w)];
+    new TableRow({ children: SEM.map((s, i) => cell([para(rich(String(s.tema).toUpperCase(), { size: 14 }), { align: AlignmentType.CENTER, after: 0 })], w[i], { fill: alt(i + 1), v: VerticalAlign.CENTER })) }),
+    ...(CAL ? [new TableRow({ children: SEM.map((s, i) => cell([para(rich(CAL[i].rango + (CAL[i].fest.length ? ' ★' : ''), { size: 14, bold: true, color: C.titulo }), { align: AlignmentType.CENTER, after: 0 })], w[i], { fill: 'FFFFFF', v: VerticalAlign.CENTER })) })] : [])], w),
+    ...(CAL && CAL.some(c => c.fest.length) ? [para(rich('★ Semana con festivo: ' + CAL.map((c, i) => c.fest.map(f => `Sem ${i + 1}: ${f.txt} (${f.nombre})`).join(', ')).filter(Boolean).join(' · ') + '. Verifica el calendario académico del colegio.', { size: 14, italics: true, color: '7F7F7F' }), { before: 30 })] : [])];
 }
 function bloqueMaestra() {
   const w = [2000, 2600, 6200, 3600], S = 16;
@@ -159,7 +195,7 @@ function bloqueMaestra() {
   const rows = SEM.map((s, i) => {
     const q = s.saber, k = 'abcd'.indexOf(String(q.rta).toLowerCase());
     return new TableRow({ children: [
-      cell([para(rich(`SEM ${s.n || i + 1}`, { size: 18, bold: true, color: C.titulo }), { after: 40 }), para(rich(String(s.tema).toUpperCase(), { size: S, bold: true }), { after: 0, align: AlignmentType.LEFT })], w[0], { fill: alt(i) }),
+      cell([para(rich(`SEM ${s.n || i + 1}`, { size: 18, bold: true, color: C.titulo }), { after: CAL ? 0 : 40 }), ...(CAL ? [para(rich(CAL[i].rango + (CAL[i].fest.length ? ' ★' : ''), { size: 14, color: '555555' }), { after: 40, align: AlignmentType.LEFT })] : []), para(rich(String(s.tema).toUpperCase(), { size: S, bold: true }), { after: 0, align: AlignmentType.LEFT })], w[0], { fill: alt(i) }),
       cell([lab('META:', s.meta, S, AlignmentType.LEFT), lab('DBA:', String(s.dba).replace(/^DBA\s*/i, ''), S, AlignmentType.LEFT)], w[1], { fill: alt(i) }),
       cell([lab('INICIO:', s.inicio, S), lab('DESARROLLO:', s.desarrollo, S), para([new TextRun({ text: 'Sustento: ', font: F, size: S, bold: true, italics: true, color: C.titulo }), ...rich(`${s.sustento.autor}${s.sustento.teoria ? ' — ' + s.sustento.teoria : ''}. ${s.sustento.idea}`, { size: S, italics: true })], { after: 50 }), lab('CIERRE:', s.cierre, S)], w[2], { fill: alt(i) }),
       cell([lab('EVALUACIÓN:', s.evaluacion, S, AlignmentType.LEFT),
@@ -223,6 +259,14 @@ function integridad(pdf) {                                        // todo el tex
   [F1.meta, F1.pregunta, F3.logro, ...(F3.bibliografia || [])].forEach(x => esp.push(ult(x)));
   const faltan = esp.filter(x => x.length > 3 && !t.includes(x)); return { total: esp.length, faltan };
 }
+// Perfil del docente (datos reutilizables): se guarda al final y se puede subir la próxima vez para saltar las rondas repetidas
+function escribirPerfil() {
+  let prev = {}; try { if (args.includes('--perfil')) prev = JSON.parse(fs.readFileSync(val('--perfil'), 'utf8')); } catch (e) { console.warn('⚠  No se pudo leer el perfil anterior: ' + e.message); }
+  const asig = M.asignatura || M.area, cursos = (Array.isArray(prev.cursos) ? prev.cursos : []).filter(c => !(nz(c.asignatura) === nz(asig) && nz(c.grado) === nz(M.grado)));
+  cursos.push({ grado: M.grado, asignatura: asig, horasSemanales: M.horasSemanales, grupos: M.grupos || 1 });
+  const perfil = { tipo: 'perfil-docente', version: 1, docente: M.docente, institucion: M.institucion, cursos, preferencias: { ...(prev.preferencias || {}), colorTablas: M.color || 'verde', enfoque: M.enfoque || '', proyectos: M.proyectos || [], contexto: M.contexto || '' } };
+  const f = path.join(outDir, 'perfil_docente.json'); fs.writeFileSync(f, JSON.stringify(perfil, null, 2) + '\n'); return f;
+}
 (async () => {
   const escudo = await cargarEscudo();
   const slug = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9]+/g, '').replace(/^(.)/, (c) => c.toUpperCase());
@@ -246,5 +290,6 @@ function integridad(pdf) {                                        // todo el tex
       if (falt && falt.faltan.length) console.warn(`⚠  En el PDF faltan ${falt.faltan.length} de ${falt.total} fragmentos de texto: ${falt.faltan.slice(0, 3).join(' | ')} …`); else if (falt) console.log(`✅ Integridad: los ${falt.total} fragmentos verificados aparecen en el PDF.`);
     } else console.warn('⚠  No se pudo convertir a PDF (¿está LibreOffice instalado?).');
   }
+  console.log('👤 Perfil del docente → ' + escribirPerfil());
   fs.writeFileSync(path.join(outDir, 'resumen.json'), JSON.stringify({ docx: fD, pdf, paginas, semanas: SEM.length, color: M.color || 'verde', advertencias: V.W, faltantesEnPDF: falt ? falt.faltan : null }, null, 2));
 })().catch(e => { console.error('❌ ' + (e.stack || e.message)); process.exit(1); });
