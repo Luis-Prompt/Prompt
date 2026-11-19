@@ -1115,6 +1115,17 @@ async function armar(ctx, nivel, hojaPropia) {
   // La imagen se asocia al OBJETO pregunta (no al número), así sobrevive al reordenamiento
   const imgPorPregunta = new Map(); for (const p of ex.preguntas) if (imgs[p.num]) imgPorPregunta.set(p, imgs[p.num]);
   const imgsProxy = new Proxy({}, { get: (_, n) => { for (const [p, f] of imgPorPregunta) if (String(p.num) === String(n)) return f; } });
+  // ── Versión EN LÍNEA (portal ColBolívar): prueba-en-linea.json = el mismo exam.json + las imágenes incrustadas (WebP ≤ 800 px) ──
+  // Se hace aquí, ANTES de armar la versión B, para que el número de cada imagen corresponda al orden original de las preguntas.
+  try {
+    const aWebp = async (f) => 'data:image/webp;base64,' + (await sharp(f).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 82 }).toBuffer()).toString('base64');
+    const imagenes = { preguntas: {}, estimulos: {} }; let nEnLinea = 0;
+    for (let i = 0; i < ex.preguntas.length; i++) { const q = ex.preguntas[i], f = imgs[q.num] || (q._sprite && q._sprite.file); if (f && fs.existsSync(f)) { imagenes.preguntas[i] = await aWebp(f); nEnLinea++; } }
+    for (const e of (ex.estimulos || [])) { const f = imgsEst[e.id] || (e._sprite && e._sprite.file); if (f && fs.existsSync(f)) { imagenes.estimulos[e.id] = await aWebp(f); nEnLinea++; } }
+    const limpio = JSON.parse(JSON.stringify(ex, (k, v) => (k.startsWith('_') || k === 'num') ? undefined : v)); limpio.imagenes = imagenes;
+    const fOnline = path.join(outDir, 'prueba-en-linea.json'); fs.writeFileSync(fOnline, JSON.stringify(limpio));
+    console.log(`🌐 Prueba en línea → ${fOnline} (${nEnLinea} imagen(es), ${Math.round(fs.statSync(fOnline).size / 1024)} KB). Súbela en la página «Pruebas en línea» del portal.`);
+  } catch (e) { console.warn('⚠  No se pudo crear prueba-en-linea.json: ' + (e.message || e)); }
   const bubs = {}; for (const L of 'ABCD') { bubs[L] = path.join(outDir, 'img', `ovalo_${L}.png`); bubs['F' + L] = path.join(outDir, 'img', `ovalo_${L}_lleno.png`); await bubble(L, false, bubs[L]); await bubble(L, true, bubs['F' + L]); }
   const escudo = await prepararEscudo();
 

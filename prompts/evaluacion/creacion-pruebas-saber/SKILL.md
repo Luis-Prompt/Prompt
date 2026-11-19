@@ -171,3 +171,9 @@ Si el docente quiere una prueba más gráfica con ilustraciones creadas con Chat
 - **Integridad:** el script compara el texto del Word con el PDF de medición y descarta toda maquetación a la que le falte texto. Si al final imprime ⚠ «faltan fragmentos», abre el PDF y revisa esas preguntas antes de entregar.
 - Las instrucciones de los textos compartidos nunca llevan números escritos a mano (`{preguntas}`).
 - Las ilustraciones de ChatGPT son solo de contexto; los datos, medidas y cantidades salen siempre de las plantillas del script.
+
+## Prueba en línea (portal ColBolívar)
+Cada vez que se genera la prueba, `build_exam.js` crea también **`prueba-en-linea.json`** en la carpeta de salida: es el mismo `exam.json` con las **imágenes incrustadas** (figuras de las plantillas y las ilustraciones de `--sprites`, en WebP ≤ 800 px).
+- Las tablas (`visual.tipo: 2`) y los recuadros de texto (`tipo: 4`) no necesitan imagen: el portal los dibuja solo.
+- El archivo se sube en la página **Pruebas en línea** del portal (sección «Documentos y planeación»): crea el enlace, el código QR y el reporte de resultados.
+- Al final de cada generación, recuérdale al usuario que tiene ese archivo disponible.
