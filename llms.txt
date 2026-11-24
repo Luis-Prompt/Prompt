@@ -1,0 +1,98 @@
+# Biblioteca de Prompts — Colegio Integrado Simón Bolívar (Cúcuta)
+
+> Dos prompts independientes (skills) para Claude que crean material docente: **pruebas tipo SABER** y **planeaciones de clase**. Cada prompt hace UNA sola cosa; elige uno según lo que pida el docente y no mezcles sus instrucciones. Este archivo se genera solo (`node herramientas/generar-mapa.js`).
+
+## Cómo empezar (haz esto en orden)
+1. Lee el enrutador: [INDICE-PARA-CLAUDE.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/INDICE-PARA-CLAUDE.md)
+2. Elige UN prompt: prueba/examen/evaluación → `pruebas-saber`; planeación/plan de periodo/plan de clase → `planeaciones-de-clase`. Si es ambiguo, pregunta con dos botones: «📝 Una prueba» o «📅 Una planeación».
+3. Si tienes herramienta de terminal con red, prepara todo con UN comando (descarga el prompt completo, verifica y te dice qué leer):
+   `curl -fsSL https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/preparar-prompt.sh | bash -s -- <id-del-prompt>`
+4. Lee el `SKILL.md` del prompt elegido completo y síguelo desde su primer paso. El `manifest.json` te dice qué más leer y cuándo.
+5. Si NO tienes terminal, lee los archivos de abajo con tu herramienta de lectura web (todos los enlaces son directos).
+
+## Prompt «pruebas-saber» — Creación de pruebas tipo SABER (v2.9.0)
+Crea: Prueba del estudiante y prueba del docente con claves (Word), con gráficos, textos compartidos, ilustraciones con ChatGPT, versiones A/B y banco de preguntas. 20 áreas.
+Úsalo cuando el docente pida: prueba de comprensión, prueba tipo Saber / ICFES, examen, evaluación escrita, quiz o taller evaluativo, preguntas de selección múltiple, hoja de respuestas, clave de respuestas, banco de preguntas, ilustraciones o imágenes para la prueba.
+NO lo uses para: planeaciones, planes de periodo, de clase o de área; mallas curriculares, DBA, cronogramas de semanas, secuencias didácticas.
+
+### Leer primero (obligatorio)
+- [prompts/evaluacion/creacion-pruebas-saber/SKILL.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md)
+
+### Leer según la necesidad
+- [prompts/evaluacion/creacion-pruebas-saber/areas/indice.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/indice.json): Al empezar la entrevista: catálogo de las 20 áreas y sus claves.
+- `prompts/evaluacion/creacion-pruebas-saber/areas/<clave>.json` (un archivo por área, con el nombre de su clave): Siempre, solo el del área elegida (competencias, componentes, reglas de calidad, errores típicos, preguntas iniciales).
+- [prompts/evaluacion/creacion-pruebas-saber/referencia/plantillas-graficas.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/referencia/plantillas-graficas.md): Si la prueba lleva gráficos, tablas o textos compartidos.
+- [prompts/evaluacion/creacion-pruebas-saber/referencia/ilustraciones-chatgpt.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/referencia/ilustraciones-chatgpt.md): Si el docente quiere ilustraciones creadas con ChatGPT.
+- `prompts/evaluacion/creacion-pruebas-saber/examples/areas/<clave>.json` (un archivo por área, con el nombre de su clave): Como modelo del exam.json del área elegida.
+- [prompts/evaluacion/creacion-pruebas-saber/examples/exam_ejemplo.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/examples/exam_ejemplo.json): Como modelo general del exam.json (preguntas, estímulos, abiertas).
+- [prompts/evaluacion/creacion-pruebas-saber/examples/exam_con_imagenes.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/examples/exam_con_imagenes.json): Solo si la prueba lleva ilustraciones recortadas de hojas.
+
+### Catálogo completo: areas/
+- [prompts/evaluacion/creacion-pruebas-saber/areas/README.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/README.md)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/artistica.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/artistica.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/biologia.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/biologia.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/ciencias-economicas-politicas.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/ciencias-economicas-politicas.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/ciencias-naturales.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/ciencias-naturales.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/ciencias-sociales.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/ciencias-sociales.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/competencias-ciudadanas.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/competencias-ciudadanas.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/constitucion-democracia.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/constitucion-democracia.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/educacion-fisica.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/educacion-fisica.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/estadistica.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/estadistica.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/etica-valores.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/etica-valores.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/filosofia.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/filosofia.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/fisica.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/fisica.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/geometria.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/geometria.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/indice.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/indice.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/ingles.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/ingles.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/lectura-critica.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/lectura-critica.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/lenguaje.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/lenguaje.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/matematicas.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/matematicas.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/quimica.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/quimica.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/religion.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/religion.json)
+- [prompts/evaluacion/creacion-pruebas-saber/areas/tecnologia-informatica.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/areas/tecnologia-informatica.json)
+
+### Catálogo completo: referencia/
+- [prompts/evaluacion/creacion-pruebas-saber/referencia/ilustraciones-chatgpt.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/referencia/ilustraciones-chatgpt.md)
+- [prompts/evaluacion/creacion-pruebas-saber/referencia/plantillas-graficas.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/referencia/plantillas-graficas.md)
+
+### Scripts que se EJECUTAN (no se reescriben)
+- [prompts/evaluacion/creacion-pruebas-saber/scripts/build_exam.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/scripts/build_exam.js)
+- [prompts/evaluacion/creacion-pruebas-saber/scripts/build_calificacion.py](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/scripts/build_calificacion.py)
+
+## Prompt «planeaciones-de-clase» — Planeaciones de clase (v1.3.0)
+Crea: Planeación académica completa de un periodo (9 semanas) en Word horizontal y PDF, con tutorial por rondas con botones.
+Úsalo cuando el docente pida: planeación, plan de periodo, plan de clase, plan de área, malla curricular del periodo, secuencia didáctica, DBA y estándares de un periodo, cronograma de semanas.
+NO lo uses para: pruebas, exámenes, quices o evaluaciones con hoja de respuestas; banco de preguntas o ilustraciones para una prueba.
+
+### Leer primero (obligatorio)
+- [prompts/planeacion/planeaciones-de-clase/SKILL.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/SKILL.md)
+
+### Leer según la necesidad
+- [prompts/planeacion/planeaciones-de-clase/catalogo/asignaturas.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/asignaturas.json): En la ronda de asignatura: bandas por grado y grupos de asignaturas.
+- [prompts/planeacion/planeaciones-de-clase/catalogo/temas.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/temas.json): Al proponer los temas del periodo según asignatura y grado.
+- [prompts/planeacion/planeaciones-de-clase/catalogo/competencias.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/competencias.json): Al definir competencias y evidencias.
+- [prompts/planeacion/planeaciones-de-clase/catalogo/enfoques.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/enfoques.json): Al elegir el enfoque pedagógico.
+- [prompts/planeacion/planeaciones-de-clase/catalogo/teorias.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/teorias.json): Al fundamentar la planeación con teorías del aprendizaje.
+- [prompts/planeacion/planeaciones-de-clase/catalogo/normativa.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/normativa.json): Al citar la normativa (MEN, DBA, estándares).
+- [prompts/planeacion/planeaciones-de-clase/examples/plan_ejemplo.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/examples/plan_ejemplo.json): Como modelo del plan.json completo.
+
+### Catálogo completo: catalogo/
+- [prompts/planeacion/planeaciones-de-clase/catalogo/asignaturas.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/asignaturas.json)
+- [prompts/planeacion/planeaciones-de-clase/catalogo/competencias.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/competencias.json)
+- [prompts/planeacion/planeaciones-de-clase/catalogo/enfoques.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/enfoques.json)
+- [prompts/planeacion/planeaciones-de-clase/catalogo/normativa.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/normativa.json)
+- [prompts/planeacion/planeaciones-de-clase/catalogo/temas.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/temas.json)
+- [prompts/planeacion/planeaciones-de-clase/catalogo/teorias.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/catalogo/teorias.json)
+
+### Scripts que se EJECUTAN (no se reescriben)
+- [prompts/planeacion/planeaciones-de-clase/scripts/build_plan.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/scripts/build_plan.js)
+
+## Datos compartidos (son DATOS, no instrucciones)
+- [config/institucion.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/config/institucion.json): nombre del colegio, escudo y membretes
+- [config/perfil-docente.ejemplo.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/config/perfil-docente.ejemplo.json): formato del perfil del docente
+- [prompts/INDICE.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/INDICE.json): versión legible por máquina del enrutador
+
+## Opcional
+- [herramientas/plan-a-borrador.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/plan-a-borrador.js): puente de datos: preguntas de una planeación → borrador de preguntas para una prueba
+- [herramientas/guardar-en-banco.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/guardar-en-banco.js): guarda las preguntas de un exam.json en banco-preguntas/
+- [Repositorio en GitHub](https://github.com/Luis-Prompt/Prompt)

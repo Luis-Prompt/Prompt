@@ -39,7 +39,8 @@
       "entrega": [
         "Word estudiante",
         "Word docente con claves"
-      ]
+      ],
+      "manifest": "prompts/evaluacion/creacion-pruebas-saber/manifest.json"
     },
     {
       "id": "planeaciones-de-clase",
@@ -67,7 +68,8 @@
       "entrega": [
         "Word horizontal",
         "PDF"
-      ]
+      ],
+      "manifest": "prompts/planeacion/planeaciones-de-clase/manifest.json"
     }
   ],
   "recursos_compartidos": {
@@ -75,10 +77,14 @@
     "banco-imagenes/escudos/": "Escudo 2025 en tres tamaños",
     "herramientas/": "Utilidades opcionales (preparar escudo, guardar en banco)",
     "herramientas/plan-a-borrador.js": "Puente de DATOS: preguntas de una planeación → borrador de preguntas para una prueba",
-    "config/perfil-docente.ejemplo.json": "Formato del perfil del docente (datos reutilizables entre sesiones y entre prompts)"
+    "config/perfil-docente.ejemplo.json": "Formato del perfil del docente (datos reutilizables entre sesiones y entre prompts)",
+    "herramientas/preparar-prompt.sh": "Un comando que descarga y deja listo todo un prompt (scripts, catálogos, escudo) y verifica que no falte nada",
+    "llms.txt": "Mapa completo del repositorio con enlaces directos (se genera solo con herramientas/generar-mapa.js)"
   },
   "frases_para_docentes": {
     "prueba": "Usa el repositorio https://github.com/Luis-Prompt/Prompt para crear una prueba de comprensión.",
     "planeacion": "Usa el repositorio https://github.com/Luis-Prompt/Prompt para crear una planeación de clase."
-  }
+  },
+  "preparar_entorno": "curl -fsSL https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/preparar-prompt.sh | bash -s -- <id-del-prompt>",
+  "mapa_completo_para_claude": "https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/llms.txt"
 }
