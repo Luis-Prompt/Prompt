@@ -67,8 +67,8 @@ jobs:
       - name: Comprobar que salieron los dos Word y el resumen
         run: |
           ls salida
-          test -f salida/*_ESTUDIANTE.docx
-          test -f salida/*_DOCENTE_CLAVES.docx
+          compgen -G "salida/*_ESTUDIANTE.docx" > /dev/null
+          compgen -G "salida/*_DOCENTE_CLAVES.docx" > /dev/null
           test -f salida/resumen.json
       - name: Guardar los Word generados
         uses: actions/upload-artifact@v4
@@ -100,8 +100,8 @@ jobs:
       - name: Comprobar que salieron el Word y el PDF
         run: |
           ls salida
-          test -f salida/*.docx
-          test -f salida/*.pdf
+          compgen -G "salida/*.docx" > /dev/null
+          compgen -G "salida/*.pdf" > /dev/null
       - name: Guardar la planeación generada
         uses: actions/upload-artifact@v4
         with:
