@@ -50,8 +50,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Instalar LibreOffice y poppler
-        run: sudo apt-get update && sudo apt-get install -y libreoffice-writer poppler-utils
+      - name: Instalar LibreOffice (Writer y Calc) y poppler
+        run: sudo apt-get update && sudo apt-get install -y libreoffice-writer libreoffice-calc poppler-utils
       - name: Instalar dependencias
         run: npm ci
       - name: Generar el examen de ejemplo
