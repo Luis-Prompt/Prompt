@@ -1,12 +1,16 @@
 {
   "name": "biblioteca-de-prompts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Biblioteca de prompts del Colegio Integrado Simón Bolívar. `npm test` ejecuta todas las verificaciones.",
   "scripts": {
+    "verificar:calidad": "node herramientas/verificar-calidad.js",
     "verificar": "node herramientas/verificar-indice.js",
     "test:planeacion": "npm --prefix prompts/planeacion/planeaciones-de-clase install --silent && npm --prefix prompts/planeacion/planeaciones-de-clase run ejemplo && node prompts/planeacion/planeaciones-de-clase/scripts/build_plan.js --festivos 2026 > /dev/null && node herramientas/plan-a-borrador.js prompts/planeacion/planeaciones-de-clase/examples/plan_ejemplo.json --out /tmp/preguntas_planeacion.json",
     "test:pruebas": "npm --prefix prompts/evaluacion/creacion-pruebas-saber install --silent && npm --prefix prompts/evaluacion/creacion-pruebas-saber run probar:areas && python3 prompts/evaluacion/creacion-pruebas-saber/scripts/probar_calificacion.py",
-    "test": "npm run verificar && npm run test:planeacion && npm run test:pruebas"
+    "test": "npm run verificar:calidad && npm run verificar && npm run test:planeacion && npm run test:pruebas"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

@@ -1,5 +1,9 @@
 # Biblioteca de Prompts — Mg. Luis Alberto Avellaneda C.
 
+[![CI](https://github.com/Luis-Prompt/Prompt/actions/workflows/ci.yml/badge.svg)](https://github.com/Luis-Prompt/Prompt/actions/workflows/ci.yml)
+![Node](https://img.shields.io/badge/node-%E2%89%A520-339933)
+![Prompts](https://img.shields.io/badge/prompts-2-blue)
+
 Repositorio central para **crear, ordenar y mejorar día a día** los prompts (skills) que se usan con Claude para producir material educativo del **Colegio Integrado Simón Bolívar (Cúcuta)**. Cada prompt tiene su propia carpeta con todo lo que necesita: instrucciones, scripts, ejemplos y registro de cambios.
 
 ## 🤖 Si le pasas este repositorio a Claude
@@ -35,7 +39,8 @@ Prompt/
 ├─ banco-imagenes/            Escudo en 3 tamaños y recursos visuales
 ├─ banco-preguntas/           Preguntas aprobadas por área y grado
 ├─ herramientas/              Utilidades compartidas (preparar escudo, guardar en banco, CI)
-└─ docs/                      Guías de uso
+├─ docs/                      Guías de uso
+└─ .github/workflows/ci.yml   Verificación automática (CI)
 ```
 
 ## 🧩 Qué comparten los prompts
@@ -47,7 +52,7 @@ Prompt/
 1. Anota la idea en **Issues** (hay plantillas) o en el `ROADMAP.md` del prompt.
 2. Haz el cambio en una **rama**, nunca directo en `main`.
 3. Actualiza el `CHANGELOG.md` del prompt y sube su versión.
-4. Corre **`npm test`** (verifica el aislamiento de los prompts, genera los ejemplos y comprueba la calificación).
+4. Corre **`npm test`** (revisa la calidad del repo, verifica el aislamiento de los prompts, genera los ejemplos y comprueba la calificación). El **CI** lo repite solo en cada Pull Request.
 5. Únelo a `main` con un *Pull Request*.
 
 ## 📐 Reglas de orden
@@ -55,5 +60,7 @@ Prompt/
 - El `SKILL.md` es **corto y claro**: el conocimiento va en `catalogo/` o `areas/` y el código en `scripts/`.
 - Cada prompt trae un ejemplo funcional en `examples/`.
 - No subir claves, tokens ni datos personales de estudiantes.
+
+Cómo contribuir: [`CONTRIBUTING.md`](CONTRIBUTING.md) · Seguridad: [`SECURITY.md`](SECURITY.md) · Historial: [`CHANGELOG.md`](CHANGELOG.md)
 
 Guía rápida para docentes: [`docs/GUIA-RAPIDA.md`](docs/GUIA-RAPIDA.md) · Ideas para seguir mejorando: [`docs/IDEAS.md`](docs/IDEAS.md).
