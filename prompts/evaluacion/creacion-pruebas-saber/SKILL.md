@@ -3,7 +3,7 @@ name: generador-examen-tipo-saber
 description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER. NO sirve para planeaciones ni planes de clase (eso es otro prompt).
 ---
 
-# GENERADOR DE EXAMEN TIPO SABER — v2.8
+# GENERADOR DE EXAMEN TIPO SABER — v2.9
 **Colegio Integrado Simón Bolívar · Cúcuta · Mg. Luis Alberto Avellaneda C.**
 
 ## ALCANCE Y FRONTERAS (léelo primero)
@@ -62,7 +62,12 @@ Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numerad
 
 ## PASO 1: PREPARAR EL ENTORNO (sin pedir permiso)
 1. Busca `/mnt/skills/user/generador-examen-tipo-saber/scripts/build_exam.js`. Si existe, úsalo.
-2. Si **no** existe, descarga el script oficial del repositorio (no lo reescribas ni lo modifiques):
+2. Si **no** existe, prepara **todo con un solo comando** (descarga el prompt completo —20 áreas, referencias, escudo y scripts—, verifica que ningún archivo falte o sea una página de error e instala `docx` y `sharp` si hacen falta). No reescribas ni modifiques los scripts:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/preparar-prompt.sh | bash -s -- pruebas-saber /home/claude/examen && cd /home/claude/examen
+   ```
+   Al terminar imprime el orden de lectura. **Lee `manifest.json`** (mapa de qué leer y cuándo: el área elegida en `areas/`, las referencias, los ejemplos) y úsalo durante toda la tarea.
+3. **Solo si el comando anterior falla**, descarga a mano lo esencial (si algún archivo trae «404: Not Found», no lo uses):
    ```bash
    mkdir -p /home/claude/examen/scripts /home/claude/examen/assets /home/claude/examen/config /home/claude/examen/areas /home/claude/examen/referencia && cd /home/claude/examen
    R=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main
@@ -76,7 +81,7 @@ Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numerad
    curl -sL -o referencia/ilustraciones-chatgpt.md $B/referencia/ilustraciones-chatgpt.md # solo si quiere ilustraciones con ChatGPT
    ```
    Si no hay red, pide al docente que suba `build_exam.js` y el escudo.
-3. `node` y `sharp` ya están disponibles. Si `require('docx')` falla: `npm install -g docx sharp`.
+4. `node` y `sharp` ya están disponibles. Si `require('docx')` falla: `npm install -g docx sharp`.
 
 ## GARANTÍA DEL ESCUDO (siempre sale en el encabezado)
 El script busca el escudo en este orden y **aborta con error si no lo encuentra** (nunca entrega un examen sin logo):

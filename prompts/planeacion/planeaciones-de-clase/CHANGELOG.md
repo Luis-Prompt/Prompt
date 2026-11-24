@@ -1,5 +1,10 @@
 # Historial de cambios — Planeaciones de clase
 
+## 1.3.0 — Claude lee todo con un solo comando
+- Nuevo **`manifest.json`**: mapa completo del prompt (qué catálogo leer en cada ronda). El CI comprueba que todo archivo de la carpeta esté mapeado.
+- El PASO 0 prepara el entorno con **`herramientas/preparar-prompt.sh`** (descarga completa, verificación anti-«404» e instalación de `docx` y `sharp` si faltan). La descarga archivo por archivo queda solo como respaldo.
+- Se corrige la versión que mostraba el `SKILL.md` (decía v1.0 aunque ya iba en 1.2).
+
 ## 1.2.0 — calendario real y perfil del docente
 - **Fechas reales:** con `meta.fechaInicio` el cronograma muestra las fechas de cada semana, marca con ★ las que tienen festivo y calcula las **horas efectivas** (festivos descontados). Los festivos de Colombia se calculan (Ley Emiliani, fecha de Pascua y la Ley 2578 de 2026) y se contrastaron con fuentes externas: 19 festivos en 2026. `node scripts/build_plan.js --festivos 2026` los lista.
 - **Perfil del docente:** guarda `perfil_docente.json` (cursos y preferencias) y lo acepta de vuelta para saltar rondas repetidas.
