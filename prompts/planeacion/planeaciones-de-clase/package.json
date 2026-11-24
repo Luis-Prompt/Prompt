@@ -7,7 +7,7 @@
     "ejemplo": "node scripts/build_plan.js examples/plan_ejemplo.json --out salida"
   },
   "dependencies": {
-    "docx": "^9.15.3",
+    "docx": "^9.16.0",
     "sharp": "^0.35.5"
   }
 }
