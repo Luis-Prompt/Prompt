@@ -1,0 +1,40 @@
+{
+  "_nota": "Mapa completo de este prompt para Claude. 'leer_primero' siempre; 'leer_segun_necesidad' solo cuando se cumple la condición; 'ejecutar' son scripts que se USAN (no se reescriben ni se leen línea por línea). Todo archivo de esta carpeta debe aparecer aquí (lo verifica herramientas/verificar-indice.js).",
+  "id": "planeaciones-de-clase",
+  "version": "1.3.0",
+  "destino_de_trabajo": "/home/claude/plan",
+  "leer_primero": [
+    "SKILL.md"
+  ],
+  "leer_segun_necesidad": [
+    { "archivo": "catalogo/asignaturas.json", "cuando": "En la ronda de asignatura: bandas por grado y grupos de asignaturas." },
+    { "archivo": "catalogo/temas.json", "cuando": "Al proponer los temas del periodo según asignatura y grado." },
+    { "archivo": "catalogo/competencias.json", "cuando": "Al definir competencias y evidencias." },
+    { "archivo": "catalogo/enfoques.json", "cuando": "Al elegir el enfoque pedagógico." },
+    { "archivo": "catalogo/teorias.json", "cuando": "Al fundamentar la planeación con teorías del aprendizaje." },
+    { "archivo": "catalogo/normativa.json", "cuando": "Al citar la normativa (MEN, DBA, estándares)." },
+    { "archivo": "examples/plan_ejemplo.json", "cuando": "Como modelo del plan.json completo." }
+  ],
+  "ejecutar": [
+    "scripts/build_plan.js"
+  ],
+  "datos_compartidos": [
+    "config/institucion.json",
+    "config/perfil-docente.ejemplo.json",
+    "banco-imagenes/escudos/",
+    "herramientas/plan-a-borrador.js"
+  ],
+  "carpetas_de_apoyo": [
+    "assets/",
+    "catalogo/",
+    "examples/"
+  ],
+  "pruebas_y_mantenimiento": [
+    "README.md",
+    "CHANGELOG.md",
+    "ROADMAP.md",
+    "manifest.json",
+    "package.json",
+    "package-lock.json"
+  ]
+}

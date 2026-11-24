@@ -1,4 +1,4 @@
-# Planeaciones de clase (v1.2)
+# Planeaciones de clase (v1.3)
 
 Tutor interactivo que guía al docente, **con botones y de forma gráfica**, para crear la planeación completa de un periodo y entregarla en **Word horizontal y PDF**, con el membrete y el escudo del colegio en todas las páginas.
 

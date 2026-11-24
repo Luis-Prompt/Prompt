@@ -27,8 +27,10 @@ jobs:
           node-version: 20
       - name: JSON válidos, enlaces, rutas, secretos y tamaños
         run: node herramientas/verificar-calidad.js
-      - name: Comprobar que los prompts no se mezclan
+      - name: Comprobar que los prompts no se mezclan y que cada manifest.json está completo
         run: node herramientas/verificar-indice.js
+      - name: Comprobar que llms.txt (mapa para Claude) está al día
+        run: node herramientas/generar-mapa.js --check
       - name: Probar el puente de datos plan → borrador de preguntas
         run: node herramientas/plan-a-borrador.js prompts/planeacion/planeaciones-de-clase/examples/plan_ejemplo.json --out /tmp/preguntas_planeacion.json
 
@@ -110,3 +112,18 @@ jobs:
             prompts/planeacion/planeaciones-de-clase/salida/*.docx
             prompts/planeacion/planeaciones-de-clase/salida/*.pdf
           retention-days: 14
+
+  preparar-prompt:
+    name: Preparar cada prompt con un solo comando (como lo hace Claude)
+    needs: calidad
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar LibreOffice y poppler
+        run: sudo apt-get update && sudo apt-get install -y libreoffice-writer poppler-utils
+      - name: Preparar los dos prompts y generar una prueba y una planeación desde la carpeta de trabajo
+        run: npm run test:preparar

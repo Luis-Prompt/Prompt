@@ -1,5 +1,10 @@
 # Historial de cambios — Creación de pruebas tipo SABER
 
+## 2.9.0 — Claude lee todo con un solo comando
+- Nuevo **`manifest.json`**: mapa completo del prompt (qué leer siempre, qué leer según la necesidad, qué se ejecuta y qué es mantenimiento). El CI comprueba que todo archivo de la carpeta esté mapeado.
+- El PASO 1 prepara el entorno con **`herramientas/preparar-prompt.sh`**: descarga el prompt completo de una vez (20 áreas, referencias, escudo, scripts), verifica que no haya archivos faltantes ni páginas «404» y deja el escudo y `config/` en el lugar que el generador espera. La descarga archivo por archivo queda solo como respaldo.
+- Sin cambios en el generador ni en las reglas de las pruebas.
+
 ## 2.8.0 — calificación automática y prompt más liviano
 - **Plantilla de calificación en Excel** (`scripts/build_calificacion.py`): el docente escribe el nombre y las letras que marcó cada estudiante; el libro calcula **nota (1,0-5,0), desempeño, aciertos**, el **análisis por pregunta** (índice de dificultad, lectura «revisar la pregunta», qué letra eligieron) y el resultado **por competencia y por nivel**, con gráficas. Entiende las versiones A y B. Parámetros editables (exigencia del 60 %, rangos de desempeño) para ajustar al SIEE.
 - `resumen.json` ahora registra la identidad, la clave, la competencia y el nivel de cada pregunta en cada versión.

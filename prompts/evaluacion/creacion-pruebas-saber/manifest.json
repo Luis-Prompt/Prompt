@@ -1,0 +1,45 @@
+{
+  "_nota": "Mapa completo de este prompt para Claude. 'leer_primero' siempre; 'leer_segun_necesidad' solo cuando se cumple la condición; 'ejecutar' son scripts que se USAN (no se reescriben ni se leen línea por línea). Todo archivo de esta carpeta debe aparecer aquí (lo verifica herramientas/verificar-indice.js).",
+  "id": "pruebas-saber",
+  "version": "2.9.0",
+  "destino_de_trabajo": "/home/claude/examen",
+  "leer_primero": [
+    "SKILL.md"
+  ],
+  "leer_segun_necesidad": [
+    { "archivo": "areas/indice.json", "cuando": "Al empezar la entrevista: catálogo de las 20 áreas y sus claves." },
+    { "archivo": "areas/<clave>.json", "cuando": "Siempre, solo el del área elegida (competencias, componentes, reglas de calidad, errores típicos, preguntas iniciales)." },
+    { "archivo": "referencia/plantillas-graficas.md", "cuando": "Si la prueba lleva gráficos, tablas o textos compartidos." },
+    { "archivo": "referencia/ilustraciones-chatgpt.md", "cuando": "Si el docente quiere ilustraciones creadas con ChatGPT." },
+    { "archivo": "examples/areas/<clave>.json", "cuando": "Como modelo del exam.json del área elegida." },
+    { "archivo": "examples/exam_ejemplo.json", "cuando": "Como modelo general del exam.json (preguntas, estímulos, abiertas)." },
+    { "archivo": "examples/exam_con_imagenes.json", "cuando": "Solo si la prueba lleva ilustraciones recortadas de hojas." }
+  ],
+  "ejecutar": [
+    "scripts/build_exam.js",
+    "scripts/build_calificacion.py"
+  ],
+  "datos_compartidos": [
+    "config/institucion.json",
+    "config/perfil-docente.ejemplo.json",
+    "banco-imagenes/escudos/",
+    "herramientas/guardar-en-banco.js",
+    "herramientas/plan-a-borrador.js"
+  ],
+  "carpetas_de_apoyo": [
+    "areas/",
+    "assets/",
+    "examples/",
+    "referencia/"
+  ],
+  "pruebas_y_mantenimiento": [
+    "README.md",
+    "CHANGELOG.md",
+    "ROADMAP.md",
+    "manifest.json",
+    "package.json",
+    "package-lock.json",
+    "scripts/probar_areas.sh",
+    "scripts/probar_calificacion.py"
+  ]
+}
