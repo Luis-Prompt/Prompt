@@ -2,6 +2,19 @@
 
 Este repositorio contiene **prompts independientes**. Cada uno hace **una sola cosa**. Si el docente te pasó este enlace, **no apliques todo lo que ves aquí**: elige un prompt, cárgalo y trabaja solo con él.
 
+## 0. Al recibir el enlace, haz esto EN ORDEN
+1. **Entiende qué pidió el docente** y elige UN prompt (sección 1). Si es ambiguo, pregunta con dos botones **«📝 Una prueba»** / **«📅 Una planeación»** antes de descargar nada.
+2. **Prepara todo con un solo comando** (si tienes terminal con red). Descarga el prompt completo, verifica que no falte nada y te dice qué leer:
+   ```bash
+   # prueba   → pruebas-saber          (carpeta de trabajo: /home/claude/examen)
+   # planeación → planeaciones-de-clase (carpeta de trabajo: /home/claude/plan)
+   curl -fsSL https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/preparar-prompt.sh | bash -s -- <id-del-prompt>
+   ```
+3. **Lee `SKILL.md` completo** del prompt elegido y síguelo desde su primer paso (entrevista, entorno, generación, entrega).
+4. **Lee `manifest.json`** de ese prompt: es el mapa de todo lo que contiene y de **cuándo** leer cada archivo (el área elegida, los catálogos de cada ronda, las referencias y los ejemplos). No hace falta leer todo de golpe: lee cada archivo cuando su condición se cumpla.
+5. **Si no tienes terminal**, abre [`llms.txt`](llms.txt) (o [`prompts/INDICE.json`](prompts/INDICE.json)): trae el enlace directo a cada archivo, en orden de lectura. Lee con tu herramienta web el `SKILL.md` y los archivos que el manifest indique.
+6. **Si algún archivo descargado dice «404: Not Found»**, no lo uses: reintenta o pide al docente que lo suba. Nunca inventes ni reescribas los scripts.
+
 ## 1. Elige UN prompt según lo que el docente quiere crear
 
 | Si el docente pide… | Prompt | Carga SOLO este archivo |
