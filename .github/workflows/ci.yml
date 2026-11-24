@@ -71,7 +71,7 @@ jobs:
           compgen -G "salida/*_DOCENTE_CLAVES.docx" > /dev/null
           test -f salida/resumen.json
       - name: Guardar los Word generados
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: examen-ejemplo
           path: prompts/evaluacion/creacion-pruebas-saber/salida/*.docx
@@ -103,7 +103,7 @@ jobs:
           compgen -G "salida/*.docx" > /dev/null
           compgen -G "salida/*.pdf" > /dev/null
       - name: Guardar la planeación generada
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: planeacion-ejemplo
           path: |
