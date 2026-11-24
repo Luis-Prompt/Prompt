@@ -17,7 +17,6 @@ Tutor interactivo que guía al docente, **con botones y de forma gráfica**, par
 | `SKILL.md` | El prompt: entrevista por rondas, reglas de calidad y pasos de entrega. |
 | `scripts/build_plan.js` | Valida el plan y construye el Word y el PDF (membrete, tablas, firmas, integridad). |
 | `catalogo/` | Conocimiento editable: `asignaturas`, `temas` (16 familias × grado), `teorias` (20 autores), `enfoques`, `competencias`, `normativa`. |
-| `assets/escudo_header.png` | Escudo 2025 (copia del banco de imágenes). |
 | `examples/plan_ejemplo.json` | Planeación completa de Matemáticas 4.°, periodo 1. |
 | `CHANGELOG.md` · `ROADMAP.md` | Historial y mejoras pendientes. |
 
@@ -36,4 +35,4 @@ Con la fecha de inicio del periodo, el documento trae las fechas de cada semana,
 - **Valida** el plan: semanas completas, sustentos que no se repiten, preguntas Saber con 4 opciones distintas y `rta` válida, mínimo 2 DBA y 2 referencias, porcentajes de evaluación que suman 100.
 - **Integridad:** compara el texto del plan con el PDF y avisa si falta algo.
 - **DBA honestos:** los DBA no verificados se imprimen con † para que el docente los confirme.
-- El membrete sale de `config/institucion.json` (compartido con los demás prompts).
+- El membrete sale de `recursos/colegio/institucion.json` (compartido con los demás prompts).

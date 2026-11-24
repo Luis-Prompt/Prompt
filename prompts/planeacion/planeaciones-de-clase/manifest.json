@@ -7,25 +7,45 @@
     "SKILL.md"
   ],
   "leer_segun_necesidad": [
-    { "archivo": "catalogo/asignaturas.json", "cuando": "En la ronda de asignatura: bandas por grado y grupos de asignaturas." },
-    { "archivo": "catalogo/temas.json", "cuando": "Al proponer los temas del periodo según asignatura y grado." },
-    { "archivo": "catalogo/competencias.json", "cuando": "Al definir competencias y evidencias." },
-    { "archivo": "catalogo/enfoques.json", "cuando": "Al elegir el enfoque pedagógico." },
-    { "archivo": "catalogo/teorias.json", "cuando": "Al fundamentar la planeación con teorías del aprendizaje." },
-    { "archivo": "catalogo/normativa.json", "cuando": "Al citar la normativa (MEN, DBA, estándares)." },
-    { "archivo": "examples/plan_ejemplo.json", "cuando": "Como modelo del plan.json completo." }
+    {
+      "archivo": "catalogo/asignaturas.json",
+      "cuando": "En la ronda de asignatura: bandas por grado y grupos de asignaturas."
+    },
+    {
+      "archivo": "catalogo/temas.json",
+      "cuando": "Al proponer los temas del periodo según asignatura y grado."
+    },
+    {
+      "archivo": "catalogo/competencias.json",
+      "cuando": "Al definir competencias y evidencias."
+    },
+    {
+      "archivo": "catalogo/enfoques.json",
+      "cuando": "Al elegir el enfoque pedagógico."
+    },
+    {
+      "archivo": "catalogo/teorias.json",
+      "cuando": "Al fundamentar la planeación con teorías del aprendizaje."
+    },
+    {
+      "archivo": "catalogo/normativa.json",
+      "cuando": "Al citar la normativa (MEN, DBA, estándares)."
+    },
+    {
+      "archivo": "examples/plan_ejemplo.json",
+      "cuando": "Como modelo del plan.json completo."
+    }
   ],
   "ejecutar": [
     "scripts/build_plan.js"
   ],
   "datos_compartidos": [
-    "config/institucion.json",
-    "config/perfil-docente.ejemplo.json",
-    "banco-imagenes/escudos/",
+    "recursos/colegio/institucion.json",
+    "recursos/colegio/perfil-docente.ejemplo.json",
+    "recursos/colegio/escudos/",
     "herramientas/plan-a-borrador.js"
   ],
   "carpetas_de_apoyo": [
-    "assets/",
     "catalogo/",
     "examples/"
   ],

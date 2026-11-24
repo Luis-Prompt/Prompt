@@ -10,7 +10,7 @@
 #   1. Obtiene el repositorio completo (tarball de codeload.github.com; si falla, git clone). Si se ejecuta desde un
 #      clon local usa ese clon, sin red.
 #   2. Copia a la carpeta de trabajo SOLO el prompt elegido (SKILL.md, manifest.json, scripts, catálogos, ejemplos) más
-#      los datos compartidos (config/institucion.json, escudos, herramientas). Nada del otro prompt.
+#      los datos compartidos (recursos/colegio: institucion.json y escudos; herramientas). Nada del otro prompt.
 #   3. Comprueba que los archivos esenciales existan y no sean una página de error («404: Not Found»).
 #   4. Verifica que docx y sharp estén disponibles (los instala en la carpeta de trabajo si faltan).
 #   5. Imprime el orden de lectura: primero SKILL.md; el resto, según el manifest.json.
@@ -48,9 +48,11 @@ fi
 mkdir -p "$DEST"
 cp -R "$FUENTE/$CARPETA/." "$DEST/"
 rm -rf "$DEST/node_modules" "$DEST/salida"
-mkdir -p "$DEST/config" "$DEST/banco-imagenes" "$DEST/herramientas" "$DEST/salida"
-cp "$FUENTE/config/institucion.json" "$FUENTE/config/perfil-docente.ejemplo.json" "$DEST/config/"
-cp -R "$FUENTE/banco-imagenes/escudos" "$DEST/banco-imagenes/"
+mkdir -p "$DEST/config" "$DEST/assets" "$DEST/herramientas" "$DEST/salida"
+# Datos del colegio: quedan en config/ (con sus escudos/ al lado, como espera institucion.json) y el escudo del encabezado en assets/
+cp "$FUENTE/recursos/colegio/institucion.json" "$FUENTE/recursos/colegio/perfil-docente.ejemplo.json" "$DEST/config/"
+cp -R "$FUENTE/recursos/colegio/escudos" "$DEST/config/"
+cp "$FUENTE/recursos/colegio/escudos/escudo_colegio_simon_bolivar_2025_encabezado.png" "$DEST/assets/escudo_header.png"
 cp "$FUENTE"/herramientas/*.js "$FUENTE"/herramientas/*.py "$DEST/herramientas/"
 # El prompt de planeaciones espera el puente de datos junto a sus scripts
 [ "$ID" = "planeaciones-de-clase" ] && cp "$FUENTE/herramientas/plan-a-borrador.js" "$DEST/scripts/"

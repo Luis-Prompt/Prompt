@@ -3,7 +3,7 @@
 Preguntas guardadas en el mismo formato JSON que usa el generador de pruebas, para reutilizarlas y mejorarlas.
 
 ```
-banco-preguntas/<area>/<grado>/<tema>.json      ej.: matematicas/5/fracciones.json
+recursos/banco-preguntas/<area>/<grado>/<tema>.json      ej.: matematicas/5/fracciones.json
 ```
 
 ## Cómo se llena

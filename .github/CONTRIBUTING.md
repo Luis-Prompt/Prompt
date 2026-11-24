@@ -14,9 +14,9 @@
 - Cada prompt vive en `prompts/<categoria>/<nombre>` (minúsculas, sin tildes ni espacios) y hace **una sola cosa**.
 - El `SKILL.md` debe ser corto: el conocimiento va en `catalogo/`, `areas/` o `referencia/`, y el código en `scripts/`.
 - Todo prompt trae un ejemplo funcional en `examples/` y un `CHANGELOG.md`.
-- Los datos del colegio van en `config/institucion.json`, no dentro del código.
-- Una sola copia de cada recurso: el escudo vive en `banco-imagenes/escudos/`.
-- Preguntas nuevas: guárdalas en `banco-preguntas/` con estado `borrador` hasta que un docente las revise.
+- Los datos del colegio van en `recursos/colegio/institucion.json`, no dentro del código.
+- Una sola copia de cada recurso: el escudo vive en `recursos/colegio/escudos/`.
+- Preguntas nuevas: guárdalas en `recursos/banco-preguntas/` con estado `borrador` hasta que un docente las revise.
 
 ## Antes de subir
 ```bash

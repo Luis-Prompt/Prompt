@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /* verificar-calidad.js — Revisa la salud general del repositorio.
- * Uso: node herramientas/verificar-calidad.js
+ * Uso: node herramientas/mantenimiento/verificar-calidad.js
  * Comprueba: (1) que todos los .json sean válidos, (2) que las rutas del escudo en config/institucion.json existan,
  * (3) que los enlaces relativos de todos los .md apunten a archivos que existen, (4) que no se haya subido
  * ningún secreto (tokens de GitHub, claves de API, llaves privadas) y (5) que ningún archivo pese más de 5 MB. */
 const fs = require('fs'), path = require('path');
-const raiz = path.join(__dirname, '..'), E = [];
+const raiz = path.join(__dirname, '..', '..'), E = [];
 const IGNORAR = new Set(['.git', 'node_modules', 'salida']);
 const todos = [];
 (function recorrer(d) {
@@ -23,9 +23,9 @@ jsons.forEach(f => { try { JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) {
 
 // 2. Rutas del escudo
 try {
-  const cfg = JSON.parse(fs.readFileSync(path.join(raiz, 'config/institucion.json'), 'utf8'));
-  Object.entries(cfg.escudo || {}).forEach(([k, v]) => { if (!fs.existsSync(path.resolve(raiz, 'config', v))) E.push(`config/institucion.json: el escudo «${k}» apunta a ${v} y no existe`); });
-} catch (e) { E.push('No se pudo leer config/institucion.json: ' + e.message); }
+  const cfg = JSON.parse(fs.readFileSync(path.join(raiz, 'recursos/colegio/institucion.json'), 'utf8'));
+  Object.entries(cfg.escudo || {}).forEach(([k, v]) => { if (!fs.existsSync(path.resolve(raiz, 'recursos/colegio', v))) E.push(`recursos/colegio/institucion.json: el escudo «${k}» apunta a ${v} y no existe`); });
+} catch (e) { E.push('No se pudo leer recursos/colegio/institucion.json: ' + e.message); }
 
 // 3. Enlaces relativos en Markdown (se ignoran los bloques de código)
 todos.filter(f => f.endsWith('.md')).forEach(f => {

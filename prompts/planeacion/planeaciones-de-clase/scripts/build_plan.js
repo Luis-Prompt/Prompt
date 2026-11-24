@@ -39,7 +39,7 @@ const outDir = val('--out', path.join(process.cwd(), 'salida')); fs.mkdirSync(ou
 // ── 1. Institución (config/institucion.json) y escudo ───────────────────────
 let INST = {}, INST_DIR = null;
 (function cargarInstitucion() {
-  const cand = [val('--institucion', null), process.env.INSTITUCION_JSON, path.join(__dirname, '..', 'config', 'institucion.json'), path.join(__dirname, '..', '..', '..', '..', 'config', 'institucion.json'), path.join(process.cwd(), 'config', 'institucion.json')];
+  const cand = [val('--institucion', null), process.env.INSTITUCION_JSON, path.join(__dirname, '..', 'config', 'institucion.json'), path.join(__dirname, '..', '..', '..', '..', 'recursos', 'colegio', 'institucion.json'), path.join(__dirname, '..', '..', '..', '..', 'config', 'institucion.json'), path.join(process.cwd(), 'config', 'institucion.json')];
   for (const f of cand) { try { if (f && fs.existsSync(f)) { INST = JSON.parse(fs.readFileSync(f, 'utf8')); INST_DIR = path.dirname(path.resolve(f)); console.log(`🏫 Institución: ${INST.nombre || '(sin nombre)'}  ← ${f}`); return; } } catch (e) { console.warn(`⚠  No se pudo leer ${f}: ${e.message}`); } }
   console.warn('⚠  No se encontró config/institucion.json: se usan los datos por defecto.');
 })();

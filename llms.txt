@@ -1,6 +1,6 @@
 # Biblioteca de Prompts — Colegio Integrado Simón Bolívar (Cúcuta)
 
-> Dos prompts independientes (skills) para Claude que crean material docente: **pruebas tipo SABER** y **planeaciones de clase**. Cada prompt hace UNA sola cosa; elige uno según lo que pida el docente y no mezcles sus instrucciones. Este archivo se genera solo (`node herramientas/generar-mapa.js`).
+> Dos prompts independientes (skills) para Claude que crean material docente: **pruebas tipo SABER** y **planeaciones de clase**. Cada prompt hace UNA sola cosa; elige uno según lo que pida el docente y no mezcles sus instrucciones. Este archivo se genera solo (`node herramientas/mantenimiento/generar-mapa.js`).
 
 ## Cómo empezar (haz esto en orden)
 1. Lee el enrutador: [INDICE-PARA-CLAUDE.md](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/INDICE-PARA-CLAUDE.md)
@@ -88,8 +88,8 @@ NO lo uses para: pruebas, exámenes, quices o evaluaciones con hoja de respuesta
 - [prompts/planeacion/planeaciones-de-clase/scripts/build_plan.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/planeacion/planeaciones-de-clase/scripts/build_plan.js)
 
 ## Datos compartidos (son DATOS, no instrucciones)
-- [config/institucion.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/config/institucion.json): nombre del colegio, escudo y membretes
-- [config/perfil-docente.ejemplo.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/config/perfil-docente.ejemplo.json): formato del perfil del docente
+- [recursos/colegio/institucion.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/recursos/colegio/institucion.json): nombre del colegio, escudo y membretes
+- [recursos/colegio/perfil-docente.ejemplo.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/recursos/colegio/perfil-docente.ejemplo.json): formato del perfil del docente
 - [prompts/INDICE.json](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/INDICE.json): versión legible por máquina del enrutador
 
 ## Opcional
