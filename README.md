@@ -27,6 +27,13 @@ También puedes pegar directamente el enlace de un solo prompt:
 | 📝 **Creación de pruebas tipo SABER** | Prueba del estudiante y del docente (con claves) en Word para **20 áreas**, con textos compartidos, gráficos, ilustraciones con ChatGPT y hoja de respuestas. *No crea planeaciones.* | 2.9 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md) |
 | 📅 **Planeaciones de clase** | Planeación completa del periodo (9 semanas) en **Word horizontal y PDF**, con tutorial por rondas. *No crea pruebas.* | 1.3 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/planeacion/planeaciones-de-clase/SKILL.md) |
 
+## 👀 Así se ven los resultados
+Generados con los ejemplos incluidos en cada prompt (el escudo y el membrete salen de `recursos/colegio/`):
+
+| Prueba del estudiante | Prueba del docente (claves) | Planeación del periodo |
+|:---:|:---:|:---:|
+| <img src="docs/img/ejemplo-prueba-estudiante.png" width="250" alt="Prueba del estudiante, página 1"> | <img src="docs/img/ejemplo-prueba-docente.png" width="250" alt="Prueba del docente con claves, página 1"> | <img src="docs/img/ejemplo-planeacion.png" width="320" alt="Planeación académica, página 1"> |
+
 ## 🗺️ Qué hay en este repositorio
 ```
 Prompt/
@@ -55,7 +62,7 @@ Cada carpeta tiene su propio `README.md`. Cada prompt trae: `SKILL.md` (las inst
 ## 🧩 Qué comparten los prompts
 - **`recursos/colegio/institucion.json`**: nombre del colegio, lema, rutas del escudo y membretes (de pruebas y de planeación). Cambiarlo aquí cambia todos los documentos.
 - **`recursos/colegio/escudos/`**: el escudo 2025 en maestro, encabezado y miniatura (una sola copia).
-- **`herramientas/`**: `preparar-prompt.sh` (deja listo un prompt con un comando), `guardar-en-banco.js`, `plan-a-borrador.js` y `preparar-escudo.py`.
+- **`herramientas/`**: `preparar-prompt.sh` (deja listo un prompt con un comando), `guardar-en-banco.js`, `armar-desde-banco.js` (prueba desde preguntas aprobadas), `plan-a-borrador.js` y `preparar-escudo.py`.
 
 ## 🛠️ Cómo se mejora un prompt (flujo diario)
 1. Anota la idea en **Issues** (hay plantillas) o en el `ROADMAP.md` del prompt.
