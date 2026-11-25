@@ -1,4 +1,4 @@
-# Creación de pruebas tipo SABER (v2.9)
+# Creación de pruebas tipo SABER (v2.10)
 
 Genera **dos documentos Word** a partir de las respuestas del docente:
 
@@ -15,6 +15,8 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 
 **Calificación automática (Excel):** junto con la prueba se entrega una plantilla que corrige sola. El docente escribe las letras que marcó cada estudiante y el libro da la nota, el desempeño y el análisis por pregunta, competencia y nivel (`scripts/build_calificacion.py`).
 
+**Retroalimentación por estudiante:** cuando el docente termina de llenar el Excel y se lo devuelve a Claude, se genera una hoja por estudiante (Word y PDF) con su nota, sus fortalezas por competencia y, en cada pregunta fallada, qué marcó, qué error conceptual representa, cuál era la correcta y por qué. Sirve para devolver la prueba y para reuniones con familias. El Excel basta: lleva los datos de la prueba en una hoja oculta. Se prueba con `npm run probar:retroalimentacion`.
+
 ## Contenido de la carpeta
 
 | Archivo | Función |
@@ -22,7 +24,9 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 | `SKILL.md` | El prompt: preguntas iniciales, reglas de diseño de preguntas y pasos de entrega. |
 | `scripts/build_exam.js` | Construye los Word, valida las preguntas y verifica la maquetación. |
 | `examples/exam_ejemplo.json` | Ejemplo completo (14 preguntas de selección múltiple + 2 abiertas, 6 gráficos). |
-| `scripts/build_calificacion.py` | Plantilla de calificación y análisis en Excel (versiones A y B). |
+| `scripts/build_calificacion.py` | Plantilla de calificación y análisis en Excel (versiones A y B). Guarda los datos de la prueba en una hoja oculta. |
+| `scripts/build_retroalimentacion.js` | **Retroalimentación por estudiante** (Word y PDF) a partir del Excel diligenciado. |
+| `scripts/leer_calificacion.py` | Lee el Excel diligenciado y lo convierte en JSON (lo usa el anterior). |
 | `referencia/` | Guías que el prompt lee solo cuando las necesita (plantillas gráficas, ilustraciones con ChatGPT). |
 | `areas/` | Catálogo de 20 áreas (marcos oficiales, competencias, reglas, errores típicos). |
 | `examples/` | Ejemplo general, un ejemplo por área (`examples/areas/`) y el ejemplo de ilustraciones. |
