@@ -7,6 +7,7 @@ Ordenadas por **impacto en el aula** y **esfuerzo**. Lo marcado ✅ ya está hec
 - ✅ Plantilla de calificación en Excel con análisis por pregunta, competencia y nivel.
 - ✅ Calendario real con festivos de Colombia en la planeación.
 - ✅ Puente de datos planeación → prueba.
+- ✅ Prueba armada **desde el banco de preguntas** por competencia y nivel (`herramientas/armar-desde-banco.js`).
 
 ## Impacto alto
 | Idea | Qué resuelve | Esfuerzo |
@@ -23,7 +24,6 @@ Ordenadas por **impacto en el aula** y **esfuerzo**. Lo marcado ✅ ya está hec
 - Calendario institucional configurable (recesos y semanas institucionales).
 - Índice de discriminación de cada pregunta en el análisis.
 - Prueba **adaptativa por niveles** (versión de apoyo y de profundización).
-- Prueba armada **desde el banco de preguntas** por competencia y nivel.
 - Informe del periodo para coordinación (resumen de resultados por curso).
 
 ## Impacto bajo / a futuro

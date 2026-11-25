@@ -1,6 +1,6 @@
 {
   "name": "biblioteca-de-prompts",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "description": "Biblioteca de prompts del Colegio Integrado Simón Bolívar. `npm test` ejecuta todas las verificaciones.",
   "scripts": {
@@ -11,7 +11,8 @@
     "test:preparar": "bash herramientas/preparar-prompt.sh pruebas-saber /tmp/prep_saber > /dev/null && bash herramientas/preparar-prompt.sh planeaciones-de-clase /tmp/prep_plan > /dev/null && node /tmp/prep_saber/scripts/build_exam.js /tmp/prep_saber/examples/exam_ejemplo.json --out /tmp/prep_saber/salida --rapido > /dev/null && node /tmp/prep_plan/scripts/build_plan.js /tmp/prep_plan/examples/plan_ejemplo.json --out /tmp/prep_plan/salida > /dev/null && echo \"✅ preparar-prompt.sh: los dos prompts se preparan y generan desde la carpeta de trabajo\"",
     "test:planeacion": "npm --prefix prompts/planeacion/planeaciones-de-clase install --silent && npm --prefix prompts/planeacion/planeaciones-de-clase run ejemplo && node prompts/planeacion/planeaciones-de-clase/scripts/build_plan.js --festivos 2026 > /dev/null && node herramientas/plan-a-borrador.js prompts/planeacion/planeaciones-de-clase/examples/plan_ejemplo.json --out /tmp/preguntas_planeacion.json",
     "test:pruebas": "npm --prefix prompts/evaluacion/creacion-pruebas-saber install --silent && npm --prefix prompts/evaluacion/creacion-pruebas-saber run probar:areas && python3 prompts/evaluacion/creacion-pruebas-saber/scripts/probar_calificacion.py",
-    "test": "npm run verificar:calidad && npm run verificar && npm run verificar:mapa && npm run test:planeacion && npm run test:pruebas && npm run test:preparar"
+    "test:banco": "node herramientas/mantenimiento/probar-banco.js",
+    "test": "npm run verificar:calidad && npm run verificar && npm run verificar:mapa && npm run test:planeacion && npm run test:pruebas && npm run test:banco && npm run test:preparar"
   },
   "engines": {
     "node": ">=20"

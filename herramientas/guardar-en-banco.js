@@ -30,7 +30,8 @@ for (const p of ex.preguntas || []) {
   const id = huella(p); if (ids.has(id)) { repetidas++; continue; }
   const limpia = Object.fromEntries(Object.entries(p).filter(([k]) => !CAMPOS_EFIMEROS.has(k)));
   const est = p.estimulo && (ex.estimulos || []).find(e => e.id === p.estimulo);   // la pregunta guarda una copia de su texto compartido
-  base.preguntas.push({ id, estado, fechaRegistro: new Date().toISOString().slice(0, 10), ...limpia, ...(est ? { estimuloData: est } : {}) }); ids.add(id); nuevas++;
+  const { id: idEnLaPrueba, ...resto } = limpia;   // el id de la prueba no puede pisar la huella estable del banco
+  base.preguntas.push({ ...resto, id, estado, fechaRegistro: new Date().toISOString().slice(0, 10), ...(idEnLaPrueba !== undefined ? { idEnLaPrueba } : {}), ...(est ? { estimuloData: est } : {}) }); ids.add(id); nuevas++;
 }
 fs.writeFileSync(file, JSON.stringify(base, null, 2) + '\n');
 console.log(`📚 ${path.relative(process.cwd(), file) || file}: ${nuevas} nuevas, ${repetidas} repetidas (ya estaban). Total en el archivo: ${base.preguntas.length}.`);

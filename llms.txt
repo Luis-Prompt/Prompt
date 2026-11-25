@@ -94,5 +94,6 @@ NO lo uses para: pruebas, exámenes, quices o evaluaciones con hoja de respuesta
 
 ## Opcional
 - [herramientas/plan-a-borrador.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/plan-a-borrador.js): puente de datos: preguntas de una planeación → borrador de preguntas para una prueba
-- [herramientas/guardar-en-banco.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/guardar-en-banco.js): guarda las preguntas de un exam.json en banco-preguntas/
+- [herramientas/guardar-en-banco.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/guardar-en-banco.js): guarda las preguntas de un exam.json en recursos/banco-preguntas/
+- [herramientas/armar-desde-banco.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/herramientas/armar-desde-banco.js): arma un exam.json con preguntas aprobadas del banco (equilibradas por competencia y nivel)
 - [Repositorio en GitHub](https://github.com/Luis-Prompt/Prompt)
