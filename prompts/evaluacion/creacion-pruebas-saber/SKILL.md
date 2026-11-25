@@ -3,7 +3,7 @@ name: generador-examen-tipo-saber
 description: Genera DOS documentos Word (prueba del estudiante + prueba del docente con claves) tipo SABER/ICFES para el Colegio Integrado Simón Bolívar de Cúcuta, con escudo en el encabezado, dos columnas sin espacios en blanco, hoja de respuestas compacta, preguntas de selección múltiple verificadas y preguntas abiertas opcionales. Úsalo cuando el docente pida crear, generar o hacer un examen, prueba, evaluación o simulacro tipo SABER. NO sirve para planeaciones ni planes de clase (eso es otro prompt).
 ---
 
-# GENERADOR DE EXAMEN TIPO SABER — v2.9
+# GENERADOR DE EXAMEN TIPO SABER — v2.10
 **Colegio Integrado Simón Bolívar · Cúcuta · Mg. Luis Alberto Avellaneda C.**
 
 ## ALCANCE Y FRONTERAS (léelo primero)
@@ -77,6 +77,8 @@ Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numerad
    curl -sL -o config/institucion.json $R/recursos/colegio/institucion.json
    curl -sL -o areas/<clave>.json $B/areas/<clave>.json      # catálogo del área elegida (competencias, componentes, reglas)
    curl -sL -o scripts/build_calificacion.py $B/scripts/build_calificacion.py
+   curl -sL -o scripts/build_retroalimentacion.js $B/scripts/build_retroalimentacion.js   # solo para la retroalimentación por estudiante
+   curl -sL -o scripts/leer_calificacion.py $B/scripts/leer_calificacion.py               # lo usa el anterior
    curl -sL -o referencia/plantillas-graficas.md $B/referencia/plantillas-graficas.md     # solo si la prueba lleva gráficos o textos compartidos
    curl -sL -o referencia/ilustraciones-chatgpt.md $B/referencia/ilustraciones-chatgpt.md # solo si quiere ilustraciones con ChatGPT
    ```
@@ -164,9 +166,19 @@ Si el docente quiere una prueba más gráfica con ilustraciones creadas con Chat
    python3 scripts/build_calificacion.py /mnt/user-data/outputs/resumen.json --out /mnt/user-data/outputs/Plantilla_Calificacion.xlsx --estudiantes 45
    python3 /mnt/skills/public/xlsx/scripts/recalc.py /mnt/user-data/outputs/Plantilla_Calificacion.xlsx   # debe dar 0 errores
    ```
-   Explícale en 3 líneas: escribe el nombre, la versión (A/B) y las letras que marcó cada estudiante en la hoja «Estudiantes»; el libro calcula la nota (escala 1,0-5,0 con exigencia del 60 % para 3,0, ajustable al SIEE), el desempeño y el análisis por pregunta y competencia en «Analisis». Si hay abiertas, se califican a mano.
+   Explícale en 3 líneas: escribe el nombre, la versión (A/B) y las letras que marcó cada estudiante en la hoja «Estudiantes»; el libro calcula la nota (escala 1,0-5,0 con exigencia del 60 % para 3,0, ajustable al SIEE), el desempeño y el análisis por pregunta y competencia en «Analisis». Si hay abiertas, se califican a mano. Añade: cuando lo termine de llenar, puede devolverte ese mismo Excel y pedirte **la retroalimentación por estudiante** (una hoja por estudiante en Word y PDF).
 4. Revisa `resumen.json` (claves, distribución, hueco máximo, escudo usado) y luego borra de `/mnt/user-data/outputs` la carpeta `img`, `resumen.json` y archivos temporales. Conserva `perfil_docente.json` para entregarlo.
 5. Si el docente quiere **guardar las preguntas en el banco** para reutilizarlas, entrégale también el `exam.json` (el docente lo guarda con `herramientas/guardar-en-banco.js`). Entrega con `present_files`: primero el del estudiante, luego el del docente (con versiones: A estudiante, A docente, B estudiante, B docente), después la plantilla de calificación y el `perfil_docente.json`, con un mensaje de 3 a 5 líneas. Con dos versiones, recuerda al docente que las **claves son distintas** en cada una y que no deben mezclarse las hojas de respuestas.
+
+## RETROALIMENTACIÓN POR ESTUDIANTE (cuando el docente devuelve el Excel lleno)
+Se activa si el docente sube la plantilla de calificación diligenciada y pide la retroalimentación, la devolución de resultados o un informe por estudiante. **No hagas la entrevista ni generes otra prueba.** Prepara el entorno (PASO 1, solo scripts y escudo) y ejecuta:
+```bash
+node scripts/build_retroalimentacion.js /mnt/user-data/uploads/<Excel lleno>.xlsx --out /mnt/user-data/outputs --docente "<nombre del docente>"   # añade --individual si pide un Word por estudiante
+```
+1. Basta el Excel: lleva en una hoja oculta («DatosPrueba») las preguntas, las opciones y el error de cada distractor. Si es de una versión anterior y el script lo pide, solicita el `resumen.json` o regenera la prueba.
+2. Cada hoja trae: nota y desempeño (la misma fórmula del Excel), resultado por competencia, fortalezas y, por cada pregunta fallada, **qué marcó, qué error representa, cuál era la correcta y por qué**. Si una hoja ocupa más de una página, el script reduce solo las preguntas detalladas; si aun así avisa ⚠, revisa el PDF.
+3. Revisa el PDF como imagen (una página por estudiante, nombres correctos) y entrégalo con `present_files`: primero el PDF, luego el Word.
+4. **Nunca cambies una nota** ni inventes respuestas: si algo no cuadra, dilo y pide al docente corregir el Excel. Los nombres y resultados de estudiantes (menores de edad) solo se usan para generar estos archivos: no los guardes en el banco, ni en `perfil_docente.json`, ni en ningún otro lugar.
 
 ## REGLAS FIJAS
 - Los contextos pueden ser ficticios, pero coherentes; no presentes datos inventados como reales.

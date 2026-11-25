@@ -1055,7 +1055,7 @@ async function armar(ctx, nivel, hojaPropia) {
   const ult = mc.length && !ab.length ? (mc[mc.length - 1].enunciado || mc[mc.length - 1].pregunta) : (ab.length ? ab[ab.length - 1].enunciado : '');
   const ult2 = (t) => String(t || '').replace(/\s+/g, ' ').trim().split(' ').slice(-2).join(' ');
   const esperados = [...mc.flatMap(p => [ult2(p.enunciado), ult2(p.pregunta), ...p._ops.map(o => ult2(o.texto))]), ...ab.map(p => ult2(p.pregunta)), ...(ctx.ex.estimulos || []).filter(e => mc.some(p => p._est === e)).map(e => ult2(e.texto))].filter(t => t.length > 3);
-  const lista = mc.map(p => ({ num: p.num, id: p._id, clave: p._clave, competencia: p.competencia || '', componente: p.componente || '', nivel: p.nivel || null, dba: p.dba || '' }));
+  const lista = mc.map(p => ({ num: p.num, id: p._id, clave: p._clave, competencia: p.competencia || '', componente: p.componente || '', nivel: p.nivel || null, dba: p.dba || '', pregunta: p.pregunta || '', justificacion: p.justificacion || '', opciones: (p._ops || []).map(o => ({ letra: o.letra, texto: o.texto, ok: !!o.ok, error: o.error || '' })) }));   // opciones, justificación y error de cada distractor: alimentan la retroalimentación por estudiante
   return { fE, fD, claves, dist, pc, movidas, medido, esperados, lista, claveUlt: ult.replace(/\s+/g, ' ').split(' ').slice(0, 4).join(' ') };
 }
 

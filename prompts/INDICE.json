@@ -19,7 +19,7 @@
       "skill": "prompts/evaluacion/creacion-pruebas-saber/SKILL.md",
       "skill_url_github": "https://github.com/Luis-Prompt/Prompt/blob/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md",
       "skill_url_raw": "https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md",
-      "crea": "Prueba del estudiante y prueba del docente con claves (Word), con gráficos, textos compartidos, ilustraciones con ChatGPT, versiones A/B y banco de preguntas. 20 áreas.",
+      "crea": "Prueba del estudiante y prueba del docente con claves (Word), con gráficos, textos compartidos, ilustraciones con ChatGPT, versiones A/B y banco de preguntas, plantilla de calificación en Excel y retroalimentación por estudiante (Word y PDF). 20 áreas.",
       "usar_cuando": [
         "prueba de comprensión",
         "prueba tipo Saber / ICFES",
@@ -30,7 +30,8 @@
         "hoja de respuestas",
         "clave de respuestas",
         "banco de preguntas",
-        "ilustraciones o imágenes para la prueba"
+        "ilustraciones o imágenes para la prueba",
+        "retroalimentación por estudiante / devolver resultados de una prueba ya calificada"
       ],
       "no_usar_para": [
         "planeaciones, planes de periodo, de clase o de área",
@@ -38,7 +39,9 @@
       ],
       "entrega": [
         "Word estudiante",
-        "Word docente con claves"
+        "Word docente con claves",
+        "Excel de calificación",
+        "Retroalimentación por estudiante (Word y PDF)"
       ],
       "manifest": "prompts/evaluacion/creacion-pruebas-saber/manifest.json"
     },

@@ -10,9 +10,9 @@
 4. Lee el `SKILL.md` del prompt elegido completo y síguelo desde su primer paso. El `manifest.json` te dice qué más leer y cuándo.
 5. Si NO tienes terminal, lee los archivos de abajo con tu herramienta de lectura web (todos los enlaces son directos).
 
-## Prompt «pruebas-saber» — Creación de pruebas tipo SABER (v2.9.0)
-Crea: Prueba del estudiante y prueba del docente con claves (Word), con gráficos, textos compartidos, ilustraciones con ChatGPT, versiones A/B y banco de preguntas. 20 áreas.
-Úsalo cuando el docente pida: prueba de comprensión, prueba tipo Saber / ICFES, examen, evaluación escrita, quiz o taller evaluativo, preguntas de selección múltiple, hoja de respuestas, clave de respuestas, banco de preguntas, ilustraciones o imágenes para la prueba.
+## Prompt «pruebas-saber» — Creación de pruebas tipo SABER (v2.10.0)
+Crea: Prueba del estudiante y prueba del docente con claves (Word), con gráficos, textos compartidos, ilustraciones con ChatGPT, versiones A/B y banco de preguntas, plantilla de calificación en Excel y retroalimentación por estudiante (Word y PDF). 20 áreas.
+Úsalo cuando el docente pida: prueba de comprensión, prueba tipo Saber / ICFES, examen, evaluación escrita, quiz o taller evaluativo, preguntas de selección múltiple, hoja de respuestas, clave de respuestas, banco de preguntas, ilustraciones o imágenes para la prueba, retroalimentación por estudiante / devolver resultados de una prueba ya calificada.
 NO lo uses para: planeaciones, planes de periodo, de clase o de área; mallas curriculares, DBA, cronogramas de semanas, secuencias didácticas.
 
 ### Leer primero (obligatorio)
@@ -58,6 +58,8 @@ NO lo uses para: planeaciones, planes de periodo, de clase o de área; mallas cu
 ### Scripts que se EJECUTAN (no se reescriben)
 - [prompts/evaluacion/creacion-pruebas-saber/scripts/build_exam.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/scripts/build_exam.js)
 - [prompts/evaluacion/creacion-pruebas-saber/scripts/build_calificacion.py](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/scripts/build_calificacion.py)
+- [prompts/evaluacion/creacion-pruebas-saber/scripts/build_retroalimentacion.js](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/scripts/build_retroalimentacion.js)
+- [prompts/evaluacion/creacion-pruebas-saber/scripts/leer_calificacion.py](https://raw.githubusercontent.com/Luis-Prompt/Prompt/main/prompts/evaluacion/creacion-pruebas-saber/scripts/leer_calificacion.py)
 
 ## Prompt «planeaciones-de-clase» — Planeaciones de clase (v1.3.0)
 Crea: Planeación académica completa de un periodo (9 semanas) en Word horizontal y PDF, con tutorial por rondas con botones.

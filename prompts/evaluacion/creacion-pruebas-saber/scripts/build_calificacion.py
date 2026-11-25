@@ -249,6 +249,7 @@ def main():
              "• Aciertos, porcentaje, NOTA (escala 1,0 a 5,0) y desempeño de cada estudiante.",
              "• Por pregunta: porcentaje de acierto (índice de dificultad), lectura (muy fácil, fácil, adecuada, difícil, revisar) y qué letra eligieron en cada versión.",
              "• Por competencia y por nivel de desempeño: dónde está el grupo fuerte y dónde hay que reforzar.",
+             "• RETROALIMENTACIÓN POR ESTUDIANTE: cuando termines de llenar la hoja, devuélvele este mismo archivo a Claude y pídele «la retroalimentación por estudiante»: entrega una hoja por estudiante (Word y PDF) con su nota, sus fortalezas y, en cada pregunta fallada, qué marcó, qué error representa y por qué la correcta lo es.",
              "",
              "IMPORTANTE",
              "• La nota usa la exigencia de la hoja «Parametros» (60 % de aciertos = 3,0). Ajusta esos valores al Sistema Institucional de Evaluación (SIEE) del colegio: son una propuesta.",
@@ -258,6 +259,14 @@ def main():
              "   N.º 1 · Ana Pérez · Versión A · P1: B · P2: D · P3: A · P4: (vacía, no contestó) · P5: C …"]
     for i, t in enumerate(pasos, start=4):
         c = I.cell(row=i, column=2, value=t); c.alignment = Alignment(wrap_text=True, vertical="top"); c.font = f(bold=t.isupper() and bool(t.strip()), size=10 if not t.isupper() else 11)
+    # ── Hoja oculta «DatosPrueba»: lleva las preguntas, opciones y errores para la retroalimentación por estudiante ──
+    # (así el docente solo devuelve este Excel; no hace falta conservar resumen.json)
+    util = {k: R[k] for k in ("meta", "preguntas", "abiertasInfo") if k in R}
+    if tiene_b: util["versionB"] = {"preguntas": B}
+    texto = json.dumps(util, ensure_ascii=False, separators=(",", ":"))
+    DP = wb.create_sheet("DatosPrueba"); DP["A1"] = "Datos de la prueba para la retroalimentación (hoja oculta: no la borres ni la cambies)."
+    for i in range(0, len(texto), 30000): DP.cell(row=2 + i // 30000, column=1, value=texto[i:i + 30000])   # límite de Excel: 32 767 caracteres por celda
+    DP.sheet_state = "hidden"
     for ws in wb.worksheets:
         ws.page_setup.orientation = "landscape"; ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True); ws.page_setup.fitToWidth = 1; ws.page_setup.fitToHeight = 0
     wb.move_sheet("Instrucciones", offset=-wb.index(wb["Instrucciones"]))

@@ -34,6 +34,10 @@ Generados con los ejemplos incluidos en cada prompt (el escudo y el membrete sal
 |:---:|:---:|:---:|
 | <img src="docs/img/ejemplo-prueba-estudiante.png" width="250" alt="Prueba del estudiante, página 1"> | <img src="docs/img/ejemplo-prueba-docente.png" width="250" alt="Prueba del docente con claves, página 1"> | <img src="docs/img/ejemplo-planeacion.png" width="320" alt="Planeación académica, página 1"> |
 
+| Retroalimentación por estudiante (desde el Excel de calificación) |
+|:---:|
+| <img src="docs/img/ejemplo-retroalimentacion.png" width="330" alt="Retroalimentación por estudiante: nota, competencias y preguntas por revisar"> |
+
 ## 🗺️ Qué hay en este repositorio
 ```
 Prompt/

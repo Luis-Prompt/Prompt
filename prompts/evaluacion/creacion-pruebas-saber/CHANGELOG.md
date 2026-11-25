@@ -1,5 +1,12 @@
 # Historial de cambios — Creación de pruebas tipo SABER
 
+## 2.10.0 — retroalimentación por estudiante
+- **`scripts/build_retroalimentacion.js`:** a partir del Excel de calificación diligenciado genera una hoja por estudiante (Word y PDF, una página cada una) con nota y desempeño, resultado por competencia, fortalezas y, en cada pregunta fallada, **qué marcó, qué error conceptual representa, cuál era la correcta y por qué**. Opcional `--individual` (un Word por estudiante). Reduce solo las preguntas detalladas si una hoja no cabe en una página.
+- **El Excel guarda los datos de la prueba** en una hoja oculta (`DatosPrueba`): el docente solo devuelve ese archivo; ya no hace falta conservar `resumen.json`. `resumen.json` ahora incluye opciones, justificación y error de cada distractor.
+- `scripts/leer_calificacion.py` lee las respuestas crudas del Excel (funciona aunque nunca se haya abierto en Excel). La nota usa la misma fórmula y parámetros de la hoja «Parametros»; la prueba `npm run probar:retroalimentacion` la compara con el Excel recalculado por LibreOffice.
+- El SKILL incorpora la sección «Retroalimentación por estudiante» (sin entrevista y sin guardar datos de menores).
+- Nada cambia en las reglas ni en la maquetación de las pruebas.
+
 ## 2.9.0 — Claude lee todo con un solo comando
 - Nuevo **`manifest.json`**: mapa completo del prompt (qué leer siempre, qué leer según la necesidad, qué se ejecuta y qué es mantenimiento). El CI comprueba que todo archivo de la carpeta esté mapeado.
 - El PASO 1 prepara el entorno con **`herramientas/preparar-prompt.sh`**: descarga el prompt completo de una vez (20 áreas, referencias, escudo, scripts), verifica que no haya archivos faltantes ni páginas «404» y deja el escudo y `config/` en el lugar que el generador espera. La descarga archivo por archivo queda solo como respaldo.
