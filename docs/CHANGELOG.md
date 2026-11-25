@@ -2,6 +2,11 @@
 
 Cada prompt lleva además su propio `CHANGELOG.md`.
 
+## 1.5.0 — Retroalimentación por estudiante
+- **Pruebas SABER 2.10.0:** nuevo `build_retroalimentacion.js`. Del Excel de calificación ya lleno sale una hoja por estudiante (Word y PDF) con su nota, fortalezas por competencia y, en cada pregunta fallada, qué marcó, qué error representa y por qué la correcta lo es. Pensado para devolver la prueba y para reuniones con familias.
+- El Excel de calificación lleva ahora los datos de la prueba en una hoja oculta: el docente solo devuelve ese archivo.
+- Prueba nueva `npm run probar:retroalimentacion` (también en el CI): 14 estudiantes simulados con versiones A y B; compara aciertos, nota y desempeño con el Excel recalculado, exige una página por estudiante y valida el flujo con solo el Excel, con un resumen antiguo y los mensajes de error.
+
 ## 1.4.0 — Pruebas armadas desde el banco de preguntas
 - **`herramientas/armar-desde-banco.js`:** arma un `exam.json` con preguntas **aprobadas** del banco, repartidas entre competencias y niveles, repetible con `--semilla`, sin repetir las de una prueba anterior (`--excluir`) y con `--listar` para ver qué hay y en qué estado. Las preguntas con texto compartido van juntas.
 - **Corrección en `guardar-en-banco.js`:** si una pregunta traía su propio `id`, este podía pisar la huella estable del banco y volver a duplicarla al guardar de nuevo. Ahora la huella manda y el id original se conserva como `idEnLaPrueba`.

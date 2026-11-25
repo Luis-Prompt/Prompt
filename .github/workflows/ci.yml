@@ -66,6 +66,8 @@ jobs:
         run: |
           pip install openpyxl
           npm run probar:calificacion
+      - name: Probar la retroalimentación por estudiante (Excel diligenciado → Word y PDF)
+        run: npm run probar:retroalimentacion
       - name: Probar el banco de preguntas (guardar, armar una prueba desde el banco y generar el Word)
         working-directory: .
         run: node herramientas/mantenimiento/probar-banco.js

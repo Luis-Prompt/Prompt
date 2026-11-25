@@ -7,6 +7,7 @@ Ordenadas por **impacto en el aula** y **esfuerzo**. Lo marcado ✅ ya está hec
 - ✅ Plantilla de calificación en Excel con análisis por pregunta, competencia y nivel.
 - ✅ Calendario real con festivos de Colombia en la planeación.
 - ✅ Puente de datos planeación → prueba.
+- ✅ **Retroalimentación por estudiante** (Word y PDF con fortalezas, qué reforzar y el error conceptual de cada respuesta) desde el Excel de calificación.
 - ✅ Prueba armada **desde el banco de preguntas** por competencia y nivel (`herramientas/armar-desde-banco.js`).
 
 ## Impacto alto
@@ -15,7 +16,6 @@ Ordenadas por **impacto en el aula** y **esfuerzo**. Lo marcado ✅ ya está hec
 | **Lectura óptica de la hoja de respuestas** (foto con el celular) | El docente no teclea las letras: la foto llena la plantilla de calificación | Alto |
 | **Biblioteca de DBA verificados** con fuente y fecha | Desaparecen los † y la dependencia de buscar cada vez | Medio |
 | **Plan de clase por sesión** (una clase de 45-90 min, minuto a minuto) a partir de una semana | La planeación del periodo baja a la clase real | Medio |
-| **Retroalimentación por estudiante** (PDF con fortalezas y qué reforzar) | Cierra el ciclo evaluación → mejora; sirve para reuniones con familias | Medio |
 | **Plan de mejoramiento automático**: del análisis de la prueba a actividades de refuerzo por competencia | Convierte el resultado en acción | Medio |
 
 ## Impacto medio
