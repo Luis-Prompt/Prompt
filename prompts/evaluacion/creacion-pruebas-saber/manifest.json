@@ -7,28 +7,48 @@
     "SKILL.md"
   ],
   "leer_segun_necesidad": [
-    { "archivo": "areas/indice.json", "cuando": "Al empezar la entrevista: catálogo de las 20 áreas y sus claves." },
-    { "archivo": "areas/<clave>.json", "cuando": "Siempre, solo el del área elegida (competencias, componentes, reglas de calidad, errores típicos, preguntas iniciales)." },
-    { "archivo": "referencia/plantillas-graficas.md", "cuando": "Si la prueba lleva gráficos, tablas o textos compartidos." },
-    { "archivo": "referencia/ilustraciones-chatgpt.md", "cuando": "Si el docente quiere ilustraciones creadas con ChatGPT." },
-    { "archivo": "examples/areas/<clave>.json", "cuando": "Como modelo del exam.json del área elegida." },
-    { "archivo": "examples/exam_ejemplo.json", "cuando": "Como modelo general del exam.json (preguntas, estímulos, abiertas)." },
-    { "archivo": "examples/exam_con_imagenes.json", "cuando": "Solo si la prueba lleva ilustraciones recortadas de hojas." }
+    {
+      "archivo": "areas/indice.json",
+      "cuando": "Al empezar la entrevista: catálogo de las 20 áreas y sus claves."
+    },
+    {
+      "archivo": "areas/<clave>.json",
+      "cuando": "Siempre, solo el del área elegida (competencias, componentes, reglas de calidad, errores típicos, preguntas iniciales)."
+    },
+    {
+      "archivo": "referencia/plantillas-graficas.md",
+      "cuando": "Si la prueba lleva gráficos, tablas o textos compartidos."
+    },
+    {
+      "archivo": "referencia/ilustraciones-chatgpt.md",
+      "cuando": "Si el docente quiere ilustraciones creadas con ChatGPT."
+    },
+    {
+      "archivo": "examples/areas/<clave>.json",
+      "cuando": "Como modelo del exam.json del área elegida."
+    },
+    {
+      "archivo": "examples/exam_ejemplo.json",
+      "cuando": "Como modelo general del exam.json (preguntas, estímulos, abiertas)."
+    },
+    {
+      "archivo": "examples/exam_con_imagenes.json",
+      "cuando": "Solo si la prueba lleva ilustraciones recortadas de hojas."
+    }
   ],
   "ejecutar": [
     "scripts/build_exam.js",
     "scripts/build_calificacion.py"
   ],
   "datos_compartidos": [
-    "config/institucion.json",
-    "config/perfil-docente.ejemplo.json",
-    "banco-imagenes/escudos/",
+    "recursos/colegio/institucion.json",
+    "recursos/colegio/perfil-docente.ejemplo.json",
+    "recursos/colegio/escudos/",
     "herramientas/guardar-en-banco.js",
     "herramientas/plan-a-borrador.js"
   ],
   "carpetas_de_apoyo": [
     "areas/",
-    "assets/",
     "examples/",
     "referencia/"
   ],

@@ -11,7 +11,7 @@ Ordenadas por prioridad. Marca con `x` lo terminado.
 ## Media
 - [x] **Más plantillas gráficas (v2.5):** geometría (ángulos, perímetro, área), plano cartesiano, diagrama circular, histograma, pictograma, línea de tiempo, ciclos (Ciencias), textos discontinuos (Lectura).
 - [x] **`config/institucion.json` (v2.4)** con membrete, escudo y nombre del colegio, para no depender del código.
-- [x] Exportar cada pregunta a `banco-preguntas/` (v2.4, `herramientas/guardar-en-banco.js`).
+- [x] Exportar cada pregunta a `recursos/banco-preguntas/` (v2.4, `herramientas/guardar-en-banco.js`).
 - [ ] Armar una prueba nueva **tomando preguntas aprobadas del banco** (filtrar por área, grado, tema, competencia y nivel).
 - [x] Quitar el `|| true` del armado final (v2.3).
 

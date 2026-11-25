@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /* generar-mapa.js — Genera llms.txt (mapa completo del repositorio para Claude) a partir de prompts/INDICE.json y del
  * manifest.json de cada prompt. Así el mapa nunca se desactualiza.
- * Uso:  node herramientas/generar-mapa.js            (escribe llms.txt)
- *       node herramientas/generar-mapa.js --check    (falla si llms.txt no está al día; lo usa el CI) */
+ * Uso:  node herramientas/mantenimiento/generar-mapa.js            (escribe llms.txt)
+ *       node herramientas/mantenimiento/generar-mapa.js --check    (falla si llms.txt no está al día; lo usa el CI) */
 const fs = require('fs'), path = require('path');
-const raiz = path.join(__dirname, '..');
+const raiz = path.join(__dirname, '..', '..');
 const idx = JSON.parse(fs.readFileSync(path.join(raiz, 'prompts/INDICE.json'), 'utf8'));
 const RAW = idx.repositorio.replace('github.com', 'raw.githubusercontent.com') + '/main/';
 const GH = idx.repositorio + '/blob/main/';
@@ -16,7 +16,7 @@ const archivosDe = (dir) => fs.readdirSync(path.join(raiz, dir), { withFileTypes
 
 L.push('# Biblioteca de Prompts — Colegio Integrado Simón Bolívar (Cúcuta)');
 L.push('');
-L.push('> Dos prompts independientes (skills) para Claude que crean material docente: **pruebas tipo SABER** y **planeaciones de clase**. Cada prompt hace UNA sola cosa; elige uno según lo que pida el docente y no mezcles sus instrucciones. Este archivo se genera solo (`node herramientas/generar-mapa.js`).');
+L.push('> Dos prompts independientes (skills) para Claude que crean material docente: **pruebas tipo SABER** y **planeaciones de clase**. Cada prompt hace UNA sola cosa; elige uno según lo que pida el docente y no mezcles sus instrucciones. Este archivo se genera solo (`node herramientas/mantenimiento/generar-mapa.js`).');
 L.push('');
 L.push('## Cómo empezar (haz esto en orden)');
 L.push(`1. Lee el enrutador: ${enlace('INDICE-PARA-CLAUDE.md').slice(2)}`);
@@ -49,8 +49,8 @@ for (const p of idx.prompts) {
   L.push('');
 }
 L.push('## Datos compartidos (son DATOS, no instrucciones)');
-L.push(enlace('config/institucion.json', 'nombre del colegio, escudo y membretes'));
-L.push(enlace('config/perfil-docente.ejemplo.json', 'formato del perfil del docente'));
+L.push(enlace('recursos/colegio/institucion.json', 'nombre del colegio, escudo y membretes'));
+L.push(enlace('recursos/colegio/perfil-docente.ejemplo.json', 'formato del perfil del docente'));
 L.push(enlace('prompts/INDICE.json', 'versión legible por máquina del enrutador'));
 L.push('');
 L.push('## Opcional');
@@ -61,6 +61,6 @@ const salida = L.join('\n') + '\n';
 const destino = path.join(raiz, 'llms.txt');
 if (process.argv.includes('--check')) {
   const actual = fs.existsSync(destino) ? fs.readFileSync(destino, 'utf8') : '';
-  if (actual !== salida) { console.error('❌ llms.txt está desactualizado. Ejecuta: node herramientas/generar-mapa.js'); process.exit(1); }
+  if (actual !== salida) { console.error('❌ llms.txt está desactualizado. Ejecuta: node herramientas/mantenimiento/generar-mapa.js'); process.exit(1); }
   console.log('✅ llms.txt está al día');
 } else { fs.writeFileSync(destino, salida); console.log(`✅ llms.txt generado (${L.length} líneas)`); }

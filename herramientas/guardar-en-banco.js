@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /* ============================================================================
  *  guardar-en-banco.js — Guarda las preguntas de un exam.json en el banco de preguntas.
- *  Uso:  node herramientas/guardar-en-banco.js exam.json [--banco banco-preguntas] [--estado aprobada]
- *  Efecto: banco-preguntas/<area>/<grado>/<tema>.json  (se crea o se completa)
+ *  Uso:  node herramientas/guardar-en-banco.js exam.json [--banco recursos/banco-preguntas] [--estado aprobada]
+ *  Efecto: recursos/banco-preguntas/<area>/<grado>/<tema>.json  (se crea o se completa)
  *  - Cada pregunta recibe un id estable (huella del enunciado+pregunta+correcta): no se duplica.
  *  - Solo guarda preguntas de selección múltiple y abiertas con su clasificación y justificación.
  *  - Estados: borrador | revisada | aprobada (por defecto: borrador, para que el docente las revise).
@@ -11,7 +11,7 @@ const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const args = process.argv.slice(2), jsonPath = args.find(a => a.endsWith('.json'));
 if (!jsonPath) { console.error('Uso: node herramientas/guardar-en-banco.js exam.json [--banco carpeta] [--estado borrador|revisada|aprobada]'); process.exit(2); }
 const val = (k, d) => args.includes(k) ? args[args.indexOf(k) + 1] : d;
-const banco = val('--banco', path.join(__dirname, '..', 'banco-preguntas')), estado = val('--estado', 'borrador');
+const banco = val('--banco', path.join(__dirname, '..', 'recursos', 'banco-preguntas')), estado = val('--estado', 'borrador');
 if (!['borrador', 'revisada', 'aprobada'].includes(estado)) { console.error('--estado debe ser borrador, revisada o aprobada'); process.exit(2); }
 
 const slug = (t) => String(t || 'general').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'general';

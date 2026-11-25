@@ -26,11 +26,11 @@ jobs:
         with:
           node-version: 20
       - name: JSON válidos, enlaces, rutas, secretos y tamaños
-        run: node herramientas/verificar-calidad.js
+        run: node herramientas/mantenimiento/verificar-calidad.js
       - name: Comprobar que los prompts no se mezclan y que cada manifest.json está completo
-        run: node herramientas/verificar-indice.js
+        run: node herramientas/mantenimiento/verificar-indice.js
       - name: Comprobar que llms.txt (mapa para Claude) está al día
-        run: node herramientas/generar-mapa.js --check
+        run: node herramientas/mantenimiento/generar-mapa.js --check
       - name: Probar el puente de datos plan → borrador de preguntas
         run: node herramientas/plan-a-borrador.js prompts/planeacion/planeaciones-de-clase/examples/plan_ejemplo.json --out /tmp/preguntas_planeacion.json
 

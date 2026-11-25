@@ -27,30 +27,35 @@ También puedes pegar directamente el enlace de un solo prompt:
 | 📝 **Creación de pruebas tipo SABER** | Prueba del estudiante y del docente (con claves) en Word para **20 áreas**, con textos compartidos, gráficos, ilustraciones con ChatGPT y hoja de respuestas. *No crea planeaciones.* | 2.9 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/evaluacion/creacion-pruebas-saber/SKILL.md) |
 | 📅 **Planeaciones de clase** | Planeación completa del periodo (9 semanas) en **Word horizontal y PDF**, con tutorial por rondas. *No crea pruebas.* | 1.3 | [`SKILL.md`](https://github.com/Luis-Prompt/Prompt/blob/main/prompts/planeacion/planeaciones-de-clase/SKILL.md) |
 
-## 🗺️ Mapa del repositorio
+## 🗺️ Qué hay en este repositorio
 ```
 Prompt/
-├─ README.md                  ← este índice
-├─ INDICE-PARA-CLAUDE.md      ← enrutador: qué hacer al recibir el enlace y cómo elegir UN prompt
-├─ llms.txt                   ← mapa completo con enlaces directos (se genera solo)
-├─ prompts/                   Los prompts, uno por carpeta y agrupados por categoría (INDICE.json)
-│  ├─ evaluacion/
-│  │  └─ creacion-pruebas-saber/     SKILL.md · manifest.json · scripts · areas (20) · examples
-│  ├─ planeacion/
-│  │  └─ planeaciones-de-clase/      SKILL.md · manifest.json · scripts · catalogo · examples
-│  └─ _plantilla/                    molde para un prompt nuevo
-├─ config/                    Datos del colegio (nombre, escudo, membretes) compartidos por todos
-├─ banco-imagenes/            Escudo en 3 tamaños y recursos visuales
-├─ banco-preguntas/           Preguntas aprobadas por área y grado
-├─ herramientas/              Utilidades compartidas (preparar escudo, guardar en banco, CI)
-├─ docs/                      Guías de uso
-└─ .github/workflows/ci.yml   Verificación automática (CI)
+├─ README.md                 ← estás aquí
+├─ INDICE-PARA-CLAUDE.md     ← para Claude: qué hacer al recibir el enlace y cómo elegir UN prompt
+├─ llms.txt                  ← para Claude: mapa completo con enlaces directos (se genera solo)
+├─ CLAUDE.md · package.json  ← acceso rápido para Claude Code · comando `npm test`
+│
+├─ prompts/                  🎯 LO IMPORTANTE: los prompts, cada uno independiente
+│  ├─ evaluacion/creacion-pruebas-saber/   📝 pruebas tipo SABER (20 áreas)
+│  ├─ planeacion/planeaciones-de-clase/    📅 planeaciones del periodo (Word + PDF)
+│  └─ _plantilla/                          molde para crear un prompt nuevo
+│
+├─ recursos/                 🏫 Datos compartidos (no son instrucciones)
+│  ├─ colegio/               institucion.json (nombre, membretes) · escudos/ · perfil-docente.ejemplo.json
+│  └─ banco-preguntas/       preguntas aprobadas por área y grado
+│
+├─ herramientas/             🔧 Utilidades: preparar-prompt.sh · guardar-en-banco · plan-a-borrador · preparar-escudo
+│  └─ mantenimiento/         verificadores y generador de llms.txt (los usa el CI)
+│
+├─ docs/                     📚 Guía rápida para docentes · ideas · historial del repositorio
+└─ .github/                  ⚙️ CI, plantillas de issues y PR, CONTRIBUTING y SECURITY
 ```
+Cada carpeta tiene su propio `README.md`. Cada prompt trae: `SKILL.md` (las instrucciones), `manifest.json` (mapa de sus archivos), `scripts/`, sus catálogos (`areas/` o `catalogo/`), `examples/`, `CHANGELOG.md` y `ROADMAP.md`.
 
 ## 🧩 Qué comparten los prompts
-- **`config/institucion.json`**: nombre del colegio, lema, rutas del escudo y membretes (de pruebas y de planeación). Cambiarlo aquí cambia todos los documentos.
-- **`banco-imagenes/escudos/`**: el escudo 2025 en maestro, encabezado y miniatura.
-- **`herramientas/`**: `preparar-prompt.sh` (deja listo un prompt con un comando), `generar-mapa.js` (genera `llms.txt`), `preparar-escudo.py` y `guardar-en-banco.js`.
+- **`recursos/colegio/institucion.json`**: nombre del colegio, lema, rutas del escudo y membretes (de pruebas y de planeación). Cambiarlo aquí cambia todos los documentos.
+- **`recursos/colegio/escudos/`**: el escudo 2025 en maestro, encabezado y miniatura (una sola copia).
+- **`herramientas/`**: `preparar-prompt.sh` (deja listo un prompt con un comando), `guardar-en-banco.js`, `plan-a-borrador.js` y `preparar-escudo.py`.
 
 ## 🛠️ Cómo se mejora un prompt (flujo diario)
 1. Anota la idea en **Issues** (hay plantillas) o en el `ROADMAP.md` del prompt.
@@ -63,9 +68,9 @@ Prompt/
 - Cada prompt va en `prompts/<categoria>/<nombre-del-prompt>` (minúsculas, sin tildes ni espacios).
 - El `SKILL.md` es **corto y claro**: el conocimiento va en `catalogo/` o `areas/` y el código en `scripts/`.
 - Cada prompt trae un ejemplo funcional en `examples/` y un `manifest.json` que mapea **todos** sus archivos (el CI lo comprueba).
-- Si agregas o quitas archivos o prompts, ejecuta `node herramientas/generar-mapa.js` para actualizar `llms.txt`.
+- Si agregas o quitas archivos o prompts, ejecuta `node herramientas/mantenimiento/generar-mapa.js` para actualizar `llms.txt`.
 - No subir claves, tokens ni datos personales de estudiantes.
 
-Cómo contribuir: [`CONTRIBUTING.md`](CONTRIBUTING.md) · Seguridad: [`SECURITY.md`](SECURITY.md) · Historial: [`CHANGELOG.md`](CHANGELOG.md)
+Cómo contribuir: [`.github/CONTRIBUTING.md`](.github/CONTRIBUTING.md) · Seguridad: [`.github/SECURITY.md`](.github/SECURITY.md) · Historial: [`docs/CHANGELOG.md`](docs/CHANGELOG.md)
 
 Guía rápida para docentes: [`docs/GUIA-RAPIDA.md`](docs/GUIA-RAPIDA.md) · Ideas para seguir mejorando: [`docs/IDEAS.md`](docs/IDEAS.md).

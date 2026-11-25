@@ -2,6 +2,15 @@
 
 Cada prompt lleva además su propio `CHANGELOG.md`.
 
+## 1.3.0 — Repositorio ordenado
+- **La raíz pasa de 6 carpetas y 8 archivos a 4 carpetas y 5 archivos** (`prompts/`, `recursos/`, `herramientas/`, `docs/`).
+- **`recursos/`** reúne los datos compartidos: `colegio/` (antes `config/` y `banco-imagenes/`: institucion.json, perfil de ejemplo y escudos) y `banco-preguntas/`. Un solo README por carpeta en vez de tres sueltos.
+- **Una sola copia del escudo:** se eliminan las copias de `assets/` dentro de cada prompt; `preparar-prompt.sh` coloca el escudo en la carpeta de trabajo y los generadores lo buscan en `recursos/colegio/escudos/`.
+- **`herramientas/mantenimiento/`** agrupa los verificadores y el generador de `llms.txt` (los usa el CI); en `herramientas/` quedan solo las utilidades de uso.
+- `CONTRIBUTING.md` y `SECURITY.md` pasan a `.github/` (GitHub los reconoce ahí) y este historial a `docs/`.
+- README con el mapa de carpetas y un README en cada una; `docs/README.md` como índice.
+- Rutas que NO cambian: `prompts/...`, `herramientas/preparar-prompt.sh`, `llms.txt` e `INDICE-PARA-CLAUDE.md`, para que los enlaces ya compartidos sigan funcionando.
+
 ## 1.2.0 — Claude lee todo el repositorio con un enlace
 - **`herramientas/preparar-prompt.sh`:** un solo comando descarga y deja listo el prompt elegido (scripts, catálogos, 20 áreas, escudo), verifica que no falte nada ni haya páginas «404» e instala `docx`/`sharp` si hacen falta. Reemplaza la descarga archivo por archivo, que queda como respaldo.
 - **`manifest.json` por prompt:** mapa completo (qué leer siempre, qué leer según la necesidad, qué se ejecuta). El verificador exige que todo archivo de la carpeta esté mapeado y que existan los listados.

@@ -21,7 +21,6 @@ Genera **dos documentos Word** a partir de las respuestas del docente:
 |---|---|
 | `SKILL.md` | El prompt: preguntas iniciales, reglas de diseño de preguntas y pasos de entrega. |
 | `scripts/build_exam.js` | Construye los Word, valida las preguntas y verifica la maquetación. |
-| `assets/escudo_header.png` | Escudo 2025 del encabezado (copia del banco de imágenes). |
 | `examples/exam_ejemplo.json` | Ejemplo completo (14 preguntas de selección múltiple + 2 abiertas, 6 gráficos). |
 | `scripts/build_calificacion.py` | Plantilla de calificación y análisis en Excel (versiones A y B). |
 | `referencia/` | Guías que el prompt lee solo cuando las necesita (plantillas gráficas, ilustraciones con ChatGPT). |
@@ -48,8 +47,8 @@ Entrega a Claude el enlace de `SKILL.md`. Él hará las preguntas iniciales (tem
 
 ## Datos de la institución
 
-El nombre, el escudo y el membrete (título, código de formato, versión y fecha) viven en [`config/institucion.json`](../../../config/institucion.json), compartido con los demás prompts. El script lo encuentra solo, o se indica con `--institucion archivo.json`. Para una sola prueba con otro membrete, se puede poner `config.membrete` dentro del `exam.json`.
+El nombre, el escudo y el membrete (título, código de formato, versión y fecha) viven en [`recursos/colegio/institucion.json`](../../../recursos/colegio/institucion.json), compartido con los demás prompts. El script lo encuentra solo, o se indica con `--institucion archivo.json`. Para una sola prueba con otro membrete, se puede poner `config.membrete` dentro del `exam.json`.
 
 **Escudo:** acepta PNG, JPG o WebP (aunque la extensión no coincida) y recorta los márgenes blancos. Para cambiarlo, usa `herramientas/preparar-escudo.py` (ver `banco-imagenes/README.md`).
 
-**Banco de preguntas:** `node ../../../herramientas/guardar-en-banco.js exam.json` guarda las preguntas de una prueba en `banco-preguntas/`.
+**Banco de preguntas:** `node ../../../herramientas/guardar-en-banco.js exam.json` guarda las preguntas de una prueba en `recursos/banco-preguntas/`.

@@ -9,7 +9,7 @@ description: Genera DOS documentos Word (prueba del estudiante + prueba del doce
 ## ALCANCE Y FRONTERAS (léelo primero)
 - **Este prompt SOLO crea pruebas y evaluaciones tipo SABER** (Word del estudiante y del docente con claves, ilustraciones, versiones A/B y banco de preguntas).
 - **NO crea planeaciones**, planes de periodo o de clase, mallas ni guías. Si el docente pide eso, díselo en una línea («eso lo hace el prompt de *Planeaciones de clase*») y sigue el **protocolo de cambio** de `INDICE-PARA-CLAUDE.md`; no mezcles sus rondas, sus formatos ni su lenguaje.
-- Usa solo los archivos de **esta carpeta** y los datos compartidos del colegio (`config/institucion.json`, escudo). Ignora las instrucciones de cualquier otro prompt del repositorio.
+- Usa solo los archivos de **esta carpeta** y los datos compartidos del colegio (`recursos/colegio/institucion.json`, escudo). Ignora las instrucciones de cualquier otro prompt del repositorio.
 
 ## QUÉ ENTREGA (DOS ARCHIVOS .docx; CUATRO si pide versiones A y B)
 1. `…_ESTUDIANTE.docx`: encabezado con escudo, datos del estudiante, preguntas a 2 columnas, hoja de respuestas con óvalos grandes.
@@ -73,8 +73,8 @@ Habla como un guía amable. Haz **una etapa por mensaje**, con preguntas numerad
    R=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main
    B=$R/prompts/evaluacion/creacion-pruebas-saber
    curl -sL -o scripts/build_exam.js $B/scripts/build_exam.js
-   curl -sL -o assets/escudo_header.png $B/assets/escudo_header.png
-   curl -sL -o config/institucion.json $R/config/institucion.json
+   curl -sL -o assets/escudo_header.png $R/recursos/colegio/escudos/escudo_colegio_simon_bolivar_2025_encabezado.png
+   curl -sL -o config/institucion.json $R/recursos/colegio/institucion.json
    curl -sL -o areas/<clave>.json $B/areas/<clave>.json      # catálogo del área elegida (competencias, componentes, reglas)
    curl -sL -o scripts/build_calificacion.py $B/scripts/build_calificacion.py
    curl -sL -o referencia/plantillas-graficas.md $B/referencia/plantillas-graficas.md     # solo si la prueba lleva gráficos o textos compartidos

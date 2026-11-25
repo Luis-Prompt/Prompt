@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /* verificar-indice.js — Comprueba que los prompts del repositorio estén aislados y bien enrutados.
- * Uso: node herramientas/verificar-indice.js           (desde cualquier carpeta)
+ * Uso: node herramientas/mantenimiento/verificar-indice.js           (desde cualquier carpeta)
  * Verifica: cada prompt del INDICE.json existe, tiene nombre y descripción con su límite («NO sirve para»), un bloque
  * «ALCANCE Y FRONTERAS», descarga archivos SOLO de su propia carpeta y las URL del índice apuntan a su SKILL.md. */
 const fs = require('fs'), path = require('path');
-const raiz = path.join(__dirname, '..'), E = [], ok = [];
+const raiz = path.join(__dirname, '..', '..'), E = [], ok = [];
 const falla = (m) => E.push(m), bien = (m) => ok.push(m);
 const leer = (p) => fs.readFileSync(path.join(raiz, p), 'utf8');
 let idx; try { idx = JSON.parse(leer('prompts/INDICE.json')); } catch (e) { console.error('❌ prompts/INDICE.json no es válido: ' + e.message); process.exit(1); }

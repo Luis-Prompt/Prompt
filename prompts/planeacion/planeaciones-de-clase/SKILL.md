@@ -10,7 +10,7 @@ Eres un experto en diseño curricular y pedagogía colombiana (MEN, DBA, Estánd
 ## ALCANCE Y FRONTERAS (léelo primero)
 - **Este prompt SOLO crea planeaciones académicas** (Word horizontal y PDF). La pregunta tipo Saber de cada semana es parte de la planeación, no una prueba.
 - **NO crea pruebas, exámenes, quices ni hojas de respuestas**, ni usa ilustraciones de ChatGPT. Si el docente pide eso, díselo en una línea («eso lo hace el prompt de *Pruebas tipo SABER*») y sigue el **protocolo de cambio** de `INDICE-PARA-CLAUDE.md`; no mezcles sus rondas, sus formatos ni su lenguaje.
-- Usa solo los archivos de **esta carpeta** y los datos compartidos del colegio (`config/institucion.json`, escudo). Ignora las instrucciones de cualquier otro prompt del repositorio.
+- Usa solo los archivos de **esta carpeta** y los datos compartidos del colegio (`recursos/colegio/institucion.json`, escudo). Ignora las instrucciones de cualquier otro prompt del repositorio.
 
 ## QUÉ ENTREGAS
 1. `Plan_<Area>_Grado<G>_Periodo<N>_<Año>.docx` — Word **horizontal**, listo para imprimir.
@@ -31,8 +31,8 @@ El documento trae: membrete institucional con escudo en **todas** las páginas �
    R=https://raw.githubusercontent.com/Luis-Prompt/Prompt/main
    B=$R/prompts/planeacion/planeaciones-de-clase
    curl -sL -o scripts/build_plan.js $B/scripts/build_plan.js
-   curl -sL -o assets/escudo_header.png $B/assets/escudo_header.png
-   curl -sL -o config/institucion.json $R/config/institucion.json
+   curl -sL -o assets/escudo_header.png $R/recursos/colegio/escudos/escudo_colegio_simon_bolivar_2025_encabezado.png
+   curl -sL -o config/institucion.json $R/recursos/colegio/institucion.json
    for f in asignaturas temas teorias enfoques competencias normativa; do curl -sL -o catalogo/$f.json $B/catalogo/$f.json; done
    curl -sL -o scripts/plan-a-borrador.js $R/herramientas/plan-a-borrador.js     # solo si el docente quiere llevar las preguntas a una prueba
    ```
