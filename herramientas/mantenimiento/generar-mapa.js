@@ -55,7 +55,8 @@ L.push(enlace('prompts/INDICE.json', 'versión legible por máquina del enrutado
 L.push('');
 L.push('## Opcional');
 L.push(enlace('herramientas/plan-a-borrador.js', 'puente de datos: preguntas de una planeación → borrador de preguntas para una prueba'));
-L.push(enlace('herramientas/guardar-en-banco.js', 'guarda las preguntas de un exam.json en banco-preguntas/'));
+L.push(enlace('herramientas/guardar-en-banco.js', 'guarda las preguntas de un exam.json en recursos/banco-preguntas/'));
+L.push(enlace('herramientas/armar-desde-banco.js', 'arma un exam.json con preguntas aprobadas del banco (equilibradas por competencia y nivel)'));
 L.push(`- [Repositorio en GitHub](${idx.repositorio})`);
 const salida = L.join('\n') + '\n';
 const destino = path.join(raiz, 'llms.txt');

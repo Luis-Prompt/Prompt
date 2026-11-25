@@ -66,6 +66,9 @@ jobs:
         run: |
           pip install openpyxl
           npm run probar:calificacion
+      - name: Probar el banco de preguntas (guardar, armar una prueba desde el banco y generar el Word)
+        working-directory: .
+        run: node herramientas/mantenimiento/probar-banco.js
       - name: Comprobar que salieron los dos Word y el resumen
         run: |
           ls salida

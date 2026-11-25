@@ -30,7 +30,7 @@ try {
 // 3. Enlaces relativos en Markdown (se ignoran los bloques de código)
 todos.filter(f => f.endsWith('.md')).forEach(f => {
   const txt = fs.readFileSync(f, 'utf8').replace(/```[\s\S]*?```/g, '').replace(/`[^`\n]*`/g, '');
-  (txt.match(/\]\(([^)\s]+)\)/g) || []).map(x => x.slice(2, -1).split('#')[0]).filter(x => x && !/^(https?:|mailto:)/.test(x)).forEach(l => {
+  [...(txt.match(/\]\(([^)\s]+)\)/g) || []).map(x => x.slice(2, -1)), ...(txt.match(/(?:src|href)="([^"]+)"/g) || []).map(x => x.replace(/^(?:src|href)="|"$/g, ''))].map(x => x.split('#')[0]).filter(x => x && !/^(https?:|mailto:)/.test(x)).forEach(l => {
     if (!fs.existsSync(path.resolve(path.dirname(f), decodeURIComponent(l)))) E.push(`${rel(f)} enlaza a «${l}» y no existe`);
   });
 });

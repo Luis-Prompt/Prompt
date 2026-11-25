@@ -2,6 +2,11 @@
 
 Cada prompt lleva además su propio `CHANGELOG.md`.
 
+## 1.4.0 — Pruebas armadas desde el banco de preguntas
+- **`herramientas/armar-desde-banco.js`:** arma un `exam.json` con preguntas **aprobadas** del banco, repartidas entre competencias y niveles, repetible con `--semilla`, sin repetir las de una prueba anterior (`--excluir`) y con `--listar` para ver qué hay y en qué estado. Las preguntas con texto compartido van juntas.
+- **Corrección en `guardar-en-banco.js`:** si una pregunta traía su propio `id`, este podía pisar la huella estable del banco y volver a duplicarla al guardar de nuevo. Ahora la huella manda y el id original se conserva como `idEnLaPrueba`.
+- Prueba nueva `npm run test:banco` (también en el CI): guardar sin duplicar, armar, excluir, exigir «aprobada» y generar el Word.
+
 ## 1.3.0 — Repositorio ordenado
 - **La raíz pasa de 6 carpetas y 8 archivos a 4 carpetas y 5 archivos** (`prompts/`, `recursos/`, `herramientas/`, `docs/`).
 - **`recursos/`** reúne los datos compartidos: `colegio/` (antes `config/` y `banco-imagenes/`: institucion.json, perfil de ejemplo y escudos) y `banco-preguntas/`. Un solo README por carpeta en vez de tres sueltos.
