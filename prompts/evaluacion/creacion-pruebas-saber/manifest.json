@@ -1,7 +1,7 @@
 {
   "_nota": "Mapa completo de este prompt para Claude. 'leer_primero' siempre; 'leer_segun_necesidad' solo cuando se cumple la condición; 'ejecutar' son scripts que se USAN (no se reescriben ni se leen línea por línea). Todo archivo de esta carpeta debe aparecer aquí (lo verifica herramientas/verificar-indice.js).",
   "id": "pruebas-saber",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "destino_de_trabajo": "/home/claude/examen",
   "leer_primero": [
     "SKILL.md"
@@ -38,7 +38,9 @@
   ],
   "ejecutar": [
     "scripts/build_exam.js",
-    "scripts/build_calificacion.py"
+    "scripts/build_calificacion.py",
+    "scripts/build_retroalimentacion.js",
+    "scripts/leer_calificacion.py"
   ],
   "datos_compartidos": [
     "recursos/colegio/institucion.json",
@@ -60,6 +62,7 @@
     "package.json",
     "package-lock.json",
     "scripts/probar_areas.sh",
-    "scripts/probar_calificacion.py"
+    "scripts/probar_calificacion.py",
+    "scripts/probar_retroalimentacion.py"
   ]
 }
